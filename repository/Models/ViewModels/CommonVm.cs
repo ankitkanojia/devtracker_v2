@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using repository.Helpers;
 
 namespace repository.Models.ViewModels
 {
-
-
     public class AuthVm
     {
         //Login
         public string Email { get; set; }
         public string Password { get; set; }
         public bool IsRemember { get; set; }
-        public string ReturnUrl { get; set; } 
+        public string ReturnUrl { get; set; }
         public string UserId { get; set; }
 
 
@@ -28,13 +22,6 @@ namespace repository.Models.ViewModels
         public bool IsMailAccountDetails { get; set; }
         public bool IsAcceptTnC { get; set; }
     }
-
-
-
-
-
-
-
 
 
     public class LockoutVm
@@ -97,9 +84,6 @@ namespace repository.Models.ViewModels
         public string RoleName { get; set; }
         public DateTime? LockOutDateTime { get; set; }
     }
-
-
-
 
 
     public class MyProfileVm

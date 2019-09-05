@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 
-
 namespace repository.Helpers
 {
     public static class CookieHelper
@@ -113,12 +112,8 @@ namespace repository.Helpers
             var cookies = Context.Request.Cookies;
 
             if (cookies.AllKeys.Any())
-            {
                 foreach (var item in cookies.AllKeys)
-                {
                     Delete(item);
-                }
-            }
             if (deleteServerCookies) Context.Request.Cookies.Clear();
         }
 

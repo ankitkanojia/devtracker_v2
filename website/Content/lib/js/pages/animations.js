@@ -6,12 +6,16 @@
 //----------------------------------
 
 $(function() {
-	'use strict';
-	$("body").on("click", ".animation", function (e) {
-		var animation = $(this).data("animation");
-		$(this).parents(".card").addClass("animated " + animation).one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function () {
-			$(this).removeClass("animated " + animation);
-		});
-		e.preventDefault();
-	});
+    "use strict";
+    $("body").on("click",
+        ".animation",
+        function(e) {
+            var animation = $(this).data("animation");
+            $(this).parents(".card").addClass("animated " + animation).one(
+                "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",
+                function() {
+                    $(this).removeClass("animated " + animation);
+                });
+            e.preventDefault();
+        });
 });

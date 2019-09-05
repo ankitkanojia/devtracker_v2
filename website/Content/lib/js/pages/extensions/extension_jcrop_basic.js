@@ -5,6 +5,6 @@
 //   Last Updated  : April 4, 2017
 //----------------------------------
 
-'use strict';
+"use strict";
 
-$('#basic-example').Jcrop();
+$("#basic-example").Jcrop();

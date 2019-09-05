@@ -15,16 +15,16 @@
 // 5. Single image with auto height
 
 
-'use strict';
+"use strict";
 
 // ---------------------------------
 // 1. Single image slider
 // ---------------------------------
 $("#single-image-slider").owlCarousel({
-	navigation : true,
-	slideSpeed : 300,
-	paginationSpeed : 400,
-	singleItem : true
+    navigation: true,
+    slideSpeed: 300,
+    paginationSpeed: 400,
+    singleItem: true
 });
 
 
@@ -32,10 +32,10 @@ $("#single-image-slider").owlCarousel({
 // 2. Multiple images
 // ---------------------------------
 $("#multiple-images").owlCarousel({
-	autoPlay: 3000,
-	items : 4,
-	itemsDesktop : [1199,3],
-	itemsDesktopSmall : [979,3]
+    autoPlay: 3000,
+    items: 4,
+    itemsDesktop: [1199, 3],
+    itemsDesktopSmall: [979, 3]
 });
 
 
@@ -44,34 +44,38 @@ $("#multiple-images").owlCarousel({
 // ---------------------------------
 var owl = $("#custom-options");
 owl.owlCarousel({
-	items : 10,
-	itemsDesktop : [1000,5],
-	itemsDesktopSmall : [900,3],
-	itemsTablet: [600,2],
-	itemsMobile : false
+    items: 10,
+    itemsDesktop: [1000, 5],
+    itemsDesktopSmall: [900, 3],
+    itemsTablet: [600, 2],
+    itemsMobile: false
 });
 
-$(".next").on("click",function(){
-	owl.trigger('owl.next');
-})
-$(".prev").on("click",function(){
-	owl.trigger('owl.prev');
-})
-$(".play").on("click",function(){
-	owl.trigger('owl.play',1000);
-})
-$(".stop").on("click",function(){
-	owl.trigger('owl.stop');
-})
+$(".next").on("click",
+    function() {
+        owl.trigger("owl.next");
+    });
+$(".prev").on("click",
+    function() {
+        owl.trigger("owl.prev");
+    });
+$(".play").on("click",
+    function() {
+        owl.trigger("owl.play", 1000);
+    });
+$(".stop").on("click",
+    function() {
+        owl.trigger("owl.stop");
+    });
 
 
 // ---------------------------------
 // 4. Lazy load
 // ---------------------------------
 $("#lazy-load").owlCarousel({
-	items : 4,
-	lazyLoad : true,
-	navigation : false
+    items: 4,
+    lazyLoad: true,
+    navigation: false
 });
 
 
@@ -79,12 +83,12 @@ $("#lazy-load").owlCarousel({
 // 5. Single image with auto height
 // ---------------------------------
 $("#single-item-auto-height").owlCarousel({
-	autoPlay : 3000,
-	stopOnHover : false,
-	navigation:false,
-	paginationSpeed : 1000,
-	goToFirstSpeed : 2000,
-	singleItem : true,
-	autoHeight : true,
-	transitionStyle:"fade"
+    autoPlay: 3000,
+    stopOnHover: false,
+    navigation: false,
+    paginationSpeed: 1000,
+    goToFirstSpeed: 2000,
+    singleItem: true,
+    autoHeight: true,
+    transitionStyle: "fade"
 });

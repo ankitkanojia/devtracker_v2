@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace website.Helpers
 {
@@ -14,8 +10,8 @@ namespace website.Helpers
             if (string.IsNullOrEmpty(cssClass))
                 cssClass = "active";
 
-            var currentAction = (string)html.ViewContext.RouteData.Values["action"];
-            var currentController = (string)html.ViewContext.RouteData.Values["controller"];
+            var currentAction = (string) html.ViewContext.RouteData.Values["action"];
+            var currentController = (string) html.ViewContext.RouteData.Values["controller"];
 
             if (string.IsNullOrEmpty(controller))
                 controller = currentController;
@@ -28,7 +24,7 @@ namespace website.Helpers
 
         public static string PageClass(this HtmlHelper html)
         {
-            var currentAction = (string)html.ViewContext.RouteData.Values["action"];
+            var currentAction = (string) html.ViewContext.RouteData.Values["action"];
             return currentAction;
         }
     }

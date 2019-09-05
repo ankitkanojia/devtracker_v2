@@ -5,23 +5,24 @@ Intellij Idea-like styling (c) Vasily Polovnyov <vast@whiteants.net>
 */
 
 .hljs {
-  display: block; padding: 0.5em;
-  color: #000;
-  background: #fff;
+    background: #fff;
+    color: #000;
+    display: block;
+    padding: 0.5em;
 }
 
 .hljs-subst,
 .hljs-title {
-  font-weight: normal;
-  color: #000;
+    color: #000;
+    font-weight: normal;
 }
 
 .hljs-comment,
 .hljs-template_comment,
 .hljs-javadoc,
 .diff .hljs-header {
-  color: #808080;
-  font-style: italic;
+    color: #808080;
+    font-style: italic;
 }
 
 .hljs-annotation,
@@ -34,14 +35,10 @@ Intellij Idea-like styling (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-shebang,
 .apache .hljs-cbracket,
 .hljs-prompt,
-.http .hljs-title {
-  color: #808000;
-}
+.http .hljs-title { color: #808000; }
 
 .hljs-tag,
-.hljs-pi {
-  background: #efefef;
-}
+.hljs-pi { background: #efefef; }
 
 .hljs-tag .hljs-title,
 .hljs-id,
@@ -59,8 +56,8 @@ Intellij Idea-like styling (c) Vasily Polovnyov <vast@whiteants.net>
 .tex .hljs-command,
 .hljs-request,
 .hljs-status {
-  font-weight: bold;
-  color: #000080;
+    color: #000080;
+    font-weight: bold;
 }
 
 .hljs-attribute,
@@ -69,54 +66,42 @@ Intellij Idea-like styling (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-date,
 .hljs-regexp,
 .tex .hljs-special {
-  font-weight: bold;
-  color: #0000ff;
+    color: #0000ff;
+    font-weight: bold;
 }
 
 .hljs-number,
-.hljs-regexp {
-  font-weight: normal;
-}
+.hljs-regexp { font-weight: normal; }
 
 .hljs-string,
 .hljs-value,
 .hljs-filter .hljs-argument,
 .css .hljs-function .hljs-params,
 .apache .hljs-tag {
-  color: #008000;
-  font-weight: bold;
+    color: #008000;
+    font-weight: bold;
 }
 
 .hljs-symbol,
 .ruby .hljs-symbol .hljs-string,
 .hljs-char,
 .tex .hljs-formula {
-  color: #000;
-  background: #d0eded;
-  font-style: italic;
+    background: #d0eded;
+    color: #000;
+    font-style: italic;
 }
 
 .hljs-phpdoc,
 .hljs-yardoctag,
-.hljs-javadoctag {
-  text-decoration: underline;
-}
+.hljs-javadoctag { text-decoration: underline; }
 
 .hljs-variable,
 .hljs-envvar,
 .apache .hljs-sqbracket,
-.nginx .hljs-built_in {
-  color: #660e7a;
-}
+.nginx .hljs-built_in { color: #660e7a; }
 
-.hljs-addition {
-  background: #baeeba;
-}
+.hljs-addition { background: #baeeba; }
 
-.hljs-deletion {
-  background: #ffc8bd;
-}
+.hljs-deletion { background: #ffc8bd; }
 
-.diff .hljs-change {
-  background: #bccff9;
-}
+.diff .hljs-change { background: #bccff9; }

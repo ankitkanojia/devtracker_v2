@@ -1,14 +1,14 @@
-Rickshaw.namespace('Rickshaw.Graph.JSONP');
+Rickshaw.namespace("Rickshaw.Graph.JSONP");
 
-Rickshaw.Graph.JSONP = Rickshaw.Class.create( Rickshaw.Graph.Ajax, {
+Rickshaw.Graph.JSONP = Rickshaw.Class.create(Rickshaw.Graph.Ajax,
+    {
+        request: function() {
 
-	request: function() {
-
-		jQuery.ajax( {
-			url: this.dataURL,
-			dataType: 'jsonp',
-			success: this.success.bind(this),
-			error: this.error.bind(this)
-		} );
-	}
-} );
+            jQuery.ajax({
+                url: this.dataURL,
+                dataType: "jsonp",
+                success: this.success.bind(this),
+                error: this.error.bind(this)
+            });
+        }
+    });

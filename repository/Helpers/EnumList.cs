@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace repository.Helpers
+﻿namespace repository.Helpers
 {
     public static class EnumList
     {
-
         public enum EmailTemplate
         {
             VerificationEmail = 1,
@@ -22,7 +15,5 @@ namespace repository.Helpers
             Exception = 3,
             Failure = 4
         }
-
-       
     }
 }

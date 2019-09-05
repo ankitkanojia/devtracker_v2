@@ -6,7 +6,7 @@
 //----------------------------------
 
 $(function() {
-	'use strict';
+    "use strict";
 
     // Postfix
     $(".touchspin-postfix").TouchSpin({
@@ -14,7 +14,7 @@ $(function() {
         max: 1000,
         step: 0.1,
         decimals: 2,
-        postfix: '%'
+        postfix: "%"
     });
 
     // Prefix
@@ -23,7 +23,7 @@ $(function() {
         max: 1000,
         step: 0.1,
         decimals: 2,
-        prefix: '$'
+        prefix: "$"
     });
 
     // Init with empty values
@@ -32,13 +32,13 @@ $(function() {
     // Incremental/decremental steps
     $(".touchspin-step").TouchSpin({
         step: 10,
-		max: 1000,
+        max: 1000,
     });
 
     // Inside button group
     $(".touchspin-button-group").TouchSpin({
         prefix: "$",
         postfix: "%",
-		max: 1000,
+        max: 1000,
     });
 });

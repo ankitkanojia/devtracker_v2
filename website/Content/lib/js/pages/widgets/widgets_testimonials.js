@@ -16,21 +16,21 @@
 // 6. Testimonial slider 6
 
 
-'use strict';
+"use strict";
 
 // ---------------------------------
 // 1. Testimonial slider 1
 // ---------------------------------
 $("#testimonial-slider").owlCarousel({
-	items:1,
-	itemsDesktop:[1000,1],
-	itemsDesktopSmall:[979,1],
-	itemsTablet:[768,1],
-	pagination: true,
-	slideSpeed:1000,
-	singleItem:true,
-	transitionStyle:"fadeUp",
-	autoPlay:true
+    items: 1,
+    itemsDesktop: [1000, 1],
+    itemsDesktopSmall: [979, 1],
+    itemsTablet: [768, 1],
+    pagination: true,
+    slideSpeed: 1000,
+    singleItem: true,
+    transitionStyle: "fadeUp",
+    autoPlay: true
 });
 
 
@@ -38,15 +38,15 @@ $("#testimonial-slider").owlCarousel({
 // 2. Testimonial slider 2
 // ---------------------------------
 $("#testimonial-slider2").owlCarousel({
-	items:1,
-	itemsDesktop:[1000,1],
-	itemsDesktopSmall:[979,1],
-	itemsTablet:[767,1],
-	pagination:false,
-	transitionStyle:"fade",
-	navigation:true,
-	navigationText:["",""],
-	autoPlay:true
+    items: 1,
+    itemsDesktop: [1000, 1],
+    itemsDesktopSmall: [979, 1],
+    itemsTablet: [767, 1],
+    pagination: false,
+    transitionStyle: "fade",
+    navigation: true,
+    navigationText: ["", ""],
+    autoPlay: true
 });
 
 
@@ -54,14 +54,14 @@ $("#testimonial-slider2").owlCarousel({
 // 3. Testimonial slider 3
 // ---------------------------------
 $("#testimonial-slider3").owlCarousel({
-	items:1,
-	itemsDesktop:[1000,1],
-	itemsDesktopSmall:[979,1],
-	itemsTablet:[768,1],
-	pagination: true,
-	slideSpeed:1000,
-	transitionStyle:"fadeUp",
-	autoPlay:false
+    items: 1,
+    itemsDesktop: [1000, 1],
+    itemsDesktopSmall: [979, 1],
+    itemsTablet: [768, 1],
+    pagination: true,
+    slideSpeed: 1000,
+    transitionStyle: "fadeUp",
+    autoPlay: false
 });
 
 
@@ -69,17 +69,17 @@ $("#testimonial-slider3").owlCarousel({
 // 4. Testimonial slider 4
 // ---------------------------------
 $("#testimonial-slider4").owlCarousel({
-	items:1,
-	itemsDesktop:[1000,1],
-	itemsDesktopSmall:[979,1],
-	itemsTablet:[768,1],
-	itemsMobile:[550,1],
-	pagination: false,
-	navigation:true,
-	navigationText:["",""],
-	slideSpeed:1000,
-	transitionStyle:"goDown",
-	autoPlay:true
+    items: 1,
+    itemsDesktop: [1000, 1],
+    itemsDesktopSmall: [979, 1],
+    itemsTablet: [768, 1],
+    itemsMobile: [550, 1],
+    pagination: false,
+    navigation: true,
+    navigationText: ["", ""],
+    slideSpeed: 1000,
+    transitionStyle: "goDown",
+    autoPlay: true
 });
 
 
@@ -87,14 +87,14 @@ $("#testimonial-slider4").owlCarousel({
 // 5. Testimonial slider 5
 // ---------------------------------
 $("#testimonial-slider5").owlCarousel({
-	items:1,
-	itemsDesktop:[1199,1],
-	itemsDesktopSmall:[979,1],
-	itemsTablet:[768,1],
-	pagination: false,
-	navigation:true,
-	navigationText:["",""],
-	autoPlay:true
+    items: 1,
+    itemsDesktop: [1199, 1],
+    itemsDesktopSmall: [979, 1],
+    itemsTablet: [768, 1],
+    pagination: false,
+    navigation: true,
+    navigationText: ["", ""],
+    autoPlay: true
 });
 
 
@@ -102,11 +102,11 @@ $("#testimonial-slider5").owlCarousel({
 // 6. Testimonial slider 6
 // ---------------------------------
 $("#testimonial-slider6").owlCarousel({
-    items:1,
-	itemsDesktop:[1000,1],
-	itemsDesktopSmall:[990,1],
-	itemsTablet:[767,1],
-	pagination:true,
-	navigation:false,
-	autoPlay:true
+    items: 1,
+    itemsDesktop: [1000, 1],
+    itemsDesktopSmall: [990, 1],
+    itemsTablet: [767, 1],
+    pagination: true,
+    navigation: false,
+    autoPlay: true
 });

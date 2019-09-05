@@ -4,4 +4,156 @@ Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
 version: 2.7.0
 */
-.cke_uicolor_picker .yui-picker-panel{background:#e3e3e3;border-color:#888;}.cke_uicolor_picker .yui-picker-panel .hd{background-color:#ccc;font-size:100%;line-height:100%;border:1px solid #e3e3e3;font-weight:bold;overflow:hidden;padding:6px;color:#000;}.cke_uicolor_picker .yui-picker-panel .bd{background:#e8e8e8;margin:1px;height:200px;}.cke_uicolor_picker .yui-picker-panel .ft{background:#e8e8e8;margin:1px;padding:1px;}.cke_uicolor_picker .yui-picker{position:relative;}.cke_uicolor_picker .yui-picker-hue-thumb{cursor:default;width:18px;height:18px;top:-8px;left:-2px;z-index:9;position:absolute;}.cke_uicolor_picker .yui-picker-hue-bg{-moz-outline:none;outline:0 none;position:absolute;left:200px;height:183px;width:14px;background:url(hue_bg.png) no-repeat;top:4px;}.cke_uicolor_picker .yui-picker-bg{-moz-outline:none;outline:0 none;position:absolute;top:4px;left:4px;height:182px;width:182px;background-color:#F00;background-image:url(picker_mask.png);}*html .cke_uicolor_picker .yui-picker-bg{background-image:none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='picker_mask.png',sizingMethod='scale');}.cke_uicolor_picker .yui-picker-mask{position:absolute;z-index:1;top:0;left:0;}.cke_uicolor_picker .yui-picker-thumb{cursor:default;width:11px;height:11px;z-index:9;position:absolute;top:-4px;left:-4px;}.cke_uicolor_picker .yui-picker-swatch{position:absolute;left:240px;top:4px;height:60px;width:55px;border:1px solid #888;}.cke_uicolor_picker .yui-picker-websafe-swatch{position:absolute;left:304px;top:4px;height:24px;width:24px;border:1px solid #888;}.cke_uicolor_picker .yui-picker-controls{position:absolute;top:72px;left:226px;font:1em monospace;}.cke_uicolor_picker .yui-picker-controls .hd{background:transparent;border-width:0!important;}.cke_uicolor_picker .yui-picker-controls .bd{height:100px;border-width:0!important;}.cke_uicolor_picker .yui-picker-controls ul{float:left;padding:0 2px 0 0;margin:0;}.cke_uicolor_picker .yui-picker-controls li{padding:2px;list-style:none;margin:0;}.cke_uicolor_picker .yui-picker-controls input{font-size:.85em;width:2.4em;}.cke_uicolor_picker .yui-picker-hex-controls{clear:both;padding:2px;}.cke_uicolor_picker .yui-picker-hex-controls input{width:4.6em;}.cke_uicolor_picker .yui-picker-controls a{font:1em arial,helvetica,clean,sans-serif;display:block;*display:inline-block;padding:0;color:#000;}
+.cke_uicolor_picker .yui-picker-panel {
+    background: #e3e3e3;
+    border-color: #888;
+}
+
+.cke_uicolor_picker .yui-picker-panel .hd {
+    background-color: #ccc;
+    border: 1px solid #e3e3e3;
+    color: #000;
+    font-size: 100%;
+    font-weight: bold;
+    line-height: 100%;
+    overflow: hidden;
+    padding: 6px;
+}
+
+.cke_uicolor_picker .yui-picker-panel .bd {
+    background: #e8e8e8;
+    height: 200px;
+    margin: 1px;
+}
+
+.cke_uicolor_picker .yui-picker-panel .ft {
+    background: #e8e8e8;
+    margin: 1px;
+    padding: 1px;
+}
+
+.cke_uicolor_picker .yui-picker { position: relative; }
+
+.cke_uicolor_picker .yui-picker-hue-thumb {
+    cursor: default;
+    height: 18px;
+    left: -2px;
+    position: absolute;
+    top: -8px;
+    width: 18px;
+    z-index: 9;
+}
+
+.cke_uicolor_picker .yui-picker-hue-bg {
+    -moz-outline: none;
+    background: url(hue_bg.png) no-repeat;
+    height: 183px;
+    left: 200px;
+    outline: 0 none;
+    position: absolute;
+    top: 4px;
+    width: 14px;
+}
+
+.cke_uicolor_picker .yui-picker-bg {
+    -moz-outline: none;
+    background-color: #F00;
+    background-image: url(picker_mask.png);
+    height: 182px;
+    left: 4px;
+    outline: 0 none;
+    position: absolute;
+    top: 4px;
+    width: 182px;
+}
+
+*html
+
+.cke_uicolor_picker .yui-picker-bg {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='picker_mask.png', sizingMethod='scale');
+}
+
+.cke_uicolor_picker .yui-picker-mask {
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+.cke_uicolor_picker .yui-picker-thumb {
+    cursor: default;
+    height: 11px;
+    left: -4px;
+    position: absolute;
+    top: -4px;
+    width: 11px;
+    z-index: 9;
+}
+
+.cke_uicolor_picker .yui-picker-swatch {
+    border: 1px solid #888;
+    height: 60px;
+    left: 240px;
+    position: absolute;
+    top: 4px;
+    width: 55px;
+}
+
+.cke_uicolor_picker .yui-picker-websafe-swatch {
+    border: 1px solid #888;
+    height: 24px;
+    left: 304px;
+    position: absolute;
+    top: 4px;
+    width: 24px;
+}
+
+.cke_uicolor_picker .yui-picker-controls {
+    font: 1em monospace;
+    left: 226px;
+    position: absolute;
+    top: 72px;
+}
+
+.cke_uicolor_picker .yui-picker-controls .hd {
+    background: transparent;
+    border-width: 0 !important;
+}
+
+.cke_uicolor_picker .yui-picker-controls .bd {
+    border-width: 0 !important;
+    height: 100px;
+}
+
+.cke_uicolor_picker .yui-picker-controls ul {
+    float: left;
+    margin: 0;
+    padding: 0 2px 0 0;
+}
+
+.cke_uicolor_picker .yui-picker-controls li {
+    list-style: none;
+    margin: 0;
+    padding: 2px;
+}
+
+.cke_uicolor_picker .yui-picker-controls input {
+    font-size: .85em;
+    width: 2.4em;
+}
+
+.cke_uicolor_picker .yui-picker-hex-controls {
+    clear: both;
+    padding: 2px;
+}
+
+.cke_uicolor_picker .yui-picker-hex-controls input { width: 4.6em; }
+
+.cke_uicolor_picker .yui-picker-controls a {
+    color: #000;
+    display: block;
+    *display: inline-block;
+    font: 1em arial, helvetica, clean, sans-serif;
+    padding: 0;
+}

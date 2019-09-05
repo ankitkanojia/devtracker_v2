@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using repository.Models;
 
@@ -10,7 +9,7 @@ namespace repository.Helpers.Functions
     public static class CommonFunctions
     {
         public static async Task<EmailTemplete> GetEmailTemplate(long templateId, bool isDefaultReplacementInsert,
-         Dictionary<string, string> replacement = null)
+            Dictionary<string, string> replacement = null)
         {
             try
             {

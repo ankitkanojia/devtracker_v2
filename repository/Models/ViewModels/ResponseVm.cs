@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace repository.Models.ViewModels
+﻿namespace repository.Models.ViewModels
 {
     public class ResponseVm
     {

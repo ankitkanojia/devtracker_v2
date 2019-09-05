@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 // Line chart
 // ------------------------------
 
 // Initialize chart
-google.load("visualization", "1", {packages:["corechart"]});
+google.load("visualization", "1", { packages: ["corechart"] });
 google.setOnLoadCallback(drawLineChart);
 
 // Chart settings
@@ -11,46 +11,46 @@ function drawLineChart() {
 
     // Data
     var data = google.visualization.arrayToDataTable([
-        ['Year', 'Sales', 'Expenses'],
-        ['2004',  1000,      400],
-        ['2005',  1170,      460],
-        ['2006',  660,       1120],
-        ['2007',  1030,      540]
+        ["Year", "Sales", "Expenses"],
+        ["2004", 1000, 400],
+        ["2005", 1170, 460],
+        ["2006", 660, 1120],
+        ["2007", 1030, 540]
     ]);
 
     // Options
     var options = {
         backgroundColor: chart_bg,
-        fontName: 'OpenSans',
+        fontName: "OpenSans",
         height: 300,
-        curveType: 'function',
+        curveType: "function",
         fontSize: 11,
         chartArea: {
-            left: '10%',
-            width: '100%',
+            left: "10%",
+            width: "100%",
             height: 225
         },
-        pointSize:6,
+        pointSize: 6,
         hAxis: {
-            textStyle:{color: chart_grid_text_color}
+            textStyle: { color: chart_grid_text_color }
         },
         vAxis: {
             baselineColor: chart_gridlines_color,
-            textStyle:{color: chart_grid_text_color},
-            title: 'Sales and Expenses',
+            textStyle: { color: chart_grid_text_color },
+            title: "Sales and Expenses",
             titleTextStyle: {
                 italic: false,
                 color: chart_grid_text_color,
             },
-            gridlines:{
+            gridlines: {
                 color: chart_gridlines_color,
                 count: 4
             },
             minValue: 0,
         },
         legend: {
-            position: 'top',
-            alignment: 'center',
+            position: "top",
+            alignment: "center",
             textStyle: {
                 color: chart_legends_text_color,
             }
@@ -59,17 +59,18 @@ function drawLineChart() {
     };
 
     // Draw chart
-    var line_chart = new google.visualization.LineChart($('#google-line')[0]);
+    var line_chart = new google.visualization.LineChart($("#google-line")[0]);
     line_chart.draw(data, options);
 }
 
 
 // Resize chart
 // ------------------------------
-$(function () {
+$(function() {
     // Resize chart on sidebar width change and window resize
-    $(window).on('resize', resize);
-    $(".sidebar-control").on('click', resize);
+    $(window).on("resize", resize);
+    $(".sidebar-control").on("click", resize);
+
     // Resize function
     function resize() {
         drawLineChart();

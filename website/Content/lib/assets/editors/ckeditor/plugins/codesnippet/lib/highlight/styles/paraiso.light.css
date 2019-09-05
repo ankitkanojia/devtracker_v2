@@ -6,11 +6,10 @@
 
 /* Paraíso Comment */
 .hljs-comment,
-.hljs-title {
-  color: #776e71;
-}
+.hljs-title { color: #776e71; }
 
 /* Paraíso Red */
+
 .hljs-variable,
 .hljs-attribute,
 .hljs-tag,
@@ -22,42 +21,37 @@
 .html .hljs-doctype,
 .css .hljs-id,
 .css .hljs-class,
-.css .hljs-pseudo {
-  color: #ef6155;
-}
+.css .hljs-pseudo { color: #ef6155; }
 
 /* Paraíso Orange */
+
 .hljs-number,
 .hljs-preprocessor,
 .hljs-built_in,
 .hljs-literal,
 .hljs-params,
-.hljs-constant {
-  color: #f99b15;
-}
+.hljs-constant { color: #f99b15; }
 
 /* Paraíso Yellow */
+
 .ruby .hljs-class .hljs-title,
-.css .hljs-rules .hljs-attribute {
-  color: #fec418;
-}
+.css .hljs-rules .hljs-attribute { color: #fec418; }
 
 /* Paraíso Green */
+
 .hljs-string,
 .hljs-value,
 .hljs-inheritance,
 .hljs-header,
 .ruby .hljs-symbol,
-.xml .hljs-cdata {
-  color: #48b685;
-}
+.xml .hljs-cdata { color: #48b685; }
 
 /* Paraíso Aqua */
-.css .hljs-hexcolor {
-  color: #5bc4bf;
-}
+
+.css .hljs-hexcolor { color: #5bc4bf; }
 
 /* Paraíso Blue */
+
 .hljs-function,
 .python .hljs-decorator,
 .python .hljs-title,
@@ -65,21 +59,18 @@
 .ruby .hljs-title .hljs-keyword,
 .perl .hljs-sub,
 .javascript .hljs-title,
-.coffeescript .hljs-title {
-  color: #06b6ef;
-}
+.coffeescript .hljs-title { color: #06b6ef; }
 
 /* Paraíso Purple */
+
 .hljs-keyword,
-.javascript .hljs-function {
-  color: #815ba4;
-}
+.javascript .hljs-function { color: #815ba4; }
 
 .hljs {
-  display: block;
-  background: #e7e9db;
-  color: #4f424c;
-  padding: 0.5em;
+    background: #e7e9db;
+    color: #4f424c;
+    display: block;
+    padding: 0.5em;
 }
 
 .coffeescript .javascript,
@@ -88,6 +79,4 @@
 .xml .javascript,
 .xml .vbscript,
 .xml .css,
-.xml .hljs-cdata {
-  opacity: 0.5;
-}
+.xml .hljs-cdata { opacity: 0.5; }

@@ -2,11 +2,10 @@
 
 /* Tomorrow Comment */
 .hljs-comment,
-.hljs-title {
-  color: #8e908c;
-}
+.hljs-title { color: #8e908c; }
 
 /* Tomorrow Red */
+
 .hljs-variable,
 .hljs-attribute,
 .hljs-tag,
@@ -18,43 +17,38 @@
 .html .hljs-doctype,
 .css .hljs-id,
 .css .hljs-class,
-.css .hljs-pseudo {
-  color: #c82829;
-}
+.css .hljs-pseudo { color: #c82829; }
 
 /* Tomorrow Orange */
+
 .hljs-number,
 .hljs-preprocessor,
 .hljs-pragma,
 .hljs-built_in,
 .hljs-literal,
 .hljs-params,
-.hljs-constant {
-  color: #f5871f;
-}
+.hljs-constant { color: #f5871f; }
 
 /* Tomorrow Yellow */
+
 .ruby .hljs-class .hljs-title,
-.css .hljs-rules .hljs-attribute {
-  color: #eab700;
-}
+.css .hljs-rules .hljs-attribute { color: #eab700; }
 
 /* Tomorrow Green */
+
 .hljs-string,
 .hljs-value,
 .hljs-inheritance,
 .hljs-header,
 .ruby .hljs-symbol,
-.xml .hljs-cdata {
-  color: #718c00;
-}
+.xml .hljs-cdata { color: #718c00; }
 
 /* Tomorrow Aqua */
-.css .hljs-hexcolor {
-  color: #3e999f;
-}
+
+.css .hljs-hexcolor { color: #3e999f; }
 
 /* Tomorrow Blue */
+
 .hljs-function,
 .python .hljs-decorator,
 .python .hljs-title,
@@ -62,21 +56,18 @@
 .ruby .hljs-title .hljs-keyword,
 .perl .hljs-sub,
 .javascript .hljs-title,
-.coffeescript .hljs-title {
-  color: #4271ae;
-}
+.coffeescript .hljs-title { color: #4271ae; }
 
 /* Tomorrow Purple */
+
 .hljs-keyword,
-.javascript .hljs-function {
-  color: #8959a8;
-}
+.javascript .hljs-function { color: #8959a8; }
 
 .hljs {
-  display: block;
-  background: white;
-  color: #4d4d4c;
-  padding: 0.5em;
+    background: white;
+    color: #4d4d4c;
+    display: block;
+    padding: 0.5em;
 }
 
 .coffeescript .javascript,
@@ -85,6 +76,4 @@
 .xml .javascript,
 .xml .vbscript,
 .xml .css,
-.xml .hljs-cdata {
-  opacity: 0.5;
-}
+.xml .hljs-cdata { opacity: 0.5; }

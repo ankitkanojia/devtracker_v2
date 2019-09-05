@@ -5,15 +5,16 @@ School Book style from goldblog.com.ua (c) Zaripov Yura <yur4ik7@ukr.net>
 */
 
 .hljs {
-  display: block; padding: 15px 0.5em 0.5em 30px;
-  font-size: 11px !important;
-  line-height:16px !important;
+    display: block;
+    font-size: 11px !important;
+    line-height: 16px !important;
+    padding: 15px 0.5em 0.5em 30px;
 }
 
-pre{
-  background:#f6f6ae url(./school_book.png);
-  border-top: solid 2px #d2e8b9;
-  border-bottom: solid 1px #d2e8b9;
+pre {
+    background: #f6f6ae url(./school_book.png);
+    border-bottom: solid 1px #d2e8b9;
+    border-top: solid 2px #d2e8b9;
 }
 
 .hljs-keyword,
@@ -25,15 +26,13 @@ pre{
 .clojure .hljs-built_in,
 .nginx .hljs-title,
 .tex .hljs-special {
-  color:#005599;
-  font-weight:bold;
+    color: #005599;
+    font-weight: bold;
 }
 
 .hljs,
 .hljs-subst,
-.hljs-tag .hljs-keyword {
-  color: #3E5915;
-}
+.hljs-tag .hljs-keyword { color: #3E5915; }
 
 .hljs-string,
 .hljs-title,
@@ -64,9 +63,7 @@ pre{
 .apache .hljs-cbracket,
 .nginx .hljs-built_in,
 .tex .hljs-command,
-.coffeescript .hljs-attribute {
-  color: #2C009F;
-}
+.coffeescript .hljs-attribute { color: #2C009F; }
 
 .hljs-comment,
 .java .hljs-annotation,
@@ -76,9 +73,7 @@ pre{
 .hljs-doctype,
 .hljs-deletion,
 .hljs-shebang,
-.apache .hljs-sqbracket {
-  color: #E60415;
-}
+.apache .hljs-sqbracket { color: #E60415; }
 
 .hljs-keyword,
 .hljs-literal,
@@ -98,9 +93,7 @@ pre{
 .apache .hljs-tag,
 .tex .hljs-command,
 .hljs-request,
-.hljs-status {
-  font-weight: bold;
-}
+.hljs-status { font-weight: bold; }
 
 .coffeescript .javascript,
 .javascript .xml,
@@ -108,6 +101,4 @@ pre{
 .xml .javascript,
 .xml .vbscript,
 .xml .css,
-.xml .hljs-cdata {
-  opacity: 0.5;
-}
+.xml .hljs-cdata { opacity: 0.5; }

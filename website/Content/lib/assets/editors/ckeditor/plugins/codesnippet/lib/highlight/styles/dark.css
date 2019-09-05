@@ -5,8 +5,9 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 */
 
 .hljs {
-  display: block; padding: 0.5em;
-  background: #444;
+    background: #444;
+    display: block;
+    padding: 0.5em;
 }
 
 .hljs-keyword,
@@ -17,14 +18,10 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 .lisp .hljs-title,
 .clojure .hljs-built_in,
 .nginx .hljs-title,
-.tex .hljs-special {
-  color: white;
-}
+.tex .hljs-special { color: white; }
 
 .hljs,
-.hljs-subst {
-  color: #DDD;
-}
+.hljs-subst { color: #DDD; }
 
 .hljs-string,
 .hljs-title,
@@ -56,9 +53,7 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 .apache .hljs-cbracket,
 .tex .hljs-command,
 .hljs-prompt,
-.coffeescript .hljs-attribute {
-  color: #D88;
-}
+.coffeescript .hljs-attribute { color: #D88; }
 
 .hljs-comment,
 .java .hljs-annotation,
@@ -69,9 +64,7 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 .hljs-deletion,
 .hljs-shebang,
 .apache .hljs-sqbracket,
-.tex .hljs-formula {
-  color: #777;
-}
+.tex .hljs-formula { color: #777; }
 
 .hljs-keyword,
 .hljs-literal,
@@ -90,9 +83,7 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 .apache .hljs-tag,
 .tex .hljs-special,
 .hljs-request,
-.hljs-status {
-  font-weight: bold;
-}
+.hljs-status { font-weight: bold; }
 
 .coffeescript .javascript,
 .javascript .xml,
@@ -100,6 +91,4 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 .xml .javascript,
 .xml .vbscript,
 .xml .css,
-.xml .hljs-cdata {
-  opacity: 0.5;
-}
+.xml .hljs-cdata { opacity: 0.5; }

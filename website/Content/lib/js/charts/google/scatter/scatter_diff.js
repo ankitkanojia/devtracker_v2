@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 // Diff scatter chart
 // ------------------------------
 
 // Initialize chart
-google.load("visualization", "1", {packages:["corechart"]});
+google.load("visualization", "1", { packages: ["corechart"] });
 google.setOnLoadCallback(drawScatterDiff);
 
 // Chart settings
@@ -11,25 +11,25 @@ function drawScatterDiff() {
 
     // Old data
     var oldData = google.visualization.arrayToDataTable([
-        ['', 'Medicine 1', 'Medicine 2'],
+        ["", "Medicine 1", "Medicine 2"],
         [23, null, 12], [9, null, 39], [15, null, 28],
         [37, null, 30], [21, null, 14], [12, null, 18],
-        [29, null, 34], [ 8, null, 12], [38, null, 28],
+        [29, null, 34], [8, null, 12], [38, null, 28],
         [35, null, 12], [26, null, 10], [10, null, 29],
         [11, null, 10], [27, null, 38], [39, null, 17],
-        [34, null, 20], [38, null,  5], [33, null, 27],
-        [23, null, 39], [12, null, 10], [ 8, 15, null],
+        [34, null, 20], [38, null, 5], [33, null, 27],
+        [23, null, 39], [12, null, 10], [8, 15, null],
         [39, 15, null], [27, 31, null], [30, 24, null],
-        [31, 39, null], [35,  6, null], [ 5,  5, null],
-        [19, 39, null], [22,  8, null], [19, 23, null],
-        [27, 20, null], [11,  6, null], [34, 33, null],
-        [38,  8, null], [39, 29, null], [13, 23, null],
-        [13, 36, null], [39,  6, null], [14, 37, null], [13, 39, null]
+        [31, 39, null], [35, 6, null], [5, 5, null],
+        [19, 39, null], [22, 8, null], [19, 23, null],
+        [27, 20, null], [11, 6, null], [34, 33, null],
+        [38, 8, null], [39, 29, null], [13, 23, null],
+        [13, 36, null], [39, 6, null], [14, 37, null], [13, 39, null]
     ]);
 
     // New data
     var newData = google.visualization.arrayToDataTable([
-        ['', 'Medicine 1', 'Medicine 2'],
+        ["", "Medicine 1", "Medicine 2"],
         [22, null, 12], [7, null, 40], [14, null, 31],
         [37, null, 30], [18, null, 17], [9, null, 20],
         [26, null, 36], [5, null, 13], [36, null, 30],
@@ -48,27 +48,27 @@ function drawScatterDiff() {
     // Options
     var options = {
         backgroundColor: chart_bg,
-        fontName: 'OpenSans',
+        fontName: "OpenSans",
         height: 250,
         chartArea: {
-            left: '10%',
-            width: '100%',
+            left: "10%",
+            width: "100%",
             height: 200
         },
         hAxis: {
-            textStyle:{color: chart_grid_text_color},
+            textStyle: { color: chart_grid_text_color },
             minValue: 0
         },
         vAxis: {
-            gridlines:{
+            gridlines: {
                 color: chart_gridlines_color,
                 count: 8
             },
             minValue: 0
         },
         legend: {
-            position: 'top',
-            alignment: 'center',
+            position: "top",
+            alignment: "center",
             textStyle: {
                 color: chart_legends_text_color,
             }
@@ -83,7 +83,7 @@ function drawScatterDiff() {
     };
 
     // Attach chart to the DOM element
-    var chartOldOpacity = new google.visualization.ScatterChart($('#google-scatter-diff')[0]);
+    var chartOldOpacity = new google.visualization.ScatterChart($("#google-scatter-diff")[0]);
 
     // Set data
     var diffData = chartOldOpacity.computeDiff(oldData, newData);
@@ -95,11 +95,11 @@ function drawScatterDiff() {
 
 // Resize chart
 // ------------------------------
-$(function () {
+$(function() {
 
     // Resize chart on sidebar width change and window resize
-    $(window).on('resize', resize);
-    $(".sidebar-control").on('click', resize);
+    $(window).on("resize", resize);
+    $(".sidebar-control").on("click", resize);
 
     // Resize function
     function resize() {

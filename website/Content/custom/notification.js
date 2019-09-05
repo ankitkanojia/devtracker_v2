@@ -1,31 +1,30 @@
 ﻿function NotifyActionRequired(message) {
     var notice = new PNotify({
-        title: 'Action Required',
+        title: "Action Required",
         text: message,
-        icon: 'icon-info22',
+        icon: "icon-info22",
         hide: false
     });
-    $('#actionRequiredMsg').val('');
+    $("#actionRequiredMsg").val("");
 }
 
 function NotifySuccess(message) {
     new PNotify({
-        title: 'Success',
+        title: "Success",
         text: message,
-        icon: 'icon-checkmark3',
-        type: 'success'
+        icon: "icon-checkmark3",
+        type: "success"
     });
-    $('#successMsg').val('');
+    $("#successMsg").val("");
 }
 
 function NotifyError(message) {
     new PNotify({
-        title: 'Error',
+        title: "Error",
         text: message,
-        icon: 'icon-blocked',
-        type: 'error'
+        icon: "icon-blocked",
+        type: "error"
     });
 
-    $('#errorMsg').val('');
+    $("#errorMsg").val("");
 }
-

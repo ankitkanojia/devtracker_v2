@@ -7,12 +7,12 @@
 
 
 $(function() {
-	'use strict';
+    "use strict";
 
-	var validator = $(".form-validate").validate({
-        ignore: 'input[type=hidden], .select2-search__field',
-        errorClass: 'validation-error',
-        successClass: 'validation-success',
+    var validator = $(".form-validate").validate({
+        ignore: "input[type=hidden], .select2-search__field",
+        errorClass: "validation-error",
+        successClass: "validation-success",
         highlight: function(element, errorClass) {
             $(element).removeClass(errorClass);
         },
@@ -22,33 +22,33 @@ $(function() {
 
         errorPlacement: function(error, element) {
 
-            if (element.parents('div').hasClass("checker") || element.parents('div').hasClass("choice") || element.parent().hasClass('bootstrap-switch-container') ) {
-                if(element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
-                    error.appendTo( element.parent().parent().parent().parent() );
+            if (element.parents("div").hasClass("checker") ||
+                element.parents("div").hasClass("choice") ||
+                element.parent().hasClass("bootstrap-switch-container")) {
+                if (element.parents("label").hasClass("checkbox-inline") ||
+                    element.parents("label").hasClass("radio-inline")) {
+                    error.appendTo(element.parent().parent().parent().parent());
+                } else {
+                    error.appendTo(element.parent().parent().parent().parent().parent());
                 }
-                 else {
-                    error.appendTo( element.parent().parent().parent().parent().parent() );
-                }
-            }
-            else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
-                error.appendTo( element.parent() );
-            }
-            else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline') || element.parents('div').hasClass('checkbox-single')) {
-                error.appendTo( element.parent().parent() );
-            }
-			else if (element.parents('div').hasClass('checkbox-group')) {
-                error.appendTo( element.parent().parent().parent() );
-            }
-			else if (element.parent().hasClass('uploader') || element.parents().hasClass('input-group')) {
-                error.appendTo( element.parent().parent() );
-            }
-            else {
+            } else if (element.parents("div").hasClass("has-feedback") ||
+                element.hasClass("select2-hidden-accessible")) {
+                error.appendTo(element.parent());
+            } else if (element.parents("label").hasClass("checkbox-inline") ||
+                element.parents("label").hasClass("radio-inline") ||
+                element.parents("div").hasClass("checkbox-single")) {
+                error.appendTo(element.parent().parent());
+            } else if (element.parents("div").hasClass("checkbox-group")) {
+                error.appendTo(element.parent().parent().parent());
+            } else if (element.parent().hasClass("uploader") || element.parents().hasClass("input-group")) {
+                error.appendTo(element.parent().parent());
+            } else {
                 error.insertAfter(element);
             }
         },
         validClass: "validation-success",
         success: function(label) {
-            label.addClass("validation-success").text("Done")
+            label.addClass("validation-success").text("Done");
         },
         rules: {
             password: {
@@ -57,12 +57,12 @@ $(function() {
             repeat_password: {
                 equalTo: "#password"
             },
-			emailid: {
+            emailid: {
                 email: true
             },
             confirm_email: {
-			    equalTo: "#emailid"
-			},
+                equalTo: "#emailid"
+            },
             minimum_characters: {
                 minlength: 10
             },
@@ -116,7 +116,8 @@ $(function() {
         }
     });
 
-	$('#reset').on('click', function() {
-        validator.resetForm();
-    });
+    $("#reset").on("click",
+        function() {
+            validator.resetForm();
+        });
 });

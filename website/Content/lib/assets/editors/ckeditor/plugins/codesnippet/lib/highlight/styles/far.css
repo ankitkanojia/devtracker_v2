@@ -5,14 +5,13 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 */
 
 .hljs {
-  display: block; padding: 0.5em;
-  background: #000080;
+    background: #000080;
+    display: block;
+    padding: 0.5em;
 }
 
 .hljs,
-.hljs-subst {
-  color: #0FF;
-}
+.hljs-subst { color: #0FF; }
 
 .hljs-string,
 .ruby .hljs-string,
@@ -34,9 +33,7 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 .apache .hljs-cbracket,
 .tex .hljs-command,
 .clojure .hljs-title,
-.coffeescript .hljs-attribute {
-  color: #FF0;
-}
+.coffeescript .hljs-attribute { color: #FF0; }
 
 .hljs-keyword,
 .css .hljs-id,
@@ -53,9 +50,7 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 .hljs-envvar,
 .bash .hljs-variable,
 .tex .hljs-special,
-.clojure .hljs-built_in {
-  color: #FFF;
-}
+.clojure .hljs-built_in { color: #FFF; }
 
 .hljs-comment,
 .hljs-phpdoc,
@@ -64,9 +59,7 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 .hljs-template_comment,
 .hljs-deletion,
 .apache .hljs-sqbracket,
-.tex .hljs-formula {
-  color: #888;
-}
+.tex .hljs-formula { color: #888; }
 
 .hljs-number,
 .hljs-date,
@@ -74,9 +67,7 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 .hljs-literal,
 .smalltalk .hljs-symbol,
 .smalltalk .hljs-char,
-.clojure .hljs-attribute {
-  color: #0F0;
-}
+.clojure .hljs-attribute { color: #0F0; }
 
 .python .hljs-decorator,
 .django .hljs-filter .hljs-argument,
@@ -89,9 +80,7 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 .hljs-chunk,
 .hljs-shebang,
 .nginx .hljs-built_in,
-.hljs-prompt {
-  color: #008080;
-}
+.hljs-prompt { color: #008080; }
 
 .hljs-keyword,
 .css .hljs-id,
@@ -108,6 +97,4 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 .tex .hljs-command,
 .tex .hljs-special,
 .hljs-request,
-.hljs-status {
-  font-weight: bold;
-}
+.hljs-status { font-weight: bold; }

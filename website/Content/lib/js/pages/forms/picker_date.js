@@ -6,30 +6,30 @@
 //----------------------------------
 
 $(function() {
-	'use strict';
+    "use strict";
 
-	$('#minMaxExample').datepicker({
-	    language: 'en',
-	    minDate: new Date()
-	})
+    $("#minMaxExample").datepicker({
+        language: "en",
+        minDate: new Date()
+    });
 
-	var disabledDays = [0, 6];
+    var disabledDays = [0, 6];
 
-	$('#disabled-days').datepicker({
-	    language: 'en',
-	    onRenderCell: function (date, cellType) {
-	        if (cellType == 'day') {
-	            var day = date.getDay(),
-	                isDisabled = disabledDays.indexOf(day) != -1;
+    $("#disabled-days").datepicker({
+        language: "en",
+        onRenderCell: function(date, cellType) {
+            if (cellType == "day") {
+                var day = date.getDay(),
+                    isDisabled = disabledDays.indexOf(day) != -1;
 
-	            return {
-	                disabled: isDisabled
-	            }
-	        }
-	    }
-	})
+                return {
+                    disabled: isDisabled
+                };
+            }
+        }
+    });
 
-	var start = new Date(),
+    var start = new Date(),
         prevDay,
         startHours = 9;
 
@@ -38,16 +38,16 @@ $(function() {
 
     if ([6, 0].indexOf(start.getDay()) != -1) {
         start.setHours(10);
-        startHours = 10
+        startHours = 10;
     }
 
-    $('#timepicker-actions-exmpl').datepicker({
+    $("#timepicker-actions-exmpl").datepicker({
         timepicker: true,
-        language: 'en',
+        language: "en",
         startDate: start,
         minHours: startHours,
         maxHours: 18,
-        onSelect: function (fd, d, picker) {
+        onSelect: function(fd, d, picker) {
             if (!d) return;
             var day = d.getDay();
             if (prevDay != undefined && prevDay == day) return;
@@ -57,13 +57,13 @@ $(function() {
                 picker.update({
                     minHours: 10,
                     maxHours: 16
-                })
+                });
             } else {
                 picker.update({
                     minHours: 9,
                     maxHours: 18
-                })
+                });
             }
         }
-    })
+    });
 });

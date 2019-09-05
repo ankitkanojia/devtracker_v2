@@ -6,17 +6,18 @@
 //----------------------------------
 
 $(".styled, .multiselect-container input").uniform({
-	radioClass: 'choice'
+    radioClass: "choice"
 });
 
-$('.toggle').click(function(){
+$(".toggle").click(function() {
 
-	$(this).children('i').toggleClass('icon-user-lock');
+    $(this).children("i").toggleClass("icon-user-lock");
 
-	$('.form').animate({
-		height: "toggle",
-		'padding-top': 'toggle',
-		'padding-bottom': 'toggle',
-		opacity: "toggle"
-	}, "slow");
+    $(".form").animate({
+            height: "toggle",
+            'padding-top': "toggle",
+            'padding-bottom': "toggle",
+            opacity: "toggle"
+        },
+        "slow");
 });

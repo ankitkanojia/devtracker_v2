@@ -42,10 +42,7 @@ namespace repository.Helpers
             var cLastCharacter = str[str.Length - 1];
             if (!char.IsNumber(cLastCharacter)) str = str.Remove(str.Length - 1);
 
-            if (decimal.TryParse(str, out _))
-            {
-                return true;
-            }
+            if (decimal.TryParse(str, out _)) return true;
 
             foreach (var c in str)
                 if (c < '0' || c > '9')

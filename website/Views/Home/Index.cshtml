@@ -16,11 +16,11 @@
     <div class="form">
         <h1 class="text-light">User Login</h1>
 
-        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new {@class = "form-horizontal", @id = "frmLogin"}))
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new {@class = "form-horizontal", id = "frmLogin"}))
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(s => s.ReturnUrl)
-            
+
             <div class="form-group">
 
                 <div class="input-group m-b-10 p-t-20">
@@ -51,7 +51,7 @@
     <!-- Registration form -->
     <div class="form">
         <h1 class="text-light">Create an account</h1>
-        @using (Html.BeginForm("Register", "Home", FormMethod.Post, new {@id = "frmRegister", @class = "form-horizontal"}))
+        @using (Html.BeginForm("Register", "Home", FormMethod.Post, new {id = "frmRegister", @class = "form-horizontal"}))
         {
             <div class="form-group">
 

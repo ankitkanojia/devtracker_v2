@@ -5,8 +5,9 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 */
 
 .hljs {
-  display: block; padding: 0.5em;
-  background: #F0F0F0;
+    background: #F0F0F0;
+    display: block;
+    padding: 0.5em;
 }
 
 .hljs,
@@ -14,9 +15,7 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .hljs-tag .hljs-title,
 .lisp .hljs-title,
 .clojure .hljs-built_in,
-.nginx .hljs-title {
-  color: black;
-}
+.nginx .hljs-title { color: black; }
 
 .hljs-string,
 .hljs-title,
@@ -45,9 +44,7 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .erlang_repl .hljs-function_or_atom,
 .asciidoc .hljs-header,
 .markdown .hljs-header,
-.coffeescript .hljs-attribute {
-  color: #800;
-}
+.coffeescript .hljs-attribute { color: #800; }
 
 .smartquote,
 .hljs-comment,
@@ -56,9 +53,7 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .diff .hljs-header,
 .hljs-chunk,
 .asciidoc .hljs-blockquote,
-.markdown .hljs-blockquote {
-  color: #888;
-}
+.markdown .hljs-blockquote { color: #888; }
 
 .hljs-number,
 .hljs-date,
@@ -74,9 +69,7 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .asciidoc .hljs-bullet,
 .markdown .hljs-bullet,
 .asciidoc .hljs-link_url,
-.markdown .hljs-link_url {
-  color: #080;
-}
+.markdown .hljs-link_url { color: #080; }
 
 .hljs-label,
 .hljs-javadoc,
@@ -106,9 +99,7 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .asciidoc .hljs-attribute,
 .lasso .hljs-attribute,
 .coffeescript .hljs-property,
-.hljs-phony {
-  color: #88F
-}
+.hljs-phony { color: #88F }
 
 .hljs-keyword,
 .hljs-id,
@@ -128,18 +119,12 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .asciidoc .hljs-strong,
 .markdown .hljs-strong,
 .hljs-request,
-.hljs-status {
-  font-weight: bold;
-}
+.hljs-status { font-weight: bold; }
 
 .asciidoc .hljs-emphasis,
-.markdown .hljs-emphasis {
-  font-style: italic;
-}
+.markdown .hljs-emphasis { font-style: italic; }
 
-.nginx .hljs-built_in {
-  font-weight: normal;
-}
+.nginx .hljs-built_in { font-weight: normal; }
 
 .coffeescript .javascript,
 .javascript .xml,
@@ -148,6 +133,4 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 .xml .javascript,
 .xml .vbscript,
 .xml .css,
-.xml .hljs-cdata {
-  opacity: 0.5;
-}
+.xml .hljs-cdata { opacity: 0.5; }

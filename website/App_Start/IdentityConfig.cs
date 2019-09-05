@@ -9,7 +9,6 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using repository.Models;
 
-
 namespace website
 {
     public class EmailService : IIdentityMessageService
@@ -119,7 +118,7 @@ namespace website
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
         {
-            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
+            return user.GenerateUserIdentityAsync((ApplicationUserManager) UserManager);
         }
 
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options,

@@ -1,5 +1,5 @@
-'use strict';
+"use strict";
 
-jQuery(function($){
-	$('.table').footable();
+jQuery(function($) {
+    $(".table").footable();
 });

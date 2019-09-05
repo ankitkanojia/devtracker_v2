@@ -5,19 +5,20 @@
 //   Last Updated  : April 4, 2017
 //----------------------------------
 
-'use strict';
+"use strict";
 
 // Material button
-$('.material-button-toggle').on("click",function () {
-	$(this).toggleClass('open');
-	$('.option').toggleClass('scale-on');
-});
+$(".material-button-toggle").on("click",
+    function() {
+        $(this).toggleClass("open");
+        $(".option").toggleClass("scale-on");
+    });
 
 // Fab buttons
-$('.fab').hover(function () {
-	$(this).toggleClass('active');
+$(".fab").hover(function() {
+    $(this).toggleClass("active");
 });
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+$(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+});

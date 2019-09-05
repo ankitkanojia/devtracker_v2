@@ -1,74 +1,72 @@
-Rickshaw.namespace('Rickshaw.Graph.Ajax');
+Rickshaw.namespace("Rickshaw.Graph.Ajax");
 
-Rickshaw.Graph.Ajax = Rickshaw.Class.create( {
+Rickshaw.Graph.Ajax = Rickshaw.Class.create({
+    initialize: function(args) {
 
-	initialize: function(args) {
+        this.dataURL = args.dataURL;
 
-		this.dataURL = args.dataURL;
+        this.onData = args.onData || function(d) { return d };
+        this.onComplete = args.onComplete || function() {};
+        this.onError = args.onError || function() {};
 
-		this.onData = args.onData || function(d) { return d };
-		this.onComplete = args.onComplete || function() {};
-		this.onError = args.onError || function() {};
+        this.args = args; // pass through to Rickshaw.Graph
 
-		this.args = args; // pass through to Rickshaw.Graph
+        this.request();
+    },
 
-		this.request();
-	},
+    request: function() {
 
-	request: function() {
+        jQuery.ajax({
+            url: this.dataURL,
+            dataType: "json",
+            success: this.success.bind(this),
+            error: this.error.bind(this)
+        });
+    },
 
-		jQuery.ajax( {
-			url: this.dataURL,
-			dataType: 'json',
-			success: this.success.bind(this),
-			error: this.error.bind(this)
-		} );
-	},
+    error: function() {
 
-	error: function() {
+        console.log("error loading dataURL: " + this.dataURL);
+        this.onError(this);
+    },
 
-		console.log("error loading dataURL: " + this.dataURL);
-		this.onError(this);
-	},
+    success: function(data, status) {
 
-	success: function(data, status) {
+        data = this.onData(data);
+        this.args.series = this._splice({ data: data, series: this.args.series });
 
-		data = this.onData(data);
-		this.args.series = this._splice({ data: data, series: this.args.series });
+        this.graph = this.graph || new Rickshaw.Graph(this.args);
+        this.graph.render();
 
-		this.graph = this.graph || new Rickshaw.Graph(this.args);
-		this.graph.render();
+        this.onComplete(this);
+    },
 
-		this.onComplete(this);
-	},
+    _splice: function(args) {
 
-	_splice: function(args) {
+        var data = args.data;
+        var series = args.series;
 
-		var data = args.data;
-		var series = args.series;
+        if (!args.series) return data;
 
-		if (!args.series) return data;
+        series.forEach(function(s) {
 
-		series.forEach( function(s) {
+            var seriesKey = s.key || s.name;
+            if (!seriesKey) throw "series needs a key or a name";
 
-			var seriesKey = s.key || s.name;
-			if (!seriesKey) throw "series needs a key or a name";
+            data.forEach(function(d) {
 
-			data.forEach( function(d) {
+                var dataKey = d.key || d.name;
+                if (!dataKey) throw "data needs a key or a name";
 
-				var dataKey = d.key || d.name;
-				if (!dataKey) throw "data needs a key or a name";
+                if (seriesKey == dataKey) {
+                    var properties = ["color", "name", "data"];
+                    properties.forEach(function(p) {
+                        if (d[p]) s[p] = d[p];
+                    });
+                }
+            });
+        });
 
-				if (seriesKey == dataKey) {
-					var properties = ['color', 'name', 'data'];
-					properties.forEach( function(p) {
-						if (d[p]) s[p] = d[p];
-					} );
-				}
-			} );
-		} );
-
-		return series;
-	}
-} );
-
+        return series;
+    }
+});

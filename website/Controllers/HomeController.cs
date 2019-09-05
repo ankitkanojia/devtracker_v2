@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using repository.Helpers;
 using repository.Models.ViewModels;
@@ -14,6 +11,7 @@ namespace website.Controllers
     {
         public async Task<ActionResult> Index(string returnUrl, string userId, string code)
         {
+            var model = new AuthVm { ReturnUrl = returnUrl };
             if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code)) return View(model);
             await AccountFunctions.ConfirmEmail(userId, code);
             return View(model);
@@ -37,15 +35,13 @@ namespace website.Controllers
                 return View("Lockout", new LockoutVm { Email = model.Email, UnlockDate = response.LockOutDateTime });
 
             if (response.Message.Equals("You need to confirm your email.", StringComparison.InvariantCultureIgnoreCase))
-                StaticValues.NotifyActionRequiredMsg = "Your email address is not verified. Please, <a href=# class=\"alert-link\">click here</a>, to verify your account.";
+                StaticValues.NotifyActionRequiredMsg =
+                    "Your email address is not verified. Please, <a href=# class=\"alert-link\">click here</a>, to verify your account.";
             else
                 StaticValues.NotifyError = response.Message;
 
             return View("Index", model);
         }
-
-
-
 
 
         //public ActionResult LogOff()
