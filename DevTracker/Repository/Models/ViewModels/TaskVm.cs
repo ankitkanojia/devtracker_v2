@@ -11,7 +11,6 @@ namespace Repository.Models.ViewModels
     public class TaskDetailsVm
     {
         public long TaskCategoryId { get; set; }
-        public string TaskCategoryName { get; set; }
         public long TaskMasterId { get; set; }
         public string TaskCode { get; set; }
         public long ProjectId { get; set; }

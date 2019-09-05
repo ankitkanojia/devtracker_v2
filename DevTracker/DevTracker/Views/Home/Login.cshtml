@@ -8,47 +8,47 @@
 <div class="auth-module">
     <div class="toggle">
         <i class="icon-user-plus"></i>
-        <div class="tip">Click here to register</div>
+        @*<div class="tip">Click here to register</div>*@
     </div>
 
     <!-- Login form -->
     @*<div class="form">*@
-    <div class="form">
-        <h1 class="text-light">Login to your account</h1>
-        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-horizontal", @id = "frmLogin" }))
-        {
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(s => s.ReturnUrl)
+        <div class="m-20">
+            <h1 class="text-light">Login to your account</h1>
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-horizontal", @id = "frmLogin" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(s => s.ReturnUrl)
 
-            <div class="form-group">
-                <div class="form-group has-feedback has-feedback-left">
-                    @Html.TextBoxFor(s => s.EmailLogin, new { @class = "form-control", @placeholder = "abc@xyz.com" })
-                    <div class="form-control-feedback">
-                        <i class="icon-envelop"></i>
+                <div class="form-group">
+                    <div class="form-group has-feedback has-feedback-left">
+                        @Html.TextBoxFor(s => s.EmailLogin, new { @class = "form-control", @placeholder = "abc@xyz.com" })
+                        <div class="form-control-feedback">
+                            <i class="icon-envelop"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group has-feedback has-feedback-left">
-                    @Html.PasswordFor(s => s.PasswordLogin, new { @class = "form-control", @placeholder = "XXXXXX" })
-                    <div class="form-control-feedback">
-                        <i class="icon-key"></i>
+                    <div class="form-group has-feedback has-feedback-left">
+                        @Html.PasswordFor(s => s.PasswordLogin, new { @class = "form-control", @placeholder = "XXXXXX" })
+                        <div class="form-control-feedback">
+                            <i class="icon-key"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="login-options">
-                    <div class="checkbox">
-                        <label>
-                            @Html.CheckBoxFor(s => s.IsRemember, new { @class = "styled" })
-                            Remember me
-                        </label>
+                    <div class="login-options">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(s => s.IsRemember, new { @class = "styled" })
+                                Remember me
+                            </label>
+                        </div>
                     </div>
+                    <button type="submit" class="btn btn-info btn-block">Sign In</button>
                 </div>
-                <button type="submit" class="btn btn-info btn-block">Sign In</button>
-            </div>
-        }
+            }
 
-    </div>
+        </div>
     <!-- /Login form -->
     <!-- Registration form -->
-    <div class="form">
+    @*<div class="form">
         <h1>Create an account</h1>
         @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @id = "frmRegister", @class = "form-horizontal" }))
         {
@@ -106,7 +106,7 @@
                 <button type="submit" class="btn btn-info btn-block">Create my account</button>
             </div>
         }
-    </div>
+    </div>*@
     <!-- /Registeration form -->
 
     <div class="forgot">
@@ -159,64 +159,64 @@
             });
 
             //Registration Form validation HERE
-            $("#frmRegister").validate({
-                rules: {
-                    Email: {
-                        required: true,
-                        email: true
-                    },
-                    Name: {
-                        required: true
-                    },
-                    Password: {
-                        required: true
-                    },
-                    RetypePassword: {
-                        required: true,
-                        equalTo: "#Password"
-                    },
-                    Mobile: {
-                        required: true,
-                        number: true,
-                        minlength: 10
-                    },
-                    IsTermsAndCondition: {
-                        required: true
-                    }
-                },
-                ignore: 'input[type=hidden], .select2-search__field',
-                errorClass: 'validation-error',
-                successClass: 'validation-success',
-                highlight: function (element, errorClass) {
-                    $(element).removeClass(errorClass);
-                },
-                unhighlight: function (element, errorClass) {
-                    $(element).removeClass(errorClass);
-                },
-                errorPlacement: function (error, element) {
-                    if (element.parents('div').hasClass("checker") || element.parents('div').hasClass("choice") || element.parent().hasClass('bootstrap-switch-container')) {
-                        if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
-                            error.appendTo(element.parent().parent().parent().parent());
-                        } else {
-                            error.appendTo(element.parent().parent().parent().parent().parent());
-                        }
-                    } else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
-                        error.appendTo(element.parent());
-                    } else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline') || element.parents('div').hasClass('checkbox-single')) {
-                        error.appendTo(element.parent().parent());
-                    } else if (element.parents('div').hasClass('checkbox-group')) {
-                        error.appendTo(element.parent().parent().parent());
-                    } else if (element.parent().hasClass('uploader') || element.parents().hasClass('input-group')) {
-                        error.appendTo(element.parent().parent());
-                    } else {
-                        error.insertAfter(element);
-                    }
-                },
-                validClass: "validation-success",
-                success: function (label) {
-                    label.addClass("validation-success").text("Done");
-                }
-            });
+            //$("#frmRegister").validate({
+            //    rules: {
+            //        Email: {
+            //            required: true,
+            //            email: true
+            //        },
+            //        Name: {
+            //            required: true
+            //        },
+            //        Password: {
+            //            required: true
+            //        },
+            //        RetypePassword: {
+            //            required: true,
+            //            equalTo: "#Password"
+            //        },
+            //        Mobile: {
+            //            required: true,
+            //            number: true,
+            //            minlength: 10
+            //        },
+            //        IsTermsAndCondition: {
+            //            required: true
+            //        }
+            //    },
+            //    ignore: 'input[type=hidden], .select2-search__field',
+            //    errorClass: 'validation-error',
+            //    successClass: 'validation-success',
+            //    highlight: function (element, errorClass) {
+            //        $(element).removeClass(errorClass);
+            //    },
+            //    unhighlight: function (element, errorClass) {
+            //        $(element).removeClass(errorClass);
+            //    },
+            //    errorPlacement: function (error, element) {
+            //        if (element.parents('div').hasClass("checker") || element.parents('div').hasClass("choice") || element.parent().hasClass('bootstrap-switch-container')) {
+            //            if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
+            //                error.appendTo(element.parent().parent().parent().parent());
+            //            } else {
+            //                error.appendTo(element.parent().parent().parent().parent().parent());
+            //            }
+            //        } else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
+            //            error.appendTo(element.parent());
+            //        } else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline') || element.parents('div').hasClass('checkbox-single')) {
+            //            error.appendTo(element.parent().parent());
+            //        } else if (element.parents('div').hasClass('checkbox-group')) {
+            //            error.appendTo(element.parent().parent().parent());
+            //        } else if (element.parent().hasClass('uploader') || element.parents().hasClass('input-group')) {
+            //            error.appendTo(element.parent().parent());
+            //        } else {
+            //            error.insertAfter(element);
+            //        }
+            //    },
+            //    validClass: "validation-success",
+            //    success: function (label) {
+            //        label.addClass("validation-success").text("Done");
+            //    }
+            //});
         });
     </script>
 }

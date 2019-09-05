@@ -99,18 +99,29 @@ namespace DevTracker.WebHelpers
 
         public static IEnumerable<SelectListItem> GetProjects(long? projectId)
         {
-            List<SelectListItem> list;
-
+            var list = new List<SelectListItem>();
             try
             {
                 using (var db = new DBEntities())
                 {
-                    list = db.Projects.Select(s => new SelectListItem
+                    list.Add(new SelectListItem
+                    {
+                        Selected = (projectId == 0),
+                        Text = "-- select project --",
+                        Value = string.Empty
+                    });
+
+                    var projectList = db.Projects.Select(s => new SelectListItem
                     {
                         Value = s.ProjectId.ToString(),
                         Text = s.Name,
                         Selected = (projectId == s.ProjectStatusMasterId)
                     }).ToList();
+
+                    if(projectList.Count != 0)
+                    {
+                        list.AddRange(projectList);
+                    }
                 }
             }
             catch (Exception)
@@ -122,15 +133,22 @@ namespace DevTracker.WebHelpers
 
         public static IEnumerable<SelectListItem> GetTasks(long? projectId, long? taskId)
         {
-            List<SelectListItem> list;
-
+            var list = new List<SelectListItem>();
             try
             {
                 using (var db = new DBEntities())
                 {
+                    list.Add(new SelectListItem
+                    {
+                        Selected = (taskId == 0),
+                        Text = "-- select task --",
+                        Value = string.Empty
+                    });
+
+                    var chatList = new List<SelectListItem>();
                     if (projectId != 0)
                     {
-                        list = db.TaskMasters.Where(m => m.ProjectId == projectId).Select(s => new SelectListItem
+                        chatList = db.TaskMasters.Where(m => m.ProjectId == projectId).Select(s => new SelectListItem
                         {
                             Value = s.TaskMasterId.ToString(),
                             Text = s.Title,
@@ -139,13 +157,19 @@ namespace DevTracker.WebHelpers
                     }
                     else
                     {
-                        list = db.TaskMasters.Select(s => new SelectListItem
+                        chatList = db.TaskMasters.Select(s => new SelectListItem
                         {
                             Value = s.TaskMasterId.ToString(),
                             Text = s.Title,
                             Selected = (taskId == s.TaskMasterId)
                         }).ToList();
                     }
+
+                    if(chatList.Count != 0)
+                    {
+                        list.AddRange(chatList);
+                    }
+
                 }
             }
             catch (Exception)
@@ -154,7 +178,6 @@ namespace DevTracker.WebHelpers
             }
             return list;
         }
-
 
         public static IEnumerable<SelectListItem> GetTaskType(long? taskTypeMasterId)
         {

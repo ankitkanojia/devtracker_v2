@@ -50,7 +50,7 @@ namespace DevTracker.Controllers
                     {
                         taskVm.Description = "<p><strong>Objective:</strong></p><p>&nbsp;</p><p><strong>References:</strong></p><p>&nbsp;</p><p><strong>Condition Satisfied:</strong></p>";
                     }
-
+                    
                     return View(taskVm);
                 }
             }
@@ -193,8 +193,6 @@ namespace DevTracker.Controllers
                     {
                         //Assigny task details to view model
                         taskDetailsVm.CopyProperties(taskMaster);
-                        taskDetailsVm.ProjectName = taskMaster.Project.Name;
-                        taskDetailsVm.TaskCategoryName = taskMaster.TaskCategory.Name;
 
                         //Convert data to string format
                         taskDetailsVm.StartDateString = taskMaster.StartDate.ToString("dd/MM/yyyy");
@@ -300,6 +298,19 @@ namespace DevTracker.Controllers
             }
 
             return Json(status, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetTasks(long? projectId, long? taskId)
+        {
+            try
+            {
+                var chatList = SelectListFunction.GetTasks(projectId, taskId);
+                return Json(new { chatList }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

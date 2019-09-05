@@ -113,27 +113,19 @@
 
                             <label>
                                 <span class="taskDetlHead text-muted">Project: </span>
-                                <span class="taskDetlBody">@Model.ProjectName</span>
+                                <span class="taskDetlBody">Zemulla</span>
                             </label>
 
                             <br />
                             <label>
                                 <span class="taskDetlHead text-muted">Task Type: </span>
-                                <span class="taskDetlBody">
-                                    @{
-                                        var taskType = ((EnumList.Roles)Model.TaskTypeMasterId).ToString().Replace('_', ' ');
-                                    }
-
-                                    @taskType
-                                </span>
+                                <span class="taskDetlBody">Bug</span>
                             </label>
 
                             <br />
                             <label>
                                 <span class="taskDetlHead text-muted">Task Category: </span>
-                                <span class="taskDetlBody">
-                                    @Model.TaskCategoryName
-                                </span>
+                                <span class="taskDetlBody">Logo design</span>
                             </label>
 
                             <hr />
@@ -141,7 +133,7 @@
                                 <span class="taskDetlHead text-muted">Assignee: </span>
                                 <span class="taskDetlBody">
                                     <a href="javascript:void(0);" data-placement="top" data-popup="popover" title="Select assignee"
-                                       data-html="true" data-content="#testDiv">
+                                       data-html="true" data-content="Add <u>some</u> <i>HTML</i> <strong>stuff</strong>.">
                                         Ankit Kanojia
                                     </a>
                                 </span>
@@ -163,7 +155,7 @@
                             <label>
                                 <span class="taskDetlHead text-muted">Task Status: </span>
                                 <span class="taskDetlBody">
-                                    <a href="javascript:void(0);" onclick="$('#test').popover('toggle');" data-html="true" id="test">
+                                    <a href="javascript:void(0);" onclick="taskStatusPopover()" data-html="true" id="test">
                                         Ankit Kanojia
                                     </a>
                                 </span>
@@ -172,37 +164,27 @@
                             <br />
                             <label>
                                 <span class="taskDetlHead text-muted">Start date: </span>
-                                <span class="taskDetlBody">
-                                    @Model.StartDateString
-                                </span>
+                                <span class="taskDetlBody">16/04/1993</span>
                             </label>
 
                             <br />
                             <label>
                                 <span class="taskDetlHead text-muted">Goal Date: </span>
-                                <span class="taskDetlBody">
-                                    @Model.EndDateString
-                                </span>
+                                <span class="taskDetlBody">10/12/2017</span>
                             </label>
 
                             <br />
                             <label>
                                 <span class="taskDetlHead text-muted">Estimate Hours: </span>
-                                <span class="taskDetlBody">
-                                    @Model.EstimateTimeHours
-                                </span>
+                                <span class="taskDetlBody">200</span>
                             </label>
 
                             <hr />
                             <label>
-                                <span class="taskDetlHead text-muted">
-                                    Completion
-                                    <span class="text-success-700">
-                                        ( <span id="noui-slider-connect-lower-val"></span> %)
-                                    </span>
-                                </span>
+                                <span class="taskDetlHead text-muted">Completion (%) </span>
                                 <br /><br />
                                 <div id="noui-slider-connect-lower"></div>
+                                <div class="val-demo m-b-5 text-success">Value: <span id="noui-slider-connect-lower-val"></span></div>
                             </label>
                         </div>
                     </div>
@@ -212,12 +194,7 @@
     </div>
 </div>
 
-<div id="testDiv">
-    <select class="form-control">
-        <option>Suchit</option>
-        <option>Ankit</option>
-    </select>
-</div>
+
 
 
 @section scripts{
@@ -226,9 +203,16 @@
     <script>
 
         function taskStatusPopover() {
-
-
-
+            $('#test').popover({
+                placement: "top",
+                trigger: "manual",
+                content: "suchit"
+            }).popover("show");
+            //$('#target').popover({
+            //    placement: "left",
+            //    trigger: "manual",
+            //    content: $("#popover-content").parent().html()
+            //}).popover("show");
         }
 
         //Change task field value
@@ -273,18 +257,7 @@
         }
 
 
-
         $(document).ready(function () {
-
-
-            $('#test').popover({
-                placement: "top",
-                trigger: "manual",
-                title: 'Select task type',
-                content: $('#testDiv').html()
-            }).popover("show");
-            $('#test').popover('hide');
-
 
             //#Start: UI Slider
             var slider_connect_lower = document.getElementById('noui-slider-connect-lower');
