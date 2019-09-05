@@ -1,0 +1,65 @@
+//----------------------------------
+//   File          : scss/snippets/loaders/_loader10.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//----------------------------------
+
+@mixin loader10(
+  $size: $loader-size,
+  $color: $loader-color,
+  $duration: $loader-animation-duration,
+  $gap: $loader-gap,
+  $align: null
+) {
+  width: $size;
+  height: $size;
+  @include radius(50%);
+  position: relative;
+  @include animate(loader10 $duration ease alternate infinite);
+  @include animation(animation-delay,.4s);
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    width: $size;
+    height: $size;
+    @include radius(50%);
+    @include animate(loader10 $duration ease alternate infinite);
+  }
+
+  &::before {
+    left: -($size + $gap);
+    @include animation(animation-delay, .2s);
+  }
+
+  &::after {
+    right: -($size + $gap);
+    @include animation(animation-delay, .6s);
+  }
+
+  @if ($align == center) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @if ($align == middle) {
+    top: 50%;
+    margin: -($size + $size / 2) auto 0;
+  } @else {
+    top: -$size;
+  }
+  @include keyframes(loader10) {
+    0% {
+      box-shadow: 0 $size 0 (-$size) $color;
+      -moz-box-shadow: 0 $size 0 (-$size) $color;
+      -webkit-box-shadow: 0 $size 0 (-$size) $color;
+    }
+
+    100% {
+      box-shadow: 0 $size 0 $color;
+      -moz-box-shadow: 0 $size 0 $color;
+      -webkit-box-shadow: 0 $size 0 $color;
+    }
+  }
+}

@@ -9,6 +9,34 @@ using repository.Helpers;
 namespace repository.Models.ViewModels
 {
 
+
+    public class AuthVm
+    {
+        //Login
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public bool IsRemember { get; set; }
+        public string ReturnUrl { get; set; }
+        public bool IsShowSendVerificationEmail { get; set; }
+
+
+        //Registration
+        public string EmailRegister { get; set; }
+        public string PasswordRegister { get; set; }
+        public string FullName { get; set; }
+        public string RoleName { get; set; }
+        public bool IsMailAccountDetails { get; set; }
+        public bool IsAcceptTnC { get; set; }
+    }
+
+
+
+
+
+
+
+
+
     public class LockoutVm
     {
         public string Email { get; set; }
@@ -70,47 +98,9 @@ namespace repository.Models.ViewModels
         public DateTime? LockOutDateTime { get; set; }
     }
 
-    public class AuthVm
-    {
-        public string UserId { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string ReturnUrl { get; set; }
-
-        public string RegEmail { get; set; }
-        public string RegPassword { get; set; }
-        public string RegConfirmPassword { get; set; }
-        public bool RegIsAcceptTnC { get; set; }
-        public string RegFullName { get; set; }
-        public string RegPhoneNumber { get; set; }
-        public bool RegIsShowEmailConfirm { get; set; }
-    }
-
-    public class RegisterVm
-    {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-        [Required]
-        [StringLength(100, ErrorMessage = ValidationMessages.PasswordLength, MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
 
 
-        //[MustBeTrue(ErrorMessage = ValidationMessages.TermsAccept)]
-        public bool IsAcceptTnC { get; set; }
 
-        [Required]
-        [Display(Name = "FullName")]
-        public string FullName { get; set; }
-
-        public bool IsShowEmailConfirm { get; set; }
-
-        public string RoleName { get; set; }
-    }
 
     public class MyProfileVm
     {

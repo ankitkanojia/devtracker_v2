@@ -1,0 +1,166 @@
+//----------------------------------
+//   File          : scss/plugins/forms/_time-picker.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//----------------------------------
+
+$color_mountain_mist_approx: #999;
+$color_desert_storm_approx: #f8f8f8;
+$color_celeste_approx: #ccc;
+$color_storm_dust_approx: #666;
+$color_tropical_blue_approx: rgb(192, 229, 247);
+$color_cerulean_25_approx: rgba(0, 149, 221, .25);
+$color_cararra_approx: #ebebeb;
+$color_cerulean_approx: rgb(0, 149, 221);
+$black_20: rgba(0, 0, 0, .2);
+
+.clockpicker-moving {
+	cursor: move;
+}
+.clockpicker-popover {
+    @include b(1,solid,$card-border-color);
+    @if($card-shadow == 'true'){
+		@include shadow-out();
+	}
+	@else{
+		@include no-shadow();
+	}
+
+	.popover-title {
+		background-color: $card-bg;
+		color: $text-color;
+		font-size: 24px;
+		line-height: 30px;
+		text-align: center;
+		span {
+			cursor: pointer;
+		}
+	}
+	.popover-content {
+        @include p(12);
+		background-color: $card-bg;
+        border-color: $card-border-color;
+	}
+
+    .bottom>.arrow{
+        border-bottom-color: $card-border-color;
+    }
+}
+.clockpicker-plate {
+    @include size(200px);
+	background-color: $white;
+	border: 1px solid $color_celeste_approx;
+	border-radius: 50%;
+	overflow: visible;
+	position: relative;
+	user-select: none;
+}
+.clockpicker-canvas {
+    @include size(200px);
+    @include pos(absolute,-1px,null,null,-1px);
+	@include animation(transition, opacity 175ms);
+	line {
+		stroke: $color_cerulean_approx;
+		stroke-width: 1;
+		stroke-linecap: round;
+	}
+}
+.clockpicker-dial {
+    @include size(200px);
+    @include pos(absolute,-1px,null,null,-1px);
+	@include animation(transition, 'transform 350ms, opacity 350ms');
+}
+.clockpicker-minutes {
+	visibility: hidden;
+	&.clockpicker-dial-out {
+		@include animation(transform,'scale(.8, .8)');
+	}
+}
+.clockpicker-tick {
+    @include size(26px);
+	border-radius: 50%;
+	color: $color_storm_dust_approx;
+	line-height: 26px;
+	text-align: center;
+	position: absolute;
+	cursor: pointer;
+
+	&.active {
+		background-color: $color_tropical_blue_approx;
+		background-color: $color_cerulean_25_approx;
+	}
+	&:hover {
+		background-color: $color_tropical_blue_approx;
+		background-color: $color_cerulean_25_approx;
+	}
+}
+.clockpicker-button {
+    @include no-m();
+    @include p-vh(10,0);
+	background-image: none;
+	background-color: $white;
+	border-width: 1px 0 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+
+	&:focus {
+		outline: none!important;
+	}
+	&.am-button,,
+    &.pm-button {
+		margin: 1px;
+        @include p(5);
+        @include b(1,solid,$black_20);
+        @include radius($radius);
+	}
+	&.pm-button {
+        @include m-a(1,1,1,136);
+	}
+}
+.clockpicker-dial-out {
+	opacity: 0;
+}
+.clockpicker-canvas-out {
+	opacity: 0.25;
+}
+.clockpicker-canvas-bearing {
+	stroke: none;
+	fill: $color_cerulean_approx;
+}
+.clockpicker-canvas-fg {
+	stroke: none;
+	fill: $color_cerulean_approx;
+}
+.clockpicker-canvas-bg {
+	stroke: none;
+	fill: $color_tropical_blue_approx;
+}
+.clockpicker-canvas-bg-trans {
+	fill: $color_cerulean_25_approx;
+}
+.clockpicker .input-group-addon {
+	cursor: pointer;
+}
+.clockpicker-align-left.popover > .arrow {
+	left: 25px;
+}
+.clockpicker-align-top.popover > .arrow {
+	top: 17px;
+}
+.clockpicker-align-right.popover > .arrow {
+	left: auto;
+	right: 25px;
+}
+.clockpicker-align-bottom.popover > .arrow {
+	top: auto;
+	bottom: 6px;
+}
+.popover-content:last-child {
+	border-bottom-left-radius: $radius;
+	border-bottom-right-radius: $radius;
+}
+.clockpicker-hours.clockpicker-dial-out {
+	@include animation(transform, 'scale(1.2, 1.2)');
+	transform: scale(1.2, 1.2);
+}

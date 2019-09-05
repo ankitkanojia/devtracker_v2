@@ -1,0 +1,940 @@
+//----------------------------------
+//   File          : scss/plugins/tables/_datatables.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//----------------------------------
+
+.dataTable {
+    @include m(0);
+	max-width: none;
+	border-collapse: separate;
+	&.table-bordered {
+		border-collapse: collapse;
+	}
+	thead {
+		td {
+			outline: 0;
+			position: relative;
+		}
+		th {
+			outline: 0;
+			position: relative;
+		}
+		.sorting {
+            @include p-r(40);
+			cursor: pointer;
+			&:after,
+            &:before {
+                @include pos(absolute,50%,20px,null,null);
+                @include m-t(-10);
+                content: '';
+            	font-size: 12px;
+            	display: inline-block;
+            	line-height: 1;
+				color: $table-header-footer-text-color;
+			}
+			&:before {
+                @include m-t(-2);
+			}
+            @include icon(after,arrow-up);
+            @include icon(before,arrow-down);
+		}
+		.sorting_asc {
+			cursor: pointer;
+            @include p-r(40);
+            @include icon(after,arrow-up){
+                @include pos(absolute,50%,20px,null,null);
+                @include m-t(-6);
+                @include fs(12px);
+                display: inline-block;
+            	line-height: 1;
+                color: $table-header-footer-text-color;
+            }
+		}
+		.sorting_desc {
+            @include p-r(40);
+			cursor: pointer;
+            @include icon(after,arrow-down){
+                @include pos(absolute,50%,20px,null,null);
+                @include m-t(-6);
+                @include fs(12px);
+                display: inline-block;
+            	line-height: 1;
+                color: $table-header-footer-text-color;
+            }
+		}
+		.sorting_asc_disabled {
+            @include p-r(40);
+            @include icon(after,arrow-up){
+                @include pos(absolute,50%,20px,null,null);
+                @include m-t(-6);
+                @include fs(12px);
+                display: inline-block;
+            	line-height: 1;
+                color: $text-muted;
+            }
+		}
+		.sorting_desc_disabled {
+            @include p-r(40);
+            @include icon(after,arrow-down){
+                @include pos(absolute,50%,20px,null,null);
+                @include m-t(-6);
+                @include fs(12px);
+                display: inline-block;
+            	line-height: 1;
+                color: $text-muted;
+            }
+		}
+	}
+	.dataTables_empty {
+		text-align: center;
+	}
+}
+
+.dataTables_wrapper {
+	position: relative;
+	&:after {
+        @include h(0);
+		visibility: hidden;
+		display: block;
+		content: "";
+	}
+	+ .card-block {
+        @include bt(1,solid,$table-header-footer-border);
+	}
+}
+
+.dataTables_processing {
+    @include pos(absolute,50%,null,null,50%);
+    @include size(100%,40px);
+    @include m-t(-25);
+    @include p-t(20);
+	margin-left: -50%;
+	text-align: center;
+	background-color: $white;
+	background: linear-gradient(to right,white(0) 0,white(.9) 25%,white(.9) 75%,white(0) 100%);
+}
+
+.datatable-header,
+.datatable-footer {
+    @include p-a(10,10,0,20);
+    @include bt(1,solid,$table-header-footer-border);
+    background: $table-header-footer-bg;
+    color: $table-header-footer-text-color;
+	&:after {
+        content: "";
+    	display: table;
+    	clear: both;
+	}
+	> div:first-child {
+        @include m-l(0);
+	}
+}
+
+.dataTables_length {
+    @include m-a(0,10,10,20);
+	float: right;
+	display: inline-block;
+	> label {
+        @include m-b(0);
+		> span:first-child {
+            @include m-a(8,15,8,0);
+			float: left;
+            color: $table-header-footer-text-color;
+		}
+	}
+	.select2-container {
+		width: auto;
+	}
+}
+
+.dataTables_filter {
+    @include m-a(0,0,10,20);
+	position: relative;
+	display: block;
+	float: left;
+	> label {
+        @include m-b(0);
+		position: relative;
+        @include icon(after,search){
+            @include pos(absolute,50%,12px,null,null);
+            @include m-t(-6);
+            color: $form-input-group-addon-text-color;
+            @include lh(1);
+            @include fs(12px);
+			display: inline-block;
+        }
+		> span {
+            @include m-a(8,15,8,0);
+			float: left;
+            color: $table-header-footer-text-color;
+		}
+	}
+	input {
+        @include w(180px);
+		float: left;
+	}
+}
+
+.dataTables_scroll {
+	.dataTables_scrollBody {
+		table {
+			border-bottom: 0;
+			thead th[class*=sorting] {
+				&:after {
+					content: none;
+				}
+				&:before {
+					content: none;
+				}
+			}
+			tbody tr:first-child > td {
+				border-top: 0;
+			}
+		}
+        th > .dataTables_sizing,
+		td > .dataTables_sizing {
+            @include h(0);
+            @include no-s();
+        	overflow: hidden;
+		}
+	}
+	.dataTables_scrollHead table {
+		border-bottom: 0;
+	}
+}
+
+.dataTables_info {
+    @include p-vh(8,0);
+    @include m-b(10);
+	float: left;
+    color: $table-header-footer-text-color;
+}
+
+.dataTables_paginate {
+    @include m-a(0,10,10,20);
+	float: right;
+	text-align: right;
+	.paginate_button {
+        @include m-l(-1);
+        @include b(1,solid,$pagination-border-color);
+        background: $pagination-bg;
+        @include p-vh($space-base *1.5, $space-base *3.2);
+        @include typo($ff-regular,$font-base,$pagination-text-color,left);
+		display: inline-block;
+		cursor: pointer;
+
+		&:first-child {
+            @include m-l(0);
+		}
+
+		&:focus,
+        &:hover {
+            background: $pagination-hover-bg;
+            color: $pagination-hover-color;
+            @include b(1,solid,$pagination-border-color);
+		}
+		&.current {
+            background: $pagination-active-bg !important;
+            color: $pagination-active-color !important;
+            @include b(1,solid,$pagination-active-bg);
+			&:focus,
+            &:hover {
+                background: $pagination-active-bg !important;
+                color: $pagination-active-color !important;
+                @include b(1,solid,$pagination-active-bg);
+			}
+		}
+		&.disabled {
+            cursor: not-allowed;
+            color: lighten($pagination-text-color,70%);
+            @include b(1,solid,$pagination-border-color);
+			&:focus,
+            &:hover {
+                color: lighten($pagination-text-color,70%);
+                @include b(1,solid,$pagination-border-color);
+			}
+		}
+
+        &.previous{
+            @include radius-a($radius,0,0,$radius);
+        }
+        &.next{
+            @include radius-a(0,$radius,$radius,0);
+        }
+	}
+	&.paging_simple .paginate_button {
+        @include p-h(12);
+	}
+}
+
+.card-block {
+	+ * > .dataTables_wrapper {
+        @include bt(1,solid,$table-header-footer-border);
+	}
+	+ .dataTables_wrapper {
+		@include bt(1,solid,$table-header-footer-border);
+	}
+	> .dataTables_wrapper .datatable-footer {
+		border-top: 0;
+		.dataTables_filter,
+        .dataTables_info,
+        .dataTables_length,
+        .dataTables_paginate {
+            @include m-b(0);
+		}
+	}
+}
+
+.datatable-scroll,
+.datatable-scroll-lg,
+.datatable-scroll-sm {
+	min-height: .01%;
+}
+
+.datatable-scroll-wrap {
+    @include w(100%);
+	min-height: .01%;
+	overflow-x: auto;
+}
+
+@include media(desktop,max) {
+	.datatable-scroll {
+        @include w(100%);
+		overflow-x: scroll;
+		th,td {
+			white-space: nowrap;
+		}
+	}
+}
+
+@include media(desktop-lg,max) {
+	.datatable-scroll-lg {
+        @include w(100%);
+		th,td {
+			white-space: nowrap;
+		}
+	}
+}
+
+@include media(tablet-lg,max) {
+	.datatable-scroll-sm {
+        @include w(100%);
+		overflow-x: scroll;
+		th,td {
+			white-space: nowrap;
+		}
+	}
+	.ColVis,
+    .DTTT_container,
+    .dataTables_filter,
+    .dataTables_info,
+    .dataTables_length,
+    .dataTables_paginate {
+        @include m-l(0);
+		float: none!important;
+		text-align: center;
+	}
+	.dataTables_info,
+    .dataTables_paginate {
+        @include m-t(0);
+	}
+	.datatable-header {
+		text-align: center;
+	}
+	.DTFC_LeftWrapper,
+    .DTFC_RightWrapper,
+    .fixedHeader-floating,
+    .fixedHeader-locked {
+		display: none;
+	}
+	.dataTables_wrapper {
+		.select-info,
+        .select-item {
+            @include m-l(0);
+			display: block;
+		}
+	}
+}
+
+.DTCR_clonedTable {
+	background-color: white(.8);
+	z-index: 202;
+	cursor: move;
+	th,td {
+        @include b(1,solid,$table-header-footer-border);
+	}
+}
+
+.DTCR_pointer {
+    @include w(1px);
+	background-color: $info;
+	z-index: 201;
+}
+.DTFC_Blocker {
+	background-color: $white;
+}
+.DTFC_Cloned {
+	background-color: $white;
+	border-bottom: 0;
+}
+.dt-rowReorder-float {
+	background-color: $white;
+	position: absolute!important;
+	table-layout: static;
+	outline: lighten($black, 60%) dashed 1px;
+	outline-offset: -1px;
+	z-index: 1030;
+	cursor: move;
+	opacity: .9;
+	filter: alpha(opacity=90);
+}
+.dt-rowReorder-moving {
+	outline: lighten($black, 60%) solid 1px;
+	outline-offset: -1px;
+}
+.dt-rowReorder-noOverflow {
+	overflow-x: hidden;
+}
+
+.dataTable {
+	td {
+		&.reorder {
+			text-align: center;
+			cursor: move;
+		}
+		&.focus {
+			outline: $info solid 2px;
+			outline-offset: -1px;
+		}
+		&.focus-success {
+			background-color: $success;
+			outline-color: c700(palette($success));
+		}
+		&.focus-info {
+			background-color: $info;
+			outline-color: c700(palette($info));
+		}
+		&.focus-warning {
+			background-color: $warning;
+			outline-color: c700(palette($warning));
+		}
+		&.focus-danger {
+			background-color: $danger;
+			outline-color: c700(palette($danger));
+		}
+	}
+	tbody {
+		> tr {
+			&.selected,
+            > .selected {
+				background-color: c50(palette($info));
+			}
+		}
+		.select-checkbox {
+			position: relative;
+			&:after,
+            &:before {
+                @include pos(absolute,50%,null,null,50%);
+				display: inline-block;
+				color: $table-data-text-color;
+				cursor: pointer;
+			}
+			&:before {
+                @include size(18px);
+                @include m-t(-9);
+                @include m-l(-9);
+				content: '';
+				background-color: $table-row-bg;
+                @include b(2,solid,$table-row-border);
+                @include radius($radius);
+			}
+		}
+		.selected .select-checkbox{
+            @include icon(after,tick){
+                @include lh(1);
+                @include m-t(-7);
+                @include m-l(-7);
+            }
+        }
+	}
+	th {
+		&.focus {
+			outline: $info solid 2px;
+			outline-offset: -1px;
+		}
+		&.focus-success {
+			background-color: $success;
+			outline-color: c700(palette($success));
+		}
+		&.focus-info {
+			background-color: $info;
+			outline-color: c700(palette($info));
+		}
+		&.focus-warning {
+			background-color: $warning;
+			outline-color: c700(palette($warning));
+		}
+		&.focus-danger {
+			background-color: $danger;
+			outline-color: c700(palette($danger));
+		}
+	}
+	tr {
+		&.child {
+			&:hover {
+				background-color: transparent;
+			}
+			.dtr-title {
+                @include p-r(40);
+				display: table-cell;
+				font-weight: 500;
+			}
+			.dtr-data {
+                @include p-vh(8,0);
+				display: table-cell;
+			}
+		}
+		td.child {
+			white-space: normal;
+			position: relative;
+			> ul {
+                @include w(100%);
+                @include no-s();
+				display: table;
+				table-layout: fixed;
+				list-style: none;
+				> li {
+					display: table-row;
+				}
+			}
+		}
+	}
+	&.dtr-column tbody tr.parent {
+		th.control,
+        td.control {
+            @include icon(before,removed);
+		}
+	}
+	&.dtr-inline.collapsed tbody tr.parent {
+		th:first-child,
+        td:first-child {
+			@include icon(before,removed);
+		}
+	}
+}
+
+.fixedHeader-floating {
+    @include m-v(0);
+    @include bb(2,solid,$table-header-footer-border);
+	background-color: $table-header-footer-bg;
+	position: fixed;
+	top: 52px + ($topbar-vertical-padding * 2) !important;
+	+ .fixedHeader-floating {
+		border-top: 0!important;
+	}
+}
+.fixedHeader-locked {
+    @include m-v(0);
+	background-color: $table-header-footer-bg;
+	position: absolute;
+	+ .fixedHeader-floating {
+		border-top: 0!important;
+	}
+}
+@media print {
+	table.fixedHeader-floating {
+		display: none;
+	}
+}
+.dt-autofill-handle {
+    @include size(8px);
+	position: absolute;
+	z-index: 102;
+    @include b(1,solid,$info);
+	background: $info;
+}
+.dt-autofill-select {
+	position: absolute;
+	z-index: 1001;
+	background-color: $info;
+	background-image: repeating-linear-gradient(45deg,transparent,transparent 5px,white(.75) 5px,white(.75) 10px);
+	&.top,
+    &.bottom {
+        @include h(1px);
+	}
+	&.left,
+    &.right {
+        @include w(1px);
+	}
+}
+.dt-autofill-list {
+    @include pos(fixed,50%,null,null,50%);
+    @include no-p();
+    @include w(500px);
+    @include m-l(-250);
+	background-color: $white;
+    @include radius($radius);
+    @include b(1,solid,transparent);
+	z-index: 1050;
+	ul {
+        @include w(100%);
+        @include no-s();
+		display: table;
+		list-style: none;
+		li {
+			display: table-row;
+			&:hover {
+				background-color: lighten($black, 90%);
+			}
+		}
+	}
+	.dt-autofill-question {
+        @include p-vh(7,15);
+		display: table-cell;
+		input[type=number] {
+            @include w(30px);
+            @include m-vh(-2,0);
+            @include p(6);
+		}
+	}
+	.dt-autofill-button {
+        @include p-vh(7,15);
+		display: table-cell;
+		text-align: right;
+		.btn {
+            @include p(3);
+			background-color: $info;
+			color: $white;
+			font-size: 0;
+            @include icon(after,arrow-right){
+                @include w(16px);
+                @include lh(1);
+                display: block;
+            }
+			&:hover {
+				opacity: .85;
+				filter: alpha(opacity=85);
+			}
+		}
+	}
+}
+
+.dt-autofill-background {
+    @include pos(fixed,0,null,null,0);
+    @include size(100%);
+	background-color: $black;
+	z-index: 1040;
+	opacity: .5;
+	filter: alpha(opacity=50);
+}
+.dataTables_wrapper {
+	.select-info,
+    .select-item {
+        @include m-l(10);
+	}
+}
+.dt-buttons {
+    @include m-a(0,0,20,20);
+	display: inline-block;
+	float: right;
+	> {
+		.dt-button {
+			display: inline-block;
+		}
+		.btn {
+            @include radius(0);
+			&:first-child {
+                @include radius-a($radius,0,0,$radius);
+			}
+			&:last-child {
+                @include radius-a(0,$radius,$radius,0);
+			}
+			+ .btn {
+                @include m-l(-1);
+			}
+            &:before{
+                @include m-r(5);
+                line-height: 16px;
+                top: 2px;
+                position: relative;
+            }
+		}
+	}
+}
+@include media(tablet,max) {
+	.dt-buttons {
+		float: none;
+		text-align: center;
+		display: block;
+		.btn {
+			float: none;
+		}
+	}
+}
+.dt-button-info {
+    @include pos(fixed,50%,null,null,50%);
+    @include w(400px);
+    @include m-t(-100);
+    @include m-l(-200);
+    @include p(20);
+	background-color: $white;
+    @include b(1,solid,lighten($black, 80%));
+    @include radius($radius);
+	text-align: center;
+	z-index: 1050;
+	h2 {
+        @include m-t(0);
+        @include fs(17px);
+		line-height: 1.5384616;
+	}
+}
+.dt-button-background {
+    @include pos(fixed,0,null,null,0);
+    @include size(100%);
+	background-color: lighten($black, 40%);
+	z-index: 999;
+	opacity: .25;
+	filter: alpha(opacity=25);
+}
+.dt-button-collection {
+    @include pos(absolute,0,null,null,0);
+    @include p-vh(7,0);
+    @include w-min(180px);
+	background-color: $white;
+	display: block;
+	z-index: 1000;
+	overflow: hidden;
+    @include radius($radius);
+	column-gap: 2px;
+	&.fixed {
+        @include pos(fixed,50%,null,null,50%);
+        @include m-l(-75);
+        @include p-h(5);
+		&.two-column {
+            @include m-l(-150);
+		}
+		&.three-column {
+            @include m-l(-225);
+		}
+		&.four-column {
+            @include m-l(-300);
+		}
+	}
+	> * {
+		break-inside: avoid;
+	}
+	&.two-column {
+        @include w(300px);
+		column-count: 2;
+	}
+	&.three-column {
+        @include w(450px);
+		column-count: 3;
+	}
+	&.four-column {
+        @include w(600px);
+		column-count: 4;
+	}
+	> .dt-button {
+        @include no-p();
+		color: lighten($black, 5%)0;
+		display: block;
+		outline: 0;
+		&:focus {
+			color: lighten($black, 5%)0;
+			background-color: lighten($black, 90%);
+		}
+		&:hover {
+			color: lighten($black, 5%)0;
+			background-color: lighten($black, 80%);
+		}
+		&.active {
+			color: $white;
+			background-color: $info;
+		}
+		+ .dt-button {
+            @include m-t(1);
+		}
+	}
+}
+
+.DTS {
+	.DTS_Loading {
+        @include pos(absolute,50%,null,null,50%);
+        @include size(200px,20px);
+        @include m-t(-20);
+        @include m-l(-100);
+		z-index: 1;
+        @include b(1,solid,lighten($black, 70%));
+        @include p-vh(20,0);
+		text-align: center;
+		background-color: white(.5);
+	}
+	.dataTables_scrollHead,
+    .dataTables_scrollFoot {
+		background-color: $white;
+	}
+	.dataTables_scrollBody {
+		z-index: 2;
+	}
+}
+
+.valign-top {
+	vertical-align: top;
+}
+@include media(phablet,max) {
+	.dataTable tr td.child > ul > li {
+		.btn-group,
+        .dropdown,
+        .dropup {
+			position: static;
+		}
+		.dropdown-menu {
+			left: 0;
+			right: 0;
+            @include radius(0);
+			border-width: 1px 0;
+		}
+	}
+}
+
+.length-left .dataTables_length {
+	float: left;
+}
+
+.DTFC_LeftBodyWrapper .DTFC_Cloned {
+	thead th {
+		&:after,
+        &:before {
+			content: none;
+		}
+	}
+	tbody > tr:first-child {
+		> th,
+        > td {
+			border-top: 0;
+		}
+	}
+}
+
+.DTFC_RightBodyWrapper .DTFC_Cloned {
+	thead th {
+		&:after,
+        &:before {
+			content: none;
+		}
+	}
+	tbody > tr:first-child {
+		> th,
+        > td {
+			border-top: 0;
+		}
+	}
+}
+
+.filter-right .dataTables_filter,
+.info-right .dataTables_info {
+	float: right;
+}
+.panel > .dataTables_wrapper .table-bordered {
+	border: 0;
+	> thead > tr,
+    > tfoot > tr,
+    > tbody > tr {
+		&:last-child {
+			> th,
+            > td {
+				border-bottom: 0;
+			}
+		}
+		> th,
+        > td {
+			&:first-child {
+				border-left: 0;
+			}
+			&:last-child {
+				border-right: 0;
+			}
+		}
+	}
+}
+.paginate-left .dataTables_paginate {
+	float: left;
+}
+.panel-flat > .card-header + .dataTables_wrapper > .datatable-header {
+	padding-top: 0;
+}
+.DTFC_LeftWrapper .DTFC_Cloned.table {
+    @include br(1,solid,lighten($black, 80%));
+}
+.DTFC_RightWrapper .DTFC_Cloned.table {
+    @include bl(1,solid,lighten($black, 80%));
+}
+
+.dt-buttons-full .dt-buttons {
+    @include no-m();
+    @include p-t(20);
+    @include p-b(10);
+    @include bb(1,solid,lighten($black, 80%));
+	text-align: center;
+	float: none;
+	display: block;
+	background-color: lighten($black, 90%);
+	> .btn {
+        @include m-b(10);
+		float: none;
+	}
+}
+.dt-buttons-left .dt-buttons {
+	float: left;
+}
+.dtr-inline.collapsed tbody tr {
+	th,
+    td {
+		&:before {
+            @include m-r(10);
+		}
+		&:first-child {
+			position: relative;
+			cursor: pointer;
+			white-space: nowrap;
+            @include icon(before,added){
+                @include pos(relative,-1px,nul,null,null);
+                width: 16px;
+                line-height: 1;
+                vertical-align: middle;
+                display: inline-block;
+            }
+			&.dataTables_empty:before {
+				display: none;
+			}
+		}
+	}
+	&.child td:before {
+		display: none;
+	}
+}
+.dtr-column tbody {
+	tr {
+		th.control,
+        td.control{
+            @include icon(before,added){
+                @include pos(relative,-1px,nul,null,null);
+                width: 16px;
+                line-height: 1;
+                vertical-align: middle;
+                display: inline-block;
+            }
+        }
+	}
+    th.control,
+	td.control {
+		position: relative;
+		cursor: pointer;
+	}
+}
+.timer > li.dots {
+	vertical-align: top;
+}

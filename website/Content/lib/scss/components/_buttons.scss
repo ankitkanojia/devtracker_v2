@@ -1,0 +1,451 @@
+//----------------------------------
+//   File          : scss/components/_buttons.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Bootstrap Buttons Override
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Buttons
+// 2. Button styling
+// 3. Contextual Styles
+// 4. Size overrides
+
+
+//----------------------------------
+// 1. Buttons
+//----------------------------------
+.btn {
+    position: relative;
+    @include radius($radius);
+    @include typo($ff-semibold, $font-base, null, center);
+    letter-spacing: 0;
+    text-transform: uppercase;
+    @include space();
+    cursor: pointer;
+
+    &:active,
+    &.active {
+        &:focus,
+        &.focus {
+            outline: 0;
+        }
+    }
+
+    &::-moz-focus-inner {
+        border: 0;
+    }
+
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+        @include shadow-in(black(0.06), 100px, 0, 0);
+    }
+
+    &[class*=bg-] {
+        &:hover,
+        &:focus,
+        &.focus {
+            color: $white;
+        }
+    }
+
+    &.text-size-sm {
+        line-height: $font-sm;
+    }
+    &.text-size-xs {
+        line-height: $font-xs;
+    }
+}
+
+
+//----------------------------------
+// 2. Button styling
+//----------------------------------
+.btn-secondary {
+    border-color: darken($card-bg,8%);
+    &:hover,
+    &:focus,
+    &.focus {
+        @include shadow-in(black(0.01), 100px, 0, 0);
+    }
+
+    &:active,
+    &.active {
+        @include shadow-in(black(0.02), 100px, 0, 0);
+    }
+}
+
+.btn-labeled {
+    @include p-l( (($space-base * 3) + 15) +10 );
+
+    &.btn-secondary {
+        > b {
+            background-color: black(0.03);
+            color: lighten($black, 10%);
+        }
+    }
+
+    > b {
+        @include pos(absolute, -1px, null, null, -1px);
+        background-color: black(0.15);
+        display: block;
+        @include p-vh($space-base + 1, $space-base + 4);
+    }
+
+    &.btn-labeled-right {
+        @include p-a(null, (($space-base * 3) + 15) +10 , null, $space-base *2);
+        > b {
+            left: auto;
+            right: -1px;
+        }
+    }
+
+    &.btn-xlg {
+        @include p-l(65);
+        > b {
+            @include typo($ff-regular, $font-xlg, $white, center);
+            @include p-vh(9, 15);
+        }
+        &.btn-labeled-right {
+            @include p-a(null, (($space-xlg * 3) + 15) - 6, null, $space-xlg);
+        }
+    }
+
+    &.btn-lg {
+        @include p-l(55);
+        > b {
+            @include typo($ff-regular, $font-lg, $white, center);
+            @include p-vh(7, 12);
+        }
+        &.btn-labeled-right {
+            @include p-a(null, (($space-lg * 3) + 15) - 6, null, $space-lg);
+        }
+    }
+
+    &.btn-sm {
+        @include p-l(35);
+        > b {
+            @include typo($ff-regular, $font-sm, $white, center);
+            @include p-vh(4, 8);
+        }
+        &.btn-labeled-right {
+            @include p-a(null, (($space-sm * 3) + 15) - 4, null, $space-sm);
+        }
+    }
+
+    &.btn-xs {
+        @include p-l(27);
+        > b {
+            @include typo($ff-regular, $font-sm, $white, center);
+            @include p-a(2,7,1,7);
+        }
+        &.btn-labeled-right {
+            @include p-a(null, (($space-xs * 3) + 15) - 4, null, $space-xs);
+        }
+    }
+}
+
+.btn-flat {
+    border-width: 2px;
+    background-color: transparent;
+    &:hover,
+    &:focus {
+        @include no-shadow();
+        background: black(0.1);
+    }
+    &:active {
+        background: black(0.2);
+    }
+    .btn-group.open .dropdown-toggle{
+        @include no-shadow();
+    }
+}
+
+.btn-icon {
+    @include no-s();
+
+    &.icon-2x {
+        @include p-vh(null, $space-base + 2);
+        > i {
+            font-size: ($icon-base * 2);
+            top: 0;
+        }
+        &.btn-xlg {
+            @include p-vh(null, $space-xlg);
+        }
+        &.btn-lg {
+            @include p-vh(null, $space-lg);
+        }
+        &.btn-sm {
+            @include p-vh(null, $space-sm);
+        }
+        &.btn-xs {
+            @include p-vh(null, $space-xs);
+        }
+    }
+
+    &.btn-xlg,
+    .input-group-xlg > .input-group-btn {
+        @include p-vh(null, $space-xlg + 2);
+    }
+    &.btn-lg,
+    .input-group-lg > .input-group-btn {
+        @include p-vh(null, $space-lg + 2);
+    }
+    &.btn-sm,
+    .input-group-sm > .input-group-btn {
+        @include p-vh(null, $space-sm + 2);
+    }
+    &.btn-xs,
+    .input-group-xs > .input-group-btn > .btn {
+        @include p-vh(null, $space-xs + 2);
+    }
+}
+
+.btn-link {
+    color: $text-color;
+    &:hover,
+    &:focus,
+    &:active {
+        @include no-shadow();
+    }
+}
+
+.btn-rounded {
+    @include radius(100px);
+    &.btn-labeled > b {
+        @include radius(100px);
+        i{
+            top:-2px;
+        }
+    }
+}
+
+.btn-block + .btn-block {
+    @include m-t();
+}
+
+
+//----------------------------------
+// 3. Contextual Styles
+//----------------------------------
+.btn-secondary {
+    &:focus,
+    &.focus,
+    &:hover {
+        background-color: c50(palette($grey));
+        border-color: darken(c50(palette($grey)),3%);
+    }
+    &:active,
+    &.active,
+    .open > .dropdown-toggle {
+        background-color: darken(c50(palette($grey)),3%);
+        border-color: darken(c50(palette($grey)),5%);
+
+        &:hover,
+        &:focus,
+        &.focus {
+            background-color: darken(c50(palette($grey)),3%);
+            border-color: darken(c50(palette($grey)),5%);
+        }
+    }
+    &.disabled {
+        @include no-shadow();
+    }
+}
+
+.btn-primary {
+    background: $primary;
+    border-color: darken($primary,3%);
+    &:focus,
+    &.focus,
+    &:hover {
+        background-color: darken($primary,3%);
+        border-color: darken($primary, 5%);
+    }
+    &:active,
+    &.active,
+    .open > .dropdown-toggle {
+        background-color: darken($primary, 3%);
+        border-color: darken($primary, 5%);
+
+        &:hover,
+        &:focus,
+        &.focus {
+            background-color: darken($primary, 3%);
+            border-color: darken($primary, 5%);
+        }
+    }
+    &.disabled {
+        @include no-shadow();
+    }
+}
+
+.btn-success {
+    background: $success;
+    border-color: darken($success,3%);
+    &:focus,
+    &.focus,
+    &:hover {
+        background-color: darken($success,3%);
+        border-color: darken($success, 5%);
+    }
+    &:active,
+    &.active,
+    .open > .dropdown-toggle {
+        background-color: darken($success, 3%);
+        border-color: darken($success, 5%);
+
+        &:hover,
+        &:focus,
+        &.focus {
+            background-color: darken($success, 3%);
+            border-color: darken($success, 5%);
+        }
+    }
+    &.disabled {
+        @include no-shadow();
+    }
+}
+
+.btn-info {
+    background: $info;
+    border-color: darken($info,3%);
+    &:focus,
+    &.focus,
+    &:hover {
+        background-color: darken($info,3%);
+        border-color: darken($info,5%);
+    }
+    &:active,
+    &.active,
+    .open > .dropdown-toggle {
+        background-color: darken($info, 3%);
+        border-color: darken($info, 5%);
+
+        &:hover,
+        &:focus,
+        &.focus {
+            background-color: darken($info, 3%);
+            border-color: darken($info, 5%);
+        }
+    }
+    &.disabled {
+        @include no-shadow();
+    }
+}
+
+.btn-warning {
+    background: $warning;
+    border-color: darken($warning,3%);
+    &:focus,
+    &.focus,
+    &:hover {
+        background-color: darken($warning,3%);
+        border-color: darken($warning, 5%);
+    }
+    &:active,
+    &.active,
+    .open > .dropdown-toggle {
+        background-color: darken($warning, 3%);
+        border-color: darken($warning, 5%);
+
+        &:hover,
+        &:focus,
+        &.focus {
+            background-color: darken($warning, 3%);
+            border-color: darken($warning, 5%);
+        }
+    }
+    &.disabled {
+        @include no-shadow();
+    }
+}
+
+.btn-danger {
+    background: $danger;
+    border-color: darken($danger,3%);
+    &:focus,
+    &.focus,
+    &:hover {
+        background-color: darken($danger,3%);
+        border-color: darken($danger, 5%);
+    }
+    &:active,
+    &.active,
+    .open > .dropdown-toggle {
+        background-color: darken($danger, 3%);
+        border-color: darken($danger, 5%);
+
+        &:hover,
+        &:focus,
+        &.focus {
+            background-color: darken($danger, 3%);
+            border-color: darken($danger, 5%);
+        }
+    }
+    &.disabled {
+        @include no-shadow();
+    }
+}
+
+
+//----------------------------------
+// 4. Size overrides
+//----------------------------------
+.btn-xlg {
+    @include space-xlg();
+    @include typo($ff-regular, $font-xlg, null, center);
+    &.btn-rounded {
+        @include radius(100px);
+    }
+    i{
+        font-size: $icon-xlg;
+    }
+}
+
+.btn-lg {
+    @include space-lg();
+    @include typo($ff-regular, $font-lg, null, center);
+    &.btn-rounded {
+        @include radius(100px);
+    }
+    i{
+        font-size: $icon-lg;
+    }
+}
+
+.btn-sm {
+    @include space-sm();
+    @include typo($ff-regular, $font-sm, null, center);
+    &.btn-rounded {
+        @include radius(100px);
+    }
+    i{
+        font-size: $icon-sm;
+    }
+}
+
+.btn-xs {
+    @include space-xs();
+    @include p-b(0);
+    @include typo($ff-regular, $font-xs, null, center);
+    &.btn-rounded {
+        @include radius(100px);
+    }
+    i{
+        font-size: $icon-xs;
+    }
+}
+
+.btn-group.open .dropdown-toggle {
+    box-shadow: inset 0 3px 100px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 3px 100px rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: inset 0 3px 100px rgba(0, 0, 0, 0.05);
+}

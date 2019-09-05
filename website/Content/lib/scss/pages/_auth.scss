@@ -1,0 +1,125 @@
+//----------------------------------
+//   File          : scss/pages/_auth.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//----------------------------------
+
+.auth-container{
+    @include size(100%,110.9%);
+    display: table;
+    position: absolute;
+    background-color: $authentication-bg-color;
+    background-image: url(#{$authentication-bg-image});
+    background: linear-gradient(rgba($authentication-bg-tint-color, $authentication-bg-tint-opacity), rgba($authentication-bg-tint-color, $authentication-bg-tint-opacity)), url(#{$authentication-bg-image});
+    background-repeat: no-repeat;
+    background-position: #{$authentication-bg-position};
+    background-size: #{$authentication-bg-size};
+
+    .center-block {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .auth-module {
+        @include w-max(100%);
+        @include w(290px);
+        @include bt(5,solid,$authentication-border-color);
+        @include radius($radius);
+    	position: relative;
+    	background: $authentication-block-bg;
+    	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+        -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    	margin: 0 auto;
+    	h1 {
+            @include m-b(20);
+            @include m-t(-5);
+            color: $authentication-title-color;
+            letter-spacing: -1px;
+    	}
+    	.toggle {
+            @include pos(absolute,-0,-0,null,null);
+            @include m-a(-5,0,0,0);
+            @include p-vh(6,15);
+            @include radius-a(0,$radius,0,$radius);
+    		cursor: pointer;
+    		background: $authentication-toggle-bg;
+    		color: $authentication-toggle-icon-color;
+    		i {
+                @include typo($font-icon,$icon-xlg,$authentication-toggle-icon-color,center);
+                @include w(28px);
+    		}
+    		.tip {
+                @include w(150px);
+                @include fs(12px);
+                @include pos(absolute,15px,null,null,70px);
+                @include p-a(6,10,7,10);
+                @include radius($radius);
+    			display: block;
+    			background: $authentication-tip-bg;
+    			line-height: 1;
+                text-align: center;
+    			&:before {
+                    @include pos(absolute,7px,null,null,-6px);
+    				content: '';
+    				display: block;
+    				border-top: 6px solid transparent;
+    				border-bottom: 6px solid transparent;
+    				border-right: 6px solid $authentication-tip-bg;
+    			}
+
+                @include media(phablet,max){
+                    display: none;
+                }
+    		}
+    	}
+    	.form {
+            @include p(20);
+    		display: none;
+    		&:nth-child(2) {
+    			display: block;
+    		}
+            .login-options{
+                @include m-t(-5);
+                @include m-b(5);
+                label{
+                    color: $authentication-label-color;
+                    a{
+                        @include bb(1,dotted,$authentication-label-color);
+                        color: $authentication-label-color;
+                    }
+                }
+            }
+    	}
+    	.forgot {
+            @include w(100%);
+            @include p-vh(12,40);
+            @include radius-a(0,0,$radius,$radius);
+    		background: $authentication-forgot-bg;
+    		box-sizing: border-box;
+    		color: $authentication-forgot-text-color;
+    		text-align: center;
+    		a {
+    			color: $authentication-forgot-text-color;
+    			text-decoration: none;
+    		}
+    	}
+    }
+
+    .footer{
+        @include w(100%);
+        @include p(20);
+        @include pos(absolute,null,null,0,null);
+        @include fs($font-sm);
+        color: $authentication-footer-text-color;
+        a{
+            color: $authentication-footer-link-color;
+            @include bb(1,dotted,$authentication-footer-link-color);
+        }
+
+        @include media(phablet,max){
+            @include fs($font-xs);
+        }
+    }
+}

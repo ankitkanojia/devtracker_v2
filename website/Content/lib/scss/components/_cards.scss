@@ -1,0 +1,965 @@
+//----------------------------------
+//   File          : scss/components/_cards.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Bootstrap Cards Override
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Cards
+// 2. Solid color cards
+// 3. Custom border colors
+// 4. Card contents
+// 5. Card heading
+// 6. Control buttons
+// 7. Card footer
+// 8. Collapsable cards (aka, accordion)
+// 9. Contextual variation overrides
+
+
+//----------------------------------
+// 1. Cards
+//----------------------------------
+.card {
+	@include m-b(20);
+    @include radius($radius);
+    @include b($card-border-thickness,solid,$card-border-color);
+	color: $text-color;
+	background: $card-bg;
+	@if($card-shadow == 'true'){
+		@include shadow-out();
+	}
+	@else{
+		@include no-shadow();
+	}
+
+	.card-thumb {
+		@include h(175px);
+		overflow: hidden;
+		background-color: $black;
+		@include animation(transition,height 0.3s);
+
+		> img {
+			display: block;
+			opacity: 1;
+			@include animation(transform,scale(1));
+			-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+			transition: opacity 0.3s, transform 0.3s;
+		}
+	}
+
+	.card-date {
+		@include size(50px,65px);
+		@include pos(absolute,20px,20px,null,null);
+		@include p-t(7);
+		@include lh(1.2);
+		background: $theme-color;
+		color: $white;
+		text-align: center;
+		@include radius($radius);
+
+		.day {
+			@include m-b(0);
+			@include m-t(3);
+			@include fs(24px);
+			display: block;
+		}
+
+		.month {
+			@include fs(12px);
+			display: block;
+			text-transform: uppercase;
+			@include ff($ff-light);
+		}
+	}
+
+	.card-body {
+		@include p-vh(12,15);
+		@include h(75px);
+		position: relative;
+		@include animation(transition,height 0.3s);
+		overflow: hidden;
+
+		.category {
+			@include h(25px);
+			@include p-vh(0,15);
+			@include pos(absolute,-25px,null,null,0);
+			background: $theme-color;
+			color: $white;
+			@include fs(12px);
+			@include lh(24px);
+			text-transform: uppercase;
+
+			a{
+				color: $white;
+			}
+		}
+
+		.description {
+			@include pos(absolute,75px,15px,15px,15px);
+			opacity: 0;
+			-webkit-transition: opacity 0.2s, -webkit-transform 0.2s;
+			transition: opacity 0.2s, transform 0.2s;
+			@include animation(transition-delay,0s);
+			@include animation(transform,translateY(25px));
+		}
+	}
+
+	&:hover{
+		.card-thumb {
+			@include h(100px);
+		}
+		.card-thumb img {
+			opacity: 0.6;
+			@include animation(transform,scale(1.2));
+		}
+		.card-body {
+			@include h(150px);
+
+			.description {
+				opacity: 1;
+				@include animation(transform, translateY(0));
+				@include animation(transition-delay, 0.1s);
+			}
+		}
+	}
+
+	&.card-grid{
+
+		.card-image {
+			@include radius($radius);
+			@include h(289px);
+			display: block;
+			overflow: hidden;
+			position: relative;
+
+			&.big{
+				@include h(600px);
+			}
+
+			> img {
+				@include m-b(0);
+				display: block;
+				@include animation(transition,all .25s ease-in-out);
+			}
+			&:hover > img {
+				@include animation(transform,scale(1.2));
+			}
+
+			.card-title {
+				@include m-v(8);
+				color: $white;
+				display: inline-block;
+				@include animation(transition,all 0.3s ease-out);
+
+				&:hover {
+				  color: white(0.7);
+				}
+			}
+
+			.card-overlay {
+				@include pos(absolute,0,0,0,0);
+				@include size(100%);
+				content: "";
+				display: block;
+				z-index: 1;
+				&.indigo {
+				  background-image: linear-gradient(to bottom, rgba(92, 107, 192, 0.1), rgba(92, 107, 192, 0.8));
+				  z-index: 2;
+				}
+				&.blue {
+				  background-image: linear-gradient(to bottom, rgba(41, 182, 246, 0.1), rgba(41, 182, 246, 0.8));
+				  z-index: 2;
+				}
+				&.teal {
+				  background-image: linear-gradient(to bottom, rgba(0, 211, 191, 0.1), rgba(0, 211, 191, 0.8));
+				  z-index: 2;
+				}
+			}
+
+			.card-content {
+				position: absolute;
+				bottom: 0;
+				padding: 20px;
+				z-index: 3;
+				ul{
+					@include no-s();
+					@include p-t(3);
+					li{
+						@include p-r(16);
+						display: inline;
+					    list-style-type: none;
+						a{
+							@include fs(12px);
+							color: $white;
+						}
+						a i{
+							@include fs(14px);
+							top: -2px;
+						}
+					}
+					li:not(:last-child):after {
+					  content: "\25cf";
+					  font-style: normal;
+					  position: relative;
+					  color: white(0.25);
+					  right: -10px;
+					}
+				}
+			}
+		}
+	}
+
+	.menu-content {
+		@include no-s();
+		list-style-type: none;
+
+		&:before,
+		&:after{
+			content: '';
+		    display: table;
+		}
+		&:after{
+			clear: both;
+		}
+		li{
+			display: inline-block;
+		}
+		a{
+			color: $white;
+		}
+		span{
+			@include pos(absolute,0,null,null,50%);
+			@include fs(12px);
+			@include animation(transform, translate(-50%, 0));
+		}
+	}
+
+	.data {
+		@include w(100%);
+		position: absolute;
+		bottom: 0;
+		@include animation(transform, translateY(calc(70px + 1em)));
+		-webkit-transition: -webkit-transform 0.3s;
+		transition: -webkit-transform 0.3s;
+		transition: transform 0.3s;
+		transition: transform 0.3s, -webkit-transform 0.3s;
+
+		.content {
+			@include p(15);
+			position: relative;
+			z-index: 1;
+		}
+
+		.author {
+			@include fs(12px);
+		  	text-transform: uppercase;
+		}
+		.text {
+			@include m(0);
+			@include h(70px);
+		}
+		input[type='checkbox'] {
+		  	display: none;
+		}
+		input[type='checkbox']:checked + .menu-content {
+			@include animation(transform, translateY(-60px));
+		}
+	}
+
+	.wrapper{
+		&:hover .data {
+			@include animation(transform, translateY(0));
+		}
+	}
+
+	&.card-news{
+		.wrapper {
+			background-color: $white;
+			min-height: 289px;
+			position: relative;
+			overflow: hidden;
+		}
+		img {
+			@include h(220px);
+			position: relative;
+			left: 0px;
+		}
+		.date {
+			@include pos(absolute,0,null,null,0);
+			@include p-vh(7,15);
+			background-color: $theme-color;
+			color: $white;
+			span {
+			  	display: block;
+			  	text-align: center;
+			}
+			.day {
+				@include fs(24px);
+				@include lh(32px);
+			}
+			.month {
+			  	text-transform: uppercase;
+			}
+			.month,
+			.year {
+			  	@include fs(12px);
+				@include lh(16px);
+			}
+		}
+		.content {
+		  	background-color: $white;
+		}
+		.card-title a {
+			@include m-t(6);
+			@include m-b(12);
+		}
+		.menu-button {
+			@include pos(absolute,10px,16px,null,null);
+			@include w(25px);
+			z-index: 999;
+			text-align: center;
+			cursor: pointer;
+			span {
+				@include size(5px);
+				background-color: $grey;
+				color: $grey;
+				position: relative;
+				display: inline-block;
+				border-radius: 50%;
+
+				&:after,
+				&:before{
+					@include size(5px);
+					content: '';
+				    display: block;
+				    background-color: currentColor;
+				    position: absolute;
+				    border-radius: 50%;
+				}
+				&:before{
+					left: -8px;
+				}
+				&:after{
+					right: -8px;
+				}
+			}
+		}
+		.menu-content {
+			@include pos(absolute,0,null,null,0);
+			@include w(100%);
+			text-align: center;
+			z-index: -1;
+			-webkit-transition: -webkit-transform 0.3s;
+			transition: -webkit-transform 0.3s;
+			transition: transform 0.3s;
+			transition: transform 0.3s, -webkit-transform 0.3s;
+			@include animation(transform, translateY(0));
+			li {
+				@include size(33.33%,60px);
+				float: left;
+				background-color: $theme-color;
+				position: relative;
+			}
+			a {
+				@include pos(absolute,50%,null,null,50%);
+				@include animation(transform, translate(-50%, -50%));
+				@include fs(24px);
+			}
+			span {
+			  	top: -13px;
+			}
+		}
+	}
+
+	&.card-movie{
+		overflow: hidden;
+		.wrapper {
+			@include h(289px);
+			img{
+				@include h(289px);
+			    position: relative;
+			    left: -100px;
+			}
+			&:hover .menu-content span {
+				@include animation(transform, translate(-50%, -12px));
+				opacity: 1;
+			}
+		}
+		.card-meta {
+			@include w(100%);
+		  	color: $white;
+			@include p(15);
+		    position: absolute;
+		    top: 0;
+			&:before,
+			&:after{
+				content: '';
+			    display: table;
+			}
+			&:after{
+				clear: both;
+			}
+			.date {
+				@include fs(12px);
+			  	float: left;
+			}
+		}
+		.menu-content {
+		  	float: right;
+			li {
+				@include m-vh(0,5);
+			  	position: relative;
+			}
+			span {
+				@include animation(transition, all 0.3s);
+			  	opacity: 0;
+			}
+		}
+		.data {
+			@include animation(transform, translateY(calc(75px + 4em)));
+			color: $white;
+			p{
+				@include m-t(10);
+				color: $white;
+			}
+		}
+		.card-title a {
+		  	color: $white;
+		}
+		.button {
+			@include w(100px);
+			display: block;
+			margin: 2em auto 1em;
+			text-align: center;
+			@include fs(12px);
+			@include ff($ff-semibold);
+			color: $white;
+			line-height: 1;
+			position: relative;
+			&:after {
+				@include pos(absolute,50%,0,null,null);
+				content: '\2192';
+				opacity: 0;
+				@include animation(transform, translate(0, -50%));
+				@include animation(transition, all 0.3s);
+			}
+			&:hover::after {
+				@include animation(transform, translate(5px, -50%));
+				opacity: 1;
+			}
+		}
+	}
+}
+
+
+//----------------------------------
+// 2. Solid color cards
+//----------------------------------
+.card[class*=bg-] {
+
+    > .card-header {
+		@include p-b(0);
+		background: transparent;
+    }
+
+    &.card-flat > .card-header {
+        border-bottom-color: transparent;
+		@include p-v(8);
+    }
+	&.card-white > .card-header {
+        @include p-v(8);
+    }
+
+    > .card-block {
+        background-color: inherit;
+		color:$white;
+		p{
+			color:$white;
+		}
+    }
+
+    .card-title,
+	.elements {
+        color: $white;
+		>a{
+			color: $white !important;
+		}
+    }
+
+    .table {
+        thead,
+        tbody {
+            td,
+            th {
+                border-color: color-alpha($white, 10%);
+            }
+        }
+    }
+
+    .text-muted,
+    .help-block,
+    .help-inline {
+        color: color-alpha($white, 80%);
+    }
+}
+
+
+//----------------------------------
+// 3. Custom border colors
+//----------------------------------
+.card[class*=border-top-] {
+    @include radius-a(0,0);
+}
+.card[class*=border-bottom-] {
+    @include radius-a(null, null, 0, 0);
+}
+.card[class*=border-left-] {
+    @include radius-a(0, null, null, 0);
+}
+.card[class*=border-right-] {
+    @include radius-a(null, 0, 0, null);
+}
+
+
+//----------------------------------
+// 4. Cards contents
+//----------------------------------
+.card-block {
+	@include p-vh($card-block-padding-vertical,$card-block-padding-horizontal);
+    position: relative;
+	color:$card-block-text-color;
+	@include radius-a(0,0,$radius,$radius);
+	p{
+		@include m-a(0,0,10,0);
+		color:$card-block-text-color;
+	}
+	p:last-child{
+		@include m-b(0);
+	}
+    .card-flat > .card-header + & {
+		@include p-t(0);
+    }
+	.card-white > .card-header + & {
+		@include p-t(0);
+    }
+}
+
+
+//----------------------------------
+// 5. Card heading
+//----------------------------------
+.card-header{
+	@include p-vh($card-title-padding-vertical,$card-title-padding-horizontal);
+	@include radius-a($radius,$radius,0,0);
+	border: none;
+    position: relative;
+
+	&:first-child{
+		@include radius-a($radius,$radius,0,0);
+	}
+
+	small{
+		@include fs($card-title-text-size - 4);
+		color: lighten($card-title-text-color,10%);
+	}
+
+    .card-bordered {
+		@include no-m();
+    }
+
+    .card-flat {
+		@include p-vh($card-title-padding-vertical,$card-title-padding-horizontal);
+        background-color: $card-bg;
+    }
+
+    .card-flat[class*=bg-] {
+        background-color: inherit;
+    }
+
+    &[class*=bg-],
+    .card-primary.card-inverse,
+    .card-danger.card-inverse,
+    .card-success.card-inverse,
+    .card-warning.card-inverse,
+    .card-info {
+		@include m-a(-1,-1,0,-1);
+		@include radius-a($radius,0,0,0);
+
+		.card-title{
+			color:$white;
+			a{
+				color:$white;
+			}
+		}
+    }
+
+    .card-white {
+		@include p-vh($card-title-padding-vertical,$card-title-padding-horizontal);
+        background-color: $white;
+        border-bottom-color:transparent;
+    }
+	i{
+		top:-2px;
+	}
+}
+
+.card-title,
+.card-inverse .card-title{
+    position: relative;
+	@include m-b(0);
+	@include typo($card-title-font-family,$card-title-text-size,$card-title-text-color,$card-title-text-align);
+	text-transform: $card-title-text-transform;
+
+    a {
+		@include fs($card-title-text-size);
+        display: block;
+
+		&:hover,
+		&:focus,
+		&.active{
+			color:inherit;
+		}
+    }
+
+    img {
+		@include h-max(20px);
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    > small:not(.display-block),
+    > .small:not(.display-block) {
+		@include m-l(5);
+    }
+
+    h1,
+    .h1 {
+        font-size: $h1;
+    }
+    h2,
+    .h2 {
+        font-size: $h2;
+    }
+    h3,
+    .h3 {
+        font-size: $h3;
+    }
+    h4,
+    .h4 {
+        font-size: $h4;
+    }
+    h5,
+    .h5 {
+        font-size: $h5;
+    }
+    h6,
+    .h6 {
+        font-size: $h6;
+    }
+
+	.label{
+		top:-3px;
+	}
+}
+
+
+//----------------------------------
+// 6. Control buttons
+//----------------------------------
+.icons-list {
+    a[data-action] {
+		@include animation(transition,all ease-in-out 0.2s);
+        vertical-align: middle;
+		@include icon(after);
+    }
+	a[data-action="collapse"]{
+		@include icon(after, collapse);
+	}
+	a[data-action="reload"]{
+		@include icon(after, reload);
+	}
+	a[data-action="close"]{
+		@include icon(after, close);
+	}
+	a[data-action="move"]{
+		@include icon(after, move);
+	}
+	a[data-action="modal"]{
+        @include icon(after, modal);
+	}
+	a[data-toggle="dropdown"]{
+        @include icon(after, dropdown){
+			border: none;
+		}
+	}
+}
+
+
+//----------------------------------
+// 7. Card footer
+//----------------------------------
+.card-footer {
+	@include p-vh($card-footer-padding-vertical,$card-footer-padding-horizontal);
+	background: $card-footer-bg;
+	color: $card-footer-text-color;
+	border: none;
+    position: relative;
+
+	.elements{
+		color: $card-footer-text-color;
+	}
+
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    > ul {
+		@include no-s();
+		@include m-l($space-base);
+        font-size: 0;
+        list-style: none;
+        float: left;
+
+        &:first-child {
+			@include m-l(0);
+        }
+
+        > li {
+            display: inline-block;
+			@include p-vh($space-base,null);
+            & + li {
+                @include m-l($space-base);
+            }
+            > a {
+                color:$text-color;
+            }
+            .dropdown-menu {
+				@include m-vh(0,null);
+            }
+        }
+    }
+
+    @include media(phablet, max) {
+        text-align: center;
+        ul,
+        .float-right {
+			@include m-l(0);
+            float: none!important;
+        }
+        > ul > li,
+        .dropdown,
+        .dropup,
+        .btn-group {
+            position: static;
+        }
+        .dropdown-menu {
+            left: 0;
+            right: 0;
+        }
+    }
+}
+
+.card-footer-transparent {
+    background-color: transparent;
+    border-top: 0;
+
+    > ul > li {
+		@include p-vh(0,null);
+		@include m-b($space-base);
+    }
+}
+
+
+//----------------------------------
+// 8. Collapsable cards (aka, accordion)
+//----------------------------------
+.card-group{
+	display: block;
+	.card {
+		@include radius();
+		@include m-b(2);
+		.card-header{
+			@include radius-a();
+		}
+	}
+}
+
+.card-group-control {
+    .card-title > a {
+		@include p-l(20);
+        display: inline-block;
+		@include icon(before,group-collapse){
+            @include pos(absolute,-1px,null,null,-5px);
+        }
+
+        &.collapsed{
+			@include icon(before,group-expand);
+        }
+    }
+
+    &.card-group-control-right {
+        .card-title > a {
+			@include p-a(null,null,0,0);
+
+            &:before {
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+}
+
+
+//----------------------------------
+// 9. Contextual variation overrides
+//----------------------------------
+.card-flat {
+	.card-header {
+		@include p-v(8);
+	}
+}
+
+.card-default {
+    border-color: $card-border-color;
+	.card-header{
+		background: $header-bg;
+		border-color: darken($card-bg,5%);
+	}
+	.card-title,
+	.elements {
+		color:$card-title-text-color;
+		>a,>ul,>ol,>p{
+			color:$card-title-text-color;
+		}
+	}
+    &.card-border {
+        border-color: darken($header-bg,10%);
+    }
+	.card-footer{
+		.elements{
+			color:$card-footer-text-color;
+			>a{
+				color:$card-footer-text-color;
+			}
+		}
+	}
+}
+
+// Primary
+.card-primary.card-inverse {
+    border-color: $card-border-color;
+	.card-header{
+		background: $primary;
+	}
+	.card-title,
+	.elements {
+		color:$white;
+		a,ul,ol,p{
+			color:$white;
+		}
+	}
+    &.card-border {
+        border-color: $primary;
+    }
+}
+
+// Success
+.card-success.card-inverse {
+    border-color: $card-border-color;
+	.card-header{
+		background: $success;
+	}
+	.card-title,
+	.elements {
+		color:$white;
+		a,ul,ol,p{
+			color:$white;
+		}
+	}
+    &.card-border {
+        border-color: $success;
+    }
+}
+
+// Info
+.card-info {
+    border-color: $card-border-color;
+	.card-header{
+		background: $info;
+	}
+	.card-title,
+	.elements {
+		color:$white;
+		a,ul,ol,p{
+			color:$white;
+		}
+	}
+    &.card-border {
+        border-color: $info;
+    }
+}
+
+// Warning
+.card-warning.card-inverse {
+    border-color: $card-border-color;
+	.card-header{
+		background: $warning;
+	}
+	.card-title,
+	.elements {
+		color:$white;
+		a,ul,ol,p{
+			color:$white;
+		}
+	}
+    &.card-border {
+        border-color: $warning;
+    }
+}
+
+// Danger
+.card-danger.card-inverse {
+    border-color: $card-border-color;
+	.card-header{
+		background: $danger;
+	}
+	.card-title,
+	.elements {
+		color:$white;
+		a,ul,ol,p{
+			color:$white;
+		}
+	}
+    &.card-border {
+        border-color: $danger;
+    }
+}
+
+.card-white{
+	border-color: $white;
+	.card-header{
+		@include p-v(8);
+		background: $white;
+		color:lighten($black, 5%);
+		.card-title,
+		.elements {
+			color:lighten($black, 5%);
+			a,ul,ol,p{
+				color:lighten($black, 5%);
+			}
+		}
+	}
+	.card-block{
+		background: $white;
+		color:lighten($black, 5%);
+		p{
+			color:lighten($black, 5%);
+		}
+	}
+}

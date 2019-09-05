@@ -1,31 +1,237 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model AuthVm
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+
+<div class="auth-module">
+    <div class="toggle">
+        <i class="icon-user-plus"></i>
+        <div class="tip">Click here to register</div>
+    </div>
+
+    <!-- Login form -->
+    <div class="form">
+        <h1 class="text-light">User Login</h1>
+
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-horizontal", @id = "frmLogin" }))
+        {
+
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(s => s.ReturnUrl)
+
+            <div class="form-group">
+
+                <div class="input-group form-group m-b-15 p-t-20">
+                    <div class="input-group-addon"><i class="icon-envelop"></i></div>
+                    @Html.TextBoxFor(s => s.Email, new { @class = "form-control", placeholder = "abc@xyz.com" })
+                </div>
+
+                <div class="input-group m-b-15">
+                    <div class="input-group-addon"><i class="icon-key"></i></div>
+                    @Html.PasswordFor(s => s.Password, new { @class = "form-control", placeholder = "XXXXXX" })
+                </div>
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        @Html.CheckBoxFor(s => s.IsRemember, new { @class = "styled" }) Remember me
+                    </label>
+                </div>
+
+                <button class="btn btn-info btn-block m-t-20">Sign In</button>
+            </div>
+        }
+    </div>
+    <!-- /Login form -->
+    <!-- Registration form -->
+    <div class="form">
+        <h1 class="text-light">Create an account</h1>
+        @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @id = "frmRegister", @class = "form-horizontal" }))
+        {
+            <div class="form-group">
+
+                <div class="input-group m-b-10 p-t-20">
+                    <div class="input-group-addon"><i class="icon-user"></i></div>
+                    @Html.TextBoxFor(s => s.FullName, new { @class = "form-control", placeholder = "Joe Smith" })
+                </div>
+
+                <div class="input-group m-b-10 p-t-20">
+                    <div class="input-group-addon"><i class="icon-envelop"></i></div>
+                    @Html.TextBoxFor(s => s.EmailRegister, new { @class = "form-control", placeholder = "abc@xyz.com" })
+                </div>
+
+                <div class="input-group m-b-10 p-t-20">
+                    <div class="input-group-addon"><i class="icon-key"></i></div>
+                    @Html.PasswordFor(s => s.PasswordRegister, new { @class = "form-control", placeholder = "XXXXXX" })
+                </div>
+
+
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        @Html.CheckBoxFor(s => s.IsMailAccountDetails, new { @class = "styled" })   Mail me my account details
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        @Html.CheckBoxFor(s => s.IsAcceptTnC, new {   @class = "styled" }) Accept <a href="#">terms &amp; conditions</a>
+                    </label>
+                </div>
+
+                <button class="btn btn-info btn-block m-t-20">Create my account</button>
+            </div>
+        }
+    </div>
+    <!-- /Registeration form -->
+
+    <div class="forgot">
+        <a href="@Url.Action("ForgotPassword", "Home")">Recover your password?</a>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            //Login Form validation HERE
+            $("#frmLogin").validate({
+                rules: {
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Password: {
+                        required: true
+                    }
+                },
+                messages: {
+                    Email: {
+                        required: "Email is required",
+                        email: "Enter a valid email"
+                    },
+                    Password: {
+                        required: "Password is required"
+                    }
+                },
+                ignore: 'input[type=hidden], .select2-search__field',
+                errorClass: 'validation-error',
+                successClass: 'validation-success',
+                highlight: function (element, errorClass) {
+                    $(element).removeClass(errorClass);
+                },
+                unhighlight: function (element, errorClass) {
+                    $(element).removeClass(errorClass);
+                },
+
+                errorPlacement: function (error, element) {
+
+                    if (element.parents('div').hasClass("checker") || element.parents('div').hasClass("choice") || element.parent().hasClass('bootstrap-switch-container')) {
+                        if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
+                            error.appendTo(element.parent().parent().parent().parent());
+                        }
+                        else {
+                            error.appendTo(element.parent().parent().parent().parent().parent());
+                        }
+                    }
+                    else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
+                        error.appendTo(element.parent());
+                    }
+                    else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline') || element.parents('div').hasClass('checkbox-single')) {
+                        error.appendTo(element.parent().parent());
+                    }
+                    else if (element.parents('div').hasClass('checkbox-group')) {
+                        error.appendTo(element.parent().parent().parent());
+                    }
+                    else if (element.parent().hasClass('uploader') || element.parents().hasClass('input-group')) {
+                        error.appendTo(element.parent().parent());
+                    }
+                    else {
+                        error.insertAfter(element);
+                    }
+                },
+                validClass: "validation-success",
+                //success: function (label) {
+                //    label.addClass("validation-success").text("Done");
+                //}
+            });
+
+            //Registration Form validation HERE
+            $("#frmRegister").validate({
+                rules: {
+                    EmailRegister: {
+                        required: true,
+                        email: true
+                    },
+                    FullName: {
+                        required: true
+                    },
+                    PasswordRegister: {
+                        required: true
+                    },
+                    IsAcceptTnC: {
+                        required: true
+                    }
+                },
+                messages: {
+                    EmailRegister: {
+                        required: "Email is required",
+                        email: "Enter a valid email"
+                    },
+                    FullName: {
+                        required: "Name is required"
+                    },
+                    PasswordRegister: {
+                        required: "Password is required"
+                    },
+                    IsAcceptTnC: {
+                        required: "Please, accept terms and conditions"
+                    }
+                },
+                ignore: 'input[type=hidden], .select2-search__field',
+                errorClass: 'validation-error',
+                successClass: 'validation-success',
+                highlight: function (element, errorClass) {
+                    $(element).removeClass(errorClass);
+                },
+                unhighlight: function (element, errorClass) {
+                    $(element).removeClass(errorClass);
+                },
+
+                errorPlacement: function (error, element) {
+
+                    if (element.parents('div').hasClass("checker") || element.parents('div').hasClass("choice") || element.parent().hasClass('bootstrap-switch-container')) {
+                        if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
+                            error.appendTo(element.parent().parent().parent().parent());
+                        }
+                        else {
+                            error.appendTo(element.parent().parent().parent().parent().parent());
+                        }
+                    }
+                    else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
+                        error.appendTo(element.parent());
+                    }
+                    else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline') || element.parents('div').hasClass('checkbox-single')) {
+                        error.appendTo(element.parent().parent());
+                    }
+                    else if (element.parents('div').hasClass('checkbox-group')) {
+                        error.appendTo(element.parent().parent().parent());
+                    }
+                    else if (element.parent().hasClass('uploader') || element.parents().hasClass('input-group')) {
+                        error.appendTo(element.parent().parent());
+                    }
+                    else {
+                        error.insertAfter(element);
+                    }
+                },
+                validClass: "validation-success",
+                //success: function (label) {
+                //    label.addClass("validation-success").text("Done");
+                //}
+            });
+        });
+    </script>
+}
+

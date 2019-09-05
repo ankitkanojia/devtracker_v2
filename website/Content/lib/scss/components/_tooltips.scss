@@ -1,0 +1,106 @@
+//----------------------------------
+//   File          : scss/components/_tooltips.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Bootstrap Tooltips Override
+//----------------------------------
+
+[data-tooltip] {
+  	position: relative;
+  	cursor: pointer;
+}
+[data-tooltip]:before, [data-tooltip]:after {
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	@include transition(all 0.15s cubic-bezier(0.5, 1, 0.25, 1));
+	z-index: 1;
+}
+[data-tooltip]:before {
+	@include p-vh(5,10);
+	@include w(auto);
+	@include radius($radius);
+  	background: #222222;
+  	color: #FFFFFF;
+  	content: attr(data-tooltip);
+  	text-align: center;
+	@include fs($font-base);
+	@include lh(1.2);
+}
+[data-tooltip]:after {
+	@include w(0);
+	@include b(8,solid,transparent);
+	@include fs(0);
+	@include lh(0);
+  	content: "";
+}
+[data-tooltip]:hover:before, [data-tooltip]:hover:after {
+  	visibility: visible;
+  	opacity: 1;
+}
+[data-tooltip].tooltip-top:before {
+	@include m-b(5);
+  	bottom: 100%;
+  	left: 50%;
+	@include animation(transform,translateX(-50%));
+}
+[data-tooltip].tooltip-top:after {
+	@include bt(8,solid,#222222);
+	border-bottom: none;
+  	bottom: 100%;
+  	left: 50%;
+	@include animation(transform,translateX(-50%));
+}
+[data-tooltip].tooltip-top:hover:before, [data-tooltip].tooltip-top:hover:after {
+	@include animation(transform,translateX(-50%) translateY(-5px));
+}
+[data-tooltip].tooltip-right:before {
+	@include m-l(5);
+  	top: 50%;
+  	left: 100%;
+	@include animation(transform,translateY(-50%));
+}
+[data-tooltip].tooltip-right:after {
+	@include br(8,solid,#222222);
+	border-left: none;
+	@include animation(transform,translateY(-50%));
+  	top: 50%;
+  	left: 100%;
+}
+[data-tooltip].tooltip-right:hover:before, [data-tooltip].tooltip-right:hover:after {
+	@include animation(transform,translateX(5px) translateY(-50%));
+}
+[data-tooltip].tooltip-bottom:before {
+	@include m-t(5);
+	@include animation(transform,translateY(-50%));
+  	top: 100%;
+  	left: 50%;
+}
+[data-tooltip].tooltip-bottom:after {
+	@include bb(8,solid,#222222);
+	border-top: none;
+	@include animation(transform,translateX(-50%));
+  	top: 100%;
+  	left: 50%;
+}
+[data-tooltip].tooltip-bottom:hover:before, [data-tooltip].tooltip-bottom:hover:after {
+	@include animation(transform,translateX(-50%) translateY(5px));
+}
+[data-tooltip].tooltip-left:before {
+	@include m-r(5);
+	@include animation(transform,translateY(-50%));
+  	top: 50%;
+  	right: 100%;
+}
+[data-tooltip].tooltip-left:after {
+	@include bl(8,solid,#222222);
+	border-right: none;
+	@include animation(transform,translateY(-50%));
+  	top: 50%;
+  	right: 100%;
+}
+[data-tooltip].tooltip-left:hover:before, [data-tooltip].tooltip-left:hover:after {
+	@include animation(transform,translateX(-5px) translateY(-50%));
+}

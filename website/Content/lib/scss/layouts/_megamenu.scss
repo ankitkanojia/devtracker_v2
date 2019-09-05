@@ -1,0 +1,238 @@
+//----------------------------------
+//   File          : scss/layouts/_megamenu.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Main CSS definition for megamenu
+//----------------------------------
+
+@mixin megamenu{
+    @include media(tablet-xlg, min) {
+        .main-nav{
+            .main-nav-wrapper{
+                margin: 0 auto;
+                max-width: $main-container-max-width;
+                @include p-h($topbar-horizontal-padding);
+            }
+            .navbar-left{
+                @include w(auto);
+            }
+        }
+        .main-container {
+            @include h-min(100%);
+        }
+        .menu{
+            position: fixed;
+            z-index: 99;
+        }
+        .megamenu {
+            @include p-a($menu-padding-top,$menu-padding-right,$menu-padding-bottom,$menu-padding-left);
+            @include w(100%);
+            background: $menu-bg-color ;
+            @if($menu-shadow == 'true'){
+                @include shadow-out(rgba(0,0,0,0.1),30px,0px,0px,0px);
+            }
+
+            .horizontalMenu {
+                @include w($main-container-max-width - 50);
+                margin: 0 auto;
+                @include no-p();
+                border: none;
+
+                .nav{
+                    >li{
+                        &:hover,
+                        &:focus{
+                            background: $link-hover-active-bg;
+                            color: $link-hover-active-color;
+                        }
+                    }
+                }
+                .navbar-nav{
+                    display: flex;
+                    flex-direction: row;
+                    >li{
+
+                        &:hover,
+                        &:focus{
+                            background: $link-hover-active-bg;
+                            color: $link-hover-active-color;
+                        }
+                        >a{
+                            display: block;
+                            @include ff($menu-link-font-family);
+                            text-transform: $menu-link-font-style;
+                            @include fs(14px);
+                            letter-spacing: -0.5px;
+                            color: $menu-link-color;
+                            @include p-vh(10,18);
+                            @include radius-a($radius,$radius,0,0);
+                            &:hover,
+                            &:focus{
+                                background: $link-hover-active-bg;
+                                color: $link-hover-active-color;
+                                @include ff($link-hover-active-font-family);
+                                text-transform: $link-hover-active-font-style;
+                            }
+                            i{
+                                @include m-r(6);
+                            }
+                        }
+                        &.show{
+                            >a{
+                                @include ff($link-hover-active-font-family);
+                                text-transform: $link-hover-active-font-style;
+                            }
+                        }
+                    }
+
+                    .dropdown-menu{
+                        @include w(220px);
+                        background: $submenu-bg-color;
+                        @include no-shadow();
+                        @include p-vh(15,0);
+                        border: none;
+                        @include radius-a(0,0,$radius,$radius);
+                        @if($menu-shadow == 'true'){
+                            @include shadow-out(rgba(0,0,0,0.1),30px,0px,0px,10px);
+                        }
+                        li a{
+                            display: block;
+                            color: $submenu-links-color;
+                            @include fs(13px);
+                            @include p-vh(4,20);
+                            @include ff($submenu-links-font-family);
+                            text-transform: $submenu-links-font-style;
+                            &:hover,
+                            &:focus{
+                                color: $submenu-links-active-color;
+                                background: $submenu-links-active-bg;
+                                @include ff($submenu-links-active-font-family);
+                                text-transform: $submenu-links-active-font-style;
+                            }
+                            i{
+                                @include m-r(6);
+                                top: -2px;
+                            }
+                            &:after{
+                                right: 15px;
+                            }
+                        }
+                        >.dropdown-submenu{
+                            >.dropdown-menu{
+                                top: -17px;
+                            }
+                        }
+                        >.dropdown-submenu{
+                            >.dropdown-menu.dropdown-menu-right{
+                                right: 100%;
+                                left: -100%;
+                                @if($menu-shadow == 'true'){
+                                    @include no-shadow();
+                                    @include shadow-out(rgba(0,0,0,0.1),30px,0px,5px,-10px);
+                                }
+                            }
+                        }
+                    }
+
+                    .mega{
+                        .mega-content{
+                            ul li{
+                                a{
+                                    @include p-vh(4,8);
+                                }
+                                ul{
+                                    @include m-l(50);
+                                }
+                            }
+                        }
+                        .dropdown-menu .mega-content li a{
+                            @include p-vh(4,8);
+                        }
+                    }
+                }
+                .dropdown-menu>.dropdown-submenu:hover>a,
+                .dropdown-menu>.dropdown-submenu:focus>a {
+                    color: $submenu-links-active-color;
+                    background: $submenu-links-active-bg;
+                }
+            	.mega-content {
+                    @include p-vh(20,30);
+                    >ul{
+                        @include p-l(0);
+                        >li{
+                            list-style: none;
+                            a{
+                                @include fs(13px);
+                            }
+                        }
+                    }
+            		ul {
+                        @include no-s();
+            			li {
+            				list-style-type: none;
+            				a {
+                                @include fs(13px);
+            					position: relative;
+            					color: $submenu-links-color;
+            					display: block;
+            					&:hover {
+            						color: $submenu-links-active-color;
+            					}
+                                i{
+                                    @include m-r(6);
+                                    top: -2px;
+                                }
+            				}
+                            ul{
+                                @include m-a(0,0,10,60);
+                                li{
+                                    list-style: disc;
+                                    @include lh(16px);
+                                    color: $submenu-links-color;
+                                    a{
+                                        padding: 4px 0 !important;
+                                        font-size: 12px !important;
+                                        &:hover{
+                                            font-size: 12px !important;
+                                        }
+                                    }
+                                }
+                            }
+                            + ul{
+                                @include ff($menu-link-font-family);
+                                text-transform: $menu-link-font-style;
+                            }
+            			}
+            		}
+            	}
+            	.mega .dropdown-menu {
+                    @include p(0);
+            	}
+
+                .nav {
+                	position: static;
+                	&.navbar-right .dropdown-menu {
+                		left: auto;
+                		right: 0;
+                	}
+                }
+                .container {
+                	position: relative;
+                }
+                .dropdown-menu {
+                	left: auto;
+                }
+                .collapse,
+                .dropup.mega,
+                .dropdown.mega {
+                	position: static;
+                }
+                .mega .dropdown-menu {
+                    @include w(100%);
+                	left: 0;
+                }
+            }
+        }
+    }
+}

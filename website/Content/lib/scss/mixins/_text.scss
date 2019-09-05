@@ -1,0 +1,129 @@
+//----------------------------------
+//   File          : scss/mixins/_text.scss
+//   Type          : SCSS mixin
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+// ---------------------------------
+
+// ---------------------------------
+// Table of contents
+// ---------------------------------
+// 1. Fonts
+// 2. Text
+// 3. Quick styling
+
+
+// ---------------------------------
+// 1. Fonts
+// ---------------------------------
+
+// Font family
+@mixin ff($font: $ff-regular) {
+   font-family: $font;
+}
+
+// Font size
+@mixin fs($size: $font-base) {
+   font-size: $size;
+}
+
+// Font style
+@mixin fst($style: normal) {
+   font-style: $style;
+}
+
+// Font weight
+@mixin fw($weight: normal) {
+   font-weight: $weight;
+}
+
+// Line height
+@mixin lh($line-height: $line-base) {
+   line-height: $line-height;
+}
+
+// Letter spacing
+@mixin ls($letter-spacing: normal) {
+   letter-spacing: $letter-spacing;
+}
+
+
+// ---------------------------------
+// 2. Text
+// ---------------------------------
+
+// Text align
+@mixin align($align: left) {
+   text-align: $align;
+}
+
+// Text color
+@mixin color($colour: $black) {
+   color: $colour;
+}
+
+// Text decoration
+@mixin decoration($decoration: none) {
+   text-decoration: $decoration;
+}
+
+// Hide text
+@mixin text-hide() {
+   border: 0;
+   font: 0/0 a;
+   text-shadow: none;
+   color: transparent;
+   background-color: transparent;
+}
+
+// Hyphens
+@mixin hyphen($type: none) {
+   -webkit-hyphens: $type;
+   -moz-hyphens: $type;
+   -ms-hyphens: $type;
+   hyphens: $type;
+}
+
+// Text shadow
+@mixin text-shadow($distance: 2px, $blur: 2px, $colour: black(0.5), $angle: 0px) {
+   text-shadow: $angle $distance $blur $colour;
+}
+
+// Text transform
+@mixin transform($transform: none) {
+	text-transform: $transform;
+}
+
+// Text wrap
+@mixin text-wrap($wrap: break-word) {
+   overflow-wrap: $wrap;
+   word-wrap: $wrap;
+   @if $wrap == break-word {
+      word-break: break-all;
+   }
+   @else {
+      word-break: $wrap;
+   }
+}
+
+
+// ---------------------------------
+// 3. Quick styling
+// ---------------------------------
+
+%typo{
+    @include ff();
+	@include fs();
+    @include lh();
+    color: $text-color;
+}
+
+@mixin typo($font-family: $ff-regular, $font-size: $font-base, $color: $text-color, $align: left){
+    @include ff($font-family);
+    @include fs($font-size);
+    @include lh($line-base);
+    color: $color;
+    text-align:$align;
+    letter-spacing: $global-letter-spacing;
+    @content; // You can add additional styling when using this mixin
+}

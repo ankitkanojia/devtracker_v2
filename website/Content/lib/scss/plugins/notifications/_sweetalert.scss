@@ -1,0 +1,463 @@
+//----------------------------------
+//   File          : scss/plugins/notifications/_sweetalert.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//----------------------------------
+
+.sweet-overlay {
+    background-color: rgb(0, 0, 0); /* IE8 */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)"; /* IE8 */
+    background-color: black(0.6);
+    @include pos(fixed,0,0,0,0);
+    display: none;
+    z-index: 10000;
+}
+
+.sweet-alert {
+    @include w(460px);
+    @include pos(fixed,50%,null,null,50%);
+    @include p(30);
+    @include p-t(10);
+    @include radius($radius);
+    @include m-t(-200);
+    @include m-l(-250);
+    background-color: $card-bg;
+    text-align: center;
+    overflow: hidden;
+    display: none;
+    z-index: 99999;
+
+    @media all and (max-width: 540px) {
+        @include m-h(0);
+        width: auto;
+        left: 15px;
+        right: 15px;
+    }
+
+    h2 {
+        @include typo($ff-light,24px,$card-title-text-color,center){
+            @include lh(40px);
+        }
+        @include no-p();
+        @include m-vh(15,0);
+        position: relative;
+        display: block;
+    }
+
+    p {
+        @include typo($ff-regular,14px,$card-block-text-color,center);
+        @include no-s();
+        position: relative;
+        float: none;
+    }
+
+    fieldset {
+        border: none;
+        position: relative;
+    }
+
+    .sa-error-container {
+        @include h-max(0);
+        @include m-h(-15);
+        @include p-vh(0,10);
+        background-color: #f1f1f1;
+        overflow: hidden;
+        @include animation(transition,'padding 0.15s, max-height 0.15s');
+
+        &.show {
+            @include p-vh(10,0);
+            @include animation(transition,'padding 0.25s, max-height 0.25s');
+            max-height: 100px;
+        }
+
+        .icon {
+            @include size(24px);
+            @include m-r(3);
+            display: inline-block;
+            border-radius: 50%;
+            background-color: $danger;
+            color: $white;
+            line-height: 24px;
+            text-align: center;
+        }
+        p {
+            display: inline-block;
+        }
+    }
+
+    .sa-input-error {
+        @include pos(absolute,-5px,0,null,null);
+        @include p-vh(6,10);
+        @include animation(transform,'scale(0.5)');
+        @include animation(transform-origin,'50% 50%');
+        @include animation(transition,'all 0.1s');
+        background: $danger;
+        color: $white;
+        @include radius-a(0,$radius,0,$radius);
+        @include fs($font-base);
+        opacity: 0;
+        &.show {
+            @include animation(transform,'scale(1)');
+            opacity: 1;
+        }
+    }
+
+    input {
+        @include size(100%,44px);
+        @include radius($radius);
+        @include m-t(10);
+        @include m-b(17);
+        @include p-vh(0,12);
+        @include animation(transition,'all 0.3s');
+        box-sizing: border-box;
+        display: none;
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &.show-input input {
+        display: block;
+    }
+
+    .sa-confirm-button-container {
+        display: inline-block;
+        position: relative;
+    }
+
+    .la-ball-fall {
+        @include pos(absolute,50%,null,null,50%);
+        @include m-l(-27);
+        @include m-t(4);
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    button {
+        cursor: pointer;
+        &[disabled] {
+            opacity: .6;
+            cursor: default;
+        }
+        &.confirm[disabled] {
+            color: transparent;
+            ~ .la-ball-fall {
+                opacity: 1;
+                visibility: visible;
+                @include animation(transition-delay, 0s);
+            }
+        }
+        &::-moz-focus-inner {
+            border: 0;
+        }
+    }
+
+    &[data-has-cancel-button=false] button {
+        box-shadow: none !important;
+    }
+
+    &[data-has-confirm-button=false][data-has-cancel-button=false] {
+        @include p-b(40);
+    }
+
+    .sa-icon {
+        @include size(80px);
+        @include b(4,solid,$grey);
+        @include radius(40px);
+        @include no-p();
+        border-radius: 50%;
+        margin: 20px auto;
+        position: relative;
+        box-sizing: content-box;
+
+        &.sa-error {
+            border-color: $danger;
+
+            .sa-x-mark {
+                position: relative;
+                display: block;
+            }
+
+            .sa-line {
+                @include size(5px,47px);
+                @include radius($radius);
+                background-color: $danger;
+                display: block;
+                position: absolute;
+                top: 18px;
+
+                &.sa-left {
+                    @include animation(transform,'rotate(45deg)');
+                    left: 38px;
+                }
+                &.sa-right {
+                    @include animation(transform,'rotate(-45deg)');
+                    right: 37px;
+                }
+            }
+        }
+
+        &.sa-warning {
+            border-color: $warning;
+
+            .sa-body {
+                @include size(5px,47px);
+                position: absolute;
+                left: 50%;
+                top: 10px;
+                @include radius($radius);
+                @include m-l(-3);
+                background-color: $warning;
+            }
+            .sa-dot {
+                @include size(7px);
+                @include radius(50%);
+                @include m-l(-3);
+                position: absolute;
+                left: 50%;
+                bottom: 10px;
+                background-color: $warning;
+            }
+        }
+
+        &.sa-info {
+            border-color: $info;
+
+            &::before {
+                @include size(5px,29px);
+                @include radius($radius);
+                @include m-l(-3);
+                content: "";
+                position: absolute;
+                left: 50%;
+                bottom: 17px;
+                background-color: $info;
+            }
+            &::after {
+                @include size(7px);
+                @include m-l(-3);
+                content: "";
+                border-radius: 50%;
+                background-color: $info;
+                position: absolute;
+                top: 19px;
+                left: 50%;
+            }
+        }
+
+        &.sa-success {
+            border-color: $success;
+
+            &::before, &::after {
+                content: '';
+                @include radius(40px);
+                border-radius: 50%;
+                position: absolute;
+                width: 60px;
+                height: 120px;
+                background: $card-bg;
+                @include animation(transform,'rotate(45deg)');
+            }
+            &::before {
+                @include radius-a(120px,0,0,120px);
+                left: -33px;
+                @include animation(transform,'rotate(-45deg)');
+                @include animation(transform-origin,'60px 60px');
+            }
+            &::after {
+                @include radius-a(0,120px,120px,0);
+                top: -11px;
+                left: 30px;
+                @include animation(transform,'rotate(-45deg)');
+                @include animation(transform-origin,'0px 60px');
+            }
+
+            .sa-placeholder {
+                @include size(80px);
+                @include b(4,solid,c200(palette($success)));
+                @include radius(40px);
+                border-radius: 50%;
+                box-sizing: content-box;
+                position: absolute;
+                left: -4px;
+                top: -4px;
+                z-index: 2;
+            }
+
+            .sa-fix {
+                @include size(5px,90px);
+                background-color: $card-bg;
+                position: absolute;
+                left: 28px;
+                top: 8px;
+                z-index: 1;
+                @include animation(transform,'rotate(-45deg)');
+            }
+
+            .sa-line {
+                @include h(5px);
+                background-color: $success;
+                display: block;
+                @include radius($radius);
+                position: absolute;
+                z-index: 2;
+
+                &.sa-tip {
+                    @include w(25px);
+                    left: 14px;
+                    top: 46px;
+                    @include animation(transform,'rotate(45deg)');
+                }
+                &.sa-long {
+                    @include w(47px);
+                    right: 8px;
+                    top: 38px;
+                    @include animation(transform,'rotate(-45deg)');
+                }
+            }
+        }
+
+        &.sa-custom {
+            background-size: contain;
+            border-radius: 0;
+            border: none;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+    }
+}
+
+// Modal animation
+@include keyframes(showSweetAlert) {
+  0%    { transform: scale(0.7);  -webkit-transform: scale(0.7);  }
+  45%   { transform: scale(1.05); -webkit-transform: scale(1.05); }
+  80%   { transform: scale(0.95); -webkit-transform: scale(0.95);   }
+  100%  { transform: scale(1);    -webkit-transform: scale(1);    }
+}
+@include keyframes(hideSweetAlert) {
+  0%    { transform: scale(1);    -webkit-transform: scale(1);    }
+  100%  { transform: scale(0.5);  -webkit-transform: scale(0.5);  }
+}
+
+@include keyframes(slideFromTop) {
+  0%    { top: 0%;  }
+  100%  { top: 50%; }
+}
+@include keyframes(slideToTop) {
+  0%    { top: 50%; }
+  100%  { top: 0%;  }
+}
+
+@include keyframes(slideFromBottom) {
+  0%    { top: 70%; }
+  100%  { top: 50%;  }
+}
+@include keyframes(slideToBottom) {
+  0%    { top: 50%;  }
+  100%  { top: 70%; }
+}
+
+.showSweetAlert {
+  &[data-animation=pop] {
+    @include animate('showSweetAlert 0.3s');
+  }
+  &[data-animation=none] {
+    @include animate('none');
+  }
+  &[data-animation=slide-from-top] {
+    @include animate('slideFromTop 0.3s');
+  }
+  &[data-animation=slide-from-bottom] {
+    @include animate('slideFromBottom 0.3s');
+  }
+}
+
+.hideSweetAlert {
+  &[data-animation=pop] {
+    @include animate('hideSweetAlert 0.2s');
+  }
+  &[data-animation=none] {
+    @include animate('none');
+  }
+  &[data-animation=slide-from-top] {
+    @include animate('slideToTop 0.4s');
+  }
+  &[data-animation=slide-from-bottom] {
+    @include animate('slideToBottom 0.3s');
+  }
+}
+
+// Success icon animation
+@include keyframes(animateSuccessTip) {
+  0%    { width: 0;     left: 1px;    top: 19px; }
+  54%   { width: 0;     left: 1px;    top: 19px; }
+  70%   { width: 50px;  left: -8px;   top: 37px; }
+  84%   { width: 17px;  left: 21px;   top: 48px; }
+  100%  { width: 25px;  left: 14px;   top: 45px; }
+}
+@include keyframes(animateSuccessLong) {
+  0%    { width: 0;     right: 46px;  top: 54px; }
+  65%   { width: 0;     right: 46px;  top: 54px; }
+  84%   { width: 55px;  right: 0px;   top: 35px; }
+  100%  { width: 47px;  right: 8px;   top: 38px; }
+}
+@include keyframes(rotatePlaceholder) {
+  0%    { transform: rotate(-45deg);  -webkit-transform: rotate(-45deg);  }
+  5%    { transform: rotate(-45deg);  -webkit-transform: rotate(-45deg);    }
+  12%   { transform: rotate(-405deg); -webkit-transform: rotate(-405deg); }
+  100%  { transform: rotate(-405deg); -webkit-transform: rotate(-405deg); }
+}
+
+.animateSuccessTip {
+  @include animate('animateSuccessTip 0.75s');
+}
+.animateSuccessLong {
+  @include animate('animateSuccessLong 0.75s');
+}
+.sa-icon.sa-success.animate::after {
+  @include animate('rotatePlaceholder 4.25s ease-in');
+}
+
+// Error icon animation
+@include keyframes(animateErrorIcon) {
+  0%    { transform: rotateX(100deg); -webkit-transform: rotateX(100deg); opacity: 0; }
+  100%  { transform: rotateX(0deg);   -webkit-transform: rotateX(0deg);   opacity: 1; }
+}
+.animateErrorIcon {
+  @include animate('animateErrorIcon 0.5s');
+}
+@include keyframes(animateXMark) {
+  0%    { transform: scale(0.4);  -webkit-transform: scale(0.4);  margin-top: 26px; opacity: 0; }
+  50%   { transform: scale(0.4);  -webkit-transform: scale(0.4);  margin-top: 26px; opacity: 0; }
+  80%   { transform: scale(1.15); -webkit-transform: scale(1.15); margin-top: -6px;             }
+  100%  { transform: scale(1);    -webkit-transform: scale(1);    margin-top: 0;    opacity: 1; }
+}
+.animateXMark {
+  @include animate('animateXMark 0.5s');
+}
+
+@include keyframes(pulseWarning) {
+  0%    { border-color: #F8D486; }
+  100%  { border-color: #F8BB86; }
+}
+.pulseWarning {
+  @include animate('pulseWarning 0.75s infinite alternate');
+}
+
+@include keyframes(pulseWarningIns) {
+  0%    { background-color: #F8D486; }
+  100%  { background-color: #F8BB86; }
+}
+.pulseWarningIns {
+  @include animate('pulseWarningIns 0.75s infinite alternate');
+}
+
+@include keyframes(rotate-loading) {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

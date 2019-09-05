@@ -1,0 +1,39 @@
+//----------------------------------
+//   File          : scss/mixins/_drop-shadow.scss
+//   Type          : SCSS mixin
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+// ---------------------------------
+
+@if($shadow-style == 'flat'){
+    $blur-radius         :0px !global;
+    $spread-radius       :0px !global;
+}
+@else if($shadow-style == 'gradient'){
+    $blur-radius         :$shadow-blur-radius !global;
+    $spread-radius       :$shadow-spread-radius !global;
+}
+@else{
+    $blur-radius         :$shadow-blur-radius !global;
+    $spread-radius       :$shadow-spread-radius !global;
+}
+
+@mixin shadow-out($color:rgba($shadow-color,$shadow-opacity), $blur:$blur-radius, $spread:$spread-radius, $vertical-offset:$shadow-vertical-offset, $horizontal-offset:$shadow-horizontal-offset) {
+   box-shadow: $horizontal-offset $vertical-offset $blur $spread $color;
+   -webkit-box-shadow: $horizontal-offset $vertical-offset $blur $spread $color;
+   -moz-box-shadow: $horizontal-offset $vertical-offset $blur $spread $color;
+}
+
+// Inner box shadow
+@mixin shadow-in($color: rgba($shadow-color,$shadow-opacity), $blur:$blur-radius, $spread:$spread-radius, $vertical-offset: $shadow-vertical-offset, $horizontal-offset: $shadow-horizontal-offset) {
+   box-shadow: inset $horizontal-offset $vertical-offset $blur $spread $color;
+   -webkit-box-shadow: inset $horizontal-offset $vertical-offset $blur $spread $color;
+   -moz-box-shadow: inset $horizontal-offset $vertical-offset $blur $spread $color;
+}
+
+// No box shadow
+@mixin no-shadow() {
+   box-shadow: none;
+   -webkit-box-shadow: none;
+   -moz-box-shadow: none;
+}

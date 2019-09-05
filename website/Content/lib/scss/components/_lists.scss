@@ -1,0 +1,263 @@
+//----------------------------------
+//   File          : scss/components/_lists.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Bootstrap Lists Override
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. List groups
+// 2. Borderless nav layout
+// 3. Individual list items
+// 4. List group divider
+// 5. List group header
+// 6. Icons, labels and badges
+// 7. Custom content options
+// 8. Contextual variants
+
+//----------------------------------
+// 1. List groups
+//----------------------------------
+.list-group {
+	@include m-b(0);
+	@include no-p();
+	@include b($list-group-border-thickness,solid,$list-group-border-color);
+	@include radius();
+	@if($list-group-shadow == 'true'){
+        @include shadow-out();
+    }
+    @else{
+        @include no-shadow();
+    }
+	background: $list-group-bg;
+    list-style: none;
+
+	.list-group-item:first-child{
+		@include radius-a($radius,$radius,0,0);
+	}
+	.list-group-item:last-child{
+		@include radius-a(0,0,$radius,$radius);
+	}
+}
+
+
+//----------------------------------
+// 2. Borderless nav layout
+//----------------------------------
+.list-group-borderless {
+    border: 0;
+	@include radius(0);
+}
+
+
+//----------------------------------
+// 3. Individual list items
+//----------------------------------
+.list-group-item {
+	@include p-vh(6,12);
+    background-color: transparent;
+    border: 0;
+	color: $list-group-link-color;
+
+	&.disabled{
+		color:darken($list-group-bg,20%);
+		&:hover,
+		&:focus{
+			color:darken($list-group-bg,20%);
+		}
+	}
+
+	&.active{
+		background: $list-group-link-active-bg;
+		color: $list-group-link-active-color;
+
+		a{
+			color: $list-group-link-active-color;
+		}
+
+		p{
+			color: $list-group-link-active-color;
+		}
+
+		&:hover,
+		&:focus{
+			background: $list-group-link-active-bg;
+			color: $list-group-link-active-color;
+
+			p{
+				color: $list-group-link-active-color;
+			}
+		}
+	}
+
+	p{
+		color:$list-group-link-color;
+
+		small{
+			display: block;
+		}
+
+		&:last-child{
+			@include m-b(0);
+		}
+	}
+
+	.list-group-item-heading{
+		@include typo($ff-semibold,$font-lg,$list-group-link-color);
+	}
+
+	.badge{
+		&.badge-right{
+			@include pos(absolute,6px,12px,null,null);
+		}
+	}
+	.icon-right{
+		@include pos(absolute,9px,12px,null,null);
+	}
+}
+
+a{
+	&.list-group-item {
+		color: $list-group-link-color;
+
+		p{
+			color: $list-group-link-color;
+		}
+
+		&:hover,
+		&:focus{
+			background: $list-group-link-hover-bg;
+			color: $list-group-link-hover-color;
+
+			p{
+				color: $list-group-link-hover-color;
+			}
+
+			.list-group-item-heading{
+				color: $list-group-link-hover-color;
+			}
+		}
+
+		.list-group-item-heading{
+			color: $list-group-link-color;
+		}
+	}
+}
+
+
+//----------------------------------
+// 4. List group divider
+//----------------------------------
+.list-group-divider {
+	@include h(#{$list-group-border-thickness}px);
+	@include m-vh(3,0);
+    display: block;
+    background-color: lighten($list-group-border-color, 5%);
+}
+
+
+//----------------------------------
+// 5. List group header
+//----------------------------------
+.list-group-header {
+	@include p-vh(6,12);
+	background:$list-group-header-bg;
+	@include typo($ff-semibold,$font-sm,$list-group-header-text-color,left);
+    text-transform: uppercase;
+
+	.list-group-item + &,
+    .list-group-divider + & {
+		@include m-t(8);
+    }
+}
+
+
+//----------------------------------
+// 6. Icons, labels and badges
+//----------------------------------
+.list-group-item,
+.list-group-header {
+    > i {
+		@include m-r(6);
+
+        &.float-right {
+			@include m-r(0);
+			@include m-l(6);
+        }
+    }
+
+    > .badge{
+		@include m-t(1);
+    }
+	> .label {
+		@include m-t(3);
+    }
+}
+
+
+//----------------------------------
+// 7. Custom content options
+//----------------------------------
+.list-group-item-heading {
+	@include m-vh($space-base,0);
+}
+.list-group-item-text {
+	@include m-b($space-base);
+}
+
+
+//----------------------------------
+// 8. Contextual variants
+//----------------------------------
+a.list-group-item-success,
+.list-group-item-success {
+	background:c100(palette($success));
+	color:c1100(palette($success));
+
+    &:hover,
+    &:focus {
+		background:c200(palette($success));
+		color:c1100(palette($success));
+    }
+}
+
+a.list-group-item-info,
+.list-group-item-info {
+	background:c100(palette($info));
+	color:c1100(palette($info));
+
+    &:hover,
+    &:focus {
+		background:c200(palette($info));
+		color:c1100(palette($info));
+    }
+}
+
+
+a.list-group-item-warning,
+.list-group-item-warning {
+	background:c100(palette($warning));
+	color:c1100(palette($warning));
+
+    &:hover,
+    &:focus {
+		background:c200(palette($warning));
+		color:c1100(palette($warning));
+    }
+}
+
+
+a.list-group-item-danger,
+.list-group-item-danger {
+	background:c100(palette($danger));
+	color:c1100(palette($danger));
+
+    &:hover,
+    &:focus {
+		background:c200(palette($danger));
+		color:c1100(palette($danger));
+    }
+}

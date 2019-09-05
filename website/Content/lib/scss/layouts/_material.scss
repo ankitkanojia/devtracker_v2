@@ -1,0 +1,30 @@
+//----------------------------------
+//   File          : scss/layouts/_material.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Main CSS definition for material menu
+//----------------------------------
+
+@mixin material{
+    @include media(tablet-xlg, min) {
+        .main-container {
+            @include h-min(100%);
+            @include pos(relative, null, null);
+            @include m-l(220);
+        }
+        .sidebar {
+            @include size(220px, 100%);
+            @include pos(fixed, 60px, null, null, null);
+            @include br(1, solid, $menu-border-color);
+            background-color:$menu-bg-color;
+            z-index:1024;
+            @if($menu-shadow == 'true'){
+                @include shadow-out(rgba(0,0,0,0.1),30px,0px,0px,0px);
+            }
+
+            @include profile();
+            @include accordion();
+        }
+    }
+}

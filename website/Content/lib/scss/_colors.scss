@@ -1,0 +1,558 @@
+//----------------------------------
+//   File          : scss/_colors.scss
+//   Type          : CSS Colors generator
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Generates css for every color mentioned in the colors map in config.scss
+//----------------------------------
+
+@each $color-name, $color-code in $colors-list {
+
+    // Backgrounds
+    .bg-#{$color-name} {
+    	background-color: $color-code!important;
+    	border-color: $color-code!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-50 {
+    	background-color: c50(palette($color-code))!important;
+    	border-color: c50(palette($color-code))!important;
+    	color: lighten($black, 5%)!important;
+    }
+    .bg-#{$color-name}-100 {
+    	background-color: c100(palette($color-code))!important;
+    	border-color: c100(palette($color-code))!important;
+    	color: lighten($black, 5%)!important;
+    }
+    .bg-#{$color-name}-200 {
+    	background-color: c200(palette($color-code))!important;
+    	border-color: c200(palette($color-code))!important;
+    	color: lighten($black, 5%)!important;
+    }
+    .bg-#{$color-name}-300 {
+    	background-color: c300(palette($color-code))!important;
+    	border-color: c300(palette($color-code))!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-400 {
+    	background-color: c400(palette($color-code))!important;
+    	border-color: c400(palette($color-code))!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-600 {
+    	background-color: c600(palette($color-code))!important;
+    	border-color: c600(palette($color-code))!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-700 {
+    	background-color: c700(palette($color-code))!important;
+    	border-color: c700(palette($color-code))!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-800 {
+    	background-color: c800(palette($color-code))!important;
+    	border-color: c800(palette($color-code))!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-900 {
+    	background-color: c900(palette($color-code))!important;
+    	border-color: c900(palette($color-code))!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-1000 {
+    	background-color: c1000(palette($color-code))!important;
+    	border-color: c1000(palette($color-code))!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-1100 {
+    	background-color: c1100(palette($color-code))!important;
+    	border-color: c1100(palette($color-code))!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-a100 {
+    	background-color: a100(palette($color-code))!important;
+    	border-color: a100(palette($color-code))!important;
+    	color: lighten($black, 5%)!important;
+    }
+    .bg-#{$color-name}-a200 {
+    	background-color: a200(palette($color-code))!important;
+    	border-color: a200(palette($color-code))!important;
+    	color: lighten($black, 5%)!important;
+    }
+    .bg-#{$color-name}-a300 {
+    	background-color: a300(palette($color-code))!important;
+    	border-color: a300(palette($color-code))!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-a400 {
+    	background-color: a400(palette($color-code))!important;
+    	border-color: a400(palette($color-code))!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-a500 {
+    	background-color: a500(palette($color-code))!important;
+    	border-color: a500(palette($color-code))!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-a600 {
+    	background-color: a600(palette($color-code))!important;
+    	border-color: a600(palette($color-code))!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-a700 {
+    	background-color: a700(palette($color-code))!important;
+    	border-color: a700(palette($color-code))!important;
+    	color: $white!important;
+    }
+    .bg-#{$color-name}-a800 {
+    	background-color: a800(palette($color-code))!important;
+    	border-color: a800(palette($color-code))!important;
+    	color: $white!important;
+    }
+
+
+    // Borders
+    .b-#{$color-name} {
+    	border-color: $color-code!important;
+    }
+    .b-#{$color-name}-50 {
+    	border-color: c50(palette($color-code))!important;
+    }
+    .b-#{$color-name}-100 {
+    	border-color: c100(palette($color-code))!important;
+    }
+    .b-#{$color-name}-200 {
+    	border-color: c200(palette($color-code))!important;
+    }
+    .b-#{$color-name}-300 {
+    	border-color: c300(palette($color-code))!important;
+    }
+    .b-#{$color-name}-400 {
+    	border-color: c400(palette($color-code))!important;
+    }
+    .b-#{$color-name}-600 {
+    	border-color: c600(palette($color-code))!important;
+    }
+    .b-#{$color-name}-700 {
+    	border-color: c700(palette($color-code))!important;
+    }
+    .b-#{$color-name}-800 {
+    	border-color: c800(palette($color-code))!important;
+    }
+    .b-#{$color-name}-900 {
+    	border-color: c900(palette($color-code))!important;
+    }
+    .b-#{$color-name}-1000 {
+    	border-color: c1000(palette($color-code))!important;
+    }
+    .b-#{$color-name}-1100 {
+    	border-color: c1100(palette($color-code))!important;
+    }
+    .b-#{$color-name}-a100 {
+    	border-color: a100(palette($color-code))!important;
+    }
+    .b-#{$color-name}-a200 {
+    	border-color: a200(palette($color-code))!important;
+    }
+    .b-#{$color-name}-a300 {
+    	border-color: a300(palette($color-code))!important;
+    }
+    .b-#{$color-name}-a400 {
+    	border-color: a400(palette($color-code))!important;
+    }
+    .b-#{$color-name}-a500 {
+    	border-color: a500(palette($color-code))!important;
+    }
+    .b-#{$color-name}-a600 {
+    	border-color: a600(palette($color-code))!important;
+    }
+    .b-#{$color-name}-a700 {
+    	border-color: a700(palette($color-code))!important;
+    }
+    .b-#{$color-name}-a800 {
+    	border-color: a800(palette($color-code))!important;
+    }
+    .bt-#{$color-name} {
+    	border-top-color: $color-code!important;
+    }
+    .bt-#{$color-name}-50 {
+    	border-top-color: c50(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-100 {
+    	border-top-color: c100(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-200 {
+    	border-top-color: c200(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-300 {
+    	border-top-color: c300(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-400 {
+    	border-top-color: c400(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-600 {
+    	border-top-color: c600(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-700 {
+    	border-top-color: c700(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-800 {
+    	border-top-color: c800(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-900 {
+    	border-top-color: c900(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-1000 {
+    	border-top-color: c1000(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-1100 {
+    	border-top-color: c1100(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-a100 {
+    	border-top-color: a100(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-a200 {
+    	border-top-color: a200(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-a300 {
+    	border-top-color: a300(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-a400 {
+    	border-top-color: a400(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-a500 {
+    	border-top-color: a500(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-a600 {
+    	border-top-color: a600(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-a700 {
+    	border-top-color: a700(palette($color-code))!important;
+    }
+    .bt-#{$color-name}-a800 {
+    	border-top-color: a800(palette($color-code))!important;
+    }
+    .bb-#{$color-name} {
+    	border-bottom-color: $color-code!important;
+    }
+    .bb-#{$color-name}-50 {
+    	border-bottom-color: c50(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-100 {
+    	border-bottom-color: c100(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-200 {
+    	border-bottom-color: c200(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-300 {
+    	border-bottom-color: c300(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-400 {
+    	border-bottom-color: c400(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-600 {
+    	border-bottom-color: c600(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-700 {
+    	border-bottom-color: c700(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-800 {
+    	border-bottom-color: c800(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-900 {
+    	border-bottom-color: c900(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-1000 {
+    	border-bottom-color: c1000(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-1100 {
+    	border-bottom-color: c1100(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-a100 {
+    	border-bottom-color: a100(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-a200 {
+    	border-bottom-color: a200(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-a300 {
+    	border-bottom-color: a300(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-a400 {
+    	border-bottom-color: a400(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-a500 {
+    	border-bottom-color: a500(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-a600 {
+    	border-bottom-color: a600(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-a700 {
+    	border-bottom-color: a700(palette($color-code))!important;
+    }
+    .bb-#{$color-name}-a800 {
+    	border-bottom-color: a800(palette($color-code))!important;
+    }
+    .bl-#{$color-name} {
+    	border-left-color: $color-code!important;
+    }
+    .bl-#{$color-name}-50 {
+    	border-left-color: c50(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-100 {
+    	border-left-color: c100(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-200 {
+    	border-left-color: c200(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-300 {
+    	border-left-color: c300(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-400 {
+    	border-left-color: c400(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-600 {
+    	border-left-color: c600(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-700 {
+    	border-left-color: c700(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-800 {
+    	border-left-color: c800(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-900 {
+    	border-left-color: c900(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-1000 {
+    	border-left-color: c1000(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-1100 {
+    	border-left-color: c1100(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-a100 {
+    	border-left-color: a100(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-a200 {
+    	border-left-color: a200(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-a300 {
+    	border-left-color: a300(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-a400 {
+    	border-left-color: a400(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-a500 {
+    	border-left-color: a500(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-a600 {
+    	border-left-color: a600(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-a700 {
+    	border-left-color: a700(palette($color-code))!important;
+    }
+    .bl-#{$color-name}-a800 {
+    	border-left-color: a800(palette($color-code))!important;
+    }
+    .br-#{$color-name} {
+    	border-right-color: $color-code!important;
+    }
+    .br-#{$color-name}-50 {
+    	border-right-color: c50(palette($color-code))!important;
+    }
+    .br-#{$color-name}-100 {
+    	border-right-color: c100(palette($color-code))!important;
+    }
+    .br-#{$color-name}-200 {
+    	border-right-color: c200(palette($color-code))!important;
+    }
+    .br-#{$color-name}-300 {
+    	border-right-color: c300(palette($color-code))!important;
+    }
+    .br-#{$color-name}-400 {
+    	border-right-color: c400(palette($color-code))!important;
+    }
+    .br-#{$color-name}-600 {
+    	border-right-color: c600(palette($color-code))!important;
+    }
+    .br-#{$color-name}-700 {
+    	border-right-color: c700(palette($color-code))!important;
+    }
+    .br-#{$color-name}-800 {
+    	border-right-color: c800(palette($color-code))!important;
+    }
+    .br-#{$color-name}-900 {
+    	border-right-color: c900(palette($color-code))!important;
+    }
+    .br-#{$color-name}-1000 {
+    	border-right-color: c1000(palette($color-code))!important;
+    }
+    .br-#{$color-name}-1100 {
+    	border-right-color: c1100(palette($color-code))!important;
+    }
+    .br-#{$color-name}-a100 {
+    	border-right-color: a100(palette($color-code))!important;
+    }
+    .br-#{$color-name}-a200 {
+    	border-right-color: a200(palette($color-code))!important;
+    }
+    .br-#{$color-name}-a300 {
+    	border-right-color: a300(palette($color-code))!important;
+    }
+    .br-#{$color-name}-a400 {
+    	border-right-color: a400(palette($color-code))!important;
+    }
+    .br-#{$color-name}-a500 {
+    	border-right-color: a500(palette($color-code))!important;
+    }
+    .br-#{$color-name}-a600 {
+    	border-right-color: a600(palette($color-code))!important;
+    }
+    .br-#{$color-name}-a700 {
+    	border-right-color: a700(palette($color-code))!important;
+    }
+    .br-#{$color-name}-a800 {
+    	border-right-color: a800(palette($color-code))!important;
+    }
+
+
+    // Text
+    .text-#{$color-name} {
+    	color: $color-code!important;
+    	&:focus,
+        &:hover {
+    		color: $color-code!important;
+    	}
+    }
+    .text-#{$color-name}-50 {
+    	color: c50(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: c50(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-100 {
+    	color: c100(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: c100(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-200 {
+    	color: c200(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: c200(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-300 {
+    	color: c300(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: c300(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-400 {
+    	color: c400(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: c400(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-600 {
+    	color: c600(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: c600(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-700 {
+    	color: c700(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: c700(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-800 {
+    	color: c800(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: c800(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-900 {
+    	color: c900(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: c900(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-1000 {
+    	color: c1000(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: c1000(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-1100 {
+    	color: c1100(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: c1100(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-a100 {
+    	color: a100(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: a100(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-a200 {
+    	color: a200(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: a200(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-a300 {
+    	color: a300(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: a300(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-a400 {
+    	color: a400(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: a400(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-a500 {
+    	color: a500(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: a500(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-a600 {
+    	color: a600(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: a600(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-a700 {
+    	color: a700(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: a700(palette($color-code))!important;
+    	}
+    }
+    .text-#{$color-name}-a800 {
+    	color: a800(palette($color-code))!important;
+    	&:focus,
+        &:hover {
+    		color: a800(palette($color-code))!important;
+    	}
+    }
+}

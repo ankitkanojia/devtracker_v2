@@ -1,0 +1,274 @@
+//----------------------------------
+//   File          : scss/pages/_pricing-table.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//----------------------------------
+
+.pricingTable {
+    margin: 20px auto;
+
+    >ul{
+        @include p-l(0);
+        @include p-h(20);
+        list-style: none;
+        text-align: center;
+
+        >li{
+            @include w(24%);
+            @include w-max(300px);
+            @include p-a(0,20,25,20);
+            @include radius($radius);
+            @include animation(transition,all 0.3s ease);
+            vertical-align: middle;
+            background-color: $white;
+            display: inline-block;
+            text-align: center;
+            &:hover {
+                @include animation(transform,scale(1.08));
+            }
+            &:not(:last-of-type) {
+                @include m-r(15);
+            }
+            &:nth-of-type(2) {
+                position: relative;
+            }
+            &:nth-of-type(2):before {
+                @include animation(transform,all 0.5s ease);
+                @include size(64px);
+                @include pos(absolute,-25px,15px,null,null);
+                @include radius(50%);
+                @include p-t(15);
+                @include typo($ff-semibold,11px,$white,center){
+                    text-transform: uppercase;
+                    line-height: 1.4;
+                }
+                content: 'Most Popular';
+                display: block;
+                background-color: $danger;
+                box-sizing: border-box;
+            }
+            &:nth-of-type(2):hover:before {
+                @include animation(transform,rotate(360deg));
+            }
+
+            .title {
+                @include fs(20px);
+                @include p-vh(20,0);
+                @include bb(2,solid,rgba($grey,0.2));
+                letter-spacing: -0.5px;
+            }
+
+            .pricing {
+                @include p-vh(24,0);
+                @include fs(60px);
+                @include ff($ff-semibold);
+                @include bb(2,solid,rgba($grey,0.2));
+                line-height: 0.7;
+
+                span:first-of-type {
+                    @include fs($font-lg);
+                    @include ff($ff-semibold);
+                    vertical-align: top;
+                }
+
+                span:last-of-type {
+                    @include fs($font-lg);
+                    @include ff($ff-regular);
+                    vertical-align: bottom;
+                }
+            }
+
+            .options {
+                @include p-vh(10,0);
+                @include bb(2,solid,rgba($grey,0.2));
+                list-style: none;
+
+                > li {
+                    @include p-vh(6,0);
+                    @include icon(before,tick){
+                        @include fs(14px);
+                        @include size(18px);
+                        @include m-r(5);
+                        @include radius(50%);
+                        display: inline-block;
+                        color: $white;
+                        background-color: $theme-color;
+                        line-height: 1.3;
+                        position: relative;
+                        top: 1px;
+                    }
+                }
+            }
+
+            .button {
+                @include fs(16px);
+                @include m-t(20);
+                @include p(10);
+                @include radius($radius);
+                @include animation(transition,all 0.4s ease);
+                color: $white;
+                background-color: $success;
+                cursor: pointer;
+                box-shadow: 0px 3px 0px 0px darken($success,5%);
+                -moz-box-shadow: 0px 3px 0px 0px darken($success,5%);
+                -webkit-box-shadow: 0px 3px 0px 0px darken($success,5%);
+
+                &:hover {
+                    @include animation(transform,translateY(-10px));
+                    box-shadow: 0px 40px 29px -19px rgba(102, 172, 100, 0.9);
+                    -moz-box-shadow: 0px 40px 29px -19px rgba(102, 172, 100, 0.9);
+                    -webkit-box-shadow: 0px 40px 29px -19px rgba(102, 172, 100, 0.9);
+                }
+
+                &:active {
+                    @include animation(transform,scale(0.95) translateY(-9px));
+                    box-shadow: inset 0 0 10px 1px $success, 0px 40px 29px -19px rgba(102, 172, 100, 0.95);
+                    -moz-box-shadow: inset 0 0 10px 1px $success, 0px 40px 29px -19px rgba(102, 172, 100, 0.95);
+                    -webkit-box-shadow: inset 0 0 10px 1px $success, 0px 40px 29px -19px rgba(102, 172, 100, 0.95);
+                }
+            }
+        }
+    }
+}
+
+@include media(tablet,max) {
+    .pricingTable {
+        @include m-t(0);
+        >ul{
+            @include p-t(0);
+            >li{
+                @include w(90%);
+                @include w-max(90%);
+                margin: 0 auto;
+                @include m-b(20);
+                @include p(10);
+                display: block;
+                > * {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                &:after {
+                    display: table;
+                    content: '';
+                    clear: both;
+                }
+                &:not(:last-of-type) {
+                    margin-right: auto;
+                }
+                &:nth-of-type(2) h1 {
+                    @include p-t(15);
+                }
+                &:nth-of-type(2):before {
+                    @include size(45px);
+                    @include p-t(13);
+                    top: -10px;
+                    @include fs(7px);
+                }
+
+                .title {
+                    @include w(33%);
+                    @include p-a(5,0,10,0);
+                    @include fs(16px);
+                    border-bottom: none;
+                    float: left;
+                    @include ff($ff-regular);
+                }
+
+                .pricing {
+                    @include w(33%);
+                    @include p(0);
+                    @include fs(28px);
+                    border-bottom: none;
+                    float: left;
+                    clear: left;
+                }
+
+                .options {
+                    @include p(0);
+                    @include m-r(30);
+                    border-bottom: none;
+
+                    > li {
+                        @include p-a(3,0,3,0);
+                        text-align: left;
+
+                        &:before {
+                            @include size(12px);
+                            line-height: .9;
+                            top: 1px;
+                            position: relative;
+                        }
+                    }
+                }
+
+                .button {
+                    @include m-t(0);
+                    @include p-vh(6,12);
+                    @include fs(12px);
+
+                    &:hover {
+                        -webkit-transform: none;
+                        @include animation(transform, none);
+                        box-shadow: none;
+                    }
+
+                    &:active {
+                        @include animation(transform,scale(0.95) translateY(0));
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media(phone-xlg,max) {
+    .pricingTable {
+        >ul{
+            >li{
+                @include p-vh(10,30);
+                > * {
+                    display: block;
+                    float: none;
+                }
+
+                .title {
+                    @include w(100%);
+                    @include fs(24px);
+                    @include ff($ff-semibold);
+                    @include m-b(0);
+                    @include p-vh(12,0);
+                    float: none;
+                    @include bb(2,solid,rgba($grey,0.2));
+                }
+
+                .pricing {
+                    @include w(100%);
+                    @include fs(50px);
+                    @include m-b(0);
+                    @include p-vh(30,0);
+                    float: none;
+                    @include bb(2,solid,rgba($grey,0.2));
+                }
+
+                .options {
+                    @include m-r(0);
+                    @include m-b(10);
+                    @include p-vh(10,0);
+                    @include bb(2,solid,rgba($grey,0.2));
+
+                    > li {
+                        text-align: center;
+                    }
+                }
+
+                .button {
+                    @include w(70%);
+                    margin: 20px auto 20px;
+                    @include fs(16px);
+                }
+            }
+        }
+    }
+}

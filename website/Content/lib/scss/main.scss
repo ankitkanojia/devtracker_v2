@@ -1,0 +1,289 @@
+//----------------------------------
+//   File          : scss/main.scss
+//   Type          : Main SCSS file
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Core scss file to include all styles in the project
+//----------------------------------
+
+
+// ---------------------------------
+// Table of contents
+// ---------------------------------
+// 1. Preloader
+// 2. SCSS imports
+// 3. Custom Scrollbar
+// 4. Layout settings
+// 5. ScrollTop
+
+
+// ---------------------------------
+// 1. Preloader
+// ---------------------------------
+#preloader {
+	position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+	background-color: #FFFFFF;
+	z-index: 9999999;
+
+	#status {
+        width:100%;
+        height:100%;
+        .loader {
+			top: 50%;
+		    margin: -28px auto 0;
+		    width: 72px;
+		    height: 72px;
+		    border: 3px solid rgba(#FF006A, 0.1);
+		    border-top-color: #FF006A;
+		    border-radius: 50%;
+			-moz-border-radius: 50%;
+			-webkit-border-radius: 50%;
+		    position: relative;
+
+			animation-name: loader_rotate;
+			animation-duration: .7s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+
+			-ms-animation-name: loader_rotate;
+			-ms-animation-duration: .7s;
+			-ms-animation-iteration-count: infinite;
+			-ms-animation-timing-function: linear;
+
+			-moz-animation-name: loader_rotate;
+			-moz-animation-duration: .7s;
+			-moz-animation-iteration-count: infinite;
+			-moz-animation-timing-function: linear;
+
+			-webkit-animation-name: loader_rotate;
+			-webkit-animation-duration: .7s;
+			-webkit-animation-iteration-count: infinite;
+			-webkit-animation-timing-function: linear;
+
+			@-webkit-keyframes loader_rotate {
+				0% {-webkit-transform: rotate(0);}
+				100% {-webkit-transform: rotate(360deg);}
+				to {-webkit-transform: rotate(1turn);}
+			}
+
+			@-moz-keyframes loader_rotate {
+				0% {-moz-transform: rotate(0);}
+				100% {-moz-transform: rotate(360deg);}
+				to {-moz-transform: rotate(1turn);}
+			}
+
+			@keyframes loader_rotate {
+				0% {transform: rotate(0);}
+				100% {transform: rotate(360deg);}
+				to {transform: rotate(1turn);}
+			}
+		}
+	}
+}
+
+
+// ---------------------------------
+// 2. SCSS imports
+// ---------------------------------
+@import
+
+// Assets
+'assets/fonts',
+'assets/icons',
+
+// Main config file
+'config',
+
+// SCSS Functions
+'functions',
+
+// SCSS Mixins
+'mixins/colors',
+'mixins/vendors',
+'mixins/media',
+'mixins/clearfix',
+'mixins/layout',
+'mixins/spacing',
+'mixins/animation',
+'mixins/arrow',
+'mixins/background',
+'mixins/background-gradient',
+'mixins/border',
+'mixins/border-radius',
+'mixins/drop-shadow',
+'mixins/list',
+'mixins/inputs',
+'mixins/interaction',
+'mixins/opacity',
+'mixins/text',
+'mixins/icons',
+
+// CSS Reset
+'reboot',
+
+// Main navbar
+'navbar',
+
+// Layouts
+'layouts/profile',
+'layouts/accordion',
+'layouts/material',
+'layouts/dropdown',
+'layouts/dropdown_label',
+'layouts/megamenu',
+'layouts/iconic',
+'layouts/sidebar',
+'layouts/boxed',
+'layouts/iconbar',
+'layouts/handheld',
+'layout',
+
+// Components
+'components/alerts',
+'components/badges',
+'components/buttons',
+'components/cards',
+'components/carousel',
+'components/code',
+'components/colors',
+'components/content',
+'components/dropdowns',
+'components/elements',
+'components/forms',
+'components/grid',
+'components/header',
+'components/icons',
+'components/jumbo',
+'components/lists',
+'components/media',
+'components/modals',
+'components/pager',
+'components/pagination',
+'components/pills',
+'components/popovers',
+'components/progress-bars',
+'components/secondary-sidebar',
+'components/tables',
+'components/tabs',
+'components/thumbnails',
+'components/tooltips',
+'components/typography',
+'components/helper-classes',
+
+// Rightbar
+'rightbar',
+
+// Extensions
+'extensions/draggable-panels',
+'extensions/elastic-grid',
+
+// Plugins
+'plugins/calendar/fullcalendar',
+'plugins/charts/charts',
+'plugins/forms/bootstrap-slider',
+'plugins/forms/bootstrap-uploader',
+'plugins/forms/checker',
+'plugins/forms/color-picker',
+'plugins/forms/datetime-picker',
+'plugins/forms/file-uploader',
+'plugins/forms/noui-slider',
+'plugins/forms/select2',
+'plugins/forms/switchery',
+'plugins/forms/time-picker',
+'plugins/forms/typehead',
+'plugins/forms/validations',
+'plugins/forms/wizards',
+'plugins/hovers/lightbox',
+'plugins/jcrop/jcrop',
+'plugins/maps/vector-maps',
+'plugins/notifications/pnotify',
+'plugins/notifications/sweetalert',
+'plugins/sliders/owl-carousel',
+'plugins/tables/datatables',
+
+// Snippets
+'snippets/fab-buttons',
+'snippets/loaders',
+
+// Widgets
+'widgets/activity',
+'widgets/content',
+'widgets/hovers',
+'widgets/news',
+'widgets/team',
+'widgets/testimonials',
+
+// Pages
+'pages/auth',
+'pages/emails',
+'pages/errors',
+'pages/launching',
+'pages/messages',
+'pages/people',
+'pages/pricing-table',
+
+// Packages
+'packages/_ecom',
+
+// Colors
+'colors';
+
+
+// ---------------------------------
+// 3. Custom Scrollbar
+// ---------------------------------
+::-webkit-scrollbar{
+	@include w(10px);
+	@include shadow-in;
+}
+::-webkit-scrollbar-track{
+    background: a800(palette($grey));
+}
+::-webkit-scrollbar-thumb{
+	@include p-vh($space-base,2);
+    background: $scrollbar-color;
+	@if($scrollbar-style == 'rounded'){
+		@include radius(100px);
+	}
+	@else{
+		@include radius(0);
+	}
+}
+
+
+// ---------------------------------
+// 4. Layout settings
+// ---------------------------------
+.layout{
+	font-family:#{$menu-style};
+}
+
+
+// ---------------------------------
+// 5. ScrollTop
+// ---------------------------------
+#scrollTop {
+    @include size(32px, 32px);
+    @include pos(fixed, null, 10px, 10px, null);
+    @include animation();
+    @include radius();
+	background-color:black(0.2);
+	color: $white;
+	outline: 0;
+	z-index: 10;
+	&:hover {
+		background-color: lighten($black, 80%);
+		@include animation();
+	}
+	i {
+        @include typo($font-icon, 20px, white, center){
+            @include lh(20px);
+        }
+        @include size(32px, 32px);
+        @include p-t(8);
+	}
+}

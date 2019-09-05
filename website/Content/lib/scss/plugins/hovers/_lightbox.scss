@@ -1,0 +1,99 @@
+//----------------------------------
+//   File          : scss/plugins/hovers/_lightbox.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//----------------------------------
+
+.ekko-lightbox-container {
+	position: relative;
+	> div.ekko-lightbox-item {
+		@include pos(absolute,0,0,0,0);
+		@include w(100%);
+	}
+}
+.ekko-lightbox {
+	iframe {
+		@include size(100%);
+	}
+	.modal-dialog {
+		display: none;
+	}
+	.modal-footer {
+		text-align: left;
+	}
+	a:hover {
+		opacity: 1;
+		text-decoration: none;
+	}
+}
+.ekko-lightbox-nav-overlay {
+	@include pos(absolute,0,null,null,0);
+	@include size(100%);
+	z-index: 1;
+	display: flex;
+	a {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		opacity: 0;
+		@include transition(opacity .5s);
+		color: $white;
+		@include fs(30px);
+		z-index: 1;
+		> * {
+			flex-grow: 1;
+		}
+		span {
+			@include p-vh(0,30);
+		}
+		&:hover {
+			text-decoration: none;
+		}
+		&:focus {
+			outline: none;
+		}
+		&.disabled {
+			cursor: default;
+			visibility: hidden;
+		}
+		> :focus {
+			outline: none;
+		}
+		&:last-child span {
+			text-align: right;
+		}
+	}
+}
+.ekko-lightbox-loader {
+	@include pos(absolute,0,0,0,0);
+	@include w(100%);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	> div {
+		@include size(40px);
+		position: relative;
+		text-align: center;
+		> div {
+			@include pos(absolute,0,null,null,0);
+			@include w(100%);
+			@include radius(50%);
+			background-color: $white;
+			opacity: .6;
+			@include animate('a 2s infinite ease-in-out');
+			&:last-child {
+				@include animation(animation-delay,-1s);
+			}
+		}
+	}
+}
+@keyframes a {
+	0% {@include animation(transform, scale(0));}
+	to {@include animation(transform, scale(0));}
+	50% {@include animation(transform, scale(1));}
+}
+.modal-dialog .ekko-lightbox-loader > div > div {
+	background-color: #333;
+}

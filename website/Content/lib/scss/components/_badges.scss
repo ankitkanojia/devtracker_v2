@@ -1,0 +1,207 @@
+//----------------------------------
+//   File          : scss/components/_badges.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Bootstrap Badges Override
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Badges
+// 2. Contextual styles
+// 3. Flat badges
+
+
+//----------------------------------
+// 1. Badges
+//----------------------------------
+.badge {
+    @include h(18px);
+    display: inline-block;
+    @include radius($radius);
+    @include p-a(0,5,0,5);
+    @include b(1,solid,transparent);
+    @include pos(relative,0px,null,null,null);
+    @include typo($ff-semibold, 10px, $white, center){
+        text-transform: uppercase;
+    }
+
+    .btn & {
+        top: 0;
+    }
+
+    .list-group-item > & {
+        @include media(tablet-xlg, min){
+            float: right;
+
+            + .label {
+                @include m-r(5);
+            }
+        }
+    }
+}
+
+.badge,
+.badge.badge-pill {
+
+    > .caret {
+        @include m-t(-2);
+    }
+
+    .open &.dropdown-toggle {
+        @include no-shadow();
+    }
+
+    &[href] {
+        &:hover,
+        &:focus {
+            background: black(0.2);
+        }
+    }
+}
+
+.badge.badge-pill {
+    @include h(18px);
+    @include p-a(1,7,0,7);
+    @include fs(10px);
+    @include b(0,solid,transparent);
+    letter-spacing: 0.1px;
+    @include radius(10px);
+
+    // Quick fix for badges in buttons
+    .btn & {
+        top: 0;
+    }
+    .btn-xs & {
+        @include p-a(2, 5, 1, 5);
+    }
+
+    .nav-pills > li > a > & {
+        @include m-l(0);
+
+        &.position-right {
+            @include m-l($space-base);
+        }
+    }
+}
+
+
+//----------------------------------
+// 2. Contextual styles
+//----------------------------------
+.badge-default {
+    background-color: $grey;
+    border-color: $grey;
+}
+
+.badge-primary {
+    background-color: $primary;
+    border-color: $primary;
+}
+
+.badge-success {
+    background-color: $success;
+    border-color: $success;
+}
+
+.badge-info {
+    background-color: $info;
+    border-color: $info;
+}
+
+.badge-warning {
+    background-color: $warning;
+    border-color: $warning;
+}
+
+.badge-danger {
+    background-color: $danger;
+    border-color: $danger;
+}
+
+
+//----------------------------------
+// 3. Flat badges
+//----------------------------------
+.badge-flat {
+    background-color: transparent;
+    border-width: 2px;
+    @include lh(13px);
+    @include p-t(1);
+    &[href] {
+        &:hover,
+        &:focus {
+            @include no-shadow();
+            background-color: transparent;
+        }
+    }
+}
+
+
+.badge-icon {
+    @include space();
+    @include radius($radius);
+    @include lh(11px);
+    > i {
+        top: -1px;
+        font-size:$font-xs;
+        @include lh(10px);
+    }
+}
+
+a.badge-icon {
+    @include lh(11px);
+    > i {
+        @include lh(11px);
+    }
+}
+
+.badge-rounded.badge-icon,
+a.badge-rounded.badge-icon {
+    @include lh(17px);
+}
+
+
+.badge-icon-xlg {
+    @include space-xlg();
+}
+
+.badge-icon-lg {
+    @include space-lg();
+}
+
+.badge-icon-sm {
+    @include space-sm();
+}
+
+.badge-icon-xs {
+    @include space-xs();
+}
+
+
+.badge-rounded {
+    @include p-a(1,8,0,8);
+    @include radius(100px);
+}
+
+.badge-roundless {
+    @include no-radius();
+}
+
+.badge-block {
+    display: block;
+
+    .form-control + & {
+        @include m-t($space-base);
+    }
+    &.text-left {
+        @include m-r(0);
+        text-align: left;
+    }
+    &.text-right {
+        @include m-l(0);
+        text-align: right;
+    }
+}

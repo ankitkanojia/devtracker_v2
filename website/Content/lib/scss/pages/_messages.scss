@@ -1,0 +1,792 @@
+//----------------------------------
+//   File          : scss/pages/_messages.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//----------------------------------
+
+$base-color: $theme-color ;
+$break: 735px;
+$break-big: 900px;
+
+#frame {
+
+    ul{
+        @include p-l(0);
+    }
+
+    @include size(100%,580px);
+    @include size(100%,94vh);
+    @include w-min(280px);
+    @include h-min(300px);
+    @include m-v(15);
+	background: $card-bg;
+    @include radius($radius);
+    @include media(phone,max){
+        @include size(100%,88vh);
+    }
+
+	#sidepanel {
+        @include w-min(280px);
+        @include w-max(340px);
+        @include size(40%,100%);
+		float: left;
+		background: $base-color;
+		color: set-color($base-color);
+		overflow: hidden;
+		position: relative;
+        @include radius-a($radius,0,0,$radius);
+		@media screen and (max-width: $break) {
+            @include w(58px);
+            @include w-min(58px);
+		}
+
+		#profile {
+            @include p(15);
+            background: black(0.2);
+
+			@media screen and (max-width: $break) {
+                @include w(100%);
+                @include p-a(5,0,0,0);
+				margin: 0 auto;
+				background: $base-color;
+			}
+
+			&.expanded {
+				.wrap {
+                    @include h(180px);
+					line-height: initial;
+
+					i.expand-button {
+                        @include animation(transform,scaleY(-1));
+                		filter: FlipH;
+                		-ms-filter: "FlipH";
+					}
+				}
+			}
+
+			.wrap {
+                @include h(60px);
+                @include lh(60px);
+				overflow: hidden;
+				@include transition(.3s height ease);
+
+				@media screen and (max-width: $break) {
+                    @include h(55px);
+				}
+
+				img {
+                    @include w(60px);
+					border-radius: 50%;
+                    @include b(4,solid,$danger);
+					height: auto;
+					float: left;
+					cursor: pointer;
+					@include transition(.3s border ease);
+
+					@media screen and (max-width: $break) {
+                        @include w(40px);
+                        @include m-vh(4,8);
+					}
+
+					&.online {
+                        @include b(4,solid,$success);
+					}
+
+					&.away {
+                        @include b(4,solid,$warning);
+					}
+
+					&.busy {
+                        @include b(4,solid,$danger);
+					}
+
+					&.offline {
+                        @include b(4,solid,lighten($black, 80%));
+					}
+				}
+
+				p {
+                    @include m(15);
+					float: left;
+                    @include fs($font-xlg);
+                    color: lighten($base-color,40%);
+
+					@media screen and (max-width: $break) {
+						display: none;
+					}
+				}
+
+				i.expand-button {
+                    @include m-t(23);
+					float: right;
+					cursor: pointer;
+					color: lighten($base-color,40%);
+
+					@media screen and (max-width: $break) {
+						display: none;
+					}
+				}
+
+				#status-options {
+                    @include w(150px);
+                    @include m-a(70,0,0,0);
+                    @include radius($radius);
+					position: absolute;
+					opacity: 0;
+					visibility: hidden;
+					z-index: 99;
+					line-height: initial;
+					background: $dropdown-menu-bg;
+					@include transition(.3s all ease);
+
+					@media screen and (max-width: $break) {
+                        @include w(58px);
+                        @include m-t(57);
+					}
+
+					&.active {
+                        @include m-a(65,0,0,0);
+						opacity: 1;
+						visibility: visible;
+
+						@media screen and (max-width: $break) {
+                            @include m-t(62);
+						}
+					}
+
+					&:before {
+                        @include size(0);
+                        @include m-a(-6,0,0,24);
+						content: '';
+						position: absolute;
+                        @include bl(6,solid,transparent);
+                        @include br(6,solid,transparent);
+                        @include bb(6,solid,$dropdown-menu-bg);
+
+						@media screen and (max-width: $break) {
+                            @include m-l(23);
+						}
+					}
+
+					ul {
+						overflow: hidden;
+                        @include radius($radius);
+                        @include m-b(0);
+
+						li {
+                            @include p-vh(7,12);
+							display: block;
+							cursor: pointer;
+
+							@media screen and (max-width: $break) {
+                                @include p-a(15,0,35,22);
+							}
+
+							&:hover {
+								background: darken($dropdown-menu-bg,4%);
+                                color: $text-color;
+							}
+
+							span.status-circle {
+                                @include m-a(6,0,0,0);
+                                @include size(10px);
+								position: absolute;
+                                @include radius(50%);
+
+								@media screen and (max-width: $break) {
+                                    @include size(14px);
+								}
+
+								&:before {
+                                    @include size(14px);
+                                    @include m-a(-2,0,0,-2);
+									content: '';
+									position: absolute;
+									background: transparent;
+                                    @include radius(50%);
+									z-index: 0;
+
+									@media screen and (max-width: $break) {
+                                        @include size(18px);
+									}
+								}
+							}
+
+							p {
+                                @include m(0);
+                                @include p-l(20);
+                                float: none;
+                                @include fs($font-base);
+                                color: $dropdown-menu-link-color;
+
+								@media screen and (max-width: $break) {
+									display: none;
+								}
+							}
+
+							&#status-online {
+								span.status-circle {
+									background: $success;
+								}
+
+								&.active {
+									span.status-circle {
+										&:before {
+                                            @include b(1,solid,$success);
+										}
+									}
+								}
+							}
+
+							&#status-away {
+								span.status-circle {
+									background: $warning;
+								}
+
+								&.active {
+									span.status-circle {
+										&:before {
+                                            @include b(1,solid,$warning);
+										}
+									}
+								}
+							}
+
+							&#status-busy {
+								span.status-circle {
+									background: $danger;
+								}
+
+								&.active {
+									span.status-circle {
+										&:before {
+                                            @include b(1,solid,$danger);
+										}
+									}
+								}
+							}
+
+							&#status-offline {
+								span.status-circle {
+									background: lighten($black, 80%);
+								}
+
+								&.active {
+									span.status-circle {
+										&:before {
+                                            @include b(1,solid,lighten($black, 80%));
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				#expanded {
+                    @include p-a(75,0,0,20);
+					display: block;
+					line-height: initial !important;
+
+					label {
+                        @include m-a(0,8,5,0);
+                        @include p-vh(5,0);
+						float: left;
+						clear: both;
+					}
+
+                    i{
+                        color: lighten($base-color,40%);
+                    }
+
+					input {
+                        @include m-b(6);
+                        @include p(7);
+                        @include lh(17px);
+                        @include radius($radius);
+						border: none;
+						background: lighten($base-color,8%);
+						color: $white;
+						width: calc(100% - 43px);
+                        width: -moz-calc(100% - 43px);
+                        width: -webkit-calc(100% - 43px);
+                        float: left;
+
+						&:focus {
+							outline: none;
+							background: lighten($base-color,10%);
+						}
+					}
+				}
+			}
+		}
+
+		#search {
+
+			@media screen and (max-width: $break) {
+				display: none;
+			}
+
+			label {
+                @include m-a(9,0,0,15);
+				position: absolute;
+                color: lighten($base-color,40%);
+			}
+
+			input {
+                @include w(100%);
+                @include p-a(10,0,10,46);
+				border: none;
+				background: black(0.05);
+				color: lighten($base-color,40%);
+                @include placeholder(lighten($base-color,40%));
+
+				&:focus {
+					outline: none;
+					background: darken($base-color,3%);
+				}
+			}
+		}
+
+		#contacts {
+			height: calc(100% - 177px);
+			overflow-y: scroll;
+			overflow-x: hidden;
+
+			@media screen and (max-width: $break) {
+				height: calc(100% - 149px);
+				overflow-y: scroll;
+				overflow-x: hidden;
+
+				&::-webkit-scrollbar {
+					display: none;
+				}
+			}
+
+			&.expanded {
+				height: calc(100% - 334px);
+			}
+
+            &::-webkit-scrollbar {
+     	 	    width: 8px;
+				background: transparent;
+                @include no-shadow();
+			}
+
+            &::-webkit-scrollbar-track{
+                background: transparent;
+            }
+
+			&::-webkit-scrollbar-thumb {
+      	        background-color: black(0.2);
+			}
+
+			ul {
+
+				li.contact {
+                    @include p-vh(15,0);
+					position: relative;
+                    list-style: none;
+					cursor: pointer;
+
+					@media screen and (max-width: $break) {
+                        @include p-a(6,0,46,8);
+					}
+
+					&:hover {
+						background: lighten($base-color,8%);
+					}
+
+					&.active {
+						background: lighten($base-color,8%);
+                        @include bl(5,solid,lighten($base-color,30%));
+
+                        @media screen and (max-width: $break) {
+                            @include bl(2,solid,lighten($base-color,30%));
+                            @include p-l(6);
+						}
+
+						span.contact-status {
+							border: 2px solid $base-color !important;
+						}
+					}
+
+					.wrap {
+                        @include w(90%);
+						margin: 0 auto;
+						position: relative;
+
+						@media screen and (max-width: $break) {
+                            @include w(100%);
+						}
+
+						span {
+                            @include m-a(-1,0,0,-1);
+                            @include size(12px);
+							position: absolute;
+							left: 0;
+                            @include b(2,solid,$base-color);
+                            @include radius(50%);
+							background: lighten($black, 80%);
+
+							&.online {
+								background: $success;
+							}
+
+							&.away {
+								background: $warning;
+							}
+
+							&.busy {
+								background: $danger;
+							}
+						}
+
+						img {
+                            @include w(40px);
+                            @include m-r(12);
+							border-radius: 50%;
+							float: left;
+
+							@media screen and (max-width: $break) {
+                                @include m-r(0);
+							}
+						}
+
+						.meta {
+                            @include no-p();
+
+							@media screen and (max-width: $break) {
+								display: none;
+							}
+
+                            p{
+                                @include m-b(0);
+                                color: $white;
+                            }
+
+							.name {
+                                @include ff($ff-semibold);
+							}
+
+							.preview {
+                                @include no-m();
+                                @include fs($font-sm);
+                                @include p-a(0,0,1,0);
+								white-space: nowrap;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								@include transition(1s all ease);
+
+								span {
+                                    @include m-a(0,0,0,1);
+                                    @include p-a(0,2,0,0);
+									position: initial;
+									border-radius: initial;
+									background: none;
+									border: none;
+									opacity: .5;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		#bottom-bar {
+            @include w(100%);
+			position: absolute;
+			bottom: 0;
+            @include radius-a(0,0,0,$radius);
+
+			button {
+                @include w(50%);
+                @include p-vh(12,0);
+				float: left;
+				border: none;
+				background: darken($base-color,8%);
+				color: $white;
+				cursor: pointer;
+
+				@media screen and (max-width: $break) {
+                    @include w(100%);
+                    @include p-vh(12,0);
+					float: none;
+				}
+
+				&:focus {
+					outline: none;
+				}
+
+				&:nth-child(1) {
+                    @include br(1,solid,darken($base-color,5%));
+                    @include radius-a(0,0,0,$radius);
+
+					@media screen and (max-width: $break) {
+                        @include bb(1,solid,darken($base-color,5%));
+						border-right: none;
+					}
+				}
+
+				&:hover {
+					background: darken($base-color,10%);
+				}
+
+				i {
+                    @include m-r(6);
+
+					@media screen and (max-width: $break) {
+                        @include fs(20px);
+                        @include m-r(0);
+					}
+				}
+
+				span {
+					@media screen and (max-width: $break) {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+
+	.content {
+        @include size(60%,100%);
+		float: right;
+		overflow: hidden;
+		position: relative;
+        @include radius-a(0,$radius,$radius,0);
+
+		@media screen and (max-width: $break) {
+			width: calc(100% - 58px);
+			min-width: 240px !important;
+		}
+
+        @include media(tablet-xlg,exact){
+			width: calc(100% - 314px);
+		}
+
+        @include media(desktop,min){
+			width: calc(100% - 340px);
+		}
+
+		.contact-profile {
+            @include size(100%,60px);
+            @include lh(60px);
+			background: $header-bg;
+
+            @include media(phone,max){
+                @include h(52px);
+            }
+
+			img {
+                @include w(40px);
+                @include m-vh(10,15);
+				border-radius: 50%;
+				float: left;
+
+                @include media(phone,max){
+                    @include w(32px);
+                    @include m(10);
+                }
+			}
+
+			p {
+                @include p-vh(16,0);
+                @include fs(16px);
+				float: left;
+
+                @include media(phone-lg,max){
+                    @include fs(14px);
+                    @include p-a(18,0,10,0);
+                }
+
+                @include media(phone,max){
+                    @include fs(12px);
+                    @include p-a(16,0,10,0);
+                }
+			}
+
+			.social-media {
+				float: right;
+
+                @include media(phone,max){
+                    @include h(52px);
+                }
+
+				i {
+                    @include m-l(14);
+					cursor: pointer;
+
+                    @include media(phone,max){
+                        @include m-t(-10);
+                    }
+
+                    @include media(phone-md,max){
+                        @include m-l(5);
+                    }
+
+					&:nth-last-child(1) {
+                        @include m-r(20);
+
+                        @include media(phone-md,max){
+                            @include m-r(10);
+                        }
+					}
+
+					&:hover {
+						color: lighten($base-color,30%);
+					}
+				}
+			}
+		}
+
+		.messages {
+			height: auto;
+			min-height: calc(100% - 105px);
+			max-height: calc(100% - 105px);
+			overflow-y: scroll;
+			overflow-x: hidden;
+            @include w(100%);
+
+			&::-webkit-scrollbar {
+     	 	    width: 8px;
+				background: black(0.0);
+			}
+
+			&::-webkit-scrollbar-thumb {
+      	        background-color: black(0.3);
+			}
+
+			ul {
+
+				li {
+                    @include m-vh(5,15);
+					display: inline-block;
+					clear: both;
+					float: left;
+					width: calc(100% - 22px);
+
+					&:nth-last-child(1) {
+                        @include m-b(20);
+					}
+
+					&.sent {
+
+						img {
+                            @include m-a(0,8,0,0);
+						}
+
+						p {
+							background: $conversation-sender-bg;
+							color: $conversation-sender-text-color;
+						}
+					}
+
+					&.replies {
+
+						img {
+                            @include m-a(0,0,0,8);
+							float: right;
+						}
+
+						p {
+							background: $conversation-recipient-bg;
+                            color: $conversation-recipient-text-color;
+							float: right;
+						}
+					}
+
+					img {
+                        @include w(32px);
+						border-radius: 50%;
+						float: left;
+					}
+
+					p {
+                        @include m-b(0);
+                        @include radius($radius);
+                        @include p-vh(7,15);
+						display: inline-block;
+                        @include w-max(200px);
+                        @include lh(1.6);
+                        @include fs(13px);
+
+						@media screen and (min-width: $break) {
+                            @include w-max(300px);
+						}
+
+                        @include media(phone-md,max){
+                            @include p-vh(6,11);
+                            @include radius(8px);
+                            @include w-max(170px);
+                        }
+					}
+				}
+			}
+		}
+
+		.message-input {
+            @include w(100%);
+			position: absolute;
+			bottom: 0;
+			z-index: 99;
+
+			.wrap {
+				position: relative;
+                background: $header-bg;
+
+				input {
+                    @include p-a(13,32,11,12);
+					border: none;
+					width: calc(100% - 90px);
+                    background: none;
+
+					&:focus {
+						outline: none;
+					}
+				}
+
+				.attachment {
+                    @include m-t(15);
+					position: absolute;
+					right: 70px;
+					z-index: 4;
+					color: set-color($form-control-bg);
+                    @include fs(18px);
+					opacity: .5;
+					cursor: pointer;
+
+					&:hover {
+						opacity: 1;
+					}
+				}
+
+				button {
+                    @include w(50px);
+                    @include p-vh(12,0);
+					float: right;
+					border: none;
+					cursor: pointer;
+					background: $base-color;
+					color: $white;
+                    @include radius-a(0,0,$radius,0);
+
+					@media screen and (max-width: $break) {
+                        @include p-vh(12,0);
+					}
+
+					&:hover {
+						background: lighten($base-color,30%);
+					}
+
+					&:focus {
+						outline: none;
+					}
+				}
+			}
+		}
+	}
+}

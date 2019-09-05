@@ -1,0 +1,100 @@
+//----------------------------------
+//   File          : scss/components/_header.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : CSS definition for page headers
+//----------------------------------
+.header {
+    @include w($header-max-width);
+    margin: 0 auto;
+    @include m-b($header-margin-bottom);
+	background:$header-bg;
+    @include bb(1,solid,$header-border-bottom);
+    @if($header-box-shadow == 'true'){
+        @include shadow-out();
+    }
+    @else {
+        @include no-shadow();
+    }
+}
+.header-content {
+    @include p-vh($header-vertical-padding,$header-horizontal-padding);
+	position: relative;
+}
+@include media(tablet-xlg,max){
+    .header-content{
+        @include p(15);
+    }
+}
+.page-title {
+    @include typo($page-title-font,$page-title-size,$page-title-text-color,left);
+    display: block;
+	position: relative;
+    letter-spacing: -1px;
+	i {
+        @include m-r(4);
+        @include typo($font-icon,100%,$page-title-text-color,left);
+		top: -3px;
+		min-width: 22px;
+	}
+	small {
+        @include m-l(5);
+        @include fs(75%);
+		color: $page-title-small-text-color;
+	}
+}
+.breadcrumb {
+    @include no-p();
+    @include m-a(0,0,0,30);
+    background: transparent;
+
+	> li {
+        @include fs($font-sm);
+		position: relative;
+        display: inline-block;
+
+		> a {
+			color: $breadcrumb-link-color;
+			&:hover,
+            &:focus {
+				color: $breadcrumb-link-color;
+			}
+		}
+        &:first-child{
+            @include icon(before,home){
+                @include no-p();
+                @include m-t(-10);
+                @include fs(12px);
+                color: $breadcrumb-link-color;
+                top: 1px;
+                position: relative;
+            }
+        }
+        + li{
+            @include icon(before,arrow-left){
+                content:$breadcrumb-icon;
+                @include p-a(0,3,0,0);
+                @include m-t(-10);
+                color: $breadcrumb-link-color;
+                top: 3px;
+                position: relative;
+            }
+        }
+        &.active{
+            color:$breadcrumb-active-link-color;
+        }
+	}
+}
+
+.page-subtitle{
+    @include typo($page-subtitle-font,$page-subtitle-size,$page-subtitle-text-color,left);
+    @include m-a(20,0,10,5);
+    @include icon(before,subtitle){
+        @include m-r(6);
+    }
+    >small{
+        @include typo($page-subtitle-font,inherit,$page-subtitle-small-text-color,left);
+        @include fs($page-subtitle-size - 4);
+    }
+}

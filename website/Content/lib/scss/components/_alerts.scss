@@ -1,0 +1,232 @@
+//----------------------------------
+//   File          : scss/components/_alerts.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Bootstrap Alerts Override
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Alerts
+// 2. Contextual styles
+// 3. Rounded alerts
+// 4. Alert component
+// 5. Custom background
+// 6. Styled alerts
+// 7. Alert arrow
+
+
+//----------------------------------
+// 1. Alerts
+//----------------------------------
+.alert {
+    position: relative;
+    @include p-vh(15, 20);
+    @include m-b(10);
+    @include radius();
+
+    // Alert heading
+    .alert-heading {
+        @include m-a(0, null, 5, null);
+    }
+
+    // Provide class for links that match alerts
+    .alert-link {
+        color: inherit;
+    }
+
+    // Close button
+    .close {
+        &,
+        &:hover,
+        &:focus {
+            color: inherit;
+        }
+    }
+}
+
+//----------------------------------
+// 2. Contextual styles
+//----------------------------------
+.alert-primary {
+    background-color: c50(palette($primary));
+    border-color: $primary;
+    color: c1100(palette($primary));
+    &,
+    .close {
+        color: c700(palette($primary));
+    }
+}
+
+.alert-success {
+    background-color: c200(palette($success));
+    border-color: $success;
+    color: c1100(palette($success));
+    &,
+    .close {
+        color: c700(palette($success));
+    }
+}
+
+.alert-info {
+    background-color: c200(palette($info));
+    border-color: $info;
+    color: c1100(palette($info));
+    &,
+    .close {
+        color: c700(palette($info));
+    }
+}
+
+.alert-warning {
+    background-color: c50(palette($warning));
+    border-color: $warning;
+    color: c1100(palette($warning));
+    &,
+    .close {
+        color: c700(palette($warning));
+    }
+}
+
+.alert-danger {
+    background-color: c50(palette($danger));
+    border-color: $danger;
+    color: c1100(palette($danger));
+    &,
+    .close {
+        color: c700(palette($danger));
+    }
+}
+
+
+//----------------------------------
+// 3. Rounded alerts
+//----------------------------------
+.alert.alert-rounded {
+    @include radius(100px);
+    @include p-vh(15, 20);
+}
+
+
+//----------------------------------
+// 4. Alert component
+//----------------------------------
+.alert-component {
+    &[class*=alert-styled-] {
+        background-color: $white;
+    }
+}
+
+
+//----------------------------------
+// 5. Custom background
+//----------------------------------
+.alert[class*=bg-] {
+    a,
+    .alert-link {
+        color: $white;
+    }
+}
+
+
+//----------------------------------
+// 6. Styled alerts
+//----------------------------------
+.alert {
+    &[class*=alert-styled-],
+    .ui-pnotify[class*=alert-styled-] > & {
+        @include icon(after, alert-primary){
+            color: $white;
+            @include w(44px);
+            @include pos(absolute, 48%, null, null, -30px);
+            @include m-t(-12);
+        }
+
+        &.alert-danger,
+        &[class*=bg-danger]{
+            @include icon(after, alert-danger);
+        }
+
+        &.alert-success,
+        &[class*=bg-success]{
+            @include icon(after, alert-success)
+        }
+
+        &.alert-warning,
+        &[class*=bg-warning]{
+            @include icon(after, alert-warning)
+        }
+
+        &.alert-info,
+        &[class*=bg-info]{
+            @include icon(after, alert-info)
+        }
+    }
+
+    &.alert-styled-left,
+    .ui-pnotify.alert-styled-left > & {
+        border-left-width: 44px;
+        &:after {
+            left: -30px !important;
+            right: auto !important;
+            color: $white !important;
+        }
+    }
+
+    &.alert-styled-right,
+    .ui-pnotify.alert-styled-right > & {
+        border-right-width: 44px;
+        &:after {
+            left: auto !important;
+            right: -58px !important;
+            color: $white !important;
+        }
+    }
+
+    &.alert-styled-custom,
+    .ui-pnotify.alert-styled-custom > & {
+        @include icon(after, alert)
+    }
+
+    &.alert-styled-left {
+        border-left-width: 44px;
+        &[class*=bg-] {
+            border-left-color: black(0.15)!important;
+        }
+    }
+
+    &.alert-styled-right {
+        border-right-width: 44px;
+        &[class*=bg-] {
+            border-right-color: black(0.15)!important;
+        }
+    }
+}
+
+
+//----------------------------------
+// 7. Alert arrow
+//----------------------------------
+.alert {
+    &[class*=alert-arrow-]:before,
+    .ui-pnotify[class*=alert-arrow-] > &:before {
+        @include m-a(-5,null,null,5);
+        @include pos(absolute, 50%, null, null, -5px);
+        content: "";
+        display: inline-block;
+        border-left: 5px solid;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left-color: inherit;
+    }
+    &.alert-arrow-right:before,
+    .ui-pnotify.alert-arrow-right > &:before {
+        left: auto;
+        right: 0;
+        border-left: 0;
+        border-right: 5px solid;
+        border-right-color: inherit;
+    }
+}

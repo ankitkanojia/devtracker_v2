@@ -1,0 +1,54 @@
+//----------------------------------
+//   File          : scss/mixins/_border.scss
+//   Type          : SCSS mixin
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+// ---------------------------------
+
+// Border
+@mixin b($s: 1, $t: solid, $c: $grey) {
+    border: #{$s}px $t $c;
+}
+
+// Border top
+@mixin bt($s: 1, $t: solid, $c: $grey) {
+	border-top: #{$s}px $t $c;
+}
+
+// Border bottom
+@mixin bb($s: 1, $t: solid, $c: $grey) {
+	border-bottom: #{$s}px $t $c;
+}
+
+// Border left
+@mixin bl($s: 1, $t: solid, $c: $grey) {
+	border-left: #{$s}px $t $c;
+}
+
+// Border right
+@mixin br($s: 1, $t: solid, $c: $grey) {
+	border-right: #{$s}px $t $c;
+}
+
+// Border vertical
+@mixin bvr($s: 1, $t: solid, $c: $grey) {
+	@include bt($s $t $c);
+	@include bb($s $t $c);
+}
+@mixin bv($s: 1, $t: solid, $c: $grey) {
+	@include bvr($s $t $c);
+}
+
+// Border horizontal
+@mixin bhr($s: 1, $t: solid, $c: $grey) {
+	@include bl($s $t $c);
+	@include br($s $t $c);
+}
+@mixin bh($s: 1, $t: solid, $c: $grey) {
+	@include bhr($s $t $c);
+}
+
+// No border
+@mixin nob() {
+	border: none;
+}

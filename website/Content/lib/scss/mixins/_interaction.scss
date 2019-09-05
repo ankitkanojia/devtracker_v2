@@ -1,0 +1,10 @@
+//----------------------------------
+//   File          : scss/mixins/_interactions.scss
+//   Type          : SCSS mixin
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+// ---------------------------------
+
+@mixin cursor($cursor: pointer) {
+	cursor: $cursor;
+}

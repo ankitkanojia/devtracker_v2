@@ -1,0 +1,856 @@
+//----------------------------------
+//   File          : scss/widgets/_hovers.scss
+//   Type          : Main SCSS file
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : CSS stylesheet for boxes hover styles
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Box 1
+// 2. Box 2
+// 3. Box 3
+// 4. Box 4
+// 5. Box 5
+// 6. Box 6
+// 7. Box 7
+// 8. Box 8
+// 9. Box 9
+// 10. Box 10
+// 11. Box 11
+// 12. Box 12
+
+
+//----------------------------------
+// 1. Box 1
+//----------------------------------
+.box1 {
+	position: relative;
+	@include radius($radius);
+	img {
+		@include size(100%,auto);
+		@include radius($radius);
+	}
+	.box-content {
+		@include pos(absolute,0,null,null,0);
+		@include size(100%);
+		@include p-a(50,30,20,30);
+		background-color: rgba(c200(palette($theme-color)), 0.6);
+		opacity: 0;
+	}
+	.title {
+		@include m-t(0);
+		@include typo($ff-semibold,$font-xlg,$white,left){
+			text-transform: uppercase;
+		}
+	}
+	.post {
+		@include typo($ff-semibold,$font-base,$white,left){
+			text-transform: uppercase;
+		}
+		display: block;
+	}
+	.icon {
+		@include no-p();
+		@include m-a(20,0,0,0);
+		list-style: none;
+		li {
+			@include m-r(8);
+			display: inline-block;
+			&:last-child {
+				@include m-r(0);
+			}
+			a {
+				@include size(35px);
+				@include lh(35px);
+				@include radius(50%);
+				@include b(1,solid,$white);
+				@include fs(14px);
+				display: block;
+				color: $white;
+				text-align: center;
+				@include animation(transition,'all 0.3s ease 0s');
+				&:hover {
+					background: $white;
+					color: $theme-color;
+				}
+			}
+		}
+	}
+	&:hover .box-content {
+		@include animate(animate 800ms linear 1);
+		opacity: 1;
+	}
+}
+
+@include keyframes(animate){
+	0% {
+		@include animation(transform, perspective(400px) rotate3d(0, 1, 0, 90deg));
+		animation-timing-function: ease-in;
+		-moz-animation-timing-function: ease-in;
+		-webkit-animation-timing-function: ease-in;
+		opacity: 0;
+	}
+	40% {
+		@include animation(transform,perspective(400px) rotate3d(0, 1, 0, -20deg));
+		animation-timing-function: ease-in;
+		-moz-animation-timing-function: ease-in;
+		-webkit-animation-timing-function: ease-in;
+	}
+	60% {
+		@include animation(transform,perspective(400px) rotate3d(0, 1, 0, 10deg));
+		opacity: 1;
+	}
+	80% {
+		@include animation(transform,perspective(400px) rotate3d(0, 1, 0, -5deg));
+	}
+	100% {
+		@include animation(transform,perspective(400px));
+	}
+}
+
+
+//----------------------------------
+// 2. Box 2
+//----------------------------------
+.box2 {
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+	@include radius($radius);
+	&:after {
+		@include size(100%);
+		@include pos(absolute,0,null,null,0);
+		content: "";
+		background-color: black(0.6);
+		opacity: 0;
+		@include animation(transition,all 0.5s ease 0s);
+	}
+	&:hover {
+		&:after {
+			opacity: 1;
+		}
+		.icon1 {
+			left: 30%;
+			opacity: 1;
+		}
+		.icon2 {
+			right: 20%;
+			opacity: 1;
+		}
+		.box-content {
+			bottom: 0;
+		}
+	}
+	img {
+		@include size(100%,auto);
+	}
+	.icon1 {
+		@include size(50px);
+		@include lh(50px);
+		@include radius(50%);
+		@include m-r(20);
+		@include pos(absolute,35%,null,null,10%);
+		color: $theme-color;
+		display: inline-block;
+		background: c50(palette($theme-color));
+		opacity: 0;
+		z-index: 2;
+		@include animation(transition,all 0.5s ease 0s);
+	}
+	.icon2 {
+		@include size(50px);
+		@include lh(50px);
+		@include pos(absolute,35%,0,null,null);
+		@include radius(50%);
+		@include m-r(20);
+		display: inline-block;
+		background: c50(palette($theme-color));
+		opacity: 0;
+		z-index: 2;
+		@include animation(transition, all 0.5s ease 0s);
+	}
+	.box-content {
+		@include w(100%);
+		@include pos(absolute,null,null,-100%,0);
+		@include p-vh(15,0);
+		background: c400(palette($danger));
+		color: $white;
+		z-index: 2;
+		@include animation(transition,all 0.5s ease 0s);
+	}
+	.title {
+		@include no-m();
+		@include ff($ff-light);
+		@include fs(22px);
+	}
+	.post {
+		@include m-t(0);
+		@include fs(13px);
+		display: block;
+	}
+	.icon a {
+		@include fs(22px);
+		color: $theme-color;
+		display: block;
+	}
+}
+
+@include media(phone-xlg,max) {
+	.box2:hover {
+		.icon1 {
+			left: 33%;
+		}
+		.icon2 {
+			right: 25%;
+		}
+	}
+}
+
+
+//----------------------------------
+// 3. Box 3
+//----------------------------------
+.box3 {
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+	@include radius($radius);
+	&:after {
+		@include size(100%);
+		@include pos(absolute,0,null,null,0);
+		content: "";
+		background-color: rgba($theme-color,0.5);
+		opacity: 0;
+		@include animation(transition,all 0.5s ease 0s);
+	}
+	&:hover {
+		&:after {
+			opacity: 1;
+		}
+		.icon {
+			top: 30%;
+		}
+		.box-content {
+			bottom: 0;
+		}
+	}
+	img {
+		@include size(100%,auto);
+	}
+	.icon {
+		@include w(100%);
+		@include no-s();
+		@include pos(absolute,-100%,null,null,0);
+		list-style: none;
+		z-index: 1;
+		@include animation(transition,all 0.5s ease 0s);
+		li {
+			@include size(50px);
+			@include lh(50px);
+			@include radius(8px);
+			@include m-r(20);
+			display: inline-block;
+			background: $white;
+			@include animation(transform, rotate(45deg));
+			&:last-child {
+				@include m-r(0);
+			}
+			a {
+				@include fs(22px);
+				display: block;
+				color: $theme-color;
+				@include animation(transform, rotate(-45deg));
+			}
+		}
+	}
+	.box-content {
+		@include w(100%);
+		@include p-vh(15,0);
+		@include pos(absolute,null,null,-100%,0);
+		background: c400(palette($theme-color));
+		z-index: 2;
+		@include animation(transition,all 0.5s ease 0s);
+	}
+	.title {
+		@include no-m();
+		@include fs(20px);
+		color: $white;
+		text-transform: capitalize;
+	}
+	.post {
+		@include fs(13px);
+		color: $white;
+		text-transform: capitalize;
+	}
+}
+
+
+//----------------------------------
+// 4. Box 4
+//----------------------------------
+.box4 {
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+	@include radius($radius);
+	img {
+		@include size(100%,auto);
+	}
+	.box-content {
+		@include size(100%);
+		@include pos(absolute,0,null,null,0);
+		@include p-vh(130,20);
+		background: rgba(lighten($black, 10%),0.7);
+		color: $white;
+		@include animation(transform,scale(0));
+		@include animation(transition,all 0.5s ease 0s);
+	}
+	&:hover {
+		.box-content {
+			@include animation(transform,scale(1));
+		}
+		.heading {
+			bottom: -30%;
+		}
+	}
+	.title {
+		@include m-b(15);
+		@include ff($ff-light);
+		@include fs(24px);
+	}
+	.description {
+		@include m-b(15);
+		@include fs(14px);
+	}
+	.social-links {
+		@include no-s();
+		list-style: none;
+		li {
+			@include m-r(10);
+			display: inline-block;
+			a {
+				@include size(44px);
+				@include lh(40px);
+				@include radius(50%);
+				@include fs(16px);
+				display: block;
+				color: $white;
+				@include b(1,solid,$white);
+				@include animation(transition,all 0.5s ease 0s);
+				&:hover {
+					background: lighten($black, 10%);
+					@include b(1,solid,lighten($black, 10%));
+				}
+			}
+		}
+	}
+	.heading {
+		@include w(100%);
+		@include no-m();
+		@include pos(absolute,null,null,0,0);
+		@include p-vh(10,0);
+		@include fs(14px);
+		background: rgba(lighten($black, 10%),0.8);
+		color: $white;
+		text-align: center;
+		@include animation(transition,all 0.5s ease 0s);
+	}
+}
+
+@include media(phone-md,max) {
+	.box4 {
+		.box-content {
+			@include p(10);
+		}
+		&:hover .heading {
+			bottom: -40%;
+		}
+	}
+}
+
+
+//----------------------------------
+// 5. Box 5
+//----------------------------------
+.box5 {
+	@include radius($radius);
+	position: relative;
+	overflow: hidden;
+	img {
+		@include size(100%,auto);
+	}
+	.icon {
+		@include pos(absolute,null,null,0,0);
+		@include size(50px);
+		@include p-vh(11,17);
+		@include fs(16px);
+		color: $white;
+		background: black(0.8);
+		@include animation(transition,all 0.50s ease 0s);
+		&:hover {
+			@include size(100%);
+			@include p-a(15,0,0,0);
+			padding-left:88%;
+			.box-content {
+				@include size(100%);
+				left: 0;
+				padding: 25% 10%;
+				opacity: 1;
+			}
+		}
+	}
+	.box-content {
+		@include size(0);
+		@include pos(absolute,null,null,0,-100%);
+		text-align: center;
+		opacity: 0;
+		@include animation(transition,all 0.7s ease 0s);
+		i {
+			@include fs(32px);
+		}
+	}
+	.title {
+		@include fs(24px);
+		@include ff($ff-light);
+	}
+	.description {
+		@include fs(13px);
+		color: $white;
+	}
+}
+
+
+//----------------------------------
+// 6. Box 6
+//----------------------------------
+.box6 {
+	position: relative;
+	color: $white;
+	@include radius($radius);
+	img {
+		@include size(100%,auto);
+		@include radius($radius);
+	}
+	.box-content {
+		@include size(100%);
+		@include pos(absolute,0,null,null,0);
+		background-color: black(0);
+		@include animation(transition,all 0.3s ease 0s);
+	}
+	&:hover {
+		.box-content {
+			background-color: black(0.4);
+		}
+		.box-icon {
+			opacity: 1;
+			@include animation(transform,translate(-50%, -50%) rotate(-45deg));
+		}
+		.links {
+			left: 0;
+		}
+		.box-inner h3 {
+			right: 0;
+			opacity: 1;
+		}
+	}
+	.box-icon {
+		@include size(50px);
+		@include radius($radius);
+		@include pos(absolute,50%,null,null,50%);
+		background: $black;
+		opacity: 0;
+		text-align: center;
+		@include animation(transform,translate(-50%, -50%) rotate(0deg));
+		@include animation(transition,all 0.4s ease 0s);
+		z-index: 1;
+		i {
+			@include fs(24px);
+			@include lh(54px);
+			color: $white;
+			opacity: 0.5;
+		}
+	}
+	.box-inner {
+		@include size(50%,100%);
+		float: left;
+		overflow: hidden;
+		position: relative;
+		h3 {
+			@include fs(15px);
+			@include pos(absolute,null,-100%,47%,null);
+			background: $theme-color;
+			@include radius-a($radius,0,0,$radius);
+			@include p-a(2,30,5,10);
+			opacity: 0;
+			@include animation(transition,all 0.4s ease 0s);
+		}
+	}
+	.links {
+		background: $white;
+		@include radius-a(0,$radius,$radius,0);
+		@include p-a(2,10,2,30);
+		@include pos(absolute,50%,null,null,-100%);
+		@include animation(transition,all 0.4s ease 0s);
+		a {
+			@include fs(15px);
+			color: lighten($black, 20%);
+			@include p-vh(0,4);
+			opacity: 0.7;
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+
+//----------------------------------
+// 7. Box 7
+//----------------------------------
+.box7 {
+	position: relative;
+	perspective: 1000px;
+	@include radius($radius);
+	img {
+		@include size(100%,auto);
+		@include radius($radius);
+		opacity: 1;
+		@include animation(transform, translateY(0) rotateX(0));
+		@include animation(transition,all 0.6s ease-in-out 0s);
+	}
+	&:hover {
+		img {
+			@include animation(transform, translateY(-100%) rotateX(90deg));
+			@include animation(transform-origin, center bottom 0);
+			opacity: 0;
+		}
+		.over-layer {
+			opacity: 1;
+		}
+	}
+	.over-layer {
+		@include pos(absolute,0,null,null,0);
+		@include size(100%);
+		@include p-vh(0,20);
+		opacity: 0;
+		background: c800(palette($theme-color));
+		text-align: center;
+		@include animation(transition,all 0.60s ease-in-out 0s);
+	}
+	.title {
+		@include pos(relative,11%,null,null,null);
+		color: $white;
+		text-transform: capitalize;
+		&:after {
+			@include w(50%);
+			@include bb(1,solid,$white);
+			content: "";
+			display: block;
+			margin: 10px auto 0;
+		}
+	}
+	.description {
+		@include pos(relative,11%,null,null,null);
+		color: $white;
+		&:after {
+			@include w(50%);
+			@include bb(1,solid,$white);
+			content: "";
+			display: block;
+			margin: 10px auto 0;
+		}
+	}
+	.social-links {
+		@include pos(relative,11%,null,null,null);
+		@include no-s();
+		color: $white;
+		list-style: none;
+		li {
+			@include m(10);
+			display: inline-block;
+			a {
+				color: $white;
+				@include fs(20px);
+				&:hover {
+					color: c100(palette($theme-color));
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+
+
+//----------------------------------
+// 8. Box 8
+//----------------------------------
+.box8 {
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	@include radius($radius);
+	&:hover {
+		.box-content {
+			@include animation(transform,scale(1,1));
+			opacity: 1;
+		}
+		.box-img img {
+			@include animation(transform, translateY(-50px) scale(0.5));
+		}
+	}
+	.box-content {
+		@include size(100%);
+		@include pos(absolute,0px,null,null,0);
+		@include p-vh(10,40);
+		text-align: center;
+		z-index: -1;
+		opacity: 0;
+		background: c600(palette($theme-color));
+		@include animation(transform,scale(0));
+		@include animation(transition,all 0.4s ease 0s);
+	}
+	.title {
+		@include pos(relative,65%,null,null,null);
+		@include fs(20px);
+		@include ff($ff-light);
+		color: $white;
+		letter-spacing: 1px;
+		&:after {
+			content: "";
+			@include b(1,solid,$white);
+			@include m-t(5);
+			display: block;
+		}
+	}
+	.tag-line {
+		@include pos(relative,230px,null,null,null);
+		@include fs(13px);
+		color: $white;
+		text-transform: capitalize;
+	}
+	.box-img img {
+		@include size(100%,auto);
+		@include animation(transform,scale(1,1) translateY(0px));
+		@include animation(transition,all 0.4s ease 0s);
+	}
+}
+
+@include media(phone-xlg,max) {
+	.box8 {
+		.title {
+			@include fs(16px);
+			letter-spacing: 0;
+			top: 60%;
+		}
+		.tag-line {
+			@include fs(12px);
+			top: 60%;
+		}
+	}
+}
+
+
+//----------------------------------
+// 9. Box 9
+//----------------------------------
+.box9 {
+	overflow: hidden;
+	position: relative;
+	@include radius($radius);
+	.content {
+		@include size(93%);
+		background: $theme-color;
+		@include m-a(9,0,0,9);
+		@include p-vh(60,30);
+		@include pos(absolute,-100%,null,null,0);
+		@include animation(transition, all 0.5s ease 0s);
+	}
+	.title {
+		@include fs(22px);
+		@include ff($ff-light);
+		color: $white;
+		@include m-a(0,0,10,0);
+		text-transform: capitalize;
+	}
+	.description {
+		@include fs(13px);
+		color: $white;
+		@include m-b(35);
+	}
+	.box-img img {
+		@include size(100%,auto);
+	}
+	&:hover .content {
+		top: 0;
+	}
+}
+
+
+//----------------------------------
+// 10. Box 10
+//----------------------------------
+.box10 {
+	position: relative;
+	overflow: hidden;
+	@include radius($radius);
+	.box-img {
+		@include animation(transform, translateX(0px));
+		@include animation(transition,transform 0.40s linear);
+		img {
+			@include size(100%,auto);
+		}
+	}
+	&:hover {
+		.box-img {
+			@include animation(transform, translateX(100%));
+		}
+		.content {
+			right: 0;
+		}
+	}
+	.content {
+		@include pos(absolute,0,100%,null,null);
+		@include size(100%);
+		@include p-vh(30,15);
+		background: c700(palette($info));
+		@include animation(transition,right 0.30s linear);
+	}
+	.title {
+		@include m-a(80,0,10,0);
+		@include fs(20px);
+		@include ff($ff-light);
+		text-transform: capitalize;
+		color: $white;
+	}
+	.description {
+		color: $white;
+		&:after {
+			@include w(100%);
+			content: "";
+			@include bb(1,solid,$white);
+			display: block;
+			margin: 8px auto;
+		}
+	}
+	.social-links {
+		@include no-s();
+		li {
+			@include m-r(15);
+			list-style: none;
+			display: inline-block;
+			a {
+				color: $white;
+				@include fs(16px);
+			}
+		}
+	}
+}
+
+
+//----------------------------------
+// 11. Box 11
+//----------------------------------
+.box11 {
+	overflow: hidden;
+	position: relative;
+	@include radius($radius);
+	.content {
+		@include size(100%);
+		@include p-vh(120,30);
+		@include pos(absolute,0,null,null,-100%);
+		background: rgba($theme-color,0.7);
+		@include animation(transition,all 0.30s ease 0s);
+	}
+	.title {
+		@include fs(20px);
+		@include ff($ff-light);
+		color: $white;
+		text-transform: capitalize;
+		@include m-a(0,0,10,0);
+	}
+	.description {
+		@include fs(13px);
+		@include m-b(35);
+		color: $white;
+	}
+	.box-img img {
+		@include size(100%,auto);
+	}
+	&:hover .content {
+		left: 0;
+	}
+}
+@include media(phone-xlg,max) {
+	.box11 .content {
+		@include p-vh(20,30);
+	}
+}
+
+
+//----------------------------------
+// 12. Box 12
+//----------------------------------
+.box12 {
+	@include radius($radius);
+	background: $black;
+	position: relative;
+	overflow: hidden;
+	img {
+		@include size(100%,auto);
+		opacity: 1;
+		@include animation(transition,all 0.35s ease 0s);
+	}
+	.box-content {
+		@include pos(absolute,null,null,0,null);
+		@include size(100%);
+		@include p-a(20,30,20,50);
+		color: $white;
+		&:before {
+			@include pos(absolute,30px,null,30px,100%);
+			content: "";
+			@include bl(2,solid,white(0.8));
+			opacity: 0;
+			background-color: white(0.5);
+			@include animation(transition,all 0.5s ease 0.6s);
+		}
+		.title {
+			@include fs(22px);
+			@include ff($ff-light);
+			@include animation(transform,translate3d(30%, 0, 0));
+			@include animation(transition-delay,0.3s);
+		}
+		.description {
+			@include fs(13px);
+			color: $white;
+			@include animation(transform,translate3d(0%, 30%, 0));
+			@include animation(transition-delay,0s);
+		}
+	}
+	.title,
+	.description {
+		opacity: 0;
+	}
+	&:hover {
+		img {
+			opacity: 0.3;
+		}
+		.title {
+			opacity: 1;
+			@include animation(transform,translate3d(0%, 0, 0));
+			@include animation(transition-delay,0.4s);
+		}
+		.description {
+			opacity: 0.9;
+			@include animation(transform,translate3d(0%, 30%, 0));
+			@include animation(transition-delay,0.6s);
+		}
+		.box-content:before {
+			left: 30px;
+			opacity: 1;
+			@include animation(transition-delay,0s);
+		}
+	}
+}

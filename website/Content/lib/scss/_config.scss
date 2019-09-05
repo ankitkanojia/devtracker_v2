@@ -1,0 +1,565 @@
+//----------------------------------
+//   Theme         : Butterfly
+//   Style         : Sidebar Menu
+//   Location      : scss/_config.scss
+//   Type          : SCSS Configuration
+//   Version       : 2.0.0
+//   Last Updated  : August 3, 2017
+//   Description   : Theme variables settings
+//----------------------------------
+
+
+            //-----------------------------------------------------------------------------------//
+            //                Please DO NOT remove !global wherever mentioned.                   //
+            //-----------------------------------------------------------------------------------//
+
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Colors
+// 2. Typography
+// 3. Spacing
+// 4. Theme Settings
+// 5. Menu Settings (Layouts)
+// 6. Rightbar Settings
+// 7. Main Container Settings
+// 8. Bootstrap Elements Settings
+// 9. Plugins Settings
+// 10. Pages Settings
+
+
+// ---------------------------------
+// 1. Colors
+// ---------------------------------
+$white                                                  :#FFFFFF !global;
+$black                                                  :#000000 !global;
+$grey                                                   :#9E9E9E !global;
+
+// Bootstrap Colors
+$primary                                                :#2196F3 !global;
+$success                                                :#4CAF50 !global;
+$info                                                   :#00BCD4 !global;
+$warning                                                :#FF5722 !global;
+$danger                                                 :#F44336 !global;
+
+// Additional Colors Map
+$colors-list: (
+    "primary"                                           :$primary,
+    "success"                                           :$success,
+    "info"                                              :$info,
+    "warning"                                           :$warning,
+    "danger"                                            :$danger,
+    "grey"                                              :$grey,
+    "black"                                             :$black,
+    "pink"                                              :#E91E63,
+    "purple"                                            :#9C27B0,
+    "dpurple"                                           :#673AB7,
+    "indigo"                                            :#3F51B5,
+    "teal"                                              :#009688,
+    "lgreen"                                            :#8BC34A,
+    "lime"                                              :#CDDC39,
+    "amber"                                             :#FFC107,
+    "brown"                                             :#795548,
+    "slate"                                             :#607D8B,
+) !global;
+
+
+//----------------------------------
+// 2. Typography
+//----------------------------------
+
+// Fonts
+$tahoma                                                 :Tahoma, Geneva, sans-serif !global;
+$times-new-roman                                        :"Times New Roman", Times, serif !global;
+$trebuchet                                              :"Trebuchet MS", Helvetica, sans-serif !global;
+$courier-new                                            :"Courier New", serif !global;
+$verdana                                                :Verdana, Geneva, sans-serif !global;
+$ff-regular                                             :"OpenSans", sans-serif !global;           // Default font family for default text
+$ff-light                                               :"OpenSans_Light", sans-serif !global;     // Default font family for light text
+$ff-semibold                                            :"OpenSans_SemiBold", sans-serif !global;  // Default font family for semibold text
+$ff-bold                                                :"OpenSans_Bold", sans-serif !global;      // Default font family for bold text
+$ff-extrabold                                           :"OpenSans_ExtraBold", sans-serif !global; // Default font family for extrabold text
+
+// Icon fonts
+$font-icon                                              :'icomoon' !global;
+
+// Icons Map
+$icons: (
+    blank                                               : "",
+    search                                              : "\ea38",
+    caret                                               : "\ea2d",
+    alert                                               : "\eb78",
+    alert-primary                                       : "\eb0b",
+    alert-danger                                        : '\eb63',
+    alert-warning                                       : '\eb78',
+    alert-info                                          : '\ead5',
+    alert-success                                       : '\eb61',
+    arrow-left                                          : "\eaa8",
+    arrow-right                                         : "\e916",
+    arrow-up                                            : "\e926",
+    arrow-down                                          : "\ea32",
+    arrow-left-double                                   : "\f2c5",
+    arrow-right-double                                  : "\f2c6",
+    collapse                                            : '\f2c4',
+    reload                                              : '\eb3f',
+    move                                                : '\f1ea',
+    modal                                               : "\eb13",
+    dropdown                                            : "\ebe0",
+    close                                               : "\eaff",
+    copy                                                : "\e9d2",
+    csv                                                 : "\f036",
+    print                                               : "\ee99",
+    pdf                                                 : "\e911",
+    excel                                               : "\f036",
+    group-expand                                        : "\eaf3",
+    group-collapse                                      : "\eaf4",
+    home                                                : "\e92f",
+    subtitle                                            : "\e9c5",
+    checker                                             : "\ebc7",
+    switch                                              : "\ec68",
+    tick                                                : "\eaed",
+    arrow-left-1                                        : "\f291",
+    arrow-right-1                                       : "\f292",
+    removed                                             : "\eaff",
+    added                                               : "\eaf3",
+    unselected                                          : "\ef32",
+    selected                                            : "\ef34",
+    star                                                : "\eac1",
+) !global;
+
+// Text colors
+$text-color                                             :#111111 !global;
+$link-color                                             :$text-color !global;
+$hover-color                                            :$text-color !global;
+$text-muted                                             :#888888 !global;
+
+// Font sizes
+$font-base                                              :13px !global;
+$font-xlg                                               :ceil(($font-base * 1.50)) !global;  // 20px
+$font-lg                                                :ceil(($font-base * 1.25)) !global;  // 17px
+$font-sm                                                :ceil(($font-base * 0.90)) !global;  // 12px
+$font-xs                                                :ceil(($font-base * 0.80)) !global;  // 11px
+
+// Headings sizes
+$h1                                                     :floor(($font-base * 2.15)) !global; // 28px
+$h2                                                     :floor(($font-base * 1.90)) !global; // 24px
+$h3                                                     :ceil(($font-base * 1.65)) !global;  // 21px
+$h4                                                     :ceil(($font-base * 1.35)) !global;  // 18px
+$h5                                                     :ceil(($font-base * 1.20)) !global;  // 16px
+$h6                                                     :$font-base !global;                 // 13px
+
+// Icon sizes
+$icon-base                                              :16px !global;
+$icon-xlg                                               :ceil(($icon-base * 1.60)) !global;  // 26px
+$icon-lg                                                :ceil(($icon-base * 1.40)) !global;  // 23px
+$icon-sm                                                :ceil(($icon-base * 0.75)) !global;  // 12px
+$icon-xs                                                :ceil(($icon-base * 0.60)) !global;  // 10px
+
+// Line height
+$line-base                                              :1.8 !global;
+
+// Letter spacing
+$global-letter-spacing                                  :-0.2px;
+$letter-base                                            :1px !global;
+$letter-xlg                                             :3px !global;
+$letter-lg                                              :2px !global;
+$letter-sm                                              :.8 !global;
+$letter-xs                                              :.5 !global;
+$heading-spacing                                        :1px !global;
+
+
+// ---------------------------------
+// 3. Spacing
+// ---------------------------------
+$padding-base                                           :1 !global;                 // Value: 1px
+$margin-base                                            :1 !global;                 // Value: 1px
+$space-base                                             :4 !global;                 // Value: 4px
+$space-xs                                               :$space-base - 2 !global;
+$space-sm                                               :$space-base - 1 !global;
+$space-lg                                               :$space-base + 2 !global;
+$space-xlg                                              :$space-base + 4 !global;
+
+
+//----------------------------------
+// 4. Theme Settings
+//----------------------------------
+$theme-color                                            :#565090 !global;   // This will work as default color for bootstrap elements and other color settings
+
+// Style
+$style                                                  :'rounded' !global; // Options: 'rounded', 'flat'
+$radius                                                 :1px !global;       // Works when Style is selected to 'rounded'
+
+// Scrollbar
+$scrollbar-style                                        :'flat' !global;    // Options: 'rounded', 'flat'
+$scrollbar-color                                        :#FF8F9D !global;
+
+// Box-shadows
+$shadow-style                                           :'gradient' !global;    // Options: 'gradient', 'flat'
+$shadow-color                                           :#E3E4E5 !global;
+$shadow-opacity                                         :0.4 !global;
+$shadow-blur-radius                                     :10px !global;
+$shadow-spread-radius                                   :2px !global;
+$shadow-vertical-offset                                 :2px !global;
+$shadow-horizontal-offset                               :2px !global;
+
+// Main body background
+$body-bg                                                :#F0EFF5 !global;
+
+// Topbar
+$topbar-vertical-padding                                :0;
+$topbar-horizontal-padding                              :0;
+
+// Branding
+$logo-width                                             :95px;
+$logo                                                   :'../../img/logo-dark.png';
+$logo-mobile                                            :'../../img/logo-light.png';
+$brand-bg-color                                         :$white;
+$brand-border-bottom-color                              :none;
+$brand-border-right-color                               :$white;
+
+// Main navbar
+$navbar-shadow                                          :'false';
+$navbar-bg-color                                        :$theme-color;
+$navbar-border-bottom-color                             :none;
+
+// Navbar icons
+$icons-color                                            :$white;
+
+// Searchbar
+$search-icon-color                                      :$white;
+$search-text-color                                      :$white;
+
+// Quick apps dropdown
+$quick-apps-dropdown-shadow                             :'true';
+$quick-apps-dropdown-border                             :#DDDDDD;
+$quick-apps-dropdown-bg                                 :$white;
+$quick-apps-label-bg                                    :$white;
+$quick-apps-label-color                                 :$text-color;
+
+// User profile dropdown
+$navbar-username-text-color                             :$white;
+$navbar-userinfo-text-color                             :lighten($theme-color,30%);
+$user-dropdown-shadow                                   :'true';
+$user-dropdown-border                                   :#DDDDDD;
+$user-dropdown-bg                                       :$white;
+$user-profile-bg                                        :$white;
+$user-name-text-color                                   :$text-color;
+$user-links-color                                       :$text-color;
+$logout-button-bg                                       :$theme-color;
+
+
+//----------------------------------
+// 5. Menu Settings (Layouts)
+//----------------------------------
+
+// Main layout
+
+// Available Options:
+// 1. 'material'
+// 2. 'dropdown'
+// 3. 'dropdown_label'
+// 4. 'iconic'
+// 5. 'sidebar'
+// 6. 'megamenu'
+// 7. 'iconbar'
+// 8. 'boxed'
+
+$menu-style                                             :'sidebar';
+
+// Note: Material menu user info (Works only in case of material menu layout and mobile devices
+$material-bg-image                                      :'../../img/none.png';
+$material-bg-color                                      :#FBFBFC;
+$material-bg-size                                       :'cover';
+$material-bg-position                                   :'top left';
+$material-bg-tint-color                                 :#FBFBFC;
+$material-bg-tint-opacity                               :0.6;
+$user-profile-container-shadow                          :'false';
+$user-profile-container-text-color                      :$text-color;
+
+// Main menu
+$menu-shadow                                            :'true';
+$menu-padding-top                                       :0;
+$menu-padding-bottom                                    :0;
+$menu-padding-left                                      :20;
+$menu-padding-right                                     :20;
+$menu-bg-color                                          :$white;
+$menu-border-color                                      :'transparent';
+$menu-link-font-family                                  :$ff-semibold;
+$menu-link-font-style                                   :capitalize;
+$menu-link-color                                        :#888888;
+$link-hover-active-bg                                   :#FF5F74;
+$link-hover-active-font-family                          :$ff-semibold;
+$link-hover-active-font-style                           :capitalize;
+$link-hover-active-color                                :$white;
+
+// Submenu
+$submenu-bg-color                                       :#FBFBFC;
+$submenu-links-color                                    :darken($submenu-bg-color,40%);
+$submenu-links-font-family                              :$ff-regular;
+$submenu-links-font-style                               :capitalize;
+$submenu-links-active-bg                                :#FBFBFC;
+$submenu-links-active-color                             :$black;
+$submenu-links-active-font-family                       :$ff-semibold;
+$submenu-links-active-font-style                        :capitalize;
+
+
+//----------------------------------
+// 6. Rightbar Settings
+//----------------------------------
+$rightbar-shadow                                        :'true';
+$rightbar-bg                                            :$white;
+$rightbar-border-color                                  :#DEE5E7;
+$rightbar-header-bg                                     :$white;
+$rightbar-searchbar-bg                                  :#F7F7F7;
+$rightbar-subtitle-bg                                   :#F7F7F9;
+$rightbar-subtitle-text-color                           :$theme-color;
+
+// Chatbox
+$chat-friendlist-bg                                     :$white;
+$chat-friendlist-hover-color                            :darken($chat-friendlist-bg,3%);
+$chat-friendlist-bottom-border-color                    :$white;
+$chat-friendlist-text-color                             :$text-color;
+$chat-friendlist-time-color                             :lighten($chat-friendlist-text-color,40%);
+$chat-conversation-header-bg                            :#FF5F74;
+$chat-conversation-header-bottom-border-color           :$chat-conversation-header-bg;
+$chat-conversation-header-text-clor                     :$white;
+$conversation-bg                                        :$white;
+$conversation-recipient-bg                              :#FF5F74;
+$conversation-recipient-text-color                      :$white;
+$conversation-sender-bg                                 :$theme-color;
+$conversation-sender-text-color                         :$white;
+$conversation-time-color                                :$text-color;
+$conversation-send-circle-bg                            :$theme-color;
+$conversation-send-circle-icon-color                    :$white;
+
+// Notifications
+$notification-name-color                                :$text-color;
+$notification-text-color                                :$text-color;
+$notification-time-color                                :#999999;
+$notification-border-bottom-color                       :darken($rightbar-bg,3%);
+$notification-new-bg                                    :darken($rightbar-bg,3%);
+$notification-hover-bg                                  :darken($rightbar-bg,3%);
+
+// Activities
+$activities-bubble-header-color                         :$theme-color;
+$activities-bubble-header-text-color                    :$white;
+$activities-bubble-color                                :lighten($theme-color,10%);
+$activities-bubble-text-color                           :$white;
+$activities-time-color                                  :$white;
+
+// Settings
+$settings-text-color                                    :$text-color;
+
+
+//----------------------------------
+// 7. Main Container Settings
+//----------------------------------
+
+// Header
+$header-box-shadow                                      :'false';
+$header-max-width                                       :100%;
+$header-margin-bottom                                   :0;
+$header-vertical-padding                                :30;
+$header-horizontal-padding                              :40;
+$header-bg                                              :transparent;
+$header-border-bottom                                   :none;
+
+// Page title
+$page-title-font                                        :$ff-semibold;
+$page-title-size                                        :24px;
+$page-title-text-color                                  :$text-color;
+$page-title-small-text-color                            :lighten($page-title-text-color,30%);
+$page-subtitle-font                                     :$ff-regular;
+$page-subtitle-size                                     :16px;
+$page-subtitle-text-color                               :darken($body-bg,30%);
+$page-subtitle-small-text-color                         :lighten($page-subtitle-text-color,10%);
+
+// Breadcrumbs
+$breadcrumb-link-color                                  :$text-color;
+$breadcrumb-active-link-color                           :$theme-color;
+$breadcrumb-icon                                        :'\e916';
+
+// Content container
+$main-container-max-width                               :100%;
+$main-container-padding-vertical                        :0;
+$main-container-padding-horizontal                      :35;
+
+
+//----------------------------------
+// 8. Bootstrap Elements Settings
+//----------------------------------
+
+// cards
+$card-shadow                                            :'true';
+$card-bg                                                :$white;
+$card-border-thickness                                  :1;
+$card-border-color                                      :$body-bg;
+$card-title-padding-vertical                            :8;
+$card-title-padding-horizontal                          :20;
+$card-header-bg                                         :$white;
+$card-title-text-size                                   :15px;
+$card-title-font-family                                 :$ff-semibold;
+$card-title-text-color                                  :lighten($text-color,20%);
+$card-title-text-align                                  :left;
+$card-title-text-transform                              :uppercase;
+$card-block-padding-vertical                            :15;
+$card-block-padding-horizontal                          :20;
+$card-block-text-color                                  :$text-color;
+$card-footer-padding-vertical                           :8;
+$card-footer-padding-horizontal                         :20;
+$card-footer-bg                                         :#F7F7F9;
+$card-footer-text-color                                 :$text-color;
+
+// Dropdown Menus
+$dropdown-menu-shadow                                   :'true';
+$dropdown-menu-width                                    :180px;
+$dropdown-menu-border-thickness                         :1;
+$dropdown-menu-border-color                             :#DDDDDD;
+$dropdown-menu-bg                                       :$white;
+$dropdown-menu-header-color                             :$text-muted;
+$dropdown-menu-header-highlight-bg                      :#FF5F74;
+$dropdown-menu-header-highlight-color                   :$white;
+$dropdown-menu-link-color                               :$text-color;
+$dropdown-menu-link-hover-bg                            :#FF5F74;
+$dropdown-menu-link-hover-text-color                    :$white;
+
+// Lists
+$list-group-shadow                                      :'true';
+$list-group-bg                                          :$white;
+$list-group-border-thickness                            :0;
+$list-group-border-color                                :#DDDDDD;
+$list-group-header-bg                                   :$white;
+$list-group-header-text-color                           :$text-muted;
+$list-group-link-color                                  :$text-color;
+$list-group-link-hover-bg                               :lighten(#FF5F74,25%);
+$list-group-link-hover-color                            :$text-color;
+$list-group-link-active-bg                              :#FF5F74;
+$list-group-link-active-color                           :$white;
+
+// Modals
+$modal-shadow                                           :'false';
+$modal-backdrop-opacity                                 :0.8;
+$modal-bg                                               :$white;
+$modal-border-thickness                                 :1;
+$modal-border-color                                     :transparent;
+$modal-header-footer-padding-vertical                   :15;
+$modal-header-footer-padding-horizontal                 :20;
+$modal-body-padding-vertical                            :15;
+$modal-body-padding-horizontal                          :20;
+$modal-header-footer-border                             :'false';
+$modal-header-footer-border-thickness                   :0;
+$modal-header-footer-border-color                       :transparent;
+$modal-header-footer-bg-color                           :darken($modal-bg,4%);
+$modal-title-font                                       :$ff-semibold;
+$modal-title-font-size                                  :16px;
+$modal-title-text-color                                 :$text-color;
+
+// Pagination
+$pagination-bg                                          :$white;
+$pagination-border-color                                :#DEE5E7;
+$pagination-text-color                                  :$text-color;
+$pagination-hover-bg                                    :lighten(#FF5F74,25%);
+$pagination-hover-color                                 :$text-color;
+$pagination-active-bg                                   :#FF5F74;
+$pagination-active-color                                :$white;
+
+// Tabs & pills
+$tabs-text-color                                        :$text-color;
+$tabs-active-border-color                               :#DEE5E7;
+$tabs-active-bg                                         :$white;
+$tabs-active-text-color                                 :$text-muted;
+$tabs-bottom-border-color                               :#DEE5E7;
+$tabs-content-border-color                              :$white;
+$tabs-content-padding-vertical                          :0;
+$tabs-content-padding-horizontal                        :0;
+$tabs-content-bg                                        :$white;
+$tabs-content-text-color                                :$text-color;
+$tabs-highlight-border-color                            :#FF5F74;
+
+// Tables
+$table-header-footer-border                             :#EAEFF0;
+$table-header-footer-bg                                 :$white;
+$table-header-footer-text-color                         :$text-color;
+$table-row-border                                       :#EAEFF0;
+$table-row-bg                                           :$white;
+$table-row-hover-bg                                     :#FAFBFC;
+$table-row-striped-bg                                   :#FAFBFC;
+$table-data-text-color                                  :$text-color;
+
+// Forms
+$placeholder-text-color                                 :#999999;
+$form-control-border                                    :#CCCCCC;
+$form-control-bg                                        :#FAFBFC;
+$form-control-text-color                                :$text-color;
+$form-input-group-addon-bg                              :darken($form-control-bg,6%);
+$form-input-group-addon-border                          :$form-control-border;
+$form-input-group-addon-text-color                      :darken($form-control-bg,35%);
+$tags-bg                                                :$theme-color;
+$tags-text-color                                        :$white;
+
+// Checkboxes and radiobuttons
+$checkbox-shadow                                        :'true';
+$checkbox-border-color                                  :#DEDEDE;
+$checkbox-bg                                            :#DDDDDD;
+$checkbox-tick-color                                    :#FF5F74;
+
+
+//----------------------------------
+// 9. Plugins Settings
+//----------------------------------
+
+// Switches, sliders
+$element-style                                          :'rounded';  // Options: 'default', 'rounded', 'flat'
+$element-border-color                                   :#DDDDDD;
+$element-handle-color                                   :#FF5F74;
+$element-active-color                                   :lighten($element-handle-color,20%);
+$element-inactive-color                                 :#F6F8F8;
+
+// Charts
+$chart-bg                                               :$card-bg;
+$chart-gridlines-color                                  :$body-bg;
+$chart-legends-text-color                               :$text-color;
+$chart-grid-text-color                                  :$text-color;
+$chart-data-color-option1                               :$theme-color;
+$chart-data-color-option2                               :lighten($theme-color,7%);
+$chart-data-color-option3                               :#FF5F74;
+$chart-data-color-option4                               :lighten(#FF5F74,7%);
+$chart-data-color-option5                               :#FFBF00;
+$chart-data-color-option6                               :#86BF69;
+$chart-data-color-option7                               :#26FEFF;
+$chart-data-color-option8                               :#00C9F2;
+
+
+//----------------------------------
+// 10. Pages Settings
+//----------------------------------
+
+// Authentication pages
+$authentication-bg-image                                :'../../img/demo/login.jpg';
+$authentication-bg-color                                :$text-color;
+$authentication-bg-size                                 :'cover';
+$authentication-bg-position                             :'top left';
+$authentication-bg-tint-color                           :$text-color;
+$authentication-bg-tint-opacity                         :0.5;
+$authentication-block-bg                                :$white;
+$authentication-border-color                            :#FF5F74;
+$authentication-title-color                             :$text-color;
+$authentication-toggle-bg                               :#FF5F74;
+$authentication-toggle-icon-color                       :$white;
+$authentication-tip-bg                                  :$theme-color;
+$authentication-label-color                             :$white;
+$authentication-forgot-bg                               :$theme-color;
+$authentication-forgot-text-color                       :$white;
+$authentication-footer-text-color                       :$white;
+$authentication-footer-link-color                       :$white;
+
+// Error pages
+$error-bg-image                                         :'../../img/demo/login.jpg';
+$error-bg-color                                         :$text-color;
+$error-bg-size                                          :'cover';
+$error-bg-position                                      :'top left';
+$error-bg-tint-color                                    :$text-color;
+$error-bg-tint-opacity                                  :0.5;
+$error-heading-color                                    :$white;
+$error-text-color                                       :$white;

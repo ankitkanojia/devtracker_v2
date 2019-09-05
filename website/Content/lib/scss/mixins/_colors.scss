@@ -1,0 +1,332 @@
+//----------------------------------
+//   File          : scss/mixins/colors.scss
+//   Type          : SCSS Functions/Mixins
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Functions and mixins to create dynamic color palettes
+//----------------------------------
+
+@function set-color($color) {
+    @if (lightness($color) > 50) {
+        @return darken($color, 60%);
+    }
+    @else {
+        @return lighten($color, 40%);
+    }
+}
+
+
+/***********************************
+
+ |  Function defining the difference between 2 colors
+ |  @param {Color} $a - first color
+ |  @param {Color} $b - second color
+ |  @return {Map}  The color operations to do in order to find $b from $a where keys are the color functions to apply and values are the
+ |  values to pass to these functions
+
+***********************************/
+
+@function color-diff($a, $b) {
+  $sat: saturation($a) - saturation($b);
+  $lig:  lightness($a) -  lightness($b);
+  $fn-sat: if($sat > 0, 'desaturate', 'saturate');
+  $fn-lig: if($lig > 0, 'darken', 'lighten');
+  @return (
+    adjust-hue: -(hue($a) - hue($b)),
+    unquote("#{$fn-sat}"): abs($sat),
+    unquote("#{$fn-lig}"): abs($lig)
+  );
+}
+
+
+/***********************************
+
+ |  Compute the diff for each color from the initial palette
+ |  @param {Map} $palette - palette
+ |  @requires {function} color-diff
+ |  @return {List} list of diffs
+
+***********************************/
+
+@function palette-diff($palette) {
+  $base: map-get($palette, base);
+  $colors: map-get($palette, colors);
+  $diffs: ();
+  @each $color in $colors {
+    $diffs: append($diffs, color-diff($base, $color));
+  }
+  @return $diffs;
+}
+
+
+/***********************************
+
+ |  Initial palette used to define the diff between the base color and each color from the palette.
+ |  There can be as many colors as one wants.
+ |  @type Map
+
+***********************************/
+
+$base-color:                #2196F3;
+$c50:                       lighten($base-color, 36%);
+$c100:                      lighten($base-color, 28%);
+$c200:                      lighten($base-color, 20%);
+$c300:                      lighten($base-color, 12%);
+$c400:                      lighten($base-color, 4%);
+$c600:                      darken($base-color, 4%);
+$c700:                      darken($base-color, 8%);
+$c800:                      darken($base-color, 12%);
+$c900:                      darken($base-color, 16%);
+$c1000:                     darken($base-color, 20%);
+$c1100:                     darken($base-color, 24%);
+$a100:                      hsl(220, 100%, 30%);
+$a200:                      hsl(195, 100%, 40%);
+$a300:                      hsl(200, 100%, 70%);
+$a400:                      hsl(120, 100%, 90%);
+$a500:                      hsl(220, 100%, 40%);
+$a600:                      hsl(210, 100%, 60%);
+$a700:                      hsl(20, 100%, 70%);
+$a800:                      hsl(30, 100%, 80%);
+
+$base-palette: (
+  base: $base-color,
+  colors:$c50 $c100 $c200 $c300 $c400 $base-color $c600 $c700 $c800 $c900 $c1000 $c1100 $a100 $a200 $a300 $a400 $a500 $a600 $a700 $a800
+) !default;
+
+
+/***********************************
+
+ |  Palette diffs
+ |  Same length as colors key from map-palette
+ |  @type List
+
+***********************************/
+
+$palette-diffs: palette-diff($base-palette);
+
+
+/***********************************
+
+ |  Apply differences returned from `color-diff` function to a color in order to retrieve the second color
+ |  @param {Color} $color - color to transform
+ |  @param {Map} $diff - diff map
+ |  @return {Color} transformed color
+
+***********************************/
+
+@function apply-diff($color, $diff) {
+  // We call the $key (function),
+  // passing the $color and the $value as parameters
+  // e.g. `call(adjust-hue, #BADA55, 42)`
+  @each $key, $value in $diff {
+    $color: call($key, $color, $value);
+  }
+  @return $color;
+}
+
+
+/***********************************
+
+ |  Create a palette from a base color
+ |  @param {Color} $base-color - base color for the palette
+ |  @requires {function} palette-diff
+ |  @requires {function} apply-diff
+ |  @requires {variable} $base-palette
+ |  @return {List} list of colors
+
+***********************************/
+
+@function create-palette($base-color) {
+  $colors: ();
+  @each $diff in $palette-diffs {
+    $colors: append($colors, apply-diff($base-color, $diff));
+  }
+  @return $colors;
+}
+
+
+/***********************************
+
+ |  Create a list of colors from the base color
+ |  then turn in into a map with explicit keys
+ |  @param {Color} $base-color - base color for the palette
+ |  @requires {function} create-palette
+ |  @return {Map}
+
+***********************************/
+
+@function palette($base-color) {
+  $colors: create-palette($base-color);
+  $keys: 'c50' 'c100' 'c200' 'c300' 'c400' 'base' 'c600' 'c700' 'c800' 'c900' 'c1000' 'c1100' 'a100' 'a200' 'a300' 'a400' 'a500' 'a600' 'a700' 'a800';
+  $palette: ();
+  @for $i from 1 through min(length($colors), length($keys)) {
+    $palette: map-merge($palette, (nth($keys, $i): nth($colors, $i)));
+  }
+  @return $palette;
+}
+
+
+/***********************************
+
+ |  Create and apply a palette
+ |  @param {Color} $base-color - base color
+ |  @requires {function} create-palette
+
+***********************************/
+
+@mixin draw-palette($base-color) {
+  $palette: create-palette($base-color);
+  $length: length($palette);
+  $color-stops: append((), nth($palette, 1), comma);
+  $stop-size: 100 / $length;
+  @for $i from 1 through $length {
+    $color: nth($palette, $i);
+    @if $i > 1 {
+		$color-stops: append($color-stops, $color $stop-size * ($i - 1) * 1%);
+    }
+    $color-stops: append($color-stops, $color $stop-size * $i * 1%);
+  }
+  background: nth($palette, ceil($length / 2));
+  background: linear-gradient(to right, $color-stops);
+}
+
+
+/***********************************
+
+ |  Creates a key for every color in the palette
+ |  @requires {function} palette
+
+***********************************/
+
+@function c50($palette) {
+  @if not map-has-key($palette, 'c50') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `c50`.";
+  }
+  @return map-get($palette, 'c50');
+}
+
+@function c100($palette) {
+  @if not map-has-key($palette, 'c100') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `c100`.";
+  }
+  @return map-get($palette, 'c100');
+}
+
+@function c200($palette) {
+  @if not map-has-key($palette, 'c200') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `c200`.";
+  }
+  @return map-get($palette, 'c200');
+}
+
+@function c300($palette) {
+  @if not map-has-key($palette, 'c300') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `c300`.";
+  }
+  @return map-get($palette, 'c300');
+}
+
+@function c400($palette) {
+  @if not map-has-key($palette, 'c400') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `c400`.";
+  }
+  @return map-get($palette, 'c400');
+}
+
+@function c600($palette) {
+  @if not map-has-key($palette, 'c600') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `c600`.";
+  }
+  @return map-get($palette, 'c600');
+}
+
+@function c700($palette) {
+  @if not map-has-key($palette, 'c700') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `c700`.";
+  }
+  @return map-get($palette, 'c700');
+}
+
+@function c800($palette) {
+  @if not map-has-key($palette, 'c800') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `c800`.";
+  }
+  @return map-get($palette, 'c800');
+}
+
+@function c900($palette) {
+  @if not map-has-key($palette, 'c900') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `c900`.";
+  }
+  @return map-get($palette, 'c900');
+}
+
+@function c1000($palette) {
+  @if not map-has-key($palette, 'c1000') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `c1000`.";
+  }
+  @return map-get($palette, 'c1000');
+}
+
+@function c1100($palette) {
+  @if not map-has-key($palette, 'c1100') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `c1100`.";
+  }
+  @return map-get($palette, 'c1100');
+}
+
+@function a100($palette) {
+  @if not map-has-key($palette, 'a100') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `a100`.";
+  }
+  @return map-get($palette, 'a100');
+}
+
+@function a200($palette) {
+  @if not map-has-key($palette, 'a200') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `a200`.";
+  }
+  @return map-get($palette, 'a200');
+}
+
+@function a300($palette) {
+  @if not map-has-key($palette, 'a300') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `a300`.";
+  }
+  @return map-get($palette, 'a300');
+}
+
+@function a400($palette) {
+  @if not map-has-key($palette, 'a400') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `a400`.";
+  }
+  @return map-get($palette, 'a400');
+}
+
+@function a500($palette) {
+  @if not map-has-key($palette, 'a500') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `a500`.";
+  }
+  @return map-get($palette, 'a500');
+}
+
+@function a600($palette) {
+  @if not map-has-key($palette, 'a600') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `a600`.";
+  }
+  @return map-get($palette, 'a600');
+}
+
+@function a700($palette) {
+  @if not map-has-key($palette, 'a700') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `a700`.";
+  }
+  @return map-get($palette, 'a700');
+}
+
+@function a800($palette) {
+  @if not map-has-key($palette, 'a800') {
+    @warn "`#{inspect($palette)}` doesn't seem to have a key named `a800`.";
+  }
+  @return map-get($palette, 'a800');
+}

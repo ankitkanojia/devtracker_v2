@@ -1,0 +1,583 @@
+//----------------------------------
+//   File          : scss/components/_tabs.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Bootstrap Tabs Override
+//----------------------------------
+.nav {
+	> li {
+		> a:focus {
+			outline: 0;
+		}
+		&.disabled > a {
+			> {
+				.badge {
+					opacity: .75;
+					filter: alpha(opacity=75);
+				}
+				.label {
+					opacity: .75;
+					filter: alpha(opacity=75);
+				}
+			}
+			> img {
+				opacity: .75;
+				filter: alpha(opacity=75);
+			}
+		}
+	}
+	.open > a {
+		background-color: transparent;
+		border-color: transparent;
+		color: $tabs-active-text-color;
+		&:hover,
+		&:focus {
+			background-color: transparent;
+			border-color: transparent;
+			color: $tabs-text-color;
+		}
+	}
+	&.nav-lg > li > a {
+		@include p-vh($space-lg *1.3, $space-lg *3);
+		@include typo($ff-semibold,$font-lg,$link-color,inherit);
+	}
+	&.nav-sm > li > a {
+		@include p-vh($space-sm *1.3, $space-sm *4);
+		@include typo($ff-semibold,$font-sm,$link-color,inherit);
+	}
+	&.nav-xs > li > a {
+		@include p-vh($space-xs *1.3, $space-xs *5);
+		@include typo($ff-semibold,$font-xs,$link-color,inherit);
+	}
+}
+.nav-tabs {
+	@include m-b(0);
+	@include bb(1,solid,$tabs-bottom-border-color);
+
+	> li > a {
+		@include m-r(0);
+		@include p-vh(6,20);
+		@include p-vh($space-base *1.5, $space-base *3.2);
+		@include typo($ff-semibold,$font-base,$tabs-text-color,inherit);
+		@include radius-a($radius,$radius,0,0);
+
+		&:focus,
+		&:hover {
+			background-color: transparent;
+			border-color: transparent;
+			color: $tabs-text-color;
+		}
+
+		>.label{
+			top:-2px;
+		}
+		>.badge{
+			@include m-t(-2);
+		}
+	}
+
+	>li.nav-item{
+		>a.nav-link{
+			@include radius-a($radius,$radius,0,0);
+			&.active,
+			&.active:hover,
+			&.active:focus{
+				background: $tabs-active-bg;
+				color: $tabs-active-text-color;
+				@include b(1,solid,$tabs-active-border-color);
+				border-bottom-color:$card-bg;
+			}
+		}
+	}
+
+	&.nav-tabs-highlight{
+		> li.nav-item{
+			> a.nav-link{
+				&.active{
+					@include bt(3,solid,$tabs-highlight-border-color);
+				}
+			}
+		}
+	}
+
+	&.nav-justified {
+		> li > a {
+			@include m-b(0);
+			@include radius-a($radius,$radius,0,0);
+			border-bottom-color: $tabs-bottom-border-color;
+			&:focus,
+			&:hover {
+				border-bottom-color: $tabs-bottom-border-color;
+			}
+		}
+		&.nav-tabs-solid > li > a {
+			border-color: transparent !important;
+		}
+
+		>li.active{
+			>a,
+			>a:hover,
+			>a:focus{
+				@include b(1,solid,$tabs-bottom-border-color);
+				border-bottom-color:transparent;
+			}
+		}
+	}
+
+	&.nav-tabs-solid {
+		> li.nav-item > a.nav-link {
+			@include radius($radius);
+			color: $tabs-text-color;
+
+			&.active {
+				background-color: $theme-color;
+				border-color: $theme-color;
+				color: $white;
+				&:focus,
+				&:hover {
+					background-color: $theme-color;
+					border-color: $theme-color;
+					color: $white;
+				}
+			}
+		}
+	}
+
+	&.nav-justified[class*=bg-] > li > a {
+		border-color: transparent;
+	}
+}
+
+.nav-tabs-justified {
+	> li > a {
+		@include m-b(0);
+		@include p-vh($space-base *1.5, $space-base *3.2);
+		@include typo($ff-regular,$font-base,$tabs-text-color,inherit);
+		margin-bottom: 0;
+		&:focus,
+		&:hover {
+			border-bottom-color: $tabs-bottom-border-color;
+		}
+	}
+	&.nav-tabs-solid > li > a {
+		border-color: transparent;
+	}
+}
+
+.nav-tabs[class*=bg-] {
+	border-bottom: 0;
+	@include radius($radius);
+	> li.nav-item {
+		@include m-b(0);
+		> a.nav-link {
+			color:$white;
+			&:focus,
+			&:hover {
+				background-color: black(0.05);
+				border-color: transparent;
+				color:$white;
+			}
+		}
+		> a.open:not(.active) {
+			background-color: black(0.05);
+		}
+	}
+	> li.nav-item {
+	 	> a.nav-link{
+			&.active {
+				background-color: black(0.1);
+				border-color: black(0.1);
+				color:$white;
+				&:focus,
+				&:hover {
+					background-color: black(0.1);
+					border-color: transparent;
+					color:$white;
+				}
+			}
+		}
+		> a.nav-link{
+			&.disabled {
+				color: $grey;
+				&:focus,
+				&:hover {
+					color: $grey;
+				}
+			}
+		}
+	}
+}
+
+@include media(tablet,min) {
+	.nav-tabs {
+		font-size: 0;
+		&.nav-justified {
+			&.nav-tabs-highlight > li > a {
+				border-top-width: 3px;
+				&:focus,
+				&:hover {
+					border-top-width: 3px;
+				}
+			}
+		}
+
+		&.nav-tabs-solid {
+			border: 0;
+			> li {
+				@include m-b(0);
+				> a {
+					border-color: transparent;
+					&:focus,
+					&:hover {
+						background-color: black(0.05);
+					}
+				}
+			}
+			> .open:not(.active) > a {
+				background-color: black(0.05);
+				border-color: transparent;
+			}
+		}
+		> li {
+			display: inline-block;
+		}
+
+		&.nav-tabs-highlight > li {
+			> a {
+				border-top-width: 3px;
+				&:focus,
+				&:hover {
+					border-top-width: 3px;
+				}
+			}
+			&.active > a {
+				border-top-color: $tabs-highlight-border-color;
+				&:focus,
+				&:hover {
+					border-top-color: $tabs-highlight-border-color;
+				}
+			}
+		}
+	}
+
+	.nav-tabs-justified {
+		@include bb(1,solid,$tabs-bottom-border-color);
+
+		&.nav-tabs-highlight > li > a {
+			border-top-width: 3px;
+			&:focus,
+			&:hover {
+				border-top-width: 3px;
+			}
+		}
+		> li.active > a {
+			border-width: 0 0 0 3px;
+			border-left-color: $tabs-highlight-border-color;
+			&:focus,
+			&:hover {
+				border-width: 0 0 0 3px;
+				border-left-color: $tabs-highlight-border-color;
+			}
+		}
+	}
+
+	.nav-tabs-vertical {
+		@include w(100%);
+		display: table;
+		.nav-tabs {
+			@include w(200px);
+			display: table-cell;
+			border-bottom: 0;
+			vertical-align: top;
+			> li.nav-item {
+				@include m-b(0);
+				display: block;
+				float: none;
+
+				>a.nav-link{
+					>.label{
+						top:2px;
+					}
+					>.badge{
+						@include m-t(1);
+					}
+				}
+			}
+		}
+		.tab-content {
+			display: table-cell;
+		}
+		.nav-tabs-solid > li:last-child > a:after {
+			border-bottom-right-radius: $radius;
+			border-bottom-left-radius: $radius;
+		}
+		.nav-tabs[class*=bg-] > li {
+			&:last-child > a {
+				border-bottom-right-radius: $radius;
+				border-bottom-left-radius: $radius;
+			}
+			&:first-child > a {
+				border-top-right-radius: $radius;
+				border-top-left-radius: $radius;
+			}
+		}
+		&.tab-content-bordered .tab-content {
+			border-top-width: 1px;
+		}
+	}
+	.nav-tabs-left {
+		.tab-content {
+			@include p-a($tabs-content-padding-vertical+15,$tabs-content-padding-horizontal,$tabs-content-padding-vertical,$tabs-content-padding-horizontal+15);
+			@include b(1,solid,$tabs-content-border-color);
+			border-left-color: transparent;
+			border-top-right-radius: $radius;
+		}
+		.nav-tabs {
+			@include br(1,solid,$tabs-bottom-border-color);
+			> li.nav-item {
+				@include m-r(-1);
+				> a.nav-link {
+					&.active{
+						border-bottom-color: $tabs-bottom-border-color;
+						border-right-color: $card-bg;
+						&:focus,
+						&:hover {
+							border-bottom-color: $tabs-bottom-border-color;
+							border-right-color: $card-bg;
+						}
+					}
+				}
+			}
+		}
+
+		.nav-tabs-solid {
+			border-right: 0;
+			@include radius();
+			> li {
+				@include m-r(0);
+			}
+		}
+		.nav-tabs[class*=bg-] {
+			border-right: 0;
+			@include radius();
+			> li {
+				@include m-r(0);
+			}
+		}
+		.nav-tabs-highlight > li.nav-item {
+			> a.nav-link {
+				border-top-width: 1px;
+				border-left-width: 3px;
+				&:focus,
+				&:hover {
+					border-top-width: 1px;
+					border-left-width: 3px;
+				}
+
+				&.active{
+					border-top-width: 1px;
+					border-top-color: $tabs-bottom-border-color;
+					border-left-color: $tabs-highlight-border-color;
+					&:focus,
+					&:hover {
+						border-top-width: 1px;
+						border-top-color: $tabs-bottom-border-color;
+						border-left-color: $tabs-highlight-border-color;
+					}
+				}
+			}
+		}
+		&.tab-content-bordered .tab-content {
+			border-left-width: 0;
+		}
+	}
+	.nav-tabs-right {
+
+		.nav-tabs {
+			@include m-b(0);
+			@include m-t(20);
+			@include bl(1,solid,$tabs-bottom-border-color);
+			> li.nav-item {
+				@include m-l(-1);
+				> a.nav-link {
+					&.active{
+						border-bottom-color: $tabs-bottom-border-color;
+						border-left-color: $card-bg;
+						&:focus,
+						&:hover {
+							border-bottom-color: $tabs-bottom-border-color;
+							border-left-color: $card-bg;
+						}
+					}
+				}
+			}
+
+		}
+
+		.nav-tabs-solid {
+			border-left: 0;
+			border-radius: $radius;
+			> li {
+				@include m-l(0);
+			}
+		}
+		.nav-tabs[class*=bg-] {
+			border-left: 0;
+			border-radius: $radius;
+			> li {
+				@include m-l(0);
+			}
+		}
+		.tab-content {
+			@include p-a($tabs-content-padding-vertical+15,$tabs-content-padding-horizontal+15,$tabs-content-padding-vertical,$tabs-content-padding-horizontal);
+			@include b(1,solid,$tabs-content-border-color);
+			border-right-color: transparent;
+			border-top-left-radius: $radius;
+		}
+		.nav-tabs-highlight > li.nav-item {
+			> a.nav-link {
+				border-top-width: 1px;
+				border-right-width: 3px;
+				&:focus,
+				&:hover {
+					border-top-width: 1px;
+					border-right-width: 3px;
+				}
+
+				&.active {
+					border-top-width: 1px;
+					border-top-color: $tabs-bottom-border-color;
+					border-right-color: $tabs-highlight-border-color;
+					&:focus,
+					&:hover {
+						border-top-width: 1px;
+						border-top-color: $tabs-bottom-border-color;
+						border-right-color: $tabs-highlight-border-color;
+					}
+				}
+			}
+		}
+		&.tab-content-bordered .tab-content {
+			border-right-width: 0;
+		}
+	}
+
+	.nav-tabs[class*=bg-] .dropdown-menu {
+		@include m-t(0);
+	}
+	.nav-justified.bottom-divided .dropdown-menu {
+		@include m-t(1);
+	}
+}
+
+@include media(tablet-lg,max) {
+	.nav-tabs {
+		@include p-vh($space-base,0);
+		position: relative;
+		background-color: $white;
+		@include radius();
+		&.nav-justified {
+			@include bb(1,solid,$tabs-bottom-border-color);
+			> li.active > a {
+				border-width: 0 0 0 3px;
+				border-left-color: $tabs-highlight-border-color;
+				&:focus,
+				&:hover {
+					border-width: 0 0 0 3px;
+					border-left-color: $tabs-highlight-border-color;
+				}
+			}
+		}
+		&.nav-tabs-solid {
+			@include p-vh($space-base,0);
+			> li > a {
+				border-left-width: 0!important;
+			}
+		}
+		> li {
+			@include m-b(0);
+			+ li {
+				@include m-b(1);
+			}
+			> a {
+				border-width: 0 0 0 3px;
+				border-left-color: transparent;
+				&:focus,
+				&:hover {
+					background-color: c50(palette($grey));
+				}
+				.position-right[class*=icon-] {
+					@include m-t(3);
+					float: right;
+				}
+				.position-right {
+					&.badge,
+					&.label {
+						@include m-t(1);
+						float: right;
+					}
+				}
+			}
+			&.float-right {
+				float: none!important;
+			}
+			&.active > a {
+				border-width: 0 0 0 3px;
+				border-left-color: $tabs-highlight-border-color;
+				&:focus,
+				&:hover {
+					border-width: 0 0 0 3px;
+					border-left-color: $tabs-highlight-border-color;
+				}
+			}
+			&.open:not(.active) > a {
+				background-color: c50(palette($grey));
+				&:focus,
+				&:hover {
+					background-color: c50(palette($grey));
+				}
+			}
+		}
+		&.menu:before {
+			@include m-a(10,null,15,15);
+			content: 'Contents';
+			color: inherit;
+			text-transform: uppercase;
+			opacity: .5;
+			filter: alpha(opacity=50);
+		}
+	}
+	.nav-tabs[class*=bg-] {
+		@include p-vh(5,0);
+		> li {
+			> a {
+				border-left-width: 0!important;
+				&:focus,
+				&:hover {
+					background-color: black(0.05);
+				}
+			}
+			&.open:not(.active) > a {
+				background-color: black(0.05);
+			}
+		}
+	}
+}
+.nav-justified > li > a {
+	@include m-b(0);
+}
+.nav-tabs-justified[class*=bg-] > li > a {
+	border-color: transparent;
+}
+.tab-content {
+	@include p-a($tabs-content-padding-vertical+15,$tabs-content-padding-horizontal,$tabs-content-padding-vertical,$tabs-content-padding-horizontal);
+	@include b(1,solid,$tabs-content-border-color);
+	@include radius-a(0,0,$radius,$radius);
+	border-top-color: transparent;
+	background: $tabs-content-bg;
+	color:$tabs-content-text-color;
+	p{
+		color:$tabs-content-text-color;
+	}
+}

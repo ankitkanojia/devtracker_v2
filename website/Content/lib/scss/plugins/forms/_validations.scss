@@ -1,0 +1,30 @@
+//----------------------------------
+//   File          : scss/plugins/forms/_validations.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//----------------------------------
+
+.validation-error,
+.validation-success {
+	@include m-a(3,0,3,2);
+	@include typo($ff-regular,$font-base,inherit,left);
+	@include p-l(18);
+	display: block;
+	color: $danger;
+	position: relative;
+	@include icon(before,alert-danger){
+		@include pos(absolute,0,null,null,0);
+		@include fs($font-base);
+	}
+	&:empty {
+		display: none;
+	}
+}
+.validation-success {
+	color: $success;
+	@include icon(before,alert-success){
+		@include pos(absolute,1px,null,null,0);
+		@include fs($font-base);
+	}
+}

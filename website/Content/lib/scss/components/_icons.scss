@@ -1,0 +1,41 @@
+//----------------------------------
+//   File          : scss/components/_icons.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : CSS definition for icons page
+//----------------------------------
+i{
+	&.icon-xs{
+		@include fs($icon-xs);
+	}
+	&.icon-sm{
+		@include fs($icon-sm);
+	}
+	&.icon-lg{
+		@include fs($icon-lg);
+	}
+	&.icon-xlg{
+		@include fs($icon-xlg);
+	}
+}
+
+.glyphs > div {
+	@include p-vh($space-base, $space-base *3);
+	cursor: pointer;
+	> i {
+		@include typo($font-icon,24px,$theme-color,center);
+		@include m-r(10);
+		@include w(24px);
+		text-align: center;
+	}
+	&:hover {
+		@include radius();
+		background-color: $theme-color;
+		color: $white;
+		i,
+		span {
+			color: $white;
+		}
+	}
+}

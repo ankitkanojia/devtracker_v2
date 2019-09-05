@@ -1,0 +1,35 @@
+//----------------------------------
+//   File          : scss/mixins/_border-radius.scss
+//   Type          : SCSS mixin
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+// ---------------------------------
+
+// Border radius
+@if $style == 'flat' {
+    $radius: 0px !global;
+}
+@else if $style == 'rounded'{
+    $radius: $radius !global;
+}
+@else{
+    $radius: $radius !global;
+}
+
+// Border radius
+@mixin radius($radius: $radius){
+    @include prefix(border-radius, $radius, 'webkit' 'moz');
+}
+
+// Seperate border radius
+@mixin radius-a($top-left-radius:$radius, $top-right-radius:$radius, $bottom-right-radius:$radius, $bottom-left-radius:$radius) {
+    @include prefix(border-top-left-radius, $top-left-radius, 'webkit' 'moz');
+    @include prefix(border-top-right-radius, $top-right-radius, 'webkit' 'moz');
+    @include prefix(border-bottom-right-radius, $bottom-right-radius, 'webkit' 'moz');
+    @include prefix(border-bottom-left-radius, $bottom-left-radius, 'webkit' 'moz');
+}
+
+// No border radius
+@mixin no-radius($radius: 0px) {
+    @include prefix(border-radius, $radius, 'webkit' 'moz');
+}

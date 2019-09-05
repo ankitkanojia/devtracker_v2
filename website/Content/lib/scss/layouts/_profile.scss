@@ -1,0 +1,79 @@
+//----------------------------------
+//   File          : scss/layouts/_profile.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Main CSS definition material user profile block
+//----------------------------------
+
+@mixin profile(){
+    .user-profile-container {
+        background-color: $material-bg-color;
+        background-image: url(#{$material-bg-image});
+        background: linear-gradient(rgba($material-bg-tint-color, $material-bg-tint-opacity), rgba($material-bg-tint-color, $material-bg-tint-opacity)), url(#{$material-bg-image});
+        background-repeat: no-repeat;
+        background-position: #{$material-bg-position};
+        background-size: #{$material-bg-size};
+        @include h(135px);
+
+        .user-profile {
+            @include w();
+            display: table;
+            > div {
+                vertical-align: middle;
+            }
+            .admin-user-thumb {
+                @include size(60px);
+                @include p-t(20);
+                margin: 0 auto;
+                img{
+                    @include size(60px);
+                    @include radius(100%);
+                }
+            }
+            .admin-user-info {
+                @include p-a(35,15,0,15);
+
+                >ul{
+                    @include p-l(0);
+                    @include m(0);
+
+                    >li{
+                        display: inline-block;
+                        list-style: none;
+                        color: $user-profile-container-text-color;
+                        @include p-vh(5,2);
+                        @include lh(16px);
+
+                        &.username{
+                            @include fs(13px);
+                            text-transform: uppercase;
+                            color: $user-profile-container-text-color;
+                        }
+
+                        >a{
+                            text-transform: capitalize;
+                            i{
+                                top: -3px;
+                                @include p-h(5);
+                                color: $user-profile-container-text-color;
+                                &:hover,
+                                &:focus{
+                                    color: $user-profile-container-text-color;
+                                    text-decoration: none;
+                                }
+                            }
+                        }
+
+                        .bubble{
+                            @include fs(9px);
+                            @include p-a(0,1,0,0);
+                            top: -10px;
+                            right: -4px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

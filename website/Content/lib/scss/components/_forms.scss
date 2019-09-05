@@ -1,0 +1,913 @@
+//----------------------------------
+//   File          : scss/components/_forms.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Bootstrap Forms Override
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Legend
+// 2. Label
+// 3. Content divider
+// 4. Fieldset
+// 5. Form control
+// 6. Form elements
+// 7. Input sizes
+// 8. Form groups
+// 9. Input groups
+// 10. Form feedback
+// 11. Help block
+// 12. Button icons
+// 13. Media Queries
+
+
+//----------------------------------
+// 1. Legend
+//----------------------------------
+legend {
+    @include p-vh(10, null);
+	font-size: $font-sm;
+	text-transform: uppercase;
+	.control-arrow {
+		float: right;
+		color: lighten($black, 80%);
+		&:hover {
+			color: lighten($black, 10%);
+		}
+	}
+}
+
+
+//----------------------------------
+// 2. Label
+//----------------------------------
+label {
+	@include typo($ff-regular,$font-base,$text-color,left){
+        font-weight:normal;
+    }
+    @include m-b(6);
+	&.checkbox-switch.checkbox-inline {
+        @include no-p();
+	}
+}
+.form-check-label{
+    @include p-l(0);
+}
+
+
+//----------------------------------
+// 3. Content divider
+//----------------------------------
+.content-divider {
+    @include p(15);
+}
+
+
+//----------------------------------
+// 4. Fieldset
+//----------------------------------
+fieldset:first-child legend:first-child {
+    @include p-t(0);
+}
+
+fieldset[disabled] {
+	.checkbox,
+    .checkbox-inline,
+    .radio,
+    .radio-inline {
+		color: lighten($black, 80%);
+	}
+}
+
+
+//----------------------------------
+// 5. Form control
+//----------------------------------
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control,
+.form-control {
+    @include ff($ff-regular);
+    @include placeholder($placeholder-text-color);
+    @include no-shadow();
+    @include radius($radius);
+    @include b(1,solid,$form-control-border);
+    color: $form-control-text-color;
+    background: $form-control-bg;
+    @include fs(14px);
+
+	&:focus {
+        @include b(1,solid,$form-control-border);
+		@include no-shadow();
+	}
+}
+
+.form-control[disabled],
+.form-control[readonly]{
+    color: $form-control-border;
+}
+
+.form-control[class*=bg-] {
+	&:focus {
+		border-color: transparent;
+	}
+	&:-ms-input-placeholder {
+		color: $white;
+	}
+    &::-moz-placeholder{
+        color: $white;
+    	opacity: 1;
+    }
+    &::-webkit-input-placeholder{
+        color: $white;
+    }
+}
+
+
+//----------------------------------
+// 6. Form elements
+//----------------------------------
+textarea {
+	&.input-xlg,
+    &.input-xs{
+        @include h(auto);
+	}
+	&.input-group-xlg >,
+    &.input-group-xs > {
+		.form-control,
+        .input-group-addon,
+        .input-group-btn > .btn {
+            @include h(auto);
+		}
+	}
+}
+
+select {
+    @include ff($ff-regular);
+	&.input-xlg,
+    &.form-group-xlg .form-control {
+        height: 52px !important;
+        @include lh(52px);
+	}
+    &.input-lg,
+    &.form-group-lg .form-control {
+        height: 44px !important;
+        @include lh(44px);
+	}
+    &.input-sm,
+    &.form-group-sm .form-control {
+        height: 32px !important;
+        @include lh(32px);
+	}
+
+	&.input-xs,
+    &.form-group-xs .form-control {
+        height: 28px !important;
+        @include lh(28px);
+        @include p-t(3);
+	}
+}
+
+select[multiple] {
+    @include ff($ff-regular);
+    @include p(7);
+    @include h(315px);
+	option {
+        @include p-vh(7,12);
+        @include radius();
+		+ option {
+            @include m-t(-1);
+		}
+	}
+	&.input-xlg,
+    &.input-xs {
+        @include h(auto);
+	}
+
+	&.input-group-xlg >,
+    &.input-group-xs > {
+		.form-control,
+        .input-group-addon,
+        .input-group-btn > .btn {
+            @include h(auto);
+		}
+	}
+    option[selected]{
+        background: $theme-color;
+    }
+}
+
+select[size] {
+    @include h(200px);
+    @include p(7);
+	option {
+        @include p-vh(7,12);
+        @include radius();
+		+ option {
+            @include m-t(-1);
+		}
+	}
+}
+
+.checkbox {
+    @include ff($ff-regular);
+    @include m-v(5);
+	font-size: $font-base;
+	label {
+        @include p-l(0);
+	}
+	input[type=checkbox] {
+        @include m-l(0);
+		left: 0;
+	}
+	&.disabled {
+		color: lighten($black, 80%);
+	}
+	+ .checkbox {
+        @include m-t(0);
+	}
+}
+
+.checkbox-inline {
+    @include p-l(25);
+	position: relative;
+	input[type=checkbox] {
+        @include m-l(0);
+		left: 0;
+	}
+	&.disabled {
+		color: lighten($black, 80%);
+	}
+	+ .checkbox-inline {
+        @include m-l(50);
+	}
+    &.checkbox-right{
+        @include p-l(0);
+    }
+}
+
+.checkbox-right {
+	label{
+        @include w(100%);
+        @include p-l(0);
+    }
+	input[type=checkbox] {
+        @include pos(relative,4px,-8px,null,auto);
+        float: right;
+	}
+}
+
+.checkbox-inline{
+    &.radio-right {
+        @include p-a(null,15,null,0);
+    }
+}
+
+.checkbox-switch {
+	> label {
+        @include no-p();
+	}
+	&.checkbox-right .bootstrap-switch {
+        @include m-a(null,0,null,7);
+	}
+}
+
+.radio {
+    @include ff($ff-regular);
+    @include m-v(5);
+	font-size: $font-base;
+	label {
+        @include p-l(5);
+	}
+	input[type=radio] {
+        @include m-l(0);
+		left: 0;
+	}
+	&.disabled {
+		color: lighten($black, 80%);
+	}
+	+ .radio {
+        @include m-t(0);
+	}
+}
+
+.radio-inline {
+    @include p-l(25);
+	position: relative;
+	input[type=radio] {
+        @include m-l(0);
+		left: 0;
+	}
+	&.disabled {
+		color: lighten($black, 80%);
+	}
+	+ .radio-inline {
+        @include m-l(15);
+	}
+    &.radio-right {
+        @include p-a(null,28,null,0);
+    }
+}
+
+.radio-right {
+	label{
+        @include w(100%);
+        @include p-l(0);
+    }
+	input[type=radio] {
+        @include pos(relative,4px,-8px,null,auto);
+        float: right;
+	}
+}
+
+
+//----------------------------------
+// 7. Input sizes
+//----------------------------------
+.has-feedback-left{
+    .form-control-feedback{
+        i{
+            color: $form-input-group-addon-text-color;
+            left: 2px;
+        }
+    }
+}
+
+.has-feedback{
+    .form-control-feedback{
+        i{
+            color: $form-input-group-addon-text-color;
+            right: 2px;
+        }
+    }
+}
+.input-xlg {
+    @include h(52px);
+    @include radius();
+	font-size: $font-xlg;
+	+ .form-control-feedback {
+        i{
+            top: -7px;
+            right: 10px;
+            @include fs($icon-lg);
+        }
+	}
+}
+
+.input-lg {
+    @include p-vh(8,12);
+    @include h(44px);
+    @include radius();
+	font-size: $font-lg;
+	+ .form-control-feedback {
+        i{
+            top:-5px;
+            @include fs($icon-base +2);
+        }
+	}
+}
+
+.input-sm {
+    @include h(32px);
+	font-size: $font-base;
+	+ .form-control-feedback {
+        i{
+            top:1px;
+            right: -3px;
+            @include fs($icon-sm);
+        }
+	}
+}
+
+.input-xs {
+    @include h(28px);
+	font-size: $font-sm;
+	+ .form-control-feedback {
+        i{
+            top:2px;
+            right: -5px;
+            @include fs($icon-xs);
+        }
+	}
+}
+
+
+//----------------------------------
+// 8. Form groups
+//----------------------------------
+.form-group {
+    @include m-b(20);
+    &:last-child {
+        @include m-b(0);
+    }
+}
+
+.form-group-xs {
+	.form-control,
+    .form-control-static,
+    > .form-control-feedback {
+        @include h(28px);
+        @include space-xs();
+        @include radius();
+		font-size: $font-sm;
+        @include m-t(4);
+	}
+
+	> .form-control-feedback {
+        @include w(28px);
+	}
+}
+
+.form-group-sm {
+	.form-control,
+    .form-control-static,
+    > .form-control-feedback {
+        @include h(32px);
+        @include space-sm();
+        @include radius();
+		font-size: $font-sm;
+		@include m-t(3);
+	}
+	> .form-control-feedback {
+        @include w(32px);
+	}
+}
+
+.form-group-lg {
+	.form-control,
+    .form-control-static,
+    > .form-control-feedback {
+		@include h(44px);
+        @include space();
+        @include radius();
+		font-size: $font-lg;
+        @include m-t(2);
+	}
+	> .form-control-feedback {
+        @include w(40px);
+	}
+}
+
+.form-group-xlg {
+	.form-control,
+    .form-control-static,
+    > .form-control-feedback {
+		@include h(52px);
+        @include space();
+        @include radius();
+		font-size: $font-xlg;
+	}
+	> .form-control-feedback {
+        @include w(44px);
+	}
+}
+
+
+//----------------------------------
+// 9. Input groups
+//----------------------------------
+.input-group-transparent {
+	.form-control {
+        @include no-p();
+        background-color: transparent;
+        border-color: transparent;
+		cursor: pointer;
+		width: auto;
+		&:focus,
+        &:hover {
+			border-color: transparent;
+		}
+	}
+	.input-group-addon {
+        @include no-p();
+        background-color: transparent;
+        border-color: transparent;
+	}
+}
+
+.input-group-addon {
+    @include radius();
+    @include p-vh(6, 12);
+    background: $form-input-group-addon-bg;
+    color: $form-input-group-addon-text-color;
+    @include ff($ff-semibold);
+    @include b(1,solid,$form-input-group-addon-border);
+	> i {
+		display: block;
+		top: 0;
+        color:$form-input-group-addon-text-color;
+	}
+
+    &[class*=bg-]{
+        >i{
+            color:$white;
+        }
+    }
+
+	.checker,
+    .choice {
+        @include m-t(1);
+		display: block;
+	}
+
+	&.input-xlg {
+        @include space-xlg();
+        @include radius();
+		font-size: $font-xlg;
+	}
+
+    &.input-lg {
+        @include space-lg();
+        @include radius();
+		font-size: $font-lg;
+	}
+
+    &.input-sm {
+        @include space-sm();
+        @include radius();
+		font-size: $font-sm;
+	}
+
+    &.input-xs {
+        @include space-xs();
+        @include radius();
+		font-size: $font-xs;
+	}
+}
+
+.input-group .form-control-feedback {
+	z-index: 3;
+}
+
+.input-group-xlg > {
+	.form-control,
+    .input-group-addon,
+    .input-group-btn > .btn {
+        @include h(52px);
+        @include space();
+        @include radius();
+		font-size: $font-xlg;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+	}
+    .input-group-addon{
+        @include radius();
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .input-group-addon>i{
+        font-size: $icon-xlg;
+    }
+}
+
+.input-group-lg > {
+	.form-control,
+    .input-group-addon,
+    .input-group-btn > .btn {
+        @include h(44px);
+        @include space();
+        @include radius();
+		font-size: $font-lg;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+	}
+    .input-group-addon{
+        @include radius();
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .input-group-addon>i{
+        font-size: $icon-lg;
+    }
+}
+
+.input-group-sm > {
+	.form-control,
+    .input-group-addon,
+    .input-group-btn > .btn {
+        @include h(32px);
+        @include space();
+        @include radius();
+		font-size: $font-sm;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+	}
+    .input-group-addon{
+        @include radius();
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .input-group-addon>i{
+        font-size: $icon-sm;
+    }
+}
+
+.input-group-xs > {
+	.form-control,
+    .input-group-addon,
+    .input-group-btn > .btn {
+        @include h(28px);
+        @include space();
+        @include radius();
+		font-size: $font-xs;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+	}
+    .input-group-addon{
+        @include radius();
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+    .input-group-addon>i{
+        font-size: $icon-xs;
+    }
+}
+
+.input-group-btn{
+    display: list-item;
+}
+
+
+//----------------------------------
+// 10. Form feedback
+//----------------------------------
+.form-control-feedback {
+    @include h(auto);
+    @include pos(relative,-33px,-10px,null,null);
+    @include w(36px);
+	color: lighten($black, 10%);
+    float: right;
+}
+
+.has-feedback .form-control {
+    @include p-r(36);
+	&.input-xlg {
+		@include p-r(44);
+	}
+	&.input-lg {
+		@include p-r(40);
+	}
+	&.input-sm {
+		@include p-r(32);
+	}
+	&.input-xs {
+		@include p-r(28);
+	}
+}
+
+input[class*=bg-] + .form-control-feedback {
+	color: $white;
+}
+
+.has-danger .form-control,
+.has-success .form-control,
+.has-warning .form-control{
+    @include no-shadow();
+	&:focus {
+		@include no-shadow();
+	}
+}
+
+.has-danger{
+    .form-control-feedback{
+        i{
+            color: $danger;
+        }
+    }
+    .help-block{
+        color: $danger;
+    }
+}
+
+.has-success{
+    .form-control-feedback{
+        i{
+            color: $success;
+        }
+    }
+    .help-block{
+        color: $success;
+    }
+}
+
+.has-warning{
+    .form-control-feedback{
+        i{
+            color: $warning;
+        }
+    }
+    .help-block{
+        color: $warning;
+    }
+}
+
+.has-feedback-left {
+	.form-control {
+        @include p-a(null,8,null,36);
+		&.input-xlg {
+            @include p-a(null,12,null,44);
+		}
+		&.input-lg {
+            @include p-a(null,10,null,40);
+		}
+		&.input-sm {
+            @include p-a(null,6,null,32);
+		}
+		&.input-xs {
+            @include p-a(null,4,null,28);
+		}
+	}
+	.form-control-feedback {
+        @include pos(relative,-33px,auto,null,8px);
+        float: left;
+	}
+}
+
+
+//----------------------------------
+// 11. Help block
+//----------------------------------
+.help-block,
+.help-inline {
+	color: lighten($black, 80%);
+	font-size: $font-sm;
+    @include m-b(0);
+}
+
+.help-inline {
+	display: inline-block;
+}
+
+
+//----------------------------------
+// 12. Button icons
+//----------------------------------
+.copyButton{
+    @include icon(before, copy);
+}
+.csvButton{
+    @include icon(before, csv);
+}
+.excelButton{
+    @include icon(before, excel);
+}
+.pdfButton{
+    @include icon(before, pdf);
+}
+.printButton{
+    @include icon(before, print);
+}
+
+
+//----------------------------------
+// 13. Media Queries
+//----------------------------------
+@media (max-width:1024px){
+	.form-group div[class*=col-md-]:not(.control-label)+div[class*=col-md-]{
+        @include m-t(20);
+    }
+}
+@media (max-width:1199px){
+	.form-group div[class*=col-lg-]:not(.control-label)+div[class*=col-lg-]{
+        @include m-t(20);
+    }
+}
+@media (max-width:768px){
+	.form-group div[class*=col-sm-]:not(.control-label)+div[class*=col-sm-]{
+        @include m-t(20);
+    }
+}
+@media(min-width:769px) {
+	.form-inline .form-group {
+		> label {
+            @include m-r(7);
+			position: relative;
+			top: 1px;
+		}
+		+ .form-group {
+            @include m-l(15);
+		}
+	}
+	.form-horizontal .control-label {
+        @include p-b(6);
+        @include p-t(0);
+		&:not(.text-right) {
+			text-align: left;
+		}
+	}
+}
+@media (min-width:480px){
+	.form-horizontal .control-label[class*=col-xs-]{
+        @include p-t(8);
+        padding-top:8px
+    }
+}
+
+@media (min-width:1025px){
+    .help-inline {
+    	display: inline-block;
+        @include m-t(8);
+    	vertical-align: top;
+    	&.label {
+            @include m-t(9);
+    	}
+    	&:not(.label) {
+    		color: lighten($black, 80%);
+    	}
+    }
+    .form-group-lg .help-inline {
+        @include m-t(10);
+    	&.label {
+            @include m-t(11);
+    	}
+    }
+    .form-group-sm .help-inline {
+        @include m-t(7);
+    	&.label {
+            @include m-t(8);
+    	}
+    }
+    .form-group-xs .help-inline {
+        @include m-t(6);
+    	&.label {
+            @include m-t(7);
+    	}
+    }
+    .form-horizontal .control-label[class*=col-md-] {
+        @include p-t(8);
+    }
+}
+@media (min-width:1200px){
+	.form-horizontal .control-label[class*=col-lg-]{
+        @include p-t(8);
+    }
+}
+
+@media (min-width:769px){
+    .form-horizontal {
+    	.control-label[class*=col-sm-] {
+            @include p-t(8);
+    	}
+    	.form-group-xlg .control-label {
+            @include p-t(11);
+    	}
+    	.form-group-lg .control-label {
+            @include p-t(10);
+    	}
+    	.form-group-sm .control-label {
+            @include p-t(7);
+    	}
+    	.form-group-xs .control-label {
+            @include p-t(6);
+    	}
+    }
+}
+
+.input-group-btn{
+    .btn{
+        @include p-a(7,12,6,12);
+        @include h(38px);
+        &.btn-secondary{
+            color: $form-input-group-addon-text-color;
+            background-color: $form-input-group-addon-bg;
+            border-color: $form-input-group-addon-border;
+            &:hover,
+            &:focus{
+                background-color: darken($form-input-group-addon-bg, 3%);
+            }
+        }
+
+        &[class*=bg-]{
+            color:inherit;
+            i{
+                color:inherit;
+            }
+        }
+    }
+    i{
+        color:inherit;
+    }
+}
+
+.input-group-btn:first-child>.btn,
+.input-group-btn:first-child>.btn-group {
+    @include m-r(-2);
+}
+
+.input-group .form-control:first-child,
+.input-group-addon:first-child,
+.input-group-btn:first-child>.btn,
+.input-group-btn:first-child>.btn-group>.btn{
+    @include radius-a($radius,0,0,$radius);
+}
+
+.input-rounded {
+    @include radius(100px);
+}
+
+.input-roundless {
+    @include radius(0);
+}

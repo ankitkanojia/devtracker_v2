@@ -1,0 +1,282 @@
+//----------------------------------
+//   File          : scss/plugins/forms/_checkers.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//----------------------------------
+
+.checker {
+	@include size(18px);
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	vertical-align: middle;
+	@include m-r(5);
+	top: -2px;
+
+	span {
+		@include size(18px);
+		@include radius($radius);
+		color: $checkbox-tick-color;
+		border: none;
+		display: inline-block;
+		text-align: center;
+		position: relative;
+		background: $checkbox-bg;
+		@include b(1,solid,$checkbox-border-color);
+		@if($checkbox-shadow == 'true'){
+			@include shadow-in(rgba($shadow-color,$shadow-opacity),$blur-radius,$spread-radius,1px,1px);
+		}
+		@else{
+			@include no-shadow();
+		}
+		@include icon(after,checker){
+			@include pos(absolute,1px,null,null,3px);
+			@include fs(12px);
+			@include lh(15px);
+			display: none;
+		}
+		&.checked:after {
+			display: block;
+			left: 1.5px;
+		}
+	}
+	input {
+		@include size(18px);
+	}
+	input[type=checkbox] {
+		@include pos(absolute,-2px,null,null,-2px);
+		@include no-m();
+		border: none;
+		background: none;
+		display: inline-block;
+		vertical-align: top;
+		cursor: pointer;
+		z-index: 2;
+		opacity: 0;
+		filter: alpha(opacity=0);
+	}
+	&.disabled {
+		opacity: .5;
+		filter: alpha(opacity=50);
+		cursor: not-allowed;
+		input[type=checkbox] {
+			cursor: not-allowed;
+		}
+	}
+	&.active span:after {
+		display: block;
+		opacity: .75;
+		filter: alpha(opacity=75);
+	}
+}
+.choice {
+	@include size(18px);
+	@include radius(100%);
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	vertical-align: middle;
+
+	input[type=radio] {
+		@include pos(absolute,-2px,null,null,-2px);
+		@include no-m();
+		border: none;
+		background: none;
+		display: inline-block;
+		vertical-align: top;
+		cursor: pointer;
+		z-index: 2;
+		opacity: 0;
+		filter: alpha(opacity=0);
+	}
+	span {
+		@include size(18px);
+		@include radius(100%);
+		border: none;
+		background: $checkbox-bg;
+		display: inline-block;
+		text-align: center;
+		position: relative;
+		@include b(1,solid,$checkbox-border-color);
+		@if($checkbox-shadow == 'true'){
+			@include shadow-in(rgba($shadow-color,$shadow-opacity),$blur-radius,$spread-radius,1px,1px);
+		}
+		@else{
+			@include no-shadow();
+		}
+		@include icon(after,blank){
+			@include radius(100%);
+			@include size(0);
+			@include pos(absolute,4px,null,null,4px);
+			@include b(4,solid,$checkbox-tick-color);
+			display: none;
+		}
+		&.checked:after {
+			display: block;
+		}
+	}
+	input {
+		@include size(18px);
+	}
+	&.disabled {
+		opacity: .5;
+		filter: alpha(opacity=50);
+		cursor: not-allowed;
+		input[type=radio] {
+			cursor: not-allowed;
+		}
+	}
+	&.active span:after {
+		display: block;
+		opacity: .75;
+		filter: alpha(opacity=75);
+	}
+}
+.checkbox {
+	.checker {
+		@include pos(relative,-1px,null,null,0);
+	}
+	> label:active .checker {
+		span:after {
+			display: block;
+			opacity: .75;
+			filter: alpha(opacity=75);
+		}
+		&.disabled span {
+			&:after {
+				opacity: 0;
+				filter: alpha(opacity=0);
+			}
+			&.checked:after {
+				opacity: 1;
+				filter: alpha(opacity=100);
+			}
+		}
+	}
+}
+.checkbox-inline {
+	.checker {
+		@include pos(absolute,1px,null,null,0);
+	}
+	&:active .checker {
+		span:after {
+			display: block;
+			opacity: .75;
+			filter: alpha(opacity=75);
+		}
+		&.disabled span {
+			&:after {
+				opacity: 0;
+				filter: alpha(opacity=0);
+			}
+			&.checked:after {
+				opacity: 1;
+				filter: alpha(opacity=100);
+			}
+		}
+	}
+	&.checkbox-right{
+		.checker{
+			right: -30px;
+		}
+	}
+}
+.form-horizontal {
+	.checkbox .checker,
+	.checkbox-inline .checker,
+	.radio .choice,
+	.radio-inline .choice {
+		top: 9px;
+	}
+}
+.dropdown-menu[class*=bg-] {
+	.checker span {
+		border-color: $white;
+		color: $white;
+	}
+	.choice span {
+		border-color: $white;
+	}
+}
+.radio {
+	.choice {
+		top: -1px;
+		left: -4px;
+	}
+	> label:active .choice {
+		span:after {
+			display: block;
+			opacity: .75;
+			filter: alpha(opacity=75);
+		}
+		&.disabled span {
+			&:after {
+				opacity: 0;
+				filter: alpha(opacity=0);
+			}
+			&.checked:after {
+				opacity: 1;
+				filter: alpha(opacity=100);
+			}
+		}
+	}
+}
+.radio-inline {
+	.choice {
+		@include pos(absolute,1px,null,null,0);
+	}
+	&:active .choice {
+		span:after {
+			display: block;
+			opacity: .75;
+			filter: alpha(opacity=75);
+		}
+		&.disabled span {
+			&:after {
+				opacity: 0;
+				filter: alpha(opacity=0);
+			}
+			&.checked:after {
+				opacity: 1;
+				filter: alpha(opacity=100);
+			}
+		}
+	}
+}
+.checkbox-right .checker,
+.radio-right .choice {
+	left: auto;
+	right: 0;
+	float: right;
+}
+.checker[class*=border-] span {
+	border-color: inherit;
+	color: inherit;
+}
+.dropdown-menu > .active {
+	&:not(.disabled) .checker span {
+		border-color: $white;
+		color: $white;
+	}
+	.choice span {
+		border-color: $white;
+	}
+}
+.navbar-inverse .navbar-form,
+.sidebar:not(.sidebar-default) .checkbox {
+	.checker span {
+		border-color: $white;
+		color: $white;
+	}
+	.choice span {
+		border-color: $white;
+	}
+}
+
+.choice[class*=border-] span {
+	border-color: inherit;
+	&:after {
+		border-color: inherit;
+	}
+}

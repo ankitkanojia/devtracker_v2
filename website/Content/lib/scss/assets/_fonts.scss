@@ -1,0 +1,26 @@
+//----------------------------------
+//   File          : scss/assets/_fonts.scss
+//   Type          : Fonts imports
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Imports fonts from assets folder
+//----------------------------------
+
+@mixin font($font-name, $file-path, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: quote($font-name);
+    src: url($file-path + '.eot');
+    src: url($file-path + '.eot?#iefix')  format('embedded-opentype'),
+         url($file-path + '.woff') format('woff'),
+         url($file-path + '.ttf')  format('truetype'),
+         url($file-path + '.svg##{$font-name}')  format('svg');
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+@include font(OpenSans,'../fonts/OpenSans-Regular-webfont');
+@include font(OpenSans_Light,'../fonts/OpenSans-Light-webfont');
+@include font(OpenSans_SemiBold,'../fonts/OpenSans-Semibold-webfont');
+@include font(OpenSans_Bold,'../fonts/OpenSans-Bold-webfont');
+@include font(OpenSans_ExtraBold,'../fonts/OpenSans-ExtraBold-webfont');

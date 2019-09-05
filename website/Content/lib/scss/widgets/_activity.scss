@@ -1,0 +1,73 @@
+//----------------------------------
+//   File          : scss/widgets/_activity.scss
+//   Type          : Main SCSS file
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : CSS stylesheet for activity feed widget
+//----------------------------------
+
+// Main styles
+.sl-item {
+	@include bl(1,solid,$theme-color);
+	@include p-b(1);
+	@include p-l(20);
+	position: relative;
+	&:before {
+		@include size(12px);
+		@include pos(absolute,0,null,null,-6.5px);
+		content: '';
+		background-color: $theme-color;
+		@include radius(100%);
+	}
+	&:last-child:after {
+		@include size(6px);
+		@include pos(absolute,null,null,0,-3px);
+		content: '';
+		@include radius(100%);
+	}
+	.sl-content{
+		i{
+			@include fs(12px);
+		}
+		small{
+			@include pos(relative,-4px,null,null,null);
+			@include fs(12px);
+		}
+		p{
+			@include pos(relative,-4px,null,null,null);
+			@include p-b(15);
+			@include lh(1.6);
+			@include fs(13px);
+		}
+	}
+}
+
+// Colors
+.sl-primary {
+	border-left-color: $primary;
+	&:before,
+	&:last-child:after {
+		background-color: $primary;
+	}
+}
+.sl-danger {
+	border-left-color: $danger;
+	&:before,
+	&:last-child:after {
+		background-color: $danger;
+	}
+}
+.sl-success {
+	border-left-color: $success;
+	&:before,
+	&:last-child:after {
+		background-color: $success;
+	}
+}
+.sl-warning {
+	border-left-color: $warning;
+	&:before,
+	&:last-child:after {
+		background-color: $warning;
+	}
+}

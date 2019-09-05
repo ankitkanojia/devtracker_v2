@@ -1,0 +1,118 @@
+//----------------------------------
+//   File          : scss/mixins/_layout.scss
+//   Type          : SCSS mixin
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : SCSS mixin for layouts
+// ---------------------------------
+
+// ---------------------------------
+// Table of contents
+// ---------------------------------
+// 1. Clearfix
+// 2. Positioning element
+// 3. Sizing
+// 4. Horizontally center block
+// 5. Block centered horizontally and vertically
+// 6. Vertically centered block
+
+
+// ---------------------------------
+// 1. Clearfix
+// ---------------------------------
+%clearfix {
+    *zoom: 1;
+    &:before, &:after {
+        content: ' ';
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+
+// ---------------------------------
+// 2. Positioning element
+// ---------------------------------
+@mixin pos($type, $top: null, $right: null, $bottom: null, $left: null) {
+    position: $type;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+
+// ---------------------------------
+// 3. Sizing
+// ---------------------------------
+@mixin size($width: 100%, $height: $width) {
+   @include w($width);
+   @include h($height);
+}
+
+// Height
+@mixin h($height: 100%, $height-max: false, $height-min: false) {
+   height: $height;
+   @if $height-max != false {
+      @include h-max($height-max);
+   }
+   @if $height-min != false {
+      @include h-min($height-min);
+   }
+}
+@mixin h-max($height: 100%) {
+   max-height: $height;
+}
+@mixin h-min($height: 100%) {
+   min-height: $height;
+}
+
+// Width
+@mixin w($width: 100%, $width-max: false, $width-min: false) {
+   width: $width;
+   @if $width-max != false {
+      @include w-max($width-max);
+   }
+   @if $width-min != false {
+      @include w-min($width-min);
+   }
+}
+@mixin w-max($width: 100%) {
+   max-width: $width;
+}
+@mixin w-min($width: 100%) {
+   min-width: $width;
+}
+
+
+// ---------------------------------
+// 4. Horizontally center block
+// ---------------------------------
+@mixin center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+// ---------------------------------
+// 5. Block centered horizontally and vertically
+// ---------------------------------
+@mixin center-both {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include prefix(transform, translate(-50%, -50%), 'webkit' 'ms');
+}
+
+
+// ---------------------------------
+// 6. Vertically centered block
+// ---------------------------------
+@mixin center-vertical {
+    position: relative;
+    top: 50%;
+    @include prefix(transform, translateY(-50%), 'webkit' 'ms');
+}

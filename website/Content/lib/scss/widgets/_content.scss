@@ -1,0 +1,63 @@
+//----------------------------------
+//   File          : scss/widgets/_content.scss
+//   Type          : Main SCSS file
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : CSS stylesheet for content box
+//----------------------------------
+
+.contentBox {
+	@include p-a(25,15,15,15);
+	background: darken($card-bg,5%);
+	text-align: center;
+	@include radius(10px);
+	@include animation(transition, all 0.5s ease 0s);
+	cursor: pointer;
+	&:hover {
+		background: c300(palette($theme-color));
+		.title {
+			color: $white;
+		}
+		.service-icon {
+			@include animation(transform,scale(1.20));
+			background: $white;
+		}
+		.description {
+			color: $white;
+		}
+		.read {
+			color: $white;
+			border-top-color: $white;
+		}
+	}
+	.title {
+		@include m-a(0,0,15,0);
+		@include fs($font-xlg);
+		color: set-color(darken($card-bg,5%));
+	}
+	.service-icon {
+		@include size(80px);
+		@include radius(50%);
+		@include b(1,solid,c300(palette($theme-color)));
+		margin: 0 auto 20px;
+		@include animation(transition,all 0.5s ease 0s);
+		i {
+			@include fs(40px);
+			@include lh(80px);
+			color: c300(palette($theme-color));
+		}
+	}
+	.description {
+		@include m-b(15);
+		color: set-color(darken($card-bg,5%));
+		@include animation(transition,all 0.5s ease 0s);
+	}
+	.read {
+		@include p-vh(5,10);
+		display: inline-block;
+		color: set-color(darken($card-bg,5%));
+		text-transform: capitalize;
+		@include bt(1,solid,darken($card-bg,8%));
+		@include animation(transition,all 0.5s ease 0s);
+	}
+}

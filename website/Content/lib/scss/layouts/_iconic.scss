@@ -1,0 +1,326 @@
+//----------------------------------
+//   File          : scss/layouts/_iconic.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Main CSS definition for iconic menu
+//----------------------------------
+
+@mixin iconic{
+    @include media(tablet-xlg, min) {
+        .main-nav{
+            .navbar-left{
+                @include w(70px);
+                @include p-l(22);
+            }
+        }
+        .main-container {
+            @include h-min(100%);
+            @include pos(relative, null, null);
+            @include m-l(70);
+        }
+        .menu-container{
+            @include w(70px);
+            float: left;
+        }
+
+        .iconic-view {
+        	.iconic-leftbar {
+                @include size(70px,100%);
+                @include pos(fixed,0,null,null,null);
+        		background-color: $menu-bg-color;
+        		z-index: 8;
+                @if($menu-shadow == 'true'){
+                    @include shadow-out(rgba(0,0,0,0.1),30px,0px,0px,0px);
+                }
+        	}
+        	.list-accordion {
+                @include p(0);
+
+        		.list-title,
+                .list-label {
+        			display: none;
+        		}
+        		li {
+        			position: relative;
+        			list-style: none;
+        			> a {
+        				display: block;
+        				position: relative;
+        			}
+        			ul {
+                        @include pos(absolute,null,null,null,70px);
+                        @include w(200px);
+                        @include p-vh(5,0);
+        				display: none;
+        				background-color: $submenu-bg-color;
+                        @if($menu-shadow == 'true'){
+                            @include shadow-out(rgba(0,0,0,0.1),30px,0px,0px,10px);
+                        }
+
+        				li {
+        					position: relative;
+
+        					a {
+                                @include p-vh(5,15);
+        						position: relative;
+        						color: $submenu-links-color;
+                                @include ff($submenu-links-font-family);
+                                text-transform: $submenu-links-font-style;
+
+        						.acc-icon {
+        							top: 3px;
+        						}
+                                &.active{
+                                    @include ff($submenu-links-active-font-family);
+                                    text-transform: $submenu-links-active-font-style;
+                                }
+        						&:hover,
+                                &:focus {
+                                    @include transition(all 350ms cubic-bezier(0.19, 1, 0.22, 1));
+        							text-decoration: none;
+                                	color: $submenu-links-active-color;
+                                    @include ff($submenu-links-active-font-family);
+                                    text-transform: $submenu-links-active-font-style;
+        						}
+                                i{
+                                    @include m-r(6);
+                                }
+        					}
+        					ul {
+                                @include pos(relative,null,null,null,0);
+                                @include w(100%);
+                                @include m-b(15);
+                                @include p-l(0);
+
+                                li a{
+                                    @include p-vh(1,25);
+
+                                    .acc-icon {
+            							top: -1px;
+            						}
+                                }
+        					}
+        				}
+        			}
+        		}
+        		> li {
+        			> a {
+                        @include pos(relative,null,null,null,null);
+                        @include h(44px);
+                        @include p(0);
+                        @include lh(44px);
+                        @include animation(transform,translateZ(0));
+                        @include animation(transition-property,color);
+                        @include animation(transition-duration,0.2s);
+        				text-align: center;
+        				color: $menu-link-color;
+        				display: block;
+        				vertical-align: middle;
+        				box-shadow: 0 0 1px $black(0);
+                        -moz-box-shadow: 0 0 1px $black(0);
+                        -webkit-box-shadow: 0 0 1px $black(0);
+        				backface-visibility: hidden;
+                        @include ff($link-hover-active-font-family);
+                        text-transform: $link-hover-active-font-style;
+
+        				.acc-icon {
+        					display: none;
+        				}
+        				> i {
+                            @include pos(absolute,0,null,null,0);
+                            @include size(70px,44px);
+                            @include fs(20px);
+                            @include lh(44px);
+        				}
+        				&:hover,
+                        &:focus {
+        					background-color: $link-hover-active-bg;
+                            color: $link-hover-active-color;
+        					text-decoration: none;
+                            @include ff($link-hover-active-font-family);
+                            text-transform: $link-hover-active-font-style;
+                            @if($menu-shadow == 'true'){
+                                @include shadow-out(rgba(0,0,0,0.1),30px,0px,10px,0px);
+                            }
+        				}
+        				&:before {
+                            @include pos(absolute,0,0,0,0);
+                            @include animation(transform,scaleX(0));
+                            @include animation(transform-origin,0 50%);
+                            @include animation(transition-property,transform);
+                            @include animation(transition-duration,0.2s);
+                            @include animation(transition-timing-function,ease-out);
+        					content: "";
+        					z-index: -1;
+        				}
+        			}
+        			&:hover > a {
+                        @include w(270px);
+
+        				.list-label {
+                            @include w(220px);
+                            @include pos(absolute,null,null,null,70px);
+                            @include fs(14px);
+                            @include p-vh(0,15);
+        					text-align: left;
+        					display: block;
+        				}
+        				.acc-icon {
+                            @include pos(absolute,0,10px,null,null);
+                            @include size(14px,auto);
+        					display: block;
+        					text-align: center;
+                            color: $link-hover-active-color !important;
+                            top: 2px !important;
+        				}
+        			}
+        			&.acc-parent-li > a.active {
+                        @include w(270px);
+                        background: $link-hover-active-bg;
+                        color: $link-hover-active-color;
+                        @include ff($link-hover-active-font-family);
+                        text-transform: $link-hover-active-font-style;
+                        @if($menu-shadow == 'true'){
+                            @include shadow-out(rgba(0,0,0,0.1),30px,0px,0px,10px);
+                        }
+
+        				.list-label {
+                            @include w(200px);
+                            @include pos(absolute,null,null,null,70px);
+                            @include p-vh(0,15);
+                            @include fs(14px);
+        					text-align: left;
+        					display: block;
+        				}
+        				.acc-icon {
+                            @include pos(absolute,1px,10px,null,null);
+                            @include size(14px,auto);
+        					display: block;
+        					text-align: center;
+        				}
+        			}
+        		}
+        	}
+        	.acc-icon {
+                @include pos(absolute,3px,10px,null,null);
+                @include w(14px);
+        		display: inline-block;
+        		text-align: center;
+        	}
+        }
+        ul.list-accordion {
+            @include m-b(0);
+        }
+
+        .left-aside-container .user-profile-container {
+            @include size(70px,70px);
+        	position: relative;
+
+        	.user-profile {
+                @include size(70px,70px);
+        		display: table;
+        		cursor: pointer;
+        		z-index: 200;
+        		position: relative;
+                background: $menu-bg-color;
+
+        		> div {
+                    @include p-vh(13,15);
+        			display: table-cell;
+        			vertical-align: middle;
+        		}
+        		.admin-user-thumb {
+        			img {
+                        @include size(40px,40px);
+                        @include radius(100%);
+        			}
+        		}
+        		.admin-user-info {
+                    @include p-l(15);
+        			color: $user-profile-container-text-color;
+        			display: none;
+
+        			ul {
+                        @include p-vh(25,0);
+                        @include m(0);
+        				list-style: none;
+        				li {
+                            float: left;
+        					line-height: normal;
+        					a {
+        						color: $user-profile-container-text-color ;
+        						&:hover,
+                                &:focus {
+        							text-decoration: none;
+        							color: $user-profile-container-text-color ;
+        						}
+        					}
+                            &:last-child,
+                            &:nth-child(2){
+                                float: right;
+                                @include m-r(12);
+                            }
+                            &.username{
+                                text-transform: uppercase;
+                                @include ff($ff-semibold);
+                                color: $menu-link-color;
+                            }
+                            .bubble{
+                                top: -6px;
+                                right: -10px;
+                            }
+        				}
+        			}
+        		}
+        	}
+        	&:hover {
+                @include w(220px);
+        		.user-profile {
+        			@include w(270px);
+                    @if($menu-shadow == 'true'){
+                        @include shadow-out(rgba(0,0,0,0.1),30px,0px,0px,10px);
+                    }
+
+        			.admin-user-info {
+                        @include p-vh(1,15);
+        				display: block;
+        			}
+        			.admin-user-thumb {
+                        @include w(70px);
+                        @include p-a(0,0,0,15);
+        			}
+        		}
+        		.admin-bar {
+        			display: block;
+        		}
+        	}
+        }
+        .acc-icon{
+            @include icon(after,arrow-right){
+                @include w(14px);
+                @include pos(relative,-2px,null,null,null);
+                @include fs(16px);
+            }
+        }
+        .acc-parent{
+            i{
+                @include m-r(6);
+                top: -2px;
+            }
+        }
+        .acc-parent.active .acc-icon{
+            @include icon(after,arrow-down){
+                @include w(14px);
+                @include pos(relative,null,null,null,null);
+                @include fs(16px);
+            }
+        }
+        .acc-parent-li ul ul {
+        	li,
+            ul li {
+                @include p-l(15);
+        	}
+        }
+    }
+}

@@ -1,0 +1,71 @@
+//----------------------------------
+//   File          : scss/components/_pager.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Bootstrap Pager Override
+//----------------------------------
+.pager{
+    >li{
+        >a,
+        >span{
+            @include b(1,solid,$pagination-border-color);
+            background: $pagination-bg;
+            @include p-vh($space-base *1.5, $space-base *3.2);
+            @include typo($ff-regular,$font-base,$pagination-text-color,left);
+            &:hover,
+            &:focus{
+                background: $pagination-hover-bg;
+                color: $pagination-hover-color;
+            }
+        }
+    }
+
+    &.pager-rounded{
+        >li{
+            >a,
+            >span{
+                @include radius(100px);
+            }
+        }
+    }
+
+    &.pager-linked{
+        >li{
+            >a,
+            >span{
+                background: none;
+                border: none;
+                color: $link-color;
+            }
+        }
+    }
+
+    &.pager-lg{
+        >li{
+            >a,
+            >span{
+                @include p-vh($space-lg *1.3, $space-lg *2.5);
+                @include typo($ff-regular,$font-lg,$pagination-text-color,left);
+            }
+        }
+    }
+    &.pager-sm{
+        >li{
+            >a,
+            >span{
+                @include p-vh($space-sm *1.3, $space-sm *3.5);
+                @include typo($ff-regular,$font-sm,$pagination-text-color,left);
+            }
+        }
+    }
+    &.pager-xs{
+        >li{
+            >a,
+            >span{
+                @include p-vh($space-xs *1.3, $space-xs *3.8);
+                @include typo($ff-regular,$font-xs,$pagination-text-color,left);
+            }
+        }
+    }
+}

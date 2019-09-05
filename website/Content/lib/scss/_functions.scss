@@ -1,0 +1,29 @@
+//----------------------------------
+//   File          : scss/_functions.scss
+//   Type          : SCSS Functions
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//----------------------------------
+
+// Sets alternate color for cards if the background color is white
+@if (
+        ($card-bg == #FFF) or
+        ($card-bg == #FFFFFF) or
+        ($card-bg == '#FFFFFF') or
+        ($card-bg == '#FFF') or
+        ($card-bg == '') or
+        ($card-bg == #fff) or
+        ($card-bg == #ffffff) or
+        ($card-bg == '#fff') or
+        ($card-bg == '#ffffff')
+    ){
+    $alt-color: $white !global;
+}
+@else{
+    $alt-color: lighten($card-bg,20%) !global;
+}
+
+// Trims value of any unit to just have the value not 'px' or 'em' or anything else
+@function trim($value) {
+	@return $value / ($value * 0 + 1);
+}

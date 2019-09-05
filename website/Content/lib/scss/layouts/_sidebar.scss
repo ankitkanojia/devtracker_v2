@@ -1,0 +1,173 @@
+//----------------------------------
+//   File          : scss/layouts/_sidebar.scss
+//   Type          : CSS stylesheet
+//   Version       : 2.0.0
+//   Last Updated  : August 7, 2017
+//   Description   : Main CSS definition for sidebar menu
+//----------------------------------
+
+@mixin sidebar{
+    @include media(tablet-xlg, min) {
+        .main-container {
+            @include h-min(100%);
+            @include pos(relative, null, null);
+            @include m-l(220);
+        }
+        .leftmenu {
+            @include size(220px, 100%);
+            @include pos(fixed, 60px, null, null, null);
+            @include br(1, solid, $menu-border-color);
+            background-color:$menu-bg-color;
+            z-index:998;
+            @if($menu-shadow == 'true'){
+                @include shadow-out(rgba(0,0,0,0.1),30px,0px,0px,0px);
+            }
+
+            .sidebar-accordion {
+                background: $menu-bg-color;
+                @include p-a(10,0,0,0);
+
+            	.list-title {
+                    display:none;
+            	}
+
+            	li {
+            		position: relative;
+            		list-style: none;
+            		> a {
+            			display: block;
+            			position: relative;
+            			> .label {
+                            @include pos(relative, -2px,null,null,0);
+            			}
+            		}
+
+            		ul {
+                        @include p-l(0);
+            			display: none;
+            			position: relative;
+                        background:$submenu-bg-color;
+            			li {
+            				position: relative;
+            				a {
+                                @include p-a(2,10,2,40);
+            					color: $submenu-links-color;
+            					position: relative;
+                                @include ff($submenu-links-font-family);
+                                text-transform: $submenu-links-font-style;
+
+                                &.active {
+            						background:none;
+            						color: $submenu-links-active-color ;
+                                    @include ff($submenu-links-active-font-family);
+                                    text-transform: $submenu-links-active-font-style;
+            					}
+            					&:hover,
+                                &:focus  {
+                                    color: $submenu-links-active-color ;
+            					}
+                                .acc-icon {
+            						top: 2px;
+            					}
+            				}
+            				li {
+            					a {
+                                    @include p-a(2,10,2,50);
+            					}
+            					li a {
+                                    @include p-a(2,10,2,60);
+            					}
+            				}
+            				&:last-child a {
+                                @include m-b(5);
+            				}
+            			}
+            		}
+                    &.active > a {
+            			color: $link-hover-active-color;
+                        @include ff($link-hover-active-font-family);
+                        text-transform: $link-hover-active-font-style;
+                        i{
+                            color:$link-hover-active-color;
+                        }
+            		}
+            	}
+                >li{
+                    &.active > a {
+                        @include ff($link-hover-active-font-family);
+                        text-transform: $link-hover-active-font-style;
+                        @include bl(3,solid,$theme-color);
+                        @include p-l(12);
+            			background: $link-hover-active-bg;
+            			color:$link-hover-active-color;
+                        i{
+                            color:$link-hover-active-color;
+                        }
+            		}
+                }
+            	> li > a {
+                    @include p-a(9,15,8,15);
+            		color: $menu-link-color;
+            		display: block;
+            		vertical-align: middle;
+            		position: relative;
+                    text-transform: $menu-link-font-style;
+                    @include ff($menu-link-font-family);
+                    &.active{
+                        @include ff($link-hover-active-font-family);
+                        text-transform: $link-hover-active-font-style;
+                    }
+            		&.active,
+                    &:hover,
+                    &:focus {
+                        @include bl(3,solid,$theme-color);
+                        @include p-l(12);
+            			background: $link-hover-active-bg;
+            			color:$link-hover-active-color;
+                        i{
+                            color:$link-hover-active-color;
+                        }
+            		}
+            		> i {
+                        @include m-r(6);
+                        @include pos(relative,-2px,null,null,null);
+            			text-align: left;
+            			color:$menu-link-color;
+            		}
+
+            		&.acc-parent.active {
+                        @include ff($link-hover-active-font-family);
+                        text-transform: $link-hover-active-font-style;
+                        @include bl(3,solid,$theme-color);
+            			background: $link-hover-active-bg;
+            			color:$link-hover-active-color;
+            			i {
+            				color:$link-hover-active-color;
+            			}
+            		}
+            	}
+
+                >li>ul{
+                    @include p-a(6,0,1,0);
+                    box-shadow: inset 0 7px 10px -7px rgba(0,0,0,0);
+
+                    li{
+                        a.active{
+                            background:none;
+                        }
+                    }
+                }
+            }
+            .acc-icon {
+                @include w(12px);
+                @include pos(absolute,5px,12px,null,null);
+            	display: inline-block;
+            	text-align: center;
+                @include icon(after, arrow-right);
+            }
+            .acc-parent.active .acc-icon{
+                @include icon(after, arrow-down);
+            }
+        }
+    }
+}
