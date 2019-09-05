@@ -16,8 +16,8 @@ namespace repository.Models.ViewModels
         public string Email { get; set; }
         public string Password { get; set; }
         public bool IsRemember { get; set; }
-        public string ReturnUrl { get; set; }
-        public bool IsShowSendVerificationEmail { get; set; }
+        public string ReturnUrl { get; set; } 
+        public string UserId { get; set; }
 
 
         //Registration

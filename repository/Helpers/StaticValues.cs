@@ -8,6 +8,11 @@ namespace repository.Helpers
 {
     public static class StaticValues
     {
+        
+        public static string NotifyError { get; set; }
+        public static string NotifySuccess { get; set; }
+        public static string NotifyActionRequiredMsg { get; set; }
+        
         public static string AvatarImagePath => "/Files/Avatar/";
         public static string DefaultAvatarImagePath => "/Files/Avatar/avatar.png";
         public static string AccountIcoImagePath => "/Files/AccountIco/";

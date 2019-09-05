@@ -166,6 +166,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\custom\notification.js" />
     <Content Include="Content\img\assets\bubble-corner.png" />
     <Content Include="Content\img\assets\bubble-cornerR.png" />
     <Content Include="Content\img\assets\email_confirm.png" />
