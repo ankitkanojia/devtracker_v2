@@ -1,0 +1,473 @@
+//----------------------------------
+//   File          : scss/components/_helper-classes.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : CSS definition for helper classes
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Vertical align
+// 2. Positions
+// 3. Blocks
+// 4. Cursors
+// 5. Overflow
+// 6. Margins
+// 7. Paddings
+// 8. Borders
+// 9. Border radius
+// 10. Width
+// 11. Height
+// 12. Images
+// 13. Tranforms
+// 14. Spinner
+
+
+//----------------------------------
+// 1. Vertical align
+//----------------------------------
+.valign-middle {
+    vertical-align: middle
+}
+.valign-bottom {
+    vertical-align: bottom
+}
+.valign-baseline {
+    vertical-align: baseline
+}
+.valign-text-top {
+    vertical-align: top
+}
+.valign-text-bottom {
+    vertical-align: text-bottom
+}
+
+
+//----------------------------------
+// 2. Positions
+//----------------------------------
+.position-relative {
+    position: relative
+}
+.position-static {
+    position: static
+}
+.position-left {
+    @include m-r(6);
+}
+.position-right {
+    @include m-l(6);
+}
+
+
+//----------------------------------
+// 3. Blocks
+//----------------------------------
+.display-block,
+label.display-block {
+    display: block !important
+}
+.display-inline-block {
+    display: inline-block
+}
+
+
+//----------------------------------
+// 4. Cursors
+//----------------------------------
+.cursor-pointer {
+    cursor: pointer
+}
+.cursor-move {
+    cursor: move
+}
+.cursor-default {
+    cursor: default
+}
+
+
+//----------------------------------
+// 5. Overflow
+//----------------------------------
+.overflow-hidden {
+    overflow: hidden
+}
+.overflow-visible {
+    overflow: visible
+}
+.overflow-auto {
+    overflow: auto
+}
+
+
+//----------------------------------
+// 6. Margins
+//----------------------------------
+.no-margin {
+    margin: 0 !important
+}
+.no-margin-t {
+    margin-top: 0 !important
+}
+.no-margin-b {
+    margin-bottom: 0 !important
+}
+.no-margin-l {
+    margin-left: 0 !important
+}
+.no-margin-r {
+    margin-right: 0 !important
+}
+.no-margin-v{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important
+}
+.no-margin-h {
+    margin-left: 0 !important;
+    margin-right: 0 !important
+}
+
+
+//----------------------------------
+// 7. Paddings
+//----------------------------------
+.no-padding {
+    padding: 0 !important
+}
+.no-padding-t {
+    padding-top: 0 !important
+}
+.no-padding-b {
+    padding-bottom: 0 !important
+}
+.no-padding-l {
+    padding-left: 0 !important
+}
+.no-padding-r {
+    padding-right: 0 !important
+}
+.no-padding-v{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important
+}
+.no-padding-h {
+    padding-left: 0 !important;
+    padding-right: 0 !important
+}
+
+
+//----------------------------------
+// 8. Borders
+//----------------------------------
+.no-border {
+    border: none !important;
+}
+.no-border-top {
+    border-top: none !important;
+}
+.no-border-bottom {
+    border-bottom: none !important;
+}
+.no-border-left {
+    border-left: none !important;
+}
+.no-border-right {
+    border-right: none !important;
+}
+.border {
+    @include b($grey, 1px, solid);
+}
+.border-top {
+    @include bt(1,solid,$grey);
+}
+.border-bottom {
+    @include bb(1,solid,$grey);
+}
+.border-left {
+    @include bl(1,solid,$grey);
+}
+.border-right {
+    @include br(1,solid,$grey);
+}
+.border-right-dotted {
+    @include br(1,solid,$grey);
+}
+.border-right-dashed {
+    @include br(1,solid,$grey);
+}
+.border-lg {
+    @include b(2,solid,$grey);
+}
+.border-top-lg {
+    @include bt(2,solid,$grey);
+}
+.border-bottom-lg {
+    @include bb(2,solid,$grey);
+}
+.border-left-lg {
+    @include bl(2,solid,$grey);
+}
+.border-right-lg {
+    @include br(2,solid,$grey);
+}
+.border-xlg {
+    @include b(3,solid,$grey);
+}
+.border-top-xlg {
+    @include bt(3,solid,$grey);
+}
+.border-bottom-xlg {
+    @include bb(3,solid,$grey);
+}
+.border-left-xlg {
+    @include bl(3,solid,$grey);
+}
+.border-right-xlg {
+    @include br(3,solid,$grey);
+}
+
+
+//----------------------------------
+// 9. Border radius
+//----------------------------------
+.no-border-radius {
+    @include no-radius();
+}
+.no-border-radius-top {
+    @include radius-a(0, 0, inherit, inherit);
+    border-top-right-radius: 0;
+    border-top-left-radius: 0
+}
+.no-border-radius-bottom {
+    @include radius-a(inherit, inherit, 0, 0);
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0
+}
+.no-border-radius-left {
+    @include radius-a(0, inherit, inherit, 0);
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0
+}
+.no-border-radius-right {
+    @include radius-a(inherit, 0, 0, inherit);
+}
+
+
+//----------------------------------
+// 10. Width
+//----------------------------------
+.full-width {
+    @include w(100%);
+    width: 100%
+}
+.min-width-100 {
+    @include w-min(100px);
+}
+.min-width-150 {
+    @include w-min(150px);
+}
+.min-width-200 {
+    @include w-min(200px);
+}
+.min-width-250 {
+    @include w-min(250px);
+}
+.min-width-300 {
+    @include w-min(300px);
+}
+.min-width-350 {
+    @include w-min(350px);
+}
+.min-width-400 {
+    @include w-min(400px);
+}
+.min-width-450 {
+    @include w-min(450px);
+}
+.min-width-500 {
+    @include w-min(500px);
+}
+.min-width-550 {
+    @include w-min(550px);
+}
+.min-width-600 {
+    @include w-min(600px);
+}
+.min-width-650 {
+    @include w-min(650px);
+}
+.max-width-100 {
+    @include w-max(100px);
+}
+.max-width-150 {
+    @include w-max(150px);
+}
+.max-width-200 {
+    @include w-max(200px);
+}
+.max-width-250 {
+    @include w-max(250px);
+}
+.max-width-300 {
+    @include w-max(300px);
+}
+.max-width-350 {
+    @include w-max(350px);
+}
+.max-width-400 {
+    @include w-max(400px);
+}
+.max-width-450 {
+    @include w-max(450px);
+}
+.max-width-500 {
+    @include w-max(500px);
+}
+.max-width-550 {
+    @include w-max(550px);
+}
+.max-width-600 {
+    @include w-max(600px);
+}
+.max-width-650 {
+    @include w-max(650px);
+}
+
+
+//----------------------------------
+// 11. Height
+//----------------------------------
+.min-height-100 {
+    @include h-min(100px);
+}
+.min-height-120 {
+    @include h-min(120px);
+}
+.min-height-150 {
+    @include h-min(150px);
+}
+.min-height-200 {
+    @include h-min(200px);
+}
+.min-height-250 {
+    @include h-min(250px);
+}
+.min-height-300 {
+    @include h-min(300px);
+}
+
+.height-100 {
+    @include h(100px);
+}
+.height-120 {
+    @include h(120px);
+}
+.height-150 {
+    @include h(150px);
+}
+.height-200 {
+    @include h(200px);
+}
+.height-250 {
+    @include h(250px);
+}
+.height-300 {
+    @include h(300px);
+}
+
+
+//----------------------------------
+// 12. Images
+//----------------------------------
+.img-lg {
+    @include size(44px, 44px);
+}
+.img-sm {
+    @include size(36px, 36px);
+}
+.img-xs {
+    @include size(32px, 32px);
+}
+.img-10 {
+    @include w(10%);
+}
+.img-15 {
+    @include w(15%);
+}
+.img-20 {
+    @include w(20%);
+}
+.img-30 {
+    @include w(30%);
+}
+.img-40 {
+    @include w(40%);
+}
+.img-50 {
+    @include w(50%);
+}
+.img-60 {
+    @include w(60%);
+}
+.img-70 {
+    @include w(70%);
+}
+.img-80 {
+    @include w(80%);
+}
+.img-90 {
+    @include w(90%);
+}
+.img-100 {
+    @include w(100%);
+}
+.img-rounded {
+    @include radius();
+}
+
+
+//----------------------------------
+// 13. Tranforms
+//----------------------------------
+.rotate-45 {
+    @include prefix('transform', 'rotate(45deg)', moz webkit ms);
+}
+.rotate-90 {
+    @include prefix('transform', 'rotate(90deg)', moz webkit ms);
+}
+.rotate-180 {
+    @include prefix('transform', 'rotate(180deg)', moz webkit ms);
+}
+.rotate-45-inverse {
+    @include prefix('transform', 'rotate(-45deg)', moz webkit ms);
+}
+.rotate-90-inverse {
+    @include prefix('transform', 'rotate(-90deg)', moz webkit ms);
+}
+.rotate-180-inverse {
+    @include prefix('transform', 'rotate(-180deg)', moz webkit ms);
+}
+
+
+//----------------------------------
+// 14. Spinner
+//----------------------------------
+.spinner {
+    -webkit-animation: rotation 1s linear infinite;
+    animation: rotation 1s linear infinite
+}
+.spinner-reverse {
+    -webkit-animation: rotation_reverse 1s linear infinite;
+    animation: rotation_reverse 1s linear infinite
+}
+.overlay-demo,
+.spinner,
+.spinner-reverse {
+    display: inline-block
+}
+
+.no-shadow{
+    @include no-shadow();
+}

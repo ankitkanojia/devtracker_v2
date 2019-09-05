@@ -1,0 +1,125 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="theme-color" content="#1C2B36" />
+    <title>@ViewBag.Title - Dev Tracker</title>
+
+    <!-- Favicon -->
+    <link href="../../Content/img/favicon.ico" rel="apple-touch-icon" type="image/png" sizes="144x144">
+    <link href="../../Content/img/favicon.ico" rel="apple-touch-icon" type="image/png" sizes="114x114">
+    <link href="../../Content/img/favicon.ico" rel="apple-touch-icon" type="image/png" sizes="72x72">
+    <link href="../../Content/img/favicon.ico" rel="apple-touch-icon" type="image/png">
+    <link href="../../Content/img/favicon.ico" rel="icon" type="image/png">
+    <link href="../../Content/img/favicon.ico" rel="shortcut icon">
+    <!-- /Favicon -->
+    <!-- Global stylesheets -->
+    <link type="text/css" rel="stylesheet" href="../../Content/lib/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="../../Content/lib/css/animate.min.css">
+    <link type="text/css" rel="stylesheet" href="../../Content/lib/css/main.css">
+    <link href="~/Content/plugins/iziToast/css/iziToast.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    @{
+        var errorMsg = string.Empty;
+        var successMsg = string.Empty;
+
+        if (TempData["Success"] != null)
+        {
+            successMsg = TempData["Success"].ToString();
+        }
+
+
+        if (TempData["Error"] != null)
+        {
+            errorMsg = TempData["Error"].ToString();
+        }
+
+    }
+
+    <input type="hidden" id="errorMsg" value="@errorMsg" />
+    <input type="hidden" id="successMsg" value="@successMsg" />
+
+    <div class="auth-container">
+        <div class="center-block">
+
+            @RenderBody()
+
+            <div class="footer">
+                <div class="pull-left">
+                    © @DateTime.Now.Year DevTracker&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;  Developed By <a href="http://riowebs.com" target="_blank">Riowebs PVT LTD</a>.
+                </div>
+                <div class="pull-right">
+                    <div class="label label-info">DEVELOPER MODE</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global scripts -->
+    <script src="../../Content/lib/js/core/jquery/jquery.js"></script>
+    <script src="../../Content/lib/js/core/jquery/jquery.ui.js"></script>
+    <script src="../../Content/lib/js/core/bootstrap/bootstrap.js"></script>
+    <script src="../../Content/lib/js/core/hammer/hammerjs.js"></script>
+    <script src="../../Content/lib/js/core/hammer/jquery.hammer.js"></script>
+    <script src="../../Content/lib/js/core/slimscroll/jquery.slimscroll.js"></script>
+    <script src="../../Content/lib/js/forms/uniform.min.js"></script>
+    <script src="../../Content/lib/js/core/app/layouts.js"></script>
+    <script src="../../Content/lib/js/core/app/core.js"></script>
+    <!-- /Global scripts -->
+    <!-- Page scripts -->
+    <script src="../../Content/lib/js/pages/auth/authentication.js"></script>
+    <script src="~/Content/plugins/iziToast/js/iziToast.min.js"></script>
+    <script src="~/Content/lib/js/forms/jquery.validate.js"></script>
+    <!-- /Page scripts -->
+    <!--START: IZI Toastr Implementation-->
+    <script type="text/javascript">
+        function NotySuccess(message) {
+            iziToast.success({
+                title: 'DONE',
+                position: 'topRight',
+                message: message,
+                timeout: 4000
+            });
+        }
+
+        function NotyError(message) {
+            iziToast.error({
+                title: 'Error',
+                position: 'topRight',
+                message: message,
+                timeout: 4000
+            });
+        }
+    </script>
+    <!--END: IZI Toastr Implementation-->
+
+    <script>
+        $(document).ready(function () {
+
+            //To show error notification
+            if ($('#errorMsg').val() !== "") {
+                NotyError($('#errorMsg').val());
+            }
+
+            //To show success notification
+            if ($('#successMsg').val() !== "") {
+                NotySuccess($('#successMsg').val());
+            }
+        });
+    </script>
+
+    @*For render our page level script*@
+    @RenderSection("Scripts", false)
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<div class="notifications">
+	<div class="subtitle">Messages</div>
+	<div class="media-container">
+		<ul class="clearfix">
+			<li class="clearfix new">
+				<a href="#" class="media-thumb"><img src="http://via.placeholder.com/80x80" alt="image">
+				</a><a href="#" class="media-title"><div>Jane Elliott</div>Nullam dictum felis eu pede mollis pretium... <span class="media-time">today at 18:20 pm</span></a>
+			</li>
+			<li class="clearfix new">
+				<a href="#" class="media-thumb"><img src="http://via.placeholder.com/80x80" alt="image">
+				</a><a href="#" class="media-title"><div>Florence Douglas</div>Donec quam felis, ultricies nec... <span class="media-time">today at 10:29 am</span></a>
+			</li>
+			<li class="clearfix">
+				<a href="#" class="media-thumb"><img src="http://via.placeholder.com/80x80" alt="image">
+				</a><a href="#" class="media-title"><div>Jacqueline Howell</div>Aenean massa. Cum sociis... <span class="media-time">yesterday at 13:23 pm</span></a>
+			</li>
+			<li class="clearfix">
+				<a href="#" class="media-thumb"><img src="http://via.placeholder.com/80x80" alt="image">
+				</a><a href="#" class="media-title"><div>Eugine Turner</div>Integer tincidunt. Cras dapibus. Vivamus ... <span class="media-time">yesterday at 14:40 pm</span></a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="subtitle">Notifications</div>
+	<div class="media-container">
+		<ul class="clearfix">
+			<li class="clearfix">
+				<a href="#" class="media-thumb bg-info"><i class="icon-cart2"></i>
+				</a><a href="#" class="media-title"><div>You have new order</div><span class="media-time">Just now</span></a>
+			</li>
+			<li class="clearfix">
+				<a href="#" class="media-thumb bg-indigo"><i class="icon-stats-growth"></i>
+				</a><a href="#" class="media-title"><div>Sales report generated</div><span class="media-time">20 minutes ago</span></a>
+			</li>
+			<li class="clearfix">
+				<a href="#" class="media-thumb bg-success"><i class="icon-checkmark"></i>
+				</a><a href="#" class="media-title"><div>Task completed</div><span class="media-time">yesterday at 2:23 pm</span></a>
+			</li>
+			<li class="clearfix">
+				<a href="#" class="media-thumb bg-danger"><i class="icon-server"></i>
+				</a><a href="#" class="media-title"><div>Server load (80%)</div><span class="media-time">Currently</span></a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<script>
+var topMargin = $('.sidebar_header li a').outerHeight();
+$('.notifications').slimscroll({
+	height: $(window).outerHeight() - topMargin + 2,
+	width: "100%"
+}).mouseover(function() {
+	$(this).next('.slimScrollBar');
+});
+</script>

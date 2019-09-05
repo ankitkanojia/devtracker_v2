@@ -1,0 +1,163 @@
+//----------------------------------
+//   File          : scss/layouts/_megamenu.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Main CSS definition for megamenu
+//----------------------------------
+
+@mixin megamenu{
+    @include media(tablet-xlg, min) {
+        .main-nav{
+            .navbar-left{
+                @include w(auto);
+            }
+        }
+        .main-container {
+            @include h-min(100%);
+        }
+        .menu{
+            position: fixed;
+            z-index: 99;
+        }
+        .megamenu {
+            @include p-a($menu-padding-top,$menu-padding-right,$menu-padding-bottom,$menu-padding-left);
+            @include w(100%);
+            background: $menu-bg-color ;
+
+            //colors
+            $color_shakespeare_approx: #47a3da;
+            $color_mountain_mist_approx: #999;
+            $white: #fff;
+
+            .horizontalMenu {
+                @include w(100%);
+            	ul {
+                    @include no-s();
+            		list-style-type: none;
+            	}
+            	> ul {
+                    > li {
+            			display: inline-block;
+            			> a {
+                            @include p-vh(15,18);
+                            @include fs(14px);
+            				color:$menu-link-color;
+            				display: inline-block;
+                            i{
+                                @include m-r(5);
+                            }
+            				&:hover {
+            					color:$link-hover-active-color;
+            				}
+            			}
+            			&.menuopen {
+            				>a {
+                                @include radius-a($radius,$radius,0,0);
+            					color:$link-hover-active-color;
+            					background:darken($link-hover-active-bg,5%);
+            				}
+            				> a:hover {
+            					color:$link-hover-active-color;
+            					background:$link-hover-active-bg;
+            				}
+            			}
+                        &.active{
+                            >a {
+                                @include radius-a($radius,$radius,0,0);
+            					color:$link-hover-active-color;
+            					background:darken($link-hover-active-bg,5%);
+            				}
+                        }
+            		}
+            	}
+            	.submenu-inner {
+                    @include w(90%);
+                    margin: 0 auto;
+                    > div {
+                        @include p(10);
+                        @include w(20%);
+            			float: left;
+                        &.double{
+                            @include w(40%);
+                        }
+                        &.triple{
+                            @include w(60%);
+                        }
+            		}
+            		&:before {
+            			content: " ";
+            			display: table;
+            		}
+            		&:after {
+            			content: " ";
+            			display: table;
+            			clear: both;
+            		}
+                    ul{
+                        @include p-l(25);
+                        li{
+                            @include p-vh(2,0);
+                            a{
+                                @include fs(13px);
+                                color: $submenu-links-color;
+                                &:hover,
+                                &focus,
+                                &.active{
+                                    color:$submenu-links-active-color;
+                                }
+                            }
+                        }
+                    }
+                    ul.parent-menus{
+                        @include p-l(0);
+                        li{
+                            @include p-vh(3,0);
+                            a{
+                                @include fs(16px);
+                                color: $submenu-links-color;
+                                i{
+                                    @include m-r(6);
+                                    top:-2px;
+                                }
+                                &:hover,
+                                &focus,
+                                &.active{
+                                    color:$submenu-links-active-color;
+                                    i{
+                                        color:$submenu-links-active-color;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                    div{
+                        &.menu-title{
+                            @include p-a(0,0,10,0);
+                            span{
+                                @include fs($font-xlg);
+                                color: $submenu-links-color;
+                            }
+                            i{
+                                @include m-r(6);
+                                top:-3px;
+                                color: $submenu-links-color;
+                            }
+                        }
+                    }
+            	}
+            	.submenu {
+                    @include pos(absolute,null,null,null,0);
+                    @include w(100%);
+            		display: none;
+            		background:$submenu-bg-color;
+            	}
+            }
+            .menuopen .submenu {
+                @include p-a(20,40,30,40);
+            	display: block;
+            }
+        }
+    }
+}

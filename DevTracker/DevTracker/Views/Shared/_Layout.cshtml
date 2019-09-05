@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="theme-color" content="#1C2B36" />
+    <title>@ViewBag.Title - Dev Tracker</title>
+
+    <!-- Favicon -->
+    <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png" sizes="144x144">
+    <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png" sizes="114x114">
+    <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png" sizes="72x72">
+    <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png">
+    <link href="~/Content/img/favicon.ico" rel="icon" type="image/png">
+    <link href="~/Content/img/favicon.ico" rel="shortcut icon">
+    <!-- /Favicon -->
+    <!-- Global stylesheets -->
+    <link type="text/css" rel="stylesheet" href="~/Content/lib/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="~/Content/lib/css/animate.min.css">
+    <link type="text/css" rel="stylesheet" href="~/Content/lib/css/main.css">
+    <!-- /Global stylesheets -->
+
+    @RenderSection("Styles", false)
+</head>
+<body id="top">
+    @{
+        var errorMsg = string.Empty;
+        var successMsg = string.Empty;
+
+        if (TempData["Success"] != null)
+        {
+            successMsg = TempData["Success"].ToString();
+        }
+
+
+        if (TempData["Error"] != null)
+        {
+            errorMsg = TempData["Error"].ToString();
+        }
+    }
+
+    <input type="hidden" id="errorMsg" value="@errorMsg" />
+    <input type="hidden" id="successMsg" value="@successMsg" />
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="loader06"></div>
+        </div>
+    </div>
+    <!-- /Preloader -->
+
+    <div id="body-wrapper" class="body-container">
+        <!-- Header begins -->
+        @Html.Partial("~/Views/Shared/_Header.cshtml")
+        <!-- /Header ends -->
+        <!-- Sidebar -->
+        @Html.Partial("~/Views/Shared/_Aside.cshtml")
+        <!-- /Sidebar -->
+        <!-- Page container begins -->
+        <section class="main-container">
+
+            @RenderBody()
+
+            <!-- Footer -->
+            @Html.Partial("~/Views/Shared/_Footer.cshtml")
+            <!-- /Footer -->
+
+        </section>
+        <!-- /Page Container ends -->
+        <!-- ScrolltoTop -->
+        <a id="scrollTop" href="#top"><i class="icon-arrow-up12"></i></a>
+        <!-- /ScrolltoTop -->
+
+    </div>
+
+    <!-- Rightbar -->
+    <div id="right_sidebar" class="right_bar"></div>
+
+
+
+    <script>
+        function open_rightbar() {
+            $(window).resize(function () {
+                if (($(window).width() < 500)) {
+                    document.getElementById("right_sidebar").style.width = "100%";
+                }
+                else if ($(window).width() > 500) {
+                    document.getElementById("right_sidebar").style.width = "260px";
+                }
+            }).resize();
+        }
+        function close_rightbar() {
+            document.getElementById("right_sidebar").style.width = "0";
+        }
+    </script>
+    <!-- /Rightbar -->
+    <!-- Layout settings -->
+    <div class="layout"></div>
+    <span class="is_hidden" id="jquery_vars">
+        <span class="is_hidden switch-active"></span>
+        <span class="is_hidden switch-inactive"></span>
+        <span class="is_hidden chart-bg"></span>
+        <span class="is_hidden chart-gridlines-color"></span>
+        <span class="is_hidden chart-legends-text-color"></span>
+        <span class="is_hidden chart-grid-text-color"></span>
+        <span class="is_hidden chart-data-color-option1"></span>
+        <span class="is_hidden chart-data-color-option2"></span>
+        <span class="is_hidden chart-data-color-option3"></span>
+        <span class="is_hidden chart-data-color-option4"></span>
+        <span class="is_hidden chart-data-color-option5"></span>
+        <span class="is_hidden chart-data-color-option6"></span>
+        <span class="is_hidden chart-data-color-option7"></span>
+        <span class="is_hidden chart-data-color-option8"></span>
+    </span>
+    <!-- /Layout settings -->
+    <!-- Global scripts -->
+    <script src="~/Content/lib/js/core/jquery/jquery.js"></script>
+    <script src="~/Content/lib/js/core/jquery/jquery.ui.js"></script>
+    <script src="~/Content/lib/js/core/bootstrap/bootstrap.js"></script>
+    <script src="~/Content/lib/js/core/bootstrap/jasny_bootstrap.min.js"></script>
+    <script src="~/Content/lib/js/core/navigation/nav.accordion.js"></script>
+    <script src="~/Content/lib/js/core/hammer/hammerjs.js"></script>
+    <script src="~/Content/lib/js/core/hammer/jquery.hammer.js"></script>
+    <script src="~/Content/lib/js/core/slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/Content/lib/js/extensions/smart-resize.js"></script>
+    <script src="~/Content/lib/js/extensions/blockui.min.js"></script>
+    <script src="~/Content/lib/js/forms/uniform.min.js"></script>
+    <script src="~/Content/lib/js/forms/switchery.js"></script>
+    <script src="~/Content/lib/js/forms/select2.min.js"></script>
+    <script src="~/Content/lib/js/plugins/venobox.js"></script>
+    <script src="~/Content/lib/js/core/app/layouts.js"></script>
+    <script src="~/Content/lib/js/core/app/core.js"></script>
+    <!-- /Global scripts -->
+    <!-- Page scripts -->
+    <script src="~/Content/lib/js/forms/jquery.validate.js"></script>
+    <script src="~/Content/lib/js/plugins/notifications/pnotify.min.js"></script>
+    <!-- /Page scripts -->
+    <!--START: IZI Toastr Implementation-->
+    <script type="text/javascript">
+        function NotySuccess(message) {
+            new PNotify({
+                title: 'Success',
+                text: message,
+                icon: 'icon-checkmark3',
+                type: 'success'
+            });
+        }
+
+        function NotyError(message) {
+            new PNotify({
+                title: 'Error',
+                text: message,
+                icon: 'icon-blocked',
+                type: 'error'
+            });
+        }
+    </script>
+    <!--END: IZI Toastr Implementation-->
+
+    <script>
+        $(document).ready(function () {
+
+            //To show error notification
+            if ($('#errorMsg').val() !== "") {
+                NotyError($('#errorMsg').val());
+            }
+
+            //To show success notification
+            if ($('#successMsg').val() !== "") {
+                NotySuccess($('#successMsg').val());
+            }
+        });
+    </script>
+
+
+    //For Menu
+    <script>
+        if ($.fn.navAccordion) {
+            $('.sidebar-accordion').each(function () {
+                $(this).navAccordion({
+                    eventType: 'click',
+                    hoverDelay: 100,
+                    autoClose: true,
+                    saveState: false,
+                    disableLink: true,
+                    speed: 'fast',
+                    showCount: false,
+                    autoExpand: true,
+                    classExpand: 'acc-current-parent'
+                });
+            });
+        }
+
+
+        var pgurl = window.location.href.substr(window.location.href.lastIndexOf("/") + 1);
+
+        $(".sidebar ul.sidebar-accordion li a").each(function () {
+            if ($(this).attr("href") == pgurl || $(this).attr("href") == '') {
+                $(this).addClass(" active");
+                $(this).parent().parent().css("display", "block");
+                $(this).parent().parent().parent().addClass(" active");
+                $(this).parent().parent().parent().parent().css("display", "block");
+                $(this).parent().parent().parent().parent().parent().addClass(" active");
+            }
+        })
+
+        $(".leftmenu ul.sidebar-accordion li a").each(function () {
+            if ($(this).attr("href") == pgurl || $(this).attr("href") == '') {
+                $(this).addClass(" active");
+                $(this).parent().parent().css("display", "block");
+                $(this).parent().parent().parent().addClass(" active");
+                $(this).parent().parent().parent().parent().css("display", "block");
+                $(this).parent().parent().parent().parent().parent().addClass(" active");
+            }
+        })
+
+    </script>
+    @*For render our page level script*@
+    @RenderSection("Scripts", false)
+
+</body>
+
+</html>

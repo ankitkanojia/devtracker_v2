@@ -1,0 +1,124 @@
+//----------------------------------
+//   File          : scss/components/_progress-bars.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Bootstrap Progress Bars Override
+//----------------------------------
+.progress {
+    @include h(16px);
+    @include m-b(0);
+    position: relative;
+    @include shadow-in();
+
+	.progress-bar {
+		line-height: 18px;
+		background-color: $theme-color;
+	}
+	.progress-bar-primary {
+		background-color: $primary;
+	}
+	.progress-bar-success {
+		background-color: $success;
+	}
+	.progress-bar-danger {
+		background-color: $danger;
+	}
+	.progress-bar-warning {
+		background-color: $warning;
+	}
+	.progress-bar-info {
+		background-color: $info;
+	}
+	.progress-rounded {
+        @include radius(100px);
+
+		> .progress-bar {
+            @include radius(100px);
+		}
+	}
+	.progressbar-back-text {
+        @include pos(absolute, null, null, null, 0);
+        @include size();
+		text-align: center;
+		font-size: 12px;
+	}
+	.progressbar-front-text {
+        @include w();
+		display: block;
+		text-align: center;
+		position: relative;
+		font-size: 12px;
+	}
+	.progress {
+		&.right {
+			.progress-bar {
+				right: 0;
+				float: right;
+			}
+			.progressbar-front-text {
+				position: absolute;
+				right: 0;
+			}
+		}
+		&.vertical {
+            @include size(50px, 100%);
+			display: inline-block;
+			.progress-bar {
+                @include size(100%, 0);
+				@include transition(height .6s ease);
+			}
+			&.bottom {
+				position: relative;
+				.progress-bar {
+					position: absolute;
+					bottom: 0;
+				}
+			}
+			+ .progress.vertical {
+                @include m-l(10);
+			}
+		}
+	}
+	&.vertical.bottom .progressbar-front-text {
+		position: absolute;
+		bottom: 0;
+	}
+}
+
+.progress-lg {
+    @include h(18px);
+}
+.progress-sm {
+    @include h(14px);
+
+    .progress-bar {
+        font-size: 0;
+    }
+}
+.progress-xs {
+    @include h(10px);
+
+    .progress-bar {
+        font-size: 0;
+    }
+}
+.progress-xxs {
+    @include h(6px);
+
+    .progress-bar {
+        font-size: 0;
+    }
+}
+.progress-micro {
+    @include h(2px);
+
+    .progress-bar {
+        font-size: 0;
+    }
+}
+
+.sr-only{
+    @include typo($ff-regular,9px,$white,center);
+    @include pos(relative,-2px,null,null,null)
+}

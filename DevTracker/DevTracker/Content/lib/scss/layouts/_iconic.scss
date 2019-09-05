@@ -1,0 +1,144 @@
+//----------------------------------
+//   File          : scss/layouts/_iconic.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.1.0
+//   Last Updated  : June 25, 2017
+//   Description   : Main CSS definition for iconic menu
+//----------------------------------
+
+@mixin iconic{
+    @include media(tablet-xlg, min) {
+        .main-nav{
+            .navbar-left{
+                @include w(auto);
+            }
+        }
+        .main-container {
+            @include h-min(100%);
+            @include pos(relative, null, null);
+            @include m-l(60);
+        }
+        .menu-container{
+            @include w(60px);
+            float: left;
+        }
+        .sidemenu-bg {
+        	position: fixed;
+        	background-color:$menu-bg-color;
+        	z-index: 99;
+        }
+        .sidemenu {
+            @include h(100%);
+            @include p(0);
+        	position: fixed;
+        	display: block;
+        	background-color:$menu-bg-color;
+            @include br(1,solid,$menu-border-color);
+        	z-index: 100;
+            @include shadow-out(rgba(0,0,0,0.1),30px,0px,0px,0px);
+
+        	> li {
+        		display: block;
+        		&:hover {
+        			background-color:$link-hover-active-bg;
+        		}
+        		&.active {
+        			background-color:$link-hover-active-bg;
+        			.sidemenu-sub {
+        				display: block;
+        			}
+        			> a {
+                        i{
+        				    color:$link-hover-active-color;
+                        }
+        			}
+        		}
+        		&.full-height {
+                    @include h(100%);
+        			> a {
+        				vertical-align: middle;
+        			}
+        		}
+        		> a {
+                    @include size(60px);
+        			display: block;
+        			color:$menu-link-color;
+        			text-align: center;
+        			text-decoration: none;
+        			> i {
+                        @include fs(20px);
+                        @include p(20);
+                        color:$menu-link-color;
+        			}
+        			&:hover {
+                        i{
+                            color: $link-hover-active-color;
+                        }
+        			}
+        		}
+
+        		.sidemenu-sub {
+                    @include pos(absolute,0,null,0,60px);
+                    @include w(200px);
+                    @include p-vh(10,0);
+        			display: none;
+        			list-style: none;
+        			background-color: $submenu-bg-color;
+                    @include bl(1,solid,$menu-border-color);
+        			z-index: 101;
+                    @include shadow-out(rgba(0,0,0,0.1),30px,0px,0px,0px);
+
+        			> li {
+        				> a {
+                            @include p-a(7,15,6,15);
+                            @include fs(13px);
+        					display: block;
+        					color:$submenu-links-color;
+        					> i {
+                                @include m-r(5);
+                                @include fs(14px);
+        						top: -2px;
+                                color:$submenu-links-color;
+        					}
+        					&:hover,
+                            &.acc-parent.active {
+        						color:$submenu-links-active-color;
+        						text-decoration: none;
+        						background-color: $submenu-links-active-bg;
+                                i{
+                                    color:$submenu-links-active-color;
+                                }
+        					}
+        				}
+        				a {
+                            @include icon(after, arrow-right){
+                                @include h(0px);
+                                @include pos(absolute,null,10px,null,null);
+                                @include lh(22px);
+                            }
+        					&:only-child:after {
+        						content: '';
+        					}
+        				}
+        				ul {
+                            @include p-a(5,10,20,15);
+        					li {
+        						list-style: none;
+                                a{
+                                    color:$submenu-links-color;
+                                    @include m-l(22);
+                                    @include fs(11.5px);
+                                    @include lh(2.2);
+                                    &:hover,
+                                    &.acc-parent.active {
+                                        color:$submenu-links-active-color;
+                                    }
+                                }
+        					}
+        				}
+        			}
+        		}
+        	}
+        }
+    }
+}

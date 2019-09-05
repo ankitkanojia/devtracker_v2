@@ -1,0 +1,151 @@
+﻿@using Repository.Helpers
+@model Tuple<List<ProjectsListVm>, List<UserMaster>>
+
+@{
+    ViewBag.Title = "List";
+    var count = 1;
+    var profilePath = BasicProperty.ProfilePath;
+    const string defaultImage = "/Content/img/userIcon.jpg";
+}
+
+<!-- Page header -->
+<div class="header">
+    <div class="header-content">
+        <div class="page-title">
+            <i class="icon-briefcase3 position-left"></i> Projects
+        </div>
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Dashboard")"></a></li>
+            <li><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+            <li class="active">Projects</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container-fluid page-content">
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <div class="panel-title">All Projects</div>
+                </div>
+
+                <table class="table table-hover invoice-list" id="datatable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Client</th>
+                            <th>Deadline</th>
+                            <th>Started on</th>
+                            <th>Status</th>
+                            <th>Completed</th>
+                            <th>Team</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Item1.Any())
+                        {
+                            foreach (var item in Model.Item1)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.Name</td>
+                                    <td>
+                                        <div class="no-margin">
+                                            <a href="#">@item.ClientName</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @if (item.EndDate != null)
+                                        {
+                                            @item.EndDate.Value.ToString("MMMM dd, yyyyy")
+                                        }
+                                        else
+                                        {
+                                            <span> N/A </span>
+                                        }
+
+                                    </td>
+                                    <td>
+                                        @item.StartDate.ToString("MMMM dd, yyyyy")
+                                    </td>
+                                    <td>
+                                        @switch (item.ProjectStatusMasterId)
+                                        {
+                                            case (int)EnumList.ProjectStatus.Contract_signed_not_begun:
+                                                <span class="label label-success">Contract signed not begun</span>
+                                                break;
+                                            case (int)EnumList.ProjectStatus.On_Live:
+                                                <span class="label label-success">On Live</span>
+                                                break;
+                                            case (int)EnumList.ProjectStatus.On_Development:
+                                                <span class="label label-info">On Development</span>
+                                                break;
+                                            case (int)EnumList.ProjectStatus.On_Hold:
+                                                <span class="label label-warning">On Hold</span>
+                                                break;
+                                            case (int)EnumList.ProjectStatus.On_Staging:
+                                                <span class="label label-primary">On Staging</span>
+                                                break;
+                                            default:
+                                                <span class="label label-default">N/A</span>
+                                                break;
+                                        }
+                                    </td>
+                                    <td>
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 75%">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @foreach (var userData in item.ProjectAssignyAssignies.Select(item2 => Model.Item2.FirstOrDefault(s => s.UserMasterId == item2.AssignyId)))
+                                        {
+                                            if (userData != null)
+                                            {
+                                                if (!string.IsNullOrWhiteSpace(userData.Profile))
+                                                {
+                                                    @:<img alt="@userData.Name" src="@profilePath@(userData.Profile)" class="img-circle img-responsive img-xs pull-left m-l-3 m-r-3">
+                                                }
+                                                else
+                                                {
+                                                    @:<img alt="" src="@defaultImage" class="img-circle img-responsive img-xs pull-left m-l-3 m-r-3">
+                                                }
+                                            }
+                                            else
+                                            {
+                                                @:<img alt="" src="@defaultImage" class="img-circle img-responsive img-xs pull-left m-l-3 m-r-3">
+                                            }
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        <ul class="icons-list">
+                                            <li><a href="@Url.Action("Details", "Projects", new { id = item.ProjectId })"><i class="icon-eye2"></i></a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+
+                        }
+                        else
+                        {
+                            <tr>
+                                <th colspan="9">
+                                    <label>No project found.</label>
+                                </th>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>

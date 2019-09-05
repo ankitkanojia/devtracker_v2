@@ -1,0 +1,195 @@
+﻿@using Repository.Helpers
+@model IEnumerable<UserMaster>
+
+
+@{
+    ViewBag.Title = "Users List";
+}
+<!--Page Header-->
+<div class="header">
+    <div class="header-content">
+        <div class="page-title">
+            <i class="icon-users2 position-left"></i> Users
+        </div>
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Dashboard")"></a></li>
+            <li><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+            <li class="active">Users List</li>
+        </ul>
+    </div>
+</div>
+<!--/Page Header-->
+
+<div class="container-fluid page-content">
+    <!-- Basic datatable -->
+    <div class="panel panel-flat table-responsive">
+
+        <table class="table datatable table-striped">
+            <thead>
+                <tr>
+                    <th>Avatar</th>
+                    <th>Who I am ?</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Skype</th>
+                    <th>Company</th>
+                    <th>Social</th>
+                    <th>Status</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr id="tr_@item.UserMasterId">
+                        <td>
+                            @if (!string.IsNullOrWhiteSpace(item.Profile))
+                            {
+                                <img alt="" src="@BasicProperty.ProfilePath@item.Profile" class="img-circle img-sm">
+                            }
+                            else
+                            {
+                                <img alt="" src="~/Content/img/userIcon.jpg" class="img-circle img-sm">
+                            }
+
+                        </td>
+                        <td>
+                            <h4 class="no-margin">
+                                <a href="#">
+                                    @item.Name
+                                </a>
+                                <small class="display-block text-muted">
+                                    @{
+                                        var role = ((EnumList.Roles)item.RoleMasterId).ToString().Replace('_', ' ');
+                                    }
+
+                                    @role
+                                </small>
+                            </h4>
+                        </td>
+                        <td>
+                            @item.Email
+                        </td>
+                        <td>
+                            @item.Mobile
+                        </td>
+                        <td>
+                            @item.SkypeId
+                        </td>
+                        <td>
+                            @item.CompanyName
+                        </td>
+                        <td>
+                            <ul class="icons-list">
+                                <li>
+                                    <a href="@item.FacebookLink" target="_blank" data-popup="tooltip" title="" data-original-title="Facebook">
+                                        <i class="icon-facebook2"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@item.TwitterLink" target="_blank" data-popup="tooltip" title="" data-original-title="Twitter">
+                                        <i class="icon-twitter2"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@item.LinkedInLink" target="_blank" data-popup="tooltip" title="" data-original-title="Linkedin">
+                                        <i class="icon-linkedin"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            @if (item.IsActive)
+                            {
+                                <span class="label label-success"> Activated </span>
+                            }
+                            else
+                            {
+                                <span class="label label-danger"> Suspended </span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <ul class="icons-list">
+                                <li><a href="@Url.Action("Create", "Users", new {id = item.UserMasterId})"><i class="icon-pencil6 text-info"></i></a></li>
+                                <li><a onclick="deleteUser(@item.UserMasterId)"><i class="icon-trash text-danger"></i></a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                                        }
+
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /Basic datatable -->
+
+
+</div>
+@section Scripts{
+    <script src="~/Content/lib/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script src="~/Content/lib/js/plugins/notifications/sweetalert.js"></script>
+
+    <script>
+
+        //Todo: Reinitialise datatable on delete ajax success
+        function deleteUser(id) {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: 'btn-danger',
+                confirmButtonText: 'Yes, delete it!',
+                closeOnConfirm: false
+            },
+                function () {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("Delete", "Users")',
+                        datatype: "json",
+                        data: { id: id },
+                        success: function (data) {
+                            debugger;
+                            if (data.status) {
+                                swal("Deleted!", data.message, "success");
+                                $('#tr_' + id).remove();
+                            } else {
+                                swal(data.message, "error");
+                            }
+
+                        }
+                    });
+                });
+        }
+
+        $(document).ready(function () {
+
+            $('.styled').uniform();
+
+            //Start: DataTable setup
+            $('.datatable').DataTable({
+                autoWidth: false,
+                "aaSorting": [],
+                "aoColumnDefs": [{ "bSortable": false, "aTargets": [0,6,7,8] }],
+                dom: '<"datatable-header"fl><"datatable-scroll-lg"t><"datatable-footer"ip>',
+                language: {
+                    search: '<span>Search:</span> _INPUT_',
+                    lengthMenu: '<span>Show:</span> _MENU_',
+                    paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
+                },
+                lengthMenu: [5, 10, 25, 50, 75, 100],
+                displayLength: 5
+            });
+
+            $('.dataTables_filter input[type=search]').attr('placeholder', 'Type to filter...');
+            $('.dataTables_filter input[type=search]').attr('class', 'form-control');
+
+            $('.dataTables_length select').select2({
+                minimumResultsForSearch: Infinity,
+                width: '60px'
+            });
+            //End: DataTable setup
+        });
+    </script>
+}

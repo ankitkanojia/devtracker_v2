@@ -1,0 +1,664 @@
+//----------------------------------
+//   File          : scss/_navbar.scss
+//   Type          : Main SCSS file
+//   Version       : 1.1.0
+//   Last Updated  : June 24, 2017
+//   Description   : CSS stylesheet for navbar
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Main navbar
+// 2. Languages dropdown
+// 3. Quick apps dropdown
+// 4. User dropdown
+// 5. Notification bubble
+// 6. Responsive queries
+
+
+//----------------------------------
+// 1. Main navbar
+//----------------------------------
+.main-nav {
+    @include w(100%);
+    @include pos(fixed, 0);
+    @include radius(0px);
+	background-color: $navbar-bg-color;
+    @include bb(1, solid, $navbar-border-bottom-color);
+	z-index: 1040;
+    @if($navbar-shadow == 'true'){
+        box-shadow: 0 2px 2px black(0.05), 0 1px 0 black(0.05);
+        -moz-box-shadow: 0 2px 2px black(0.05), 0 1px 0 black(0.05);
+        -webkit-box-shadow: 0 2px 2px black(0.05), 0 1px 0 black(0.05);
+    }
+    @include p-vh($topbar-vertical-padding, $topbar-horizontal-padding);
+	img.user {
+        @include w(35px);
+	}
+
+    // Searchbar
+	.top-search-bar {
+        @include size(100%, auto);
+        @include p-vh($topbar-vertical-padding + 5,$topbar-horizontal-padding + 5);
+        @include pos(fixed, -100px);
+        @include animation(transition, all 350ms cubic-bezier(0.19, 1, 0.22, 1));
+        background-color: $navbar-bg-color;
+        @include bb(1, solid, $navbar-border-bottom-color);
+		z-index: 25;
+		.search-input-addon {
+			@include pos(relative);
+            .addon-icon {
+                @include size(40px, 40px);
+                @include pos(absolute, 2px, null, null, 0px);
+				display: inline-block;
+                i {
+                    @include typo($font-icon, 16px, $white, center);
+                    @include p-t(6);
+                    @include p-l(5);
+					display: inline-block;
+                    color:$search-icon-color;
+				}
+			}
+			.top-search-input {
+                @include h(40px);
+                @include m-t(5);
+                @include p-l(35);
+                @include nob();
+                @include radius(0px);
+                @include no-shadow();
+                @include ff($ff-light);
+				@include fs(18px);
+                @include b(0, solid,transparent);
+                @include no-background();
+                color:$search-text-color;
+				&:focus {
+                    @include nob();
+                    @include bb(0, solid,transparent);
+                    @include no-shadow();
+				}
+                @include placeholder($search-text-color);
+			}
+            @include media(phone, max) {
+                @include h(50px);
+            }
+		}
+
+	}
+
+	.top-search-bar.search-bar-toggle {
+		top: 0px;
+	}
+
+    // Left Icons
+	.navbar-left {
+        @include size(200px, 52px);
+        @include p-h(15);
+		@include br(1, solid, $brand-border-right-color);
+        @include bb(1, solid, $brand-border-bottom-color);
+        background-color: $brand-bg-color;
+		.left-branding {
+            @include no-s();
+			>li {
+                @include h(50px);
+				@include inline-list();
+			}
+            >li.visible-handheld{
+                @include media(tablet-xlg, min) {
+                    display: none !important;
+                }
+            }
+		}
+		.left-toggle-switch {
+            @include size(50px, 52px);
+            @include radius(0px);
+			display: inline-block;
+			cursor: pointer;
+			text-align: center;
+			color: $icons-color;
+			i {
+                @include size(50px, 52px);
+                @include fs(24px);
+                @include lh(52px);
+				display: inline-block;
+			}
+			&:hover,
+            &:focus {
+				background-color: black(0.05);
+			}
+		}
+		.logo {
+            @include size(#{$logo-width}, 32px);
+            @include m-v(10);
+            background: url(#{$logo}) no-repeat 0 0;
+		}
+	}
+	.navbar {
+        // Right Icons
+		.top-icons {
+            @include no-s();
+			text-align: right;
+            >li {
+				display: inline-block;
+				float: left;
+				>a {
+                    @include animation(transition,all 300ms linear);
+					@include size(40px, 52px);
+                    @include cursor();
+					position: relative;
+					display: inline-block;
+					text-align: center;
+                    >i {
+						@include size(40px, 52px);
+                        @include fs(16px);
+                        @include lh(52px);
+                        top: 0;
+						display: inline-block;
+                        color: $icons-color;
+                        &:hover,
+                        &:focus {
+    						color: lighten($icons-color, 20%);
+                            @include animation(transition,all 350ms cubic-bezier(0.19, 1, 0.22, 1));
+    					}
+					}
+                    &:hover,
+                    &:focus {
+                        @include animation(transition,all 350ms cubic-bezier(0.19, 1, 0.22, 1));
+                    }
+				}
+			}
+			>li.user-dropdown {
+				>a{
+                    @include w(52px);
+				}
+                >a.user-name{
+                    width: auto !important;
+                    @include p-a(8,10,13,20);
+                    @include ff($ff-semibold);
+                    color: $navbar-username-text-color;
+                    float: left;
+                    >i{
+                        top: 6px;
+                        left: 5px;
+                        @include size(0);
+                        @include no-s();
+                        @include fs(12px);
+                        @include lh(0);
+                        color: $icons-color;
+                    }
+                    small{
+                        @include no-s();
+                        @include fs(9px);
+                        @include lh(1.3);
+                        color: $navbar-userinfo-text-color;
+                        text-align: left;
+                        display: block;
+                    }
+                }
+			}
+		}
+        @include media(tablet-xlg, min) {
+            @include p-r(10);
+            @include m-b(-2);
+        }
+	}
+}
+
+
+//----------------------------------
+// 2. Languages dropdown
+//----------------------------------
+.languages{
+    top:50px;
+    left:50px;
+}
+
+
+//----------------------------------
+// 3. Quick apps dropdown
+//----------------------------------
+.apps-dropdown {
+	.dropdown-menu {
+        @include w(270px);
+        @include b(1, solid, $quick-apps-dropdown-border);
+        @include radius($radius);
+		@include pos(null, 90px, -12px, null, auto);
+        @include no-shadow();
+        display: block;
+		visibility: hidden;
+        background: $quick-apps-dropdown-bg;
+        opacity: 0;
+        @if($quick-apps-dropdown-shadow == 'true'){
+    		@include shadow-out();
+    	}
+    	@else{
+    		@include no-shadow();
+    	}
+		&:after,
+        &:before {
+            @include pos(absolute, null, null, 100%, 92%);
+            @include size(0);
+            @include m-l(-18);
+            @include b(8, solid, transparent);
+			content: " ";
+			pointer-events: none;
+			border-bottom-color: $quick-apps-dropdown-bg;
+		}
+		&:before {
+            @include m-l(-20);
+            @include b(10, solid, transparent);
+            border-bottom-color: $quick-apps-dropdown-border;
+		}
+	}
+
+	.shortcuts {
+        @include inline-list(){
+            @include p(14);
+        }
+		>li {
+            @include size(50px, 70px);
+            @include m-a(10, 15, 0, 15);
+			>a {
+                @include size(50px, 70px);
+                @extend %list;
+				position: relative;
+				color: $quick-apps-label-color;
+				text-align: center;
+                i {
+                    @include size(50px, 56px);
+                    @include p-t(6);
+                    @include m-b(3);
+                    @include fs(32px);
+                    @include lh(56px);
+					display: inline-block;
+				}
+				.apps-label {
+                    @include radius(30px);
+                    @include p-v(0);
+                    @include p-h(5);
+                    @include fs(11px);
+					display: block;
+                    color:$quick-apps-label-color;
+                    background: $quick-apps-label-bg;
+				}
+                .apps-noty {
+                    @include pos(absolute, -7px, -5px, null, null);
+                    @include radius(100px);
+                    @include p-a(1, 6, 0, 6);
+                    @include typo(inherit, 10px, white, center);
+					display: inline-block;
+					background-color: red;
+				}
+			}
+			>a.active {
+				text-decoration: none;
+			}
+		}
+
+		img {
+            @include w(38px);
+            @include p-b(5);
+		}
+	}
+}
+
+.apps-dropdown.open {
+    .dropdown-menu {
+        @include animation(transition,'opacity 0.3s ease-in, top 0.2s ease-in');
+        visibility: visible;
+        top: 60px;
+        opacity: 1;
+	}
+}
+
+
+//----------------------------------
+// 4. User dropdown
+//----------------------------------
+.user-dropdown {
+	.dropdown-menu {
+        @include w(200px);
+        @include no-s();
+        @include pos(null, 90px, 0, null, auto);
+        @include b(1, solid, $user-dropdown-border);
+        @include radius($radius);
+        background: $user-dropdown-bg;
+		display: block;
+		visibility: hidden;
+        opacity: 0;
+        @if($user-dropdown-shadow == 'true'){
+    		@include shadow-out();
+    	}
+    	@else{
+    		@include no-shadow();
+    	}
+        &:after,
+        &:before {
+            @include pos(absolute, null, null, 100%, 92%);
+            @include size(0);
+            @include m-l(-18);
+            @include b(8, solid, transparent);
+			content: " ";
+			pointer-events: none;
+			border-bottom-color: $user-profile-bg;
+		}
+		&:before {
+            @include m-l(-20);
+            @include b(10, solid, transparent);
+			border-bottom-color: $user-dropdown-border;
+		}
+		ul {
+            @include no-s();
+		}
+        >div.user-icon {
+			background: $user-profile-bg;
+			color: $user-name-text-color !important;
+            img{
+                @include w-max(120px);
+                @include m-b(10);
+            }
+            h5 {
+                @include m-b(0);
+                @include p-b(10);
+                @include ff($ff-semibold);
+				background: $user-profile-bg;
+				color: $user-name-text-color !important;
+			}
+		}
+        .user-links{
+            @include p-v(10);
+            @include bt(1, solid, white(0.25));
+            @include bb(1, solid, white(0.25));
+            >li {
+                display: block;
+                list-style: none;
+                >a {
+                    position: relative;
+                    display: block;
+                    @include p-a(5, 15, 5, 15);
+                    color:$user-links-color;
+                    @include fs(12px);
+                    i {
+                        @include p-r(5);
+                        @include fs(16px);
+                        top: -1px;
+                        color:$user-links-color;
+                    }
+                }
+                >a.active,
+                >a:hover,
+                >a:focus {
+                    text-decoration: none;
+                    background-color: rgba($user-profile-bg, 0.3);
+                    color:$user-links-color;
+                }
+            }
+        }
+        .btn {
+			background: $logout-button-bg;
+			color: lighten($logout-button-bg, 50%) !important;
+            &:hover,
+            &:focus {
+                background-color: darken($logout-button-bg, 5%);
+            }
+		}
+	}
+	.btn-user {
+        @include p-a(8, 10, 0, 8);
+	}
+}
+
+.user-dropdown.open {
+	.dropdown-menu {
+        @include animation(transition,'opacity 0.3s ease-in, top 0.2s ease-in');
+        visibility: visible;
+        top: 60px;
+        opacity: 1;
+	}
+}
+
+
+//----------------------------------
+// 5. Notification bubble
+//----------------------------------
+.bubble {
+    @include size(15px);
+    @include radius(100%);
+    @include pos(absolute, 10px, 9%, null, null);
+    @include no-p();
+	display: inline-block;
+    @include typo($ff-semibold, 10px, $white, center);
+	background-color: $danger;
+	z-index: 9;
+}
+
+.notif-bubble {
+    @include size(20px);
+    @include radius(100%);
+    @include pos(absolute, -10px, 0, null, null);
+    @include no-p();
+	display: inline-block;
+    @include typo($ff-semibold, $font-base, $white, center);
+	background-color: $danger;
+	z-index: 9;
+
+    // Position
+    &.left-top{@include pos(absolute, -10px, null, null, 0);}
+    &.right-top{@include pos(absolute, -10px, 0, null, null);}
+    &.left-bottom{@include pos(absolute, null, null, -10px, 0);}
+    &.right-bottom{@include pos(absolute, null, 0, -10px, null);}
+
+    // Color
+    &.primary{background-color: $primary;}
+    &.info{background-color: $info;}
+    &.danger{background-color: $danger;}
+    &.success{background-color: $success;}
+    &.warning{background-color: $warning;}
+}
+
+
+//----------------------------------
+// 6. Responsive queries
+//----------------------------------
+@include media(phone, max) {
+    .main-nav{
+        .navbar{
+            @include m-b(0);
+            @include h-min(52px);
+            .top-icons{
+                >li{
+                    >a{
+                        @include size(36px,52px);
+                        >i{
+                            @include size(36px,50px);
+                            @include lh(50px);
+                        }
+                    }
+                }
+            }
+        }
+        .top-search-bar {
+            @include size(100%, 52px);
+            @include no-p();
+        }
+    }
+    .main-container{
+        @include m-t(52);
+    }
+}
+
+@include media(tablet-xlg, max) {
+    .main-nav{
+        .navbar-left{
+            @include p-vh(0, 10);
+            background: none;
+            border-right:none;
+            border-bottom:none;
+            .left-branding{
+                >li{
+                    float:left;
+                }
+            }
+            .logo {
+                background: url(#{$logo-mobile}) no-repeat 0 0;
+            }
+        }
+        .navbar-right{
+            @include m-r(10);
+        }
+
+        .top-search-bar {
+            @include size(100%, 52px);
+            @include no-p();
+        }
+    }
+}
+
+@include media(tablet, max) {
+    .main-nav{
+        @include no-s();
+        .navbar-left{
+            .left-toggle-switch{
+                @include w(50px);
+                @include p-a(5,10,5,0);
+            }
+        }
+        .navbar-right{
+            @include m-r(0);
+            .top-right-icons {
+                > li{
+                    &.user-dropdown {
+                        > a {
+                            @include w(36px);
+                            @include m-r(10);
+                        }
+                    }
+                }
+            }
+        }
+        .top-search-bar {
+            @include size(100%, 52px);
+            @include no-p();
+        }
+    }
+}
+
+@include media(phone, max) {
+    .main-nav{
+        @include h(50px);
+        @include no-s();
+        .navbar-left{
+            @include size(100px, 50px);
+            @include no-s();
+            background: none;
+            border-right:none;
+            border-bottom:none;
+            .left-toggle-switch{
+                @include size(50px, 50px);
+                i{
+                    @include size(50px);
+                    @include fs(24px);
+                    top:-5px;
+                }
+            }
+            .logo{
+                @include w(30px);
+                @include m-vh(8, 0);
+            }
+        }
+        .navbar-right{
+            @include h(50px);
+            .top-right-icons{
+                @include h(50px);
+                >li{
+                    @include h(50px);
+                    >a{
+                        @include size(34px, 50px);
+                        >i{
+                            @include h(50px);
+                            @include no-s();
+                            @include fs(16px);
+                            top:-5px;
+                        }
+                    }
+                    &.user-dropdown {
+                        > a {
+                            @include m-r(5);
+                        }
+                    }
+                }
+            }
+        }
+        .top-search-bar{
+            @include h(50px);
+            .search-input-addon {
+                .top-search-input{
+                    @include m-t(4);
+                }
+            }
+        }
+    }
+    .user-dropdown {
+	   .dropdown-menu {
+            &:before,
+            &:after {
+                left: 95%;
+            }
+        }
+    }
+    .bubble{
+        top: 6px;
+        right: -15%;
+    }
+}
+
+@include media(tablet-lg,exact) {
+    .main-nav{
+        @include h(52px);
+        .left-toggle-switch{
+            i{
+                top:0px;
+                left:-5px;
+            }
+        }
+    }
+}
+
+@include media(tablet-lg,max) {
+    .main-nav{
+        @include h(52px);
+        .left-toggle-switch{
+            i{
+                top:0px;
+                left:-5px;
+            }
+        }
+        .top-search-bar {
+            @include size(100%, 52px);
+            @include no-p();
+        }
+    }
+}
+
+@include media(tablet,max) {
+    .main-nav{
+        @include h(52px);
+        .left-toggle-switch{
+            i{
+                top:-5px;
+                left:-5px;
+            }
+        }
+    }
+}
+
+@include media(phone,max) {
+    .main-nav{
+        @include h(50px);
+        .left-toggle-switch{
+            i{
+                left:0px;
+            }
+        }
+    }
+}

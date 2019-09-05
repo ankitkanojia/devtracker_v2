@@ -1,0 +1,349 @@
+﻿@using Repository.Helpers
+@model DashboardVm
+
+@{
+    ViewBag.Title = "Index";
+    var roleMasterId = Convert.ToInt64(CookieHelper.GetCookie(CookieName.RoleMasterId));
+    var isOwnerPm = roleMasterId == (int)EnumList.Roles.Owner || roleMasterId == (int)EnumList.Roles.Project_Manager;
+}
+
+<!--Page Header-->
+<div class="header">
+    <div class="header-content">
+        <div class="page-title"><i class="icon-store2"></i> Dashboard</div>
+    </div>
+</div>
+<!-- /Page header -->
+
+<div class="container-fluid page-content">
+
+    @if (isOwnerPm)
+    {
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel panel-flat bg-purple-a200">
+                    <div class="panel-heading">
+                        <h5 class="text-uppercase text-semibold text-alpha-4">Total Resources</h5>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row m-b-10">
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <i class="icon-users2 x5 text-alpha-2"></i>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <div class="x6 text-light no-line-height text-alpha-9 text-right">
+                                    @Model.TotalResource
+                                    <i class="icon-arrow-up16 x2 text-alpha-6 position-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="text-alpha-5 pull-left no-margin-b">Project Manager(s)</h5>
+                        <h5 class="text-bold text-alpha-7 pull-right">
+                            @Model.TprojectManager
+                        </h5>
+                        <div class="clearfix"></div>
+                        <h5 class="text-alpha-5 pull-left">Team Leader(s)</h5>
+                        <h5 class="text-bold text-alpha-7 pull-right">
+                            @Model.TteamLeader
+                        </h5>
+                        <div class="clearfix"></div>
+                        <h5 class="text-alpha-5 pull-left no-margin-b">Designer(s)</h5>
+                        <h5 class="text-bold text-alpha-7 pull-right">
+                            @Model.Tdesigner
+                        </h5>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="panel panel-flat bg-amber-600">
+                    <div class="panel-heading">
+                        <h5 class="text-uppercase text-semibold text-alpha-8">Working Resource</h5>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row m-b-10">
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <i class="icon-user-check x5 text-alpha-4"></i>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <div class="x6 text-light no-line-height text-right">1,264</div>
+                            </div>
+                        </div>
+                        <h5 class="text-alpha-5 pull-left no-margin-b">Project Manager(s)</h5>
+                        <h5 class="text-bold text-alpha-7 pull-right">240</h5>
+                        <div class="clearfix"></div>
+                        <h5 class="text-alpha-5 pull-left">Team Leader(s)</h5>
+                        <h5 class="text-bold text-alpha-7 pull-right">3%</h5>
+                        <div class="clearfix"></div>
+                        <h5 class="text-alpha-5 pull-left no-margin-b">Designer(s)</h5>
+                        <h5 class="text-bold text-alpha-7 pull-right">240</h5>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="panel panel-flat bg-info-a700">
+                    <div class="panel-heading">
+                        <h5 class="text-uppercase text-semibold text-alpha-8">Free Resource</h5>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row m-b-10">
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <i class="icon-user-minus x5 text-alpha-4"></i>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <div class="x5 text-light no-line-height text-right">
+                                    <small class="x2 position-left">$</small>40,268
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="text-alpha-5 pull-left no-margin-b">Project Manager(s)</h5>
+                        <h5 class="text-bold text-alpha-7 pull-right">240</h5>
+                        <div class="clearfix"></div>
+                        <h5 class="text-alpha-5 pull-left">Team Leader(s)</h5>
+                        <h5 class="text-bold text-alpha-7 pull-right">3%</h5>
+                        <div class="clearfix"></div>
+                        <h5 class="text-alpha-5 pull-left no-margin-b">Designer(s)</h5>
+                        <h5 class="text-bold text-alpha-7 pull-right">240</h5>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="panel panel-flat bg-teal-700">
+                    <div class="panel-heading">
+                        <h5 class="text-uppercase text-semibold text-alpha-8">Total projects</h5>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row m-b-10">
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <i class="icon-briefcase x5 text-alpha-4"></i>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                <div class="x5 text-light no-line-height text-right">
+                                    <small class="x2 position-left">$</small>8,420
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="text-alpha-7 pull-left no-margin-b">This month</h5>
+                        <h5 class="text-bold text-alpha-9 pull-right">$485</h5>
+                        <div class="clearfix"></div>
+                        <h5 class="text-alpha-7 pull-left">Last month</h5>
+                        <h5 class="text-bold text-alpha-9 pull-right">$980</h5>
+                        <div class="clearfix"></div>
+                        <h5 class="text-alpha-7 pull-left">This year</h5>
+                        <h5 class="text-bold text-alpha-9 pull-right">$980</h5>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    <div class="row">
+
+        <!-- Recent Activities -->
+        <div class="col-md-3 col-sm-6">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">
+                        Recent Activities
+                    </h5>
+                </div>
+                <div class="panel-body p-l-20 p-b-20">
+                    <div class="streamline">
+                        <div class="sl-item sl-primary">
+                            <div class="sl-content">
+                                <small class="text-muted"><i class="icon-user-plus position-left"></i>2 mins ago</small>
+                                <p>Lorem Ipsum is simply dummy text.</p>
+                            </div>
+                        </div>
+
+                        <div class="sl-item sl-danger">
+                            <div class="sl-content">
+                                <small class="text-muted"><i class="icon-pencil5 position-left"></i>10 mins ago</small>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry..</p>
+                            </div>
+                        </div>
+
+                        <div class="sl-item sl-success">
+                            <div class="sl-content">
+                                <small class="text-muted"><i class="icon-user position-left"></i>14 mins ago</small>
+                                <p>Lorem Ipsum is simply dummy text.</p>
+                            </div>
+                        </div>
+
+                        <div class="sl-item sl-warning">
+                            <div class="sl-content">
+                                <small class="text-muted"><i class="icon-calendar position-left"></i>20 mins ago</small>
+                                <p>Lorem Ipsum is simply dummy text.</p>
+                            </div>
+                        </div>
+
+                        <div class="sl-item sl-primary">
+                            <div class="sl-content">
+                                <small class="text-muted"><i class="icon-user-plus position-left"></i>1 day ago</small>
+                                <p>Lorem Ipsum is simply dummy text.</p>
+                            </div>
+                        </div>
+
+                        <div class="sl-item sl-success">
+                            <div class="sl-content">
+                                <small class="text-muted"><i class="icon-comments position-left"></i>1 day ago</small>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry..</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Recent Activities -->
+        <!-- Recent Comments -->
+        <div class="col-md-4 col-sm-6">
+            <div class="panel panel-flat">
+                <div class="panel-heading p-b-5">
+                    <h5 class="panel-title">
+                        Recent Comments
+                    </h5>
+                </div>
+
+                <ul class="media-list media-list-linked m-b-20">
+                    <li class="media bg-light-lighter">
+                        <a href="#" class="media-link">
+                            <div class="media-left">
+                                <img src="http://via.placeholder.com/60x60" class="img-circle" alt="">
+                            </div>
+
+                            <div class="media-body">
+                                <h6 class="media-heading">Jane Elliott <span class="media-annotation">4 hours ago</span></h6>
+                                Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="media">
+                        <a href="#" class="media-link">
+                            <div class="media-left">
+                                <img src="http://via.placeholder.com/60x60" class="img-circle" alt="">
+                            </div>
+
+                            <div class="media-body">
+                                <h6 class="media-heading">Florence Douglas <span class="media-annotation">3 hours ago</span></h6>
+                                Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. In enim justo, rhoncus ut.
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="media bg-light-lighter">
+                        <a href="#" class="media-link">
+                            <div class="media-left">
+                                <img src="http://via.placeholder.com/60x60" class="img-circle" alt="">
+                            </div>
+
+                            <div class="media-body">
+                                <h6 class="media-heading">Jacqueline Howell <span class="media-annotation">2 hours ago</span></h6>
+                                Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum.
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="media">
+                        <a href="#" class="media-link">
+                            <div class="media-left">
+                                <img src="http://via.placeholder.com/60x60" class="img-circle" alt="">
+                            </div>
+
+                            <div class="media-body">
+                                <h6 class="media-heading">Eugine Turner <span class="media-annotation">Yesterday, 14:54</span></h6>
+                                Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. In enim justo.
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /Recent Comments -->
+        <!-- Recent Leads -->
+        <div class="col-md-5 col-sm-12">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Recent Task</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped user-list">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Priority</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Lorem Ipsum</td>
+                                <td>Jun 14, 2016</td>
+                                <td><span class="label label-info">Opened</span></td>
+                                <td><span class="label label-danger">High</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>2</td>
+                                <td>Lorem Ipsum Dummy</td>
+                                <td>Jun 14, 2016</td>
+                                <td><span class="label label-success">Closed</span></td>
+                                <td><span class="label label-success">Low</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>3</td>
+                                <td>Lorem Ipsum Dummy Text....</td>
+                                <td>Jun 14, 2016</td>
+                                <td><span class="label label-info">Opened</span></td>
+                                <td><span class="label label-warning">Medium</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>4</td>
+                                <td>Lorem Ipsum Dummy</td>
+                                <td>Jun 13, 2016</td>
+                                <td><span class="label label-danger">Pending</span></td>
+                                <td><span class="label label-danger">High</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>5</td>
+                                <td>Lorem Ipsum</td>
+                                <td>Jun 14, 2016</td>
+                                <td><span class="label label-danger">Pending</span></td>
+                                <td><span class="label label-success">Low</span></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /Recent Leads -->
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Content/lib/js/plugins/notifications/pnotify.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+          
+
+           
+        });
+    </script>
+
+}

@@ -1,0 +1,102 @@
+//----------------------------------
+//   File          : scss/components/_code.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Code block css definition
+//----------------------------------
+
+pre {
+    @include radius($radius);
+	color: set-color($panel-bg);
+	&.line-numbers {
+        @include p-l(50);
+		position: relative;
+		counter-reset: linenumber;
+		> code {
+			position: relative;
+		}
+	}
+}
+pre[class*=language-] {
+    @include p-a(2,15,2,50);
+	overflow: auto;
+	position: relative;
+	border-left-width: 2px;
+	border-left-color: $danger;
+	background-color: $panel-bg;
+	background-image: linear-gradient(transparent 50%,black(0.025) 50%);
+	background-size: 3em 3em;
+	background-origin: content-box;
+	border-bottom-left-radius: 0;
+    -moz-border-bottom-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+    -moz-border-top-left-radius: 0;
+    -webkit-border-top-left-radius: 0;
+
+	> code[data-language] {
+		display: block;
+		&:before {
+            @include pos(absolute,0,0,null,null);
+            @include p-vh(4,8);
+			content: attr(data-language);
+			background-color: $danger;
+            @include fs(11px);
+			display: inline-block;
+            @include radius-a(0,0,0,$radius);
+			text-shadow: none;
+			color: $white;
+		}
+	}
+	&.line-numbers > code[data-language]:before {
+		top: -15px;
+		right: -15px;
+	}
+}
+pre[data-line] {
+    @include p-l(36);
+	position: relative;
+}
+.language-markup {
+	.nt {
+		color: $danger;
+	}
+	.na {
+		color: $success;
+	}
+	.s {
+		color: $info;
+	}
+	.c {
+		color: lighten($text-color,40%);
+	}
+}
+.line-highlight[data-end]:after {
+	content: attr(data-end);
+	top: auto;
+	bottom: 0;
+}
+
+.line-numbers .line-numbers-rows {
+    @include pos(absolute,2px,null,null,20px);
+    @include w(20px);
+	pointer-events: none;
+    @include fs(100%);
+	letter-spacing: -1px;
+    @include br(1,solid, $panel-border-color);
+	user-select: none;
+	color: set-color($panel-bg);
+
+	> span {
+		pointer-events: none;
+		display: block;
+		counter-increment: linenumber;
+		&:before {
+			color: set-color($panel-bg);
+            @include p-r(10);
+			display: block;
+			text-align: right;
+		}
+	}
+}

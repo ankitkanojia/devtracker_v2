@@ -1,0 +1,362 @@
+//----------------------------------
+//   File          : scss/widgets/_team.scss
+//   Type          : Main SCSS file
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//   Description   : CSS stylesheet for team showcase
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Our team 1
+// 2. Our team 2
+// 3. Our team 3
+// 4. Our team 4
+// 5. Responsive queries
+
+
+//----------------------------------
+// 1. Our team 1
+//----------------------------------
+.our-team1 {
+	text-align: center;
+	.team_img {
+		position: relative;
+		overflow: hidden;
+		&:after {
+			@include size(100%);
+			content: "";
+			background-color: white(0.2);
+			@include pos(absolute,null,null,-100%,0);
+			@include animation(transition,all 0.3s ease 0s);
+		}
+	}
+	&:hover {
+		.social {
+			top: 0;
+			li a:hover {
+				color: $white;
+			}
+		}
+		.title {
+			&:before,
+			&:after {
+				@include w(50px);
+			}
+		}
+		.team_img:after {
+			bottom: 0;
+		}
+	}
+	img {
+		@include size(100%,auto);
+	}
+	.social {
+		@include pos(absolute,-100%,10px,null,null);
+		@include p-vh(15,0);
+		@include no-m();
+		list-style: none;
+		background: $info;
+		@include radius-a(0,0,20px,20px);
+		z-index: 1;
+		@include animation(transition,all 0.3s ease 0s);
+		li a {
+			@include p-vh(8,15);
+			display: block;
+			color: $white;
+		}
+	}
+	.team-content {
+		@include p-a(20,0,10,0);
+	}
+	.title {
+		@include m-a(0,0,20,0);
+		@include fs(18px);
+		color: $panel-title-text-color;
+		text-transform: capitalize;
+		position: relative;
+		&:before {
+			@include pos(absolute,null,50%,-11px,null);
+			@include size(25px,1px);
+			@include m-r(9);
+			content: "";
+			background: $success;
+			@include animation(transition-duration, 0.25s);
+		}
+		&:after {
+			@include pos(absolute,null,null,-11px,52.8%);
+			@include size(25px,1px);
+			@include m-r(9);
+			content: "";
+			background: $success;
+			@include animation(transition-duration, 0.25s);
+		}
+	}
+	.post {
+		display: inline-block;
+		color: $text-color;
+		text-transform: capitalize;
+		&:before {
+			@include pos(relative,-13px,null,null,null);
+			@include size(7px);
+			content: "";
+			display: block;
+			@include radius(50%);
+			background: $success;
+			margin: 0 auto;
+		}
+	}
+}
+
+
+//----------------------------------
+// 2. Our team 2
+//----------------------------------
+.our-team2 {
+	text-align: center;
+	.pic {
+		position: relative;
+		overflow: hidden;
+		&:after {
+			@include pos(absolute,0,null,null,0);
+			@include size(100%);
+			content: "";
+			background: linear-gradient(to right, rgba(32, 84, 139, 0.5), rgba(236, 236, 1, 0.4));
+			opacity: 0;
+			@include animation(transition,all 0.4s ease 0s);
+		}
+		img {
+			@include size(100%,auto);
+			@include animation(transition,all 0.4s ease 0s);
+		}
+	}
+	&:hover {
+		img {
+			@include animation(transform,scale(1.8,1.8));
+		}
+		.social-link {
+			opacity: 1;
+			@include animation(transform, scale(1));
+			@include animation(transition, all 0.4s ease 0s);
+		}
+		.pic:after {
+			opacity: 1;
+		}
+	}
+	.social-link {
+		@include pos(absolute,80%,null,null,10%);
+		@include w(80%);
+		@include p-vh(8,0);
+		@include no-m();
+		@include b(2,solid,$white);
+		list-style: none;
+		text-align: center;
+		opacity: 0;
+		@include animation(transform,scale(0.8));
+		z-index: 1;
+		li {
+			@include m-vh(0,5);
+			display: inline-block;
+			a {
+				display: inline-block;
+				@include fs(20px);
+				color: $white;
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+	.post {
+		@include m-t(15);
+		display: block;
+		color: $text-muted;
+		text-transform: uppercase;
+	}
+	.team-title {
+		@include m-a(8,0,0,0);
+		@include fs($font-xlg);
+		color: $panel-title-text-color;
+		letter-spacing: 1px;
+
+		&:after {
+			@include w(20%);
+			content: "";
+			display: block;
+			margin: 10px auto;
+			@include bb(1,solid,$panel-title-text-color);
+		}
+	}
+	.description {
+		color: $text-color;
+	}
+}
+
+
+//----------------------------------
+// 3. Our team 3
+//----------------------------------
+.our-team3 {
+	position: relative;
+	overflow: hidden;
+	img {
+		@include size(100%,auto);
+	}
+	.team-content {
+		@include pos(absolute,0,null,null,0);
+		@include size(100%);
+		@include p-vh(25,15);
+		background: black(0.7);
+		@include animation(transform, translateX(-100%));
+		@include animation(transition,all 0.20s ease 0s);
+		.post-title {
+			@include fs($font-xlg);
+			color: $white;
+			@include m-b(0);
+		}
+		.post {
+			color: darken($white,30%);
+			@include m-b(10);
+			display: block;
+		}
+	}
+	&:hover {
+		.team-content {@include animation(transform, translateX(0));}
+		.team-prof {@include animation(transform, translateX(100%));}
+	}
+	.description {
+		color: $white;
+		@include m-b(10);
+	}
+	.team_social {
+		@include no-s();
+		list-style: none;
+		li {
+			@include m-r(5);
+			display: inline-block;
+			a {
+				@include size(40px);
+				border-radius: 50%;
+				@include b(1,solid,$white);
+				@include fs($icon-base);
+				@include lh(38px);
+				color: $white;
+				text-align: center;
+				display: inline-block;
+				@include animation(transition,border 0.3s ease 0s);
+				&:hover {
+					border-color: transparent;
+				}
+			}
+		}
+	}
+	.team-prof {
+		@include pos(absolute,null,null,0,null);
+		@include w(100%);
+		@include p-vh(10,15);
+		text-align: right;
+		background: black(0.7);
+		@include animation(transform, translateX(0));
+		@include animation(transition,all 0.20s ease 0s);
+		.post-title {
+			@include no-m();
+			@include fs($font-xlg);
+			color: $white;
+		}
+		.post {
+			@include m-b(0);
+			color: $text-muted;
+		}
+	}
+}
+
+
+//----------------------------------
+// 4. Our team 4
+//----------------------------------
+.our-team4 {
+	text-align: center;
+	.pic {
+		position: relative;
+		overflow: hidden;
+		img {
+			@include size(100%,auto);
+			@include animation(transition,all 0.2s ease 0s);
+		}
+	}
+	&:hover {
+		.social_media_team {
+			bottom: 0;
+		}
+		.pic img {
+			@include animation(transform, translateY(15px));
+		}
+	}
+	.social_media_team {
+		@include w(100%);
+		@include pos(absolute,null,null,-100%,null);
+		@include p(25);
+		background-color: rgba(59, 204, 161, 0.9);
+		@include animation(transition,all 0.35s ease 0s);
+	}
+	.description {
+		@include m-t(10);
+		color: $white;
+	}
+	.team_social {
+		@include pos(relative,2%,null,null,null);
+		@include no-s();
+		@include h(100%);
+		list-style: none;
+		li {
+			@include m-a(0,5,0,0);
+			display: inline-block;
+			a {
+				@include w(25px);
+				@include fs($font-xlg);
+				@include lh(25px);
+				display: block;
+				color: $white;
+				@include animation(transition, all 1.3s ease 0s);
+				&:hover {
+					background: $white;
+					color: $text-color;
+				}
+			}
+		}
+	}
+	.team-prof {
+		@include m-t(10);
+	}
+	&.post {
+		color: $text-muted;
+		@include fs($font-xlg);
+	}
+	.post-title a {
+		color: $panel-title-text-color;
+		@include fs($font-xlg);
+		text-transform: capitalize;
+		@include animation(transition,all 0.2s ease 0s);
+	}
+	h3.post-title {
+		@include m-b(0);
+	}
+}
+
+
+//----------------------------------
+// 5. Responsive queries
+//----------------------------------
+@include media(tablet-xlg,max) {
+	.our-team1,
+	.our-team4 {
+		@include m-b(30);
+	}
+	.our-team2 {
+		@include m-b(25);
+	}
+	.our-team3 {
+		@include m-b(20);
+	}
+}

@@ -1,0 +1,498 @@
+//----------------------------------
+//   File          : scss/extensions/_elastic-grid.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : CSS definition for media gallery
+//----------------------------------
+
+.wagwep-container {
+	overflow: hidden;
+	ul#portfolio-filter {
+		@include w(100%);
+		li {
+			@include m(0);
+			&.current a {
+				background: $theme-color;
+				color: $white;
+			}
+		}
+		a {
+			@include m-a(0,10,10,0);
+			border: 0;
+			@include radius($radius);
+			&:hover {
+				text-decoration: none;
+				background: darken($body-bg,8%);
+			}
+		}
+	}
+}
+
+.og-grid {
+	@include w(100%);
+	@include p-vh(20,0);
+	list-style: none;
+	margin: 0 auto;
+	text-align: center;
+	li {
+		@include m-a(10,5,0,5);
+		display: inline-block;
+		vertical-align: top;
+		&.hidden {
+			display: none;
+		}
+		> a {
+			border: none;
+			outline: none;
+			display: block;
+			position: relative;
+			img {
+				border: none;
+				outline: none;
+				display: block;
+				position: relative;
+			}
+		}
+		a {
+			overflow: hidden;
+			&.unhoverdir {
+				overflow: visible;
+			}
+			figure {
+				@include size(100%);
+				position: absolute;
+				background: rgba($theme-color,0.5);
+				span {
+					@include p-vh(10,0);
+					@include m-a(40,20,20,20);
+					display: block;
+					text-transform: uppercase;
+					font-weight: normal;
+					color: white(0.9);
+					text-shadow: 1px 1px 1px black(0.3);
+				}
+			}
+		}
+	}
+	&.effect-fallperspective {
+		perspective: 1300px;
+		li.animate {
+			transform-style: preserve-3d;
+			@include animation(transform,'translateZ(400px) translateY(300px) rotateX(-90deg)');
+			@include animation(animation,'fallPerspective .8s ease-in-out forwards');
+		}
+	}
+	&.effect-fly {
+		perspective: 1300px;
+		li.animate {
+			transform-style: preserve-3d;
+			@include animation(transform-origin,'50% 50% -300px');
+			@include animation(transform,'rotateX(-180deg)');
+			@include animation(animation,'fly .8s ease-in-out forwards');
+		}
+	}
+	&.effect-flip {
+		perspective: 1300px;
+		li.animate {
+			transform-style: preserve-3d;
+			@include animation(transform-origin,'0 0');
+			@include animation(transform,'rotateX(-80deg)');
+			@include animation(animation,'flip .8s ease-in-out forwards');
+		}
+	}
+	&.effect-helix {
+		perspective: 1300px;
+		li.animate {
+			transform-style: preserve-3d;
+			@include animation(transform,'rotateY(-180deg)');
+			@include animation(animation,'helix .8s ease-in-out forwards');
+		}
+	}
+	&.effect-popup {
+		perspective: 1300px;
+		li.animate {
+			transform-style: preserve-3d;
+			@include animation(transform,'scale(0.4)');
+			@include animation(animation,'popUp .8s ease-in forwards');
+		}
+	}
+	&.effect-opacity li.animate {
+		@include animation(animation,'fadeIn 0.65s ease forwards');
+	}
+	&.effect-moveup li.animate {
+		@include animation(transform,'translateY(200px)');
+		@include animation(animation,'moveUp 0.65s ease forwards');
+	}
+	&.effect-scaleup li.animate {
+		@include animation(transform,'scale(0.6)');
+		@include animation(animation,'scaleUp 0.65s ease-in-out forwards');
+	}
+}
+.og-pointer {
+	@include size(0);
+	@include m-a(-9,0,0,-10);
+	top: auto;
+	border: solid transparent;
+	content: " ";
+	position: relative;
+	pointer-events: none;
+	border-bottom-color: $theme-color;
+	border-width: 10px;
+	left: 50%;
+}
+.og-expander {
+	@include size(100%,0);
+	@include pos(absolute,auto,null,null,0);
+	@include m-t(0);
+	background: $theme-color;
+	color: $white;
+	text-align: left;
+	overflow: hidden;
+}
+.og-expander-inner {
+	@include h(100%);
+	@include p(30);
+}
+.og-close {
+	@include size(20px);
+	@include pos(absolute,10px,10px,null,null);
+	cursor: pointer;
+	&:hover::before,
+	&:hover::after {
+		background: lighten($theme-color,10%);
+	}
+}
+.og-close::before {
+	@include pos(absolute,50%,null,null,null);
+	@include size(100%,2px);
+	@include animation(transform,'rotate(45deg)');
+	content: '';
+	background: lighten($theme-color,20%);
+}
+.og-close::after {
+	@include pos(absolute,50%,null,null,null);
+	@include size(100%,2px);
+	@include animation(transform,'rotate(45deg)');
+	content: '';
+	background: lighten($theme-color,20%);
+	@include animation(transform,'rotate(-45deg)')
+}
+.og-fullimg {
+	@include size(50%,100%);
+	float: left;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	img {
+		display: inline-block;
+		max-height: 100%;
+		max-width: 100%;
+	}
+}
+.og-details {
+	@include p-vh(0,20);
+	@include size(50%,100%);
+	float: left;
+	overflow: hidden;
+	position: relative;
+	.infosep {
+		@include m-vh(15,0);
+		@include bb(1,solid,darken($theme-color,5%));
+		box-shadow: 0 1px lighten($theme-color,5%);
+		-moz-box-shadow: 0 1px lighten($theme-color,5%);
+		-webkit-box-shadow: 0 1px lighten($theme-color,5%);
+	}
+	h3 {
+		@include m-t(0);
+		@include m-b(10);
+		@include fs(24px);
+		@include ff($ff-light);
+	}
+	p {
+		@include p-b(20);
+		color: $white;
+	}
+	iframe {
+		@include w-max(400px);
+		@include h-max(250px);
+		@include m-b(0);
+	}
+	a {
+		@include m-r(10);
+	}
+}
+.og-loading {
+	@include size(20px);
+	@include radius(50%);
+	@include pos(absolute,50%,null,null,50%);
+	@include m-a(-25,0,0,-25);
+	@include animation(animation,'loader 0.5s infinite ease-in-out both');
+	background: lighten($black, 90%);
+}
+
+@include keyframes(loader){
+	0% {
+		background: lighten($black, 90%);
+	}
+	33% {
+		background: lighten($black, 80%);
+	}
+	66% {
+		background: lighten($black, 70%);
+	}
+}
+
+.elastislide-list {
+	list-style-type: none;
+	display: none;
+}
+.elastislide-carousel {
+	overflow: hidden;
+	position: relative;
+	ul {
+		@include no-s();
+		position: relative;
+		display: block;
+		list-style-type: none;
+		@include animation(transform,'translateX(0px)');
+		li {
+			@include w-min(20px);
+			@include m(0);
+			a {
+				@include w(100%);
+				@include p(0);
+				display: inline-block;
+				img {
+					@include w-max(100%);
+					display: block;
+					&.selected {
+						@include b(5,solid,lighten($theme-color,20%));
+					}
+				}
+			}
+		}
+	}
+}
+
+.elastislide-wrapper {
+	@include h-min(60px);
+	position: relative;
+	background-color: darken($theme-color,10%);
+	margin: 0 auto;
+	box-shadow: inset 0 0 5px darken($theme-color,15%);
+	-moz-box-shadow: inset 0 0 5px darken($theme-color,15%);
+	-webkit-box-shadow: inset 0 0 5px darken($theme-color,15%);
+	&.elastislide-loading {
+		background-image: url(../../img/gallery/loading.gif);
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+	nav span {
+		@include size(24px);
+		@include radius(50%);
+		position: absolute;
+		background: darken($theme-color,20%) url(../../img/gallery/nav.png) no-repeat 4px 3px;
+		text-indent: -9000px;
+		cursor: pointer;
+		opacity: 0.8;
+		&:hover {
+			opacity: 1.0;
+		}
+	}
+}
+.elastislide-horizontal {
+	@include p-vh(10,40);
+	ul {
+		white-space: nowrap;
+		li {
+			@include h(100%);
+			display: inline-block;
+		}
+	}
+	nav span {
+		@include m-t(-10);
+		top: 50%;
+		left: 10px;
+		&.elastislide-next {
+			right: 10px;
+			left: auto;
+			background-position: 4px -17px;
+		}
+	}
+}
+.elastislide-vertical {
+	@include p-vh(40,10);
+	ul li {
+		display: block;
+	}
+	nav span {
+		@include m-l(-10);
+		top: 10px;
+		left: 50%;
+		background-position: -17px 5px;
+		&.elastislide-next {
+			bottom: 10px;
+			top: auto;
+			background-position: -17px -18px;
+		}
+	}
+}
+
+@include keyframes(fadeIn){
+	to {
+		opacity: 1;
+	}
+}
+@include keyframes(moveUp){
+	to {
+		opacity: 1;
+		@include animation(transform,'translateY(0)');
+	}
+}
+@include keyframes(scaleUp){
+	to {
+		@include animation(transform,'scale(1)');
+		opacity: 1;
+	}
+}
+@include keyframes(fallPerspective){
+	100% {
+		@include animation(transform,'translateZ(0px) translateY(0px) rotateX(0deg)');
+		opacity: 1;
+	}
+}
+@include keyframes(fly){
+	100% {
+		@include animation(transform,'rotateX(0deg)');
+		opacity: 1;
+	}
+}
+@include keyframes(flip){
+	100% {
+		@include animation(transform,'rotateX(0deg)');
+		opacity: 1;
+	}
+}
+@include keyframes(helix){
+	100% {
+		@include animation(transform,'rotateY(0deg)');
+		opacity: 1;
+	}
+}
+@include keyframes(popUp){
+	70% {
+		@include animation(transform,'scale(1.1)');
+		opacity: .8;
+		animation-timing-function: ease-out;
+	}
+	100% {
+		@include animation(transform,'scale(1)');
+		opacity: 1;
+	}
+}
+
+@include media(tablet,max) {
+	nav#porfolio-nav {
+		height: auto;
+		ul {
+			@include size(100%,auto);
+			display: block;
+		}
+		li {
+			@include w(50%);
+			float: left;
+			position: relative;
+		}
+		a {
+			@include w(100%);
+			text-align: left;
+			text-indent: 25px;
+		}
+	}
+}
+@include media(phablet,max) {
+	.og-expander-inner {
+		@include p(10);
+	}
+	.og-fullimg {
+		@include size(30%,100%);
+	}
+	.og-details {
+		@include w(100%);
+		@include m-t(5);
+		h3 {
+			@include m-b(0);
+		}
+		p {
+			@include p-b(10);
+		}
+		.infosep {
+			@include m-vh(10,0);
+		}
+	}
+	.elastislide-wrapper {
+		@include w-max(300px);
+	}
+	nav#porfolio-nav {
+		border-bottom: 0;
+		ul {
+			height: auto;
+		}
+	}
+	.og-grid .sep {
+		display: none;
+	}
+}
+
+@include media(phone-md,max) {
+	.og-details {
+		h3 {
+			@include m-b(0);
+		}
+		p {
+			@include p-b(10);
+		}
+		.infosep {
+			@include m-vh(10,0);
+		}
+	}
+	nav#porfolio-nav li {
+		@include w(100%);
+		display: block;
+		float: none;
+	}
+}
+
+@media(min-width: 768px) and(max-width: 979px) {
+	.og-grid .sep {
+		@include h(80%);
+		@include m-vh(20,10);
+	}
+}
+@include media(tablet,max) {
+	.og-expander{
+		height: 640px !important;
+		z-index: 9;
+	}
+	.og-fullimg {
+		@include size(100%,auto);
+	}
+	.og-details {
+		@include w(100%);
+		@include m-t(5);
+		p {
+			@include p-b(10);
+		}
+		.infosep {
+			@include m-vh(12,0);
+		}
+	}
+	.elastislide-wrapper {
+		@include w-max(300px);
+		@include p-b(5);
+	}
+	.og-grid .sep {
+		display: none;
+	}
+}

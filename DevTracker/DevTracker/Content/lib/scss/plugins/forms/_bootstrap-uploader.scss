@@ -1,0 +1,122 @@
+//----------------------------------
+//   File          : scss/plugins/forms/_bootstrap-uploaders.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+.uploader {
+	@include w(100%);
+	position: relative;
+	display: inline-block;
+	@include radius($radius);
+
+	.filename {
+		@include size(100%,36px);
+		color: $form-input-group-addon-text-color;
+		@include p-a(7,45,7,12);
+		@include b(1,solid,$form-input-group-addon-border);
+		@include radius($radius);
+		float: left;
+		display: block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		cursor: default;
+		background-color: $form-control-bg;
+		text-align: left;
+	}
+	.action {
+		@include h(36px);
+		@include w-min(36px);
+		@include p-vh(7,12);
+		@include pos(absolute,0,0,null,null);
+		@include typo($ff-regular, $font-base, null, center);
+    	cursor: pointer;
+		color: $form-input-group-addon-text-color;
+		z-index: 1;
+		background: $form-input-group-addon-bg;
+		@include b(1,solid,$form-input-group-addon-border);
+		@include radius-a(0,$radius,$radius,0);
+		> i {
+			@include pos(absolute,50%,null,null,50%);
+			@include m-t(-8);
+			@include m-l(-8);
+		}
+	}
+	input[type=file] {
+		@include pos(absolute,0,0,0,null);
+		@include size(100%,36px);
+		@include m-t(0);
+    	cursor: pointer;
+		border: 0;
+		z-index: 10;
+		opacity: 0;
+		filter: alpha(opacity=0);
+	}
+	&.disabled {
+		.action {
+			opacity: .6;
+			filter: alpha(opacity=60);
+		}
+		.filename {
+			background-color: $form-control-bg;
+			cursor: not-allowed;
+		}
+	}
+}
+.uploader-xlg {
+	.action {
+		@include size(44px);
+		@include typo($ff-regular, $font-xlg, null, center);
+	}
+	.filename {
+		@include h(44px);
+		@include p-a(7,44,7,12);
+		@include typo($ff-regular, $font-xlg, null, center);
+	}
+	input[type=file] {
+		@include h(44px);
+	}
+}
+.uploader-lg {
+	.action {
+		@include size(40px);
+		@include typo($ff-regular, $font-lg, null, center);
+	}
+	.filename {
+		@include h(40px);
+		@include p-a(7,44,7,12);
+		@include typo($ff-regular, $font-lg, null, center);
+	}
+	input[type=file] {
+		@include h(40px);
+	}
+}
+.uploader-sm {
+	.action {
+		@include size(32px);
+		@include typo($ff-regular, $font-sm, null, center);
+	}
+	.filename {
+		@include h(32px);
+		@include p-a(6,42,6,11);
+		@include typo($ff-regular, $font-sm, null, center);
+	}
+	input[type=file] {
+		@include h(32px);
+	}
+}
+.uploader-xs {
+	.action,
+	.filename,
+	input[type=file] {
+		@include h(28px);
+		@include typo($ff-regular, $font-xs, null, center);
+	}
+}
+.uploader[class*=bg-] .action {
+	background-color: inherit;
+	border-color: inherit;
+	color: inherit;
+}

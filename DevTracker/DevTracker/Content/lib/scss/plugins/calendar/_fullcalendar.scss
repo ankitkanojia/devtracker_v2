@@ -1,0 +1,668 @@
+//----------------------------------
+//   File          : scss/plugins/calendar/_fullcalendar.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+.fc {
+	text-align: left;
+	table {
+        @include w(100%);
+		border-collapse: collapse;
+		border-spacing: 0;
+		table-layout: fixed;
+	}
+	th {
+        @include p-vh(12,20);
+		text-align: center;
+    	border-style: solid;
+    	border-width: 1px;
+    	vertical-align: top;
+        @include fs(14px);
+        @include ff($ff-semibold);
+	}
+	.fc-button-group {
+		> * {
+            @include m-a(0,0,0,-1);
+			float: left;
+		}
+		> :first-child {
+            @include m-l(0);
+		}
+	}
+	hr {
+        @include h(0);
+        @include no-m();
+        @include p-a(0,0,2,0);
+		border-style: solid;
+		border-width: 1px 0;
+	}
+	td {
+        @include no-p();
+    	border-style: solid;
+    	border-width: 1px;
+    	vertical-align: top;
+		&.fc-today {
+			border-style: double;
+		}
+	}
+	.fc-axis {
+        @include p(10);
+		vertical-align: middle;
+        color: $panel-body-text-color;
+	}
+}
+.fc-basic-view {
+	.fc-week-number {
+        @include p(10);
+		text-align: center;
+		span {
+			display: inline-block;
+			min-width: 1.25em;
+		}
+	}
+	.fc-day-number {
+        @include p(10);
+		text-align: right;
+		&.fc-other-month {
+			opacity: .3;
+			filter: alpha(opacity=30);
+		}
+	}
+	tbody .fc-row {
+        @include h-min(100px);
+        @include w-min(100px);
+	}
+}
+.fc-time-grid-event {
+	overflow: hidden;
+	.fc-resizer {
+        @include h(8px);
+        @include p(1);
+        @include pos(absolute,null,0,0,0);
+        @include fs(12px);
+        @include lh(10px);
+		text-align: center;
+		z-index: 3;
+		overflow: hidden;
+		font-family: monospace;
+		cursor: s-resize;
+		background-color: black(0.05);
+		&:hover {
+			background-color: black(0.1);
+		}
+		&:after {
+			content: "=";
+		}
+	}
+	.fc-time {
+        @include ff($ff-semibold);
+	}
+	&.fc-not-start {
+        @include p-t(1);
+		border-top-width: 0;
+		border-top-right-radius: 0;
+		border-top-left-radius: 0;
+	}
+	&.fc-not-end {
+        @include p-b(1);
+		border-bottom-width: 0;
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+	&.fc-short {
+		.fc-time {
+			display: inline-block;
+			vertical-align: top;
+			&:before {
+				content: attr(data-start);
+			}
+			&:after {
+				content: "\000A0-\000A0";
+			}
+			span {
+				display: none;
+			}
+		}
+		.fc-title {
+            @include no-p();
+            @include fs(11px);
+			display: inline-block;
+			vertical-align: top;
+		}
+	}
+	> .fc-content {
+		position: relative;
+		z-index: 2;
+	}
+}
+.fc-toolbar {
+    @include m-b(20);
+	text-align: center;
+	h2 {
+        @include no-m();
+        color: $panel-title-text-color;
+	}
+	.fc-left {
+        @include w(33%);
+		float: left;
+		> .fc-button {
+            @include m-l(10);
+		}
+	}
+	.fc-right {
+        @include w(33%);
+		float: right;
+		.fc-button-group {
+			float: right;
+		}
+		> .fc-button {
+            @include m-l(10);
+		}
+	}
+	.fc-center {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	> * {
+		> * {
+			float: left;
+		}
+		> :first-child {
+            @include m-l(0);
+		}
+	}
+	button {
+		position: relative;
+		&:focus {
+			z-index: 5;
+		}
+	}
+	.fc-state-hover,
+    .ui-state-hover {
+		z-index: 2;
+	}
+	.fc-state-down {
+		z-index: 3;
+	}
+	.fc-state-active,
+    .ui-state-active {
+		z-index: 4;
+	}
+}
+.fc-view {
+	position: relative;
+	z-index: 1;
+	> table {
+		position: relative;
+		z-index: 1;
+	}
+}
+.fc-events-container {
+    @include p(10);
+    @include radius($radius);
+    @include b(1,solid,darken($panel-bg,10%));
+	.fc-event {
+        @include no-m();
+        @include p-vh(3,8);
+		+ .fc-event {
+            @include m-t(5);
+		}
+	}
+}
+.fc-unthemed {
+	.fc-popover {
+        @include b($panel-border-thickness,solid,$panel-border-color);
+		background-color: $panel-bg;
+        @include radius($radius);
+		.fc-header {
+			background-color: $panel-header-bg;
+			.fc-close {
+                @include m-t(2);
+				opacity: .6;
+				filter: alpha(opacity=60);
+				&:hover {
+					opacity: 1;
+					filter: alpha(opacity=100);
+				}
+			}
+		}
+	}
+	.fc-row {
+		border-color: $panel-border-color;
+	}
+	hr {
+		border-color: $panel-border-color;
+		background-color: $panel-header-bg;
+	}
+	tbody,
+    td,
+    th {
+		border-color: $panel-border-color;
+	}
+	thead {
+		border-color: $panel-border-color;
+		border-bottom-color: $panel-border-color;
+		th,
+        td {
+			border-bottom-color: $panel-border-color;
+            background: $panel-header-bg;
+            color: $panel-title-text-color;
+		}
+	}
+	.fc-today {
+		background-color: $theme-color;
+	}
+}
+.fc-highlight {
+	background-color: lighten($black, 90%);
+}
+.fc-bgevent {
+	background-color: $theme-color;
+}
+.fc-nonbusiness {
+	background-color: lighten($black, 80%);
+}
+.fc-icon {
+	display: block;
+	&:after {
+		display: inline-block;
+		font-family: icomoon;
+		line-height: 1;
+		font-size: 16px;
+		vertical-align: middle;
+		position: relative;
+		top: -1px;
+	}
+}
+.fc-button {
+    @include no-m();
+    @include p-vh(4,12);
+	cursor: pointer;
+    text-transform: capitalize;
+	outline: 0;
+	&.fc-state-active,
+    &.fc-state-down {
+        @include shadow-in(black(0.02), 100px, 0, 0);
+	}
+}
+.fc-button::-moz-focus-inner {
+    @include no-s();
+}
+.fc-state-default {
+	border: 1px solid #DDDDDD;
+	background-color: #FCFCFC;
+	&.fc-corner-left {
+		border-bottom-left-radius: $radius;
+		border-top-left-radius: $radius;
+	}
+	&.fc-corner-right {
+		border-bottom-right-radius: $radius;
+		border-top-right-radius: $radius;
+	}
+}
+.fc-state-hover {
+	@include shadow-in(black(0.01), 100px, 0, 0);
+}
+.fc-state-active,
+.fc-state-down {
+	@include shadow-in(black(0.02), 100px, 0, 0);
+}
+.fc-state-disabled {
+	color: #999;
+	cursor: not-allowed;
+	opacity: .65;
+	filter: alpha(opacity=65);
+	box-shadow: none;
+}
+.fc-event {
+	position: relative;
+	display: block;
+	background-color: $info;
+    @include radius($radius);
+	color: $white;
+	text-decoration: none;
+	&.fc-draggable {
+		cursor: pointer;
+	}
+	&:hover {
+		color: $white;
+        background-color: c700(palette($info));
+		text-decoration: none;
+	}
+}
+.fc-event[href] {
+	cursor: pointer;
+}
+.fc-popover {
+	position: absolute;
+    @include b(1,solid,$panel-border-color);
+	.fc-header {
+        @include p(10);
+		.fc-close {
+			cursor: pointer;
+		}
+	}
+}
+.fc-button-group {
+	display: inline-block;
+}
+.fc-ltr {
+	.fc-popover .fc-header {
+		.fc-title {
+			float: left;
+		}
+		.fc-close {
+			float: right;
+		}
+	}
+	.fc-day-grid-event .fc-resizer {
+		right: -3px;
+		cursor: e-resize;
+	}
+}
+.fc-bg {
+	@include pos(absolute,0,0,0,0);
+	table {
+        @include h(100%);
+	}
+}
+.fc-row {
+	position: relative;
+	border-style: solid;
+	border-width: 0;
+	.fc-bgevent-skeleton {
+		bottom: 0;
+		z-index: 2;
+		table {
+			@include h(100%);
+		}
+		td {
+			border: 0;
+		}
+	}
+	.fc-highlight-skeleton {
+		bottom: 0;
+		z-index: 3;
+		table {
+			@include h(100%);
+		}
+		td {
+			border: 0;
+		}
+	}
+	table {
+		border-left: 0 hidden transparent;
+		border-right: 0 hidden transparent;
+		border-bottom: 0 hidden transparent;
+	}
+	.fc-bg {
+		z-index: 1;
+	}
+	.fc-content-skeleton {
+		position: relative;
+		z-index: 4;
+		td {
+            background: 0 0;
+        	border-color: transparent;
+        	border-bottom: 0;
+		}
+		tbody td {
+			border-top: 0;
+		}
+	}
+	.fc-helper-skeleton {
+		z-index: 5;
+		td {
+            background: 0 0;
+        	border-color: transparent;
+        	border-bottom: 0;
+		}
+		tbody td {
+			border-top: 0;
+		}
+	}
+	&.fc-rigid {
+		overflow: hidden;
+		.fc-content-skeleton {
+            @include pos(absolute,0,0,null,0);
+		}
+	}
+	&:first-child table {
+		border-top: 0 hidden transparent;
+	}
+}
+.fc-bgevent-skeleton,
+.fc-helper-skeleton,
+.fc-highlight-skeleton {
+	@include pos(absolute,0,0,null,0);
+}
+.fc-scroller {
+    @include h-min(500px);
+	overflow-y: scroll;
+	overflow-x: hidden;
+	> * {
+		position: relative;
+		overflow: hidden;
+	}
+}
+.fc-day-grid-event {
+    @include m-a(0,5,5,5);
+    @include p-vh(4,8);
+	.fc-time {
+        @include ff($ff-semibold);
+	}
+	.fc-resizer {
+        @include w(7px);
+        @include pos(absolute,0,null,0,null);
+	}
+	> .fc-content {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+.fc-not-allowed {
+	cursor: not-allowed;
+	.fc-event {
+		cursor: not-allowed;
+	}
+}
+@media(min-width:1200px) {
+	.fc-day-grid-event {
+		.fc-time {
+            @include p-l(5);
+			float: right;
+			display: inline-block;
+			z-index: 2;
+			position: relative;
+			background-color: inherit;
+		}
+		.fc-title {
+			z-index: 1;
+			position: relative;
+		}
+		> .fc-content {
+			background-color: inherit;
+		}
+	}
+}
+
+.fc-limited {
+	display: none;
+}
+.fc-more-popover {
+    @include w(220px);
+	z-index: 2;
+	.fc-event-container {
+        @include p-vh(10,5);
+	}
+}
+.fc-view-container {
+	*,
+    :after,
+    :before {
+		box-sizing: content-box;
+	}
+}
+.fc-axis {
+	text-align: right;
+}
+.fc-time-grid {
+    @include h-min(100%);
+	position: relative;
+	z-index: 1;
+	table {
+		border: 0 hidden transparent;
+	}
+	.fc-slats,
+    > hr {
+		position: relative;
+		z-index: 2;
+	}
+	.fc-bgevent-skeleton,
+    .fc-content-skeleton {
+        @include pos(absolute,0,0,null,0);
+		z-index: 3;
+	}
+	.fc-content-skeleton {
+		z-index: 5;
+	}
+	.fc-highlight-skeleton {
+		z-index: 4;
+	}
+	.fc-helper-skeleton {
+		z-index: 6;
+	}
+	.fc-highlight-container {
+		position: relative;
+	}
+	.fc-highlight {
+        @include pos(absolute,null,0,null,0);
+	}
+	.fc-bgevent-container,
+    .fc-event-container {
+		position: relative;
+	}
+	.fc-bgevent {
+        @include pos(absolute,null,0,null,0);
+        @include h-min(45px);
+        @include m(5);
+        @include p(10);
+		z-index: 1;
+		box-shadow: 0 0 0 1px $white;
+	}
+	.fc-event {
+        @include h-min(45px);
+        @include m(5);
+        @include p(10);
+		position: absolute;
+		z-index: 1;
+		box-shadow: 0 0 0 1px $white;
+	}
+	> .fc-bg {
+		z-index: 1;
+	}
+}
+.fc-time-grid-container {
+	position: relative;
+	z-index: 1;
+}
+.fc-slats {
+	td {
+		border-bottom: 0;
+	}
+	.fc-minor td {
+		border-top-style: dotted;
+	}
+}
+
+@include media(tablet-lg,max) {
+	.fc-toolbar {
+		.fc-left,
+        .fc-right {
+            @include m-b(10);
+			float: none;
+			width: auto;
+			vertical-align: top;
+			display: block;
+			.fc-button-group {
+				float: none;
+				width: auto;
+				vertical-align: top;
+			}
+			> .fc-button {
+				float: none;
+				width: auto;
+				vertical-align: top;
+			}
+		}
+	}
+	.fc-view-container {
+		border-left: 1px solid lighten($black, 80%);
+		border-right: 1px solid lighten($black, 80%);
+		> .fc-view > table {
+            @include m-l(-1);
+		}
+	}
+	.fc {
+		th,
+        td {
+			border-right-width: 0;
+		}
+	}
+}
+a.fc-more {
+    @include p(5);
+    @include m-vh(1,5);
+	text-align: center;
+	background-color: lighten($black, 90%);
+	display: block;
+    @include radius($radius);
+	color: lighten($black, 40%);
+	&:hover {
+		background-color: lighten($black, 80%);
+		color: lighten($black, 40%);
+	}
+}
+.fc-icon-left-single-arrow{
+    @include icon(after,arrow-left);
+}
+.fc-icon-right-single-arrow{
+    @include icon(after,arrow-right);
+}
+.fc-icon-left-double-arrow{
+    @include icon(after,arrow-left-double);
+}
+.fc-icon-right-double-arrow{
+    @include icon(after,arrow-right-double);
+}
+.fc-icon-x{
+    @include icon(after,close){
+        @include fs(12px);
+        display: block;
+    }
+}
+.fc-day-grid .fc-row {
+	z-index: 1;
+    .fc-day-number{
+        @include fs(18px);
+        color: $panel-body-text-color;
+    }
+}
+.fc-basicDay-view .fc-content-skeleton,
+.fc-basicWeek-view .fc-content-skeleton {
+    @include p-t(5);
+    @include p-b(10);
+}
+.fc-agenda-view .fc-day-grid {
+	position: relative;
+	z-index: 2;
+	.fc-row {
+		min-height: 3em;
+		.fc-content-skeleton {
+            @include p-t(5);
+            @include p-b(0);
+		}
+	}
+}

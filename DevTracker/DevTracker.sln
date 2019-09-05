@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTracker", "DevTracker\DevTracker.csproj", "{0BA3301F-494F-4484-8880-08A7F67F24BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{5AA21FE8-4452-42AA-8031-8A81930AD3FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BA3301F-494F-4484-8880-08A7F67F24BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BA3301F-494F-4484-8880-08A7F67F24BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BA3301F-494F-4484-8880-08A7F67F24BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BA3301F-494F-4484-8880-08A7F67F24BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AA21FE8-4452-42AA-8031-8A81930AD3FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AA21FE8-4452-42AA-8031-8A81930AD3FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AA21FE8-4452-42AA-8031-8A81930AD3FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AA21FE8-4452-42AA-8031-8A81930AD3FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://riowebs.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DevTracker\\DevTracker.csproj
+		SccProjectName1 = DevTracker
+		SccLocalPath1 = DevTracker
+		SccProjectUniqueName2 = Repository\\Repository.csproj
+		SccProjectName2 = Repository
+		SccLocalPath2 = Repository
+	EndGlobalSection
+EndGlobal

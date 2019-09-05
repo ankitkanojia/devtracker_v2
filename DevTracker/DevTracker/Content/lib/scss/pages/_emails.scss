@@ -1,0 +1,51 @@
+//----------------------------------
+//   File          : scss/pages/_emails.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+.media-options{
+    @include pos(absolute,3px,20px,null,null);
+
+    >i{
+        float: left;
+        @include fs(14px);
+        @include p-r(10);
+    }
+    >span.date{
+        float: left;
+        @include ff($ff-semibold);
+        @include p-r(10);
+    }
+    .star {
+        float: left;
+    	input[type=checkbox] {
+    		display: none;
+    		&:checked + label::before {
+    			color: $theme-color;
+    		}
+    	}
+    	label {
+    		display: inline-block;
+    		cursor: pointer;
+    		position: relative;
+    		font-size: 16px;
+            @include animation(transition,'border 0.2s linear 0s,color 0.2s linear 0s');
+    		margin-bottom: 13px;
+            @include icon(before,star){
+                @include pos(absolute,-6px,null,null,0);
+                @include m-r(10);
+                color: $theme-color;
+                @include animation(transition,'border 0.2s linear 0s,color 0.2s linear 0s');
+            }
+    	}
+    }
+}
+
+@include media(phablet,max){
+    .media-options{
+        @include pos(inherit,0,0,null,null);
+        @include m-t(10);
+    }
+}

@@ -1,0 +1,214 @@
+//----------------------------------
+//   File          : scss/components/_labels.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Bootstrap Labels Override
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Labels
+// 2. Label colors
+// 3. Flat labels
+// 4. Labels with icon only
+// 5. Label options
+
+
+//----------------------------------
+// 1. Labels
+//----------------------------------
+.label {
+    display: inline-block;
+    @include radius($radius);
+    @include p-vh(0,5);
+    @include b(0,solid,transparent);
+    @include pos(relative,-1px,null,null,null);
+    @include typo($ff-semibold, 9px, $white, center){
+        text-transform: uppercase;
+    }
+
+    .btn & {
+        top: 0;
+    }
+
+    .list-group-item.active > &,
+    .nav-pills > .active > a > &,
+    .nav-tabs-solid > .active > a > &,
+    .nav-tabs[class*=bg-] > li > a > & {
+        color: $white;
+        background-color: lighten($black, 80%);
+        border-color: $grey;
+    }
+
+    .list-group-item > & {
+        @include media(tablet-xlg, min){
+            float: right;
+
+            + .label {
+                @include m-r(5);
+            }
+        }
+    }
+}
+
+.label,
+.badge {
+
+    > .caret {
+        @include m-t(-2);
+    }
+
+    .open &.dropdown-toggle {
+        @include no-shadow();
+    }
+
+    &[href] {
+        &:hover,
+        &:focus {
+            background: black(0.2);
+        }
+    }
+}
+
+
+//----------------------------------
+// 2. Label colors
+//----------------------------------
+.label-default {
+    border-color: $grey;
+    &[href] {
+        &:hover,
+        &:focus {
+            background-color: lighten($black, 80%);
+        }
+    }
+}
+
+.label-primary {
+    border-color: $primary;
+    &[href] {
+        &:hover,
+        &:focus {
+            background-color: black(0.2);
+        }
+    }
+}
+
+.label-success {
+    border-color: $success;
+    &[href] {
+        &:hover,
+        &:focus {
+            background-color: black(0.2);
+        }
+    }
+}
+
+.label-info {
+    border-color: $info;
+    &[href] {
+        &:hover,
+        &:focus {
+            background-color: black(0.2);
+        }
+    }
+}
+
+.label-warning {
+    border-color: $warning;
+    &[href] {
+        &:hover,
+        &:focus {
+            background-color: black(0.2);
+        }
+    }
+}
+
+.label-danger {
+    border-color: $danger;
+    &[href] {
+        &:hover,
+        &:focus {
+            background-color: black(0.2);
+        }
+    }
+}
+
+
+//----------------------------------
+// 3. Flat labels
+//----------------------------------
+.label-flat {
+    @include no-radius();
+    background-color: transparent;
+    border-width: 2px;
+
+    &[href] {
+        &:hover,
+        &:focus {
+            background-color: transparent;
+            @include no-shadow();
+        }
+    }
+}
+
+
+//----------------------------------
+// 4. Labels with icon only
+//----------------------------------
+.label-icon {
+    @include space();
+    @include radius($radius);
+
+    > i {
+        top: 0;
+        font-size:$font-xs;
+    }
+}
+
+.label-icon-xlg {
+    @include space-xlg();
+}
+
+.label-icon-lg {
+    @include space-lg();
+}
+
+.label-icon-sm {
+    @include space-sm();
+}
+
+.label-icon-xs {
+    @include space-xs();
+}
+
+
+//----------------------------------
+// 5. Label options
+//----------------------------------
+.label-rounded {
+    @include p-a(1,8,0,8);
+    @include radius(100px);
+}
+
+.label-roundless {
+    @include no-radius();
+}
+
+.label-block {
+    display: block;
+
+    .form-control + & {
+        @include m-t($space-base);
+    }
+    &.text-left {
+        @include m-r(0);
+        text-align: left;
+    }
+    &.text-right {
+        @include m-l(0);
+        text-align: right;
+    }
+}

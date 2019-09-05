@@ -1,0 +1,296 @@
+﻿@using Repository.Helpers
+@model Tuple<ProjectsListVm, List<UserMaster>>
+
+@{
+    ViewBag.Title = "Details";
+    var count = 1;
+    var projectfileUrl = BasicProperty.ProjectAttachmentPath + Model.Item1.ProjectId + "/";
+    var profilePath = BasicProperty.ProfilePath;
+    const string defaultImage = "/Content/img/userIcon.jpg";
+}
+
+<!-- Page header -->
+<div class="header">
+    <div class="header-content">
+        <div class="page-title">
+            <i class="icon-briefcase3 position-left"></i> Projects Details
+        </div>
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Dashboard")"></a></li>
+            <li><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+            <li><a href="@Url.Action("List", "Projects")">Project</a></li>
+            <li class="active">Projects Details</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container-fluid page-content">
+
+    <div class="row">
+        <div class="col-md-8">
+
+            <!-- Project details -->
+            <div class="panel panel-default no-margin-bottom no-border-bottom">
+                <div class="panel-heading">
+                    <div class="panel-title text-xlg">@Model.Item1.Name</div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5 class="text-indigo">
+                                @Model.Item1.TagLine
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <a class="text-info" href="@Model.Item1.LiveURL"> @Model.Item1.LiveURL </a>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-20">
+                        <div class="col-md-12">
+                            <h4 class="m-b-10 text-semibold">Basic description</h4>
+                            @Html.Raw(Model.Item1.BasicDescription)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Project details -->
+            <!-- Files -->
+            <div class="panel panel-flat no-margin-top no-margin-bottom no-border-bottom">
+                <div class="panel-heading">
+                    <div class="panel-title">Files</div>
+                </div>
+                <div class="panel-body">
+                    @foreach (var item in Model.Item1.ProjectAttachments)
+                    {
+                        if (count == 1)
+                        {
+                            <div class="row">
+                                <div class="col-md-1 col-xs-2">
+                                    <i class="icon-files-empty2 icon-2x m-t-5"></i>
+                                </div>
+                                <div class="col-md-7 col-xs-5">
+                                    <div class="no-padding no-margin">
+                                        @item.DisplayName
+                                        <small class="display-block">
+                                            @item.FileSize KB
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-5 text-right">
+                                    <a target="_blank" href="@projectfileUrl@item.FileName" class="btn btn-default btn-xs"><i class="icon-download4 position-left"></i>Download</a>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row m-t-20">
+                                <div class="col-md-1 col-xs-2">
+                                    <i class="icon-files-empty2 icon-2x m-t-5"></i>
+                                </div>
+                                <div class="col-md-7 col-xs-5">
+                                    <div class="no-padding no-margin">
+                                        @item.DisplayName
+                                        <small class="display-block">
+                                            @item.FileSize MB
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-5 text-right">
+                                    <a target="_blank" href="@projectfileUrl@item.FileName" class="btn btn-default btn-xs"><i class="icon-download4 position-left"></i>Download</a>
+                                </div>
+                            </div>
+                        }
+
+                        count++;
+                    }
+
+                </div>
+            </div>
+            <!-- /Files -->
+            <!-- Comments -->
+            <div class="panel panel-flat no-margin-top">
+                <div class="panel-heading">
+                    <div class="panel-title">Comments</div>
+                </div>
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#"><img src="http://via.placeholder.com/80x80" class="img-circle" alt=""></a>
+                        </div>
+
+                        <div class="media-body">
+                            <h6 class="media-heading">Marilyn Romero<span class="media-annotation pull-right">2 hours ago</span></h6>
+                            Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.
+
+                            <ul class="list-inline m-t-5">
+                                <li><a href="#"><i class="icon-reply text-success position-left"></i>Reply</a></li>
+                                <li><a href="#"><i class="icon-pencil6 text-danger position-left"></i>Edit</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#"><img src="http://via.placeholder.com/80x80" class="img-circle" alt=""></a>
+                        </div>
+
+                        <div class="media-body">
+                            <h6 class="media-heading">Jonaly Smith<span class="media-annotation pull-right">1 day ago</span></h6>
+                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+                            <ul class="list-inline m-t-5">
+                                <li><a href="#"><i class="icon-reply text-success position-left"></i>Reply</a></li>
+                                <li><a href="#"><i class="icon-pencil6 text-danger position-left"></i>Edit</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#"><img src="http://via.placeholder.com/80x80" class="img-circle" alt=""></a>
+                        </div>
+
+                        <div class="media-body">
+                            <h6 class="media-heading">John Deo<span class="media-annotation pull-right">3 days ago</span></h6>
+                            Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+
+                            <ul class="list-inline m-t-5">
+                                <li><a href="#"><i class="icon-reply text-success position-left"></i>Reply</a></li>
+                                <li><a href="#"><i class="icon-pencil6 text-danger position-left"></i>Edit</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Comments -->
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-flat">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="no-margin">Total Team Memebr:</p>
+                        </div>
+
+                        <div class="col-md-6 text-right">
+                            <p class="text-semibold no-margin"> @Model.Item1.TeamMemberCount </p>
+                        </div>
+                    </div>
+                    <div class="row m-t-5">
+                        <div class="col-md-6">
+                            <p class="no-margin">Actual Team Member:</p>
+                        </div>
+
+                        <div class="col-md-6 text-right">
+                            <p class="text-semibold no-margin">@Model.Item1.ActualTeamMemberCount</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="m-t-0 m-b-10">Current status</h4>
+                            <div class="progress m-t-5">
+                                <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 55%">
+                                    <span class="sr-only">55% Complete (success)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="m-t-0 m-b-10">Assigned to</h4>
+
+                            @foreach (var userData in Model.Item1.ProjectAssignyAssignies.Select(item2 => Model.Item2.FirstOrDefault(s => s.UserMasterId == item2.AssignyId)))
+                            {
+                                if (userData != null)
+                                {
+                                    if (!string.IsNullOrWhiteSpace(userData.Profile))
+                                    {
+                                        <img alt="@userData.Name" src="@profilePath@(userData.Profile)" class="img-circle img-responsive img-xs pull-left m-l-3 m-r-3">
+                                    }
+                                    else
+                                    {
+                                        <img alt="" src="@defaultImage" class="img-circle img-responsive img-xs pull-left m-l-3 m-r-3">
+                                    }
+                                }
+                                else
+                                {
+                                    <img alt="" src="@defaultImage" class="img-circle img-responsive img-xs pull-left m-l-3 m-r-3">
+                                }
+                            }
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="m-t-0 m-b-15">Project details</h4>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-6">
+                                    <h5>Client name</h5>
+                                    <h5>Assignee</h5>
+                                    <h5>Start Date</h5>
+                                    <h5>Deadline</h5>
+                                    <h5>Budget</h5>
+                                </div>
+
+                                <div class="col-md-6 col-xs-6 text-right">
+                                    <h5 class="text-semibold">@Model.Item1.ClientName</h5>
+                                    <h5 class="text-semibold">Client name</h5>
+                                    <h5 class="text-semibold">@Model.Item1.StartDate.ToString("MMMM dd, yyyy")</h5>
+                                    <h5 class="text-semibold">
+                                        @if (Model.Item1.EndDate != null)
+                                        {
+                                            @Model.Item1.EndDate.Value.ToString("MMMM dd, yyyy")
+                                        }
+                                        else
+                                        {
+                                            <span>N/A</span>
+                                        }
+                                    </h5>
+                                    <h5>
+                                        @if (Model.Item1.Budget != null)
+                                        {
+                                            <span>@Model.Item1.Budget.Value.ToString("0.00") INR</span>
+                                        }
+                                        else
+                                        {
+                                            <span>N/A</span>
+                                        }
+
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="m-t-0 m-b-15">Options</h4>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" class="styled" checked="checked">
+                                    Send project report by email
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" class="styled">
+                                    Send all notifications by email
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

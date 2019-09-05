@@ -1,0 +1,307 @@
+//----------------------------------
+//   File          : scss/widgets/_news.scss
+//   Type          : Main SCSS file
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//   Description   : CSS stylesheet for news sliders
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. News slider 1
+// 2. News slider 2
+// 3. News slider 3
+
+
+//----------------------------------
+// 1. News slider 1
+//----------------------------------
+#news-slider1 .post-slide {
+	@include m-vh(0,15);
+	.post-header {
+		@include p-a(0,0,15,0);
+	}
+	.title {
+		@include m-b(2);
+		a {
+			@include fs($font-xlg);
+			color: $panel-title-text-color;
+			@include animation(transition,all 0.4s ease 0s);
+			&:hover {
+				color: $info;
+				text-decoration: none;
+			}
+		}
+	}
+	.post-bar {
+		@include m-a(10,0,0,0);
+		@include no-p();
+		list-style: none;
+		li {
+			@include m-r(20);
+			display: inline-block;
+			color: $text-muted;
+			a {
+				color: $text-muted;
+				text-transform: capitalize;
+				&:hover {
+					text-decoration: none;
+					color: $text-muted;
+				}
+			}
+			img {
+				@include m-r(8);
+				@include size(20px);
+				@include radius(50%);
+			}
+			i {
+				@include m-r(8);
+			}
+		}
+	}
+	.pic {
+		overflow: hidden;
+		position: relative;
+		&:after {
+			@include pos(absollute,0,null,null,0);
+			@include size(100%);
+			content: "";
+			background: white(0);
+			@include animation(transition,all 0.9s ease 0s);
+		}
+		img {
+			@include w(100%);
+			height: auto;
+			@include animation(transform,rotate(0deg) scale(1,1));
+			@include animation(transition,all 0.6s ease-in-out 0s);
+		}
+	}
+	.post-category {
+		@include pos(absolute,null,null,0,0);
+		@include p-vh(5,15);
+		@include no-m();
+		list-style: none;
+		background: a700(palette($primary));
+		z-index: 1;
+
+		li {
+			display: inline-block;
+			text-transform: uppercase;
+			&:after {
+				content: " ,";
+				color: $white;
+			}
+			a {
+				color: $white;
+				&:hover {
+					text-decoration: none;
+					color: white(0.8);
+				}
+			}
+			&:last-child:after {
+				content: "";
+			}
+		}
+	}
+	.post-description {
+		@include p-a(15,0,0,0);
+		color: $text-color;
+	}
+	&:hover .pic {
+		&:after {
+			background: white(0.2);
+		}
+		img {
+			@include animation(transform,rotate(10deg) scale(1.5,1.5));
+		}
+	}
+}
+
+@include media(phablet,max) {
+	#news-slider1 .post-header .post-bar li {
+		@include m-r(5);
+	}
+}
+
+
+//----------------------------------
+// 2. News slider 2
+//----------------------------------
+#news-slider2 .post-slide {
+	@include m-vh(0,10);
+	.post-info {
+		@include p-a(5,0,10,0);
+		@include no-m();
+		list-style: none;
+		li {
+			@include m-vh(0,5);
+			display: inline-block;
+			i {
+				@include m-r(8);
+			}
+			a {
+				@include ff($ff-semibold);
+				@include fs($font-sm);
+				color: $text-muted;
+				text-transform: uppercase;
+				&:hover {
+					color: $info;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+	.post-img {
+		position: relative;
+		&:before {
+			@include pos(absolute,0,null,null,0);
+			@include size(100%);
+			content: "";
+			opacity: 0;
+			background: black(0.6);
+			@include animation(transition, opacity 0.40s linear 0s);
+		}
+		img {
+			@include size(100%,auto);
+		}
+	}
+	&:hover {
+		.read,
+		.post-img:before {
+			opacity: 1;
+		}
+	}
+	.read {
+		@include pos(absolute,null,null,30px,50px);
+		font-size: $font-lg;
+		color: $white;
+		text-transform: capitalize;
+		opacity: 0;
+		@include animation(transition,all 0.40s linear 0s);
+		&:hover {
+			text-decoration: none;
+			color: $info;
+		}
+	}
+	.post-content {
+		@include p-vh(40,0);
+		position: relative;
+	}
+	.post-author {
+		@include pos(absolute,-45px,10px,null,null);
+		@include size(75px);
+		@include b(4,solid,$white);
+		@include radius(50%);
+		overflow: hidden;
+		img {
+			@include size(100%,auto);
+		}
+	}
+	.post-title {
+		@include m-a(0,0,10,0);
+		@include fs($font-xlg);
+		color: $panel-title-text-color;
+		@include animation(transition, all 0.30s linear 0s);
+
+		&:after {
+			@include w(25px);
+			@include m-t(10);
+			content: "";
+			display: block;
+			@include bb(2,solid,$panel-title-text-color);
+		}
+	}
+	.post-description {
+		color: $text-color;
+	}
+}
+
+
+//----------------------------------
+// 3. News slider 3
+//----------------------------------
+#news-slider3 .post-slide {
+	@include p-vh(0,5);
+	.post-img {
+		overflow: hidden;
+		img {
+			@include size(100%,auto);
+			filter: grayscale(100%);
+			opacity: 0.9;
+			@include animation(transform,scale(1,1));
+			@include animation(transition, all 0.3s ease-in-out 0s);
+		}
+	}
+	.post-content {
+		@include p-a(20,10,20,10);
+		position: relative;
+	}
+	.post-date {
+		@include pos(absolute,-30px,null,null,30px);
+		@include w-min(28px);
+		@include h-min(28px);
+		@include lh(28px);
+		text-align: center;
+		background: a500(palette($primary));
+	}
+	.month {
+		@include p-vh(1,10);
+		display: block;
+		@include ff($ff-semibold);
+		@include fs($font-lg);
+		color: $white;
+		background: a600(palette($primary));
+		text-transform: uppercase;
+	}
+	.date {
+		color: $white;
+		@include fs($font-lg);
+	}
+	.post-title {
+		@include m-a(20,0,0,0);
+		a {
+			color: $panel-title-text-color;
+			@include fs($font-xlg);
+			text-transform: capitalize;
+			@include animation(transition,all 0.50s ease 0s);
+
+			&:hover {
+				color: $info;
+				text-decoration: none;
+			}
+		}
+	}
+	.post-description {
+		color: $text-color;
+	}
+	.post-bar {
+		@include p-vh(10,0);
+		list-style: none;
+		text-align: center;
+		background: a500(palette($primary));
+
+		li {
+			@include m-r(5);
+			display: inline-block;
+			a {
+				text-transform: capitalize;
+				color: $white;
+				@include animation(transition,0.2s ease);
+				&:hover {
+					text-decoration: none;
+					color: white(0.8);
+				}
+			}
+			i {
+				@include m-r(5);
+				color: $white;
+			}
+		}
+	}
+	&:hover .post-img img {
+		@include animation(transform,scale(1.2,1.2));
+		filter: none;
+		opacity: 1;
+	}
+}

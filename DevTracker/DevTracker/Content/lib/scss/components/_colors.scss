@@ -1,0 +1,36 @@
+//----------------------------------
+//   File          : scss/components/_colors.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Color system page css definition
+//----------------------------------
+
+ul.colors-demo{
+    @include h(120px);
+    @include m-a(0,0,10,-25);
+	clear:both;
+
+	li{
+        @include size(8.33%,120px);
+		list-style:none;
+		float:left;
+		position: relative;
+
+		> div{
+            @include w(100%);
+			background: black(0.6);
+			color:$white !important;
+		}
+		div.code{
+            @include p-a(5,10,0,10);
+			position: relative;;
+			bottom:-68px;
+		}
+		div.value{
+            @include p-a(0,10,5,10);
+			position: absolute;
+			bottom:0px;
+		}
+	}
+}

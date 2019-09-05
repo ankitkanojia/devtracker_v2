@@ -1,0 +1,229 @@
+//----------------------------------
+//   File          : scss/plugins/forms/_switchery.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+#jquery_vars {
+	.switch-active {
+		color: $element-active-color;
+	}
+	.switch-inactive {
+		color: $element-inactive-color;
+	}
+}
+
+@if($element-style == 'rounded'){
+	$radius: $radius;
+}
+@else if($element-style == 'flat'){
+	$radius: 0;
+}
+@else if($element-style == 'default'){
+	$radius: 100px;
+}
+
+.switchery {
+	@include size(42px,18px);
+	@include radius($radius);
+	@include b(1,solid,$element-inactive-color);
+	background-color: $white;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	box-sizing: content-box;
+
+	> small {
+		@include pos(absolute,-3px,3px,null,null);
+		@include size(24px);
+		@include radius($radius);
+		background-color:$element-handle-color !important;
+		@include icon(after,switch){
+			color:$white;
+			@include fs(14px);
+			position: absolute;
+    		left: 5px;
+		}
+	}
+}
+.checkbox-switchery {
+	.switchery {
+		@include pos(absolute,null,null,null,0);
+		@include m-t(0);
+	}
+	label {
+		@include p-l(56);
+		@include no-m();
+		position: relative;
+		cursor: pointer;
+	}
+	&.checkbox-inline {
+		@include m-b(0);
+	}
+	&.checkbox-right {
+		.switchery {
+			left: auto;
+			right: 0;
+		}
+		label,
+		&.switchery-lg label,
+		&.switchery-sm label,
+		&.switchery-xs label {
+			@include p-l(0);
+			@include p-r(56);
+		}
+		&.switchery-lg label {
+			@include p-r(64);
+		}
+		&.switchery-sm label {
+			@include p-r(48);
+		}
+		&.switchery-xs label {
+			@include p-r(40);
+		}
+	}
+	&.switchery-lg label {
+		@include p-l(64);
+	}
+	&.switchery-sm label {
+		@include p-l(48);
+	}
+	&.switchery-xs label {
+		@include p-l(40);
+	}
+}
+.checkbox[class*=switchery-],
+.checkbox-inline[class*=switchery-] {
+	@include p-v(0);
+}
+
+label {
+	&.switchery-lg,
+	&.switchery-sm,
+	&.switchery-xs {
+		@include m-b(0);
+	}
+	&.checkbox-switchery {
+		@include p-l(56);
+		@include no-m();
+		position: relative;
+		cursor: pointer;
+		&.switchery-lg {
+			@include p-l(64);
+		}
+		&.switchery-sm {
+			@include p-l(48);
+		}
+		&.switchery-xs {
+			@include p-l(40);
+		}
+		&.checkbox-right {
+			@include p-l(0);
+			@include p-r(56);
+
+			&.switchery-lg,
+			&.switchery-sm,
+			&.switchery-xs {
+				@include p-l(0);
+				@include p-r(64);
+			}
+			&.switchery-sm {
+				@include p-r(48);
+			}
+			&.switchery-xs {
+				@include p-r(40);
+			}
+		}
+	}
+	&.switchery-double.checkbox-switchery {
+		@include no-p();
+	}
+}
+
+.switchery-lg {
+	&.checkbox-switchery {
+		@include m-b(18);
+		.switchery {
+			@include m-t(-2);
+		}
+	}
+	.switchery {
+		@include size(52px,22px);
+		> small {
+			@include size(28px);
+			&:after{
+				@include fs(20px);
+				top: -4px;
+			    left: 4px;
+			}
+		}
+	}
+}
+
+.switchery-sm {
+	&.checkbox-switchery {
+		@include m-b(10);
+		.switchery {
+			@include m-t(2);
+		}
+	}
+	.switchery {
+		@include size(36px,14px);
+		> small {
+			@include size(20px);
+			@include m-l(0);
+			&:after {
+				top: -2px;
+    			left: 3px;
+			}
+		}
+	}
+}
+.switchery-xs {
+	&.checkbox-switchery {
+		@include m-b(6);
+		.switchery {
+			@include m-t(4);
+		}
+	}
+	.switchery {
+		@include size(28px,10px);
+		> small {
+			@include size(16px);
+			&:after{
+				top: -4px;
+    			left: 1px;
+			}
+		}
+	}
+}
+.switchery-double {
+	.switchery {
+		position: relative;
+		@include m-a(-7,7,-5,7);
+	}
+	&.checkbox-switchery label {
+		@include no-p();
+	}
+	&.switchery-lg .switchery {
+		@include m-t(-8);
+		@include m-b(-6);
+	}
+	&.switchery-sm .switchery {
+		@include m-t(-6);
+		@include m-b(-4);
+	}
+	&.switchery-xs .switchery {
+		@include m-t(-5);
+		@include m-b(-3);
+	}
+}
+.checkbox.checkbox-switchery {
+	@include m-b(14);
+	@include p-l(0);
+	&.disabled .switchery {
+		cursor: not-allowed;
+	}
+}

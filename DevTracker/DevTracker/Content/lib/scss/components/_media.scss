@@ -1,0 +1,207 @@
+//----------------------------------
+//   File          : scss/components/_media.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Bootstrap Media Objects Override
+//----------------------------------
+.media {
+    @include m-t(12);
+    position: relative;
+}
+
+.media,
+.media-body {
+    @include typo($ff-regular,11px,$text-color,left){
+        line-height: 1.6;
+    }
+    overflow: visible;
+
+    i {
+        @include fs($icon-sm);
+    }
+}
+
+.media-left,
+.media-right,
+.media-body {
+    position: relative;
+    color: $panel-body-text-color;
+}
+
+.media-heading {
+    @include m-t(0);
+    @include m-b(2);
+    @include typo($ff-semibold,14px,$panel-title-text-color,left);
+    display: block;
+}
+
+.media-list {
+    @include m-b(0);
+}
+
+.media-right,
+.media > .pull-right {
+    @include p-l(12);
+    @include p-t(5);
+}
+
+.media-left,
+.media > .pull-left {
+    @include p-r(12);
+    @include p-t(3);
+}
+
+@include media (phablet,max) {
+    .stack-media-on-mobile {
+        text-align: center;
+
+        .media-annotation {
+            display: block;
+
+            &.dotted:not(.pull-right):before {
+                content: none;
+                margin: 0;
+            }
+        }
+
+        .media-heading .media-annotation {
+            @include m-vh(null,0);
+            @include p-b(5);
+        }
+
+        .media-left,
+        .media-right,
+        .media-body {
+            @include w(auto);
+            @include p-vh(null,0);
+            display: block;
+
+            img {
+                @include size(100%,auto);
+                max-height: none;
+            }
+        }
+
+        .media-body,
+        .media-right {
+            @include m-t($space-base);
+        }
+
+        .media-heading {
+            @include m-b(5);
+        }
+    }
+}
+
+.media-left,
+.media-right,
+.thumbnail .media {
+    img:not(.media-preview) {
+        @include size(40px);
+        max-width: none;
+    }
+}
+
+.media-badge {
+    @include pos(absolute,-2px,null,null,-10px);
+
+    &,
+    &[class*=bg-] {
+        border: 2px solid;
+    }
+
+    @include media (phablet,max) {
+        .navbar-inverse & {
+            border: 0;
+            top: 0;
+        }
+    }
+}
+
+.media-annotation {
+    @include typo($ff-semibold,$font-sm,rgba($panel-title-text-color,0.7),null);
+
+    .media-heading & {
+        @include m-l($space-base);
+    }
+
+    i {
+        @include fs($icon-sm);
+    }
+
+    &.dotted:not(.pull-right):before {
+        content: '•';
+        @include m-r($space-base +3);
+    }
+}
+
+.media-header {
+    @include typo($ff-semibold,$font-base,rgba($panel-title-text-color,0.7),left){
+        text-transform: uppercase;
+    }
+    white-space: nowrap;
+    @include m-t(8);
+
+    &:first-child {
+        @include m-t(0);
+    }
+}
+
+.media-list-bordered {
+    > li {
+        @include bt(1,solid,darken($panel-bg,5%));
+        @include p-t(12);
+        @include m-t(12);
+
+        &:first-child {
+            @include p-t(0);
+            border-top-width: 0;
+        }
+    }
+
+    &.media-list-linked .media-header {
+        @include m-b($space-base);
+    }
+}
+
+.media-list-linked {
+
+    .media {
+        @include no-p();
+        @include m-t(0);
+    }
+
+    .media-link {
+        display: block;
+        @include p-a(8,12,10,12);
+        color: $text-color;
+
+        &:hover,
+            &:focus {
+                background-color: darken($panel-bg,3%);
+            }
+        }
+
+        .media-header {
+            @include p-vh(null,$space-lg);
+            @include m-vh(null,$space-sm);
+
+            &:first-child {
+                @include m-t(0);
+            }
+        }
+
+        &.media-list-bordered {
+            > li:first-child {
+                border-top-width: 1px;
+            }
+            > .media-header {
+                @include m-t(0);
+
+            &:first-child {
+                border-top-width: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,103 @@
+﻿@model  IEnumerable<RoleMaster>
+
+@{
+    ViewBag.Title = "List";
+    var count = 1;
+}
+
+<!--Page Header-->
+
+<div class="header">
+    <div class="header-content">
+        <div class="page-title">
+            <i class="icon-cog52 position-left"></i> Role Management
+        </div>
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Dashboard")"></a></li>
+            <li><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+            <li class="active">Roles</li>
+        </ul>
+    </div>
+</div>
+<!--/Page Header-->
+
+<div class="container-fluid page-content">
+    <!-- Basic datatable -->
+    <div class="panel panel-flat table-responsive">
+
+        <table class="table datatable table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">Sr.</th>
+                    <th>Role Name</th>
+                    <th>Status</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">
+                            <span> @count </span>
+                        </td>
+                        <td>
+                            @item.RoleName
+                        </td>
+                        <td>
+                            <span class="label label-success"> Activated </span>
+                        </td>
+                        <td class="text-center">
+                            <ul class="icons-list">
+                                <li><a href="@Url.Action("Configuration", "Role", new {@id = item.RoleMasterId})" class="text-primary"><i class="icon-gear"></i> Configuration</a> </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    count++;
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /Basic datatable -->
+
+
+</div>
+@section Scripts{
+    <script src="~/Content/lib/js/plugins/tables/datatables/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.styled').uniform();
+
+            //Start: DataTable setup
+            $('.datatable').DataTable({
+                autoWidth: false,
+                "aaSorting": [],
+                "aoColumnDefs": [{ "bSortable": false, "aTargets": [0,2,3] }],
+                dom: '<"datatable-header"fl><"datatable-scroll-lg"t><"datatable-footer"ip>',
+                language: {
+                    search: '<span>Search:</span> _INPUT_',
+                    lengthMenu: '<span>Show:</span> _MENU_',
+                    paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
+                },
+                lengthMenu: [5, 10, 25, 50, 75, 100],
+                displayLength: 5
+            });
+
+            $('.dataTables_filter input[type=search]').attr('placeholder', 'Type to filter...');
+            $('.dataTables_filter input[type=search]').attr('class', 'form-control');
+
+            $('.dataTables_length select').select2({
+                minimumResultsForSearch: Infinity,
+                width: '60px'
+            });
+            //End: DataTable setup
+        });
+    </script>
+}
+

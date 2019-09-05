@@ -1,0 +1,17 @@
+//----------------------------------
+//   File          : scss/mixins/_clearfix.scss
+//   Type          : SCSS mixin
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+// ---------------------------------
+
+@mixin clearfix() {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}

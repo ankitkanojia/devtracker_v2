@@ -1,0 +1,111 @@
+//----------------------------------
+//   File          : scss/components/_popovers.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Bootstrap Popovers Override
+//----------------------------------
+.popover {
+    @include radius();
+    @include p(0);
+    @include shadow-out();
+    @include b(1,solid,$theme-color);
+}
+
+// Title
+.popover-title {
+    @include m(-1);
+    background: $theme-color;
+    @include space($space-base,($space-base *2) +1);
+    @include typo($ff-semibold,$font-sm,$white,left){
+        text-transform: uppercase;
+    }
+    border: 0;
+    @include radius-a($radius,$radius,0,0);
+
+    &[class*=bg-] {
+        @include space($space-base,$space-base *2);
+        @include m-a(-1,-1,0,-1);
+    }
+}
+
+.popover-content {
+    @include space($space-base,$space-base *2);
+    @include typo($ff-regular,$font-sm,$text-color,left);
+    background: $panel-bg;
+}
+
+.popover {
+    // Top arrow
+    &.top > .arrow {
+        &{
+            border-top-color: $theme-color;
+        }
+        &:after {
+            border-top-color: $panel-bg;
+        }
+    }
+    // Right arrow
+    &.right > .arrow {
+        &{
+            border-right-color: $theme-color;
+        }
+        &:after {
+            border-right-color: $panel-bg;
+        }
+    }
+    // Bottom arrow
+    &.bottom > .arrow {
+        &{
+            border-bottom-color: $theme-color;
+        }
+        &:after {
+            border-bottom-color: $theme-color;
+        }
+    }
+    // Left arrow
+    &.left > .arrow {
+        &{
+            border-left-color: $theme-color;
+        }
+        &:after {
+            border-left-color: $panel-bg;
+        }
+    }
+
+    &.solid{
+        .popover-title,
+        .popover-content{
+            background: $theme-color;
+            color: $white;
+        }
+
+        &.top > .arrow {
+            &,
+            &:after {
+                border-top-color: $theme-color;
+            }
+        }
+        // Right arrow
+        &.right > .arrow {
+            &,
+            &:after {
+                border-right-color: $theme-color;
+            }
+        }
+        // Bottom arrow
+        &.bottom > .arrow {
+            &,
+            &:after {
+                border-bottom-color: $theme-color;
+            }
+        }
+        // Left arrow
+        &.left > .arrow {
+            &,
+            &:after {
+                border-left-color: $theme-color;
+            }
+        }
+    }
+}

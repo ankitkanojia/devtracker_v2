@@ -1,0 +1,413 @@
+﻿@using Repository.Helpers
+@model UsersVm
+
+@{
+    ViewBag.Title = "My Profile";
+    var roleMasterId = Convert.ToInt64(CookieHelper.GetCookie(CookieName.RoleMasterId));
+    var isOwnerPm = roleMasterId == (int)EnumList.Roles.Owner || roleMasterId == (int)EnumList.Roles.Project_Manager;
+}
+
+@*Todo: move to external file*@
+<style>
+    [data-letters]:before {
+        content: attr(data-letters);
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 900;
+        width: 3em;
+        height: 3em;
+        line-height: 3em;
+        text-align: center;
+        border-radius: 50%;
+        background: #00BCD4;
+        vertical-align: middle;
+        margin-right: 1em;
+        color: white;
+        margin: 0px;
+    }
+</style>
+
+
+<!--Page Header-->
+<div class="header">
+    <div class="header-content">
+        <div class="page-title">
+            <i class="icon-user-check position-left"></i> My Profile
+        </div>
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Dashboard")"></a></li>
+            <li><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+            <li class="active">Profile</li>
+        </ul>
+    </div>
+</div>
+<!--/Page Header-->
+
+@using (Html.BeginForm("MyProfile", "Users", FormMethod.Post, new { @class = "form-horizontal", @id = "frmMyProfile", @enctype = "multipart/form-data" }))
+{
+    @*@Html.AntiForgeryToken()*@
+    @Html.HiddenFor(s => s.UserMasterId)
+
+    <div class="container-fluid page-content">
+        <div class="row">
+            <div class="col-lg-3 col-sm-4">
+                <!-- User thumbnail -->
+                <div class="thumbnail">
+                    <div class="thumb thumb-rounded">
+                        <img alt="" src="@CookieHelper.GetCookie(CookieName.ProfileImage)" class="img-circle img-sm">
+                    </div>
+                    <div class="caption text-center">
+                        <h3 class="no-margin">
+                            @Model.Name <small class="display-block">
+                                @{
+                                    var role = ((EnumList.Roles)Model.RoleMasterId).ToString().Replace('_', ' ');
+                                }
+
+                                @role
+                            </small>
+                        </h3>
+                        <ul class="icons-list m-t-15">
+                            <li>
+                                <a href="@Model.FacebookLink" target="_blank" data-popup="tooltip" title="" data-original-title="Facebook">
+                                    <i class="icon-facebook2"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Model.TwitterLink" target="_blank" data-popup="tooltip" title="" data-original-title="Twitter">
+                                    <i class="icon-twitter2"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Model.LinkedInLink" target="_blank" data-popup="tooltip" title="" data-original-title="Linkedin">
+                                    <i class="icon-linkedin"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /user thumbnail -->
+                <!-- Navigation -->
+                <div class="list-group list-group-lg m-b-20">
+                    <a href="#" class="list-group-item"><i class="icon-briefcase"></i> My Projects <span class="badge bg-info pull-right">3</span></a>
+                    <a href="#" class="list-group-item"><i class="icon-task"></i> My Tasks <span class="badge bg-danger pull-right">19</span></a>
+                    <a href="#" class="list-group-item"><i class="icon-database-time2"></i> Total Hours <span class="badge bg-teal-400 pull-right">20</span></a>
+                </div>
+                <!-- /navigation -->
+                <!-- Connections -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <div class="panel-title mb-10">Working project</div>
+                        <hr />
+                    </div>
+                    <ul class="media-list media-list-linked pb-5">
+                        <li class="media">
+                            <a href="#" class="media-link">
+                                <div class="media-left">
+                                    <div class="img-circle" data-letters="ZI"></div>
+                                </div>
+                                <div class="media-body">
+                                    <span class="media-heading">Zignyl</span>
+                                    <span class="media-annotation">A project management system</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="media">
+                            <a href="#" class="media-link">
+                                <div class="media-left">
+                                    <div class="img-circle" data-letters="KC"></div>
+                                </div>
+                                <div class="media-body">
+                                    <span class="media-heading">Kidscrown</span>
+                                    <span class="media-annotation">Online shopping portal</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="media">
+                            <a href="#" class="media-link">
+                                <div class="media-left">
+                                    <div class="img-circle" data-letters="ZM"></div>
+                                </div>
+                                <div class="media-body">
+                                    <span class="media-heading">Zemulla</span>
+                                    <span class="media-annotation">Banking system</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /connections -->
+
+            </div>
+
+            <div class="col-lg-9 col-sm-8">
+                <div class="panel panel-flat">
+                    <div class="panel panel-flat border-left-lg border-left-info">
+                        <div class="panel-heading">
+                            <h5 class="panel-title"><span class="text-semibold">About</span> me</h5>
+                        </div>
+                    </div>
+
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">I am:</label>
+                                    @if (isOwnerPm)
+                                    {
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(s => s.Name, new { @class = "form-control", @placeholder = "Suchit Khunt" })
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(s => s.Name, new { @class = "form-control", @placeholder = "Suchit Khunt", @disabled = "disabled" })
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">My Email:</label>
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(s => s.Email, new { @class = "form-control", @placeholder = "abc@xyz.com", @disabled = "disabled" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Mobile Number:</label>
+                                    @if (isOwnerPm)
+                                    {
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(s => s.Mobile, new { @class = "form-control", @placeholder = "99xxx xxxxx" })
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(s => s.Mobile, new { @class = "form-control", @placeholder = "99xxx xxxxx", @disabled = "disabled" })
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">I am woring with:</label>
+                                    @if (isOwnerPm)
+                                    {
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(s => s.CompanyName, new { @class = "form-control", @placeholder = "company name" })
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(s => s.CompanyName, new { @class = "form-control", @placeholder = "company name", @disabled = "disabled" })
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Skype call with:</label>
+                                    @if (isOwnerPm)
+                                    {
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(s => s.SkypeId, new { @class = "form-control", @placeholder = "skype" })
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(s => s.SkypeId, new { @class = "form-control", @placeholder = "skype", @disabled = "disabled" })
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Bio or Status:</label>
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(s => s.BioStatus, new { @class = "form-control", @placeholder = "My biography" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Avatar:</label>
+                                    <div class="col-md-10">
+                                        <div class="uploader bg-primary">
+                                            @Html.TextBoxFor(s => s.ProfileImage, new { @class = "file-styled-primary", @placeholder = "", @type = "file" })
+
+                                            <span class="action" style="-moz-user-select: none;">Browse</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="panel panel-flat">
+                    <div class="panel panel-flat border-left-lg border-left-info">
+                        <div class="panel-heading">
+                            <h5 class="panel-title"><span class="text-semibold">Social</span> network</h5>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Facebook profile:</label>
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(s => s.FacebookLink, new { @class = "form-control", @placeholder = "http://facebook.com/me" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Twitter profile:</label>
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(s => s.TwitterLink, new { @class = "form-control", @placeholder = "http://twitter.com/me" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">LinkedIn profile:</label>
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(s => s.LinkedInLink, new { @class = "form-control", @placeholder = "http://linkedIn.com/me" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            <hr />
+                            <div class="col-md-12">
+                                <div class="col-md-12 pull-right">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="button" class="btn btn-default">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                                    }
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            // Primary file input
+            $(".file-styled-primary").uniform({
+                wrapperClass: 'bg-primary',
+                fileButtonHtml: 'Browse'
+            });
+
+            //Form validation HERE
+            $("#frmMyProfile").validate({
+                rules: {
+                    Name: {
+                        required: true
+                    },
+                    Mobile: {
+                        required: true,
+                        number: true,
+                        minlength: 10
+                    },
+                    FacebookLink: {
+                        url: true
+                    },
+                    TwitterLink: {
+                        url: true
+                    },
+                    LinkedInLink: {
+                        url: true
+                    }
+                },
+                ignore: 'input[type=hidden], .select2-search__field',
+                errorClass: 'validation-error',
+               // successClass: 'validation-success',
+                highlight: function (element, errorClass) {
+                    $(element).removeClass(errorClass);
+                },
+                unhighlight: function (element, errorClass) {
+                    $(element).removeClass(errorClass);
+                },
+                errorPlacement: function (error, element) {
+                    if (element.parents('div').hasClass("checker") || element.parents('div').hasClass("choice") || element.parent().hasClass('bootstrap-switch-container')) {
+                        if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
+                            error.appendTo(element.parent().parent().parent().parent());
+                        } else {
+                            error.appendTo(element.parent().parent().parent().parent().parent());
+                        }
+                    } else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
+                        error.appendTo(element.parent());
+                    } else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline') || element.parents('div').hasClass('checkbox-single')) {
+                        error.appendTo(element.parent().parent());
+                    } else if (element.parents('div').hasClass('checkbox-group')) {
+                        error.appendTo(element.parent().parent().parent());
+                    } else if (element.parent().hasClass('uploader') || element.parents().hasClass('input-group')) {
+                        error.appendTo(element.parent().parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                validClass: "validation-success"
+                //success: function (label) {
+                //    label.addClass("validation-success").text("Done");
+                //}
+            });
+        });
+    </script>
+}

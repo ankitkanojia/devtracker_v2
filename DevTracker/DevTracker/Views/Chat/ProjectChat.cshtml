@@ -1,0 +1,167 @@
+﻿@model List<ChatVm>
+@{
+    ViewBag.Title = "Project Chat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header">
+    <div class="header-content">
+        @using (Html.BeginForm("", "", FormMethod.Post, new { id = "froSearchPanel" }))
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Select Project : <span class="text-warning">*</span></label>
+                        @Html.DropDownList("ProjectId", SelectListFunction.GetProjects(0), new { @class = "select", @onchange = "GetTaskList(true)" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Select Task : <span class="text-warning">*</span></label>
+                        @Html.DropDownList("TaskMasterId", Enumerable.Empty<SelectListItem>(), new { @class = "select" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Select Date : <span class="text-warning">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-addon bg-primary"><i class="icon-calendar"></i></span>
+                            <input name="ChatDate" id="ChatDate" class="form-control datepicker-here" type="text" data-language="en" placeholder="dd/mm/yyyy">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-warning" onclick="FilterChat()"><b><i class="icon-search4"></i></b></button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="panel panel-flat">
+    <div class="panel-body">
+        <div class="col-md-10 col-md-offset-1">
+            <div id="frame" style="height: 65vh;">
+                <div class="content" style="width: 100%;border:1px solid #eee;border-radius: 1%">
+                    <div class="messages" style="min-height: calc(100% - 122px); max-height: calc(100% - 46px);">
+                        <ul>
+                            <li class="sent">
+                                <img src="http://via.placeholder.com/50x50" alt="" />
+                                <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
+                            </li>
+                            <li class="replies">
+                                <img src="http://via.placeholder.com/50x50" alt="" />
+                                <p>When you're backed against the wall, break the god damn thing down.</p>
+                            </li>
+                            <li class="replies">
+                                <img src="http://via.placeholder.com/50x50" alt="" />
+                                <p>Excuses don't win championships.</p>
+                            </li>
+                            <li class="sent">
+                                <img src="http://via.placeholder.com/50x50" alt="" />
+                                <p>Oh yeah, did Michael Jordan tell you that?</p>
+                            </li>
+                            <li class="replies">
+                                <img src="http://via.placeholder.com/50x50" alt="" />
+                                <p>No, I told him that.</p>
+                            </li>
+                            <li class="replies">
+                                <img src="http://via.placeholder.com/50x50" alt="" />
+                                <p>What are your choices when someone puts a gun to your head?</p>
+                            </li>
+                            <li class="sent">
+                                <img src="http://via.placeholder.com/50x50" alt="" />
+                                <p>What are you talking about? You do what they say or they shoot you.</p>
+                            </li>
+                            <li class="replies">
+                                <img src="http://via.placeholder.com/50x50" alt="" />
+                                <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="message-input">
+                        <div class="wrap">
+                            <input type="text" placeholder="Write your message..." />
+                            <button class="submit"><i class="icon-paperplane" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/lib/js/forms/datepicker.min.js"></script>
+    <script src="~/Content/lib/js/forms/datepicker.en.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $("#froSearchPanel").validate({
+                rules: {
+                    ProjectId: {
+                        required: true
+                    },
+                    TaskMasterId: {
+                        required: true,
+                    },
+                    ChatDate: {
+                        required: true,
+                    }
+                }
+            });
+
+        });
+
+        var GetTaskList = function (type) {
+            if (type) {
+                var projectId = $("#ProjectId").val();
+                if (projectId != 0) {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("GetTasks", "Users")',
+                        datatype: "json",
+                        data: { projectId: projectId, taskId: 0 },
+                        success: function (data) {
+                            if (data.length != 0) {
+                                $.each(data, function (e, element) {
+                                    var selected = '';
+                                    if (element.Selected)
+                                        selected = 'selected';
+                                    $("#TaskMasterId").append("<option value='" + element.Value + "' " + selected + ">" + element.Text + "</option>");
+                                });
+                            } else {
+                                $("#TaskMasterId").html('');
+                            }
+                        }
+                    });
+                } else {
+                    $("#TaskMasterId").html('');
+                }
+            }
+        };
+
+        var FilterChat = function () {
+            if ($("#froSearchPanel").valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetChatList", "Users")',
+                    datatype: "json",
+                    data: $("#froSearchPanel").serialize(),
+                    success: function (data) {
+                        if (data.status) {
+
+                        } else {
+
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+}
+

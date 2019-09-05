@@ -1,0 +1,99 @@
+//----------------------------------
+//   File          : scss/components/_badges.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Bootstrap Badges Override
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Badges
+// 2. Contextual styles
+// 3. Flat badges
+
+
+//----------------------------------
+// 1. Badges
+//----------------------------------
+.badge {
+    @include p-a(2, 5, 1, 5);
+    @include fs($font-xs);
+    @include b(0,solid,transparent);
+    letter-spacing: 0.1px;
+
+    // Quick fix for badges in buttons
+    .btn & {
+        top: 0;
+    }
+    .btn-xs & {
+        @include p-a(2, 5, 1, 5);
+    }
+
+    .list-group-item.active > &,
+    .nav-pills > .active > a > &,
+    .nav-tabs-solid > .active > a > &,
+    .nav-tabs[class*=bg-] > li > a > & {
+        color: $white;
+        background-color: lighten($black, 80%);
+        border-color: $grey;
+    }
+    .nav-pills > li > a > & {
+        @include m-l(0);
+
+        &.position-right {
+            @include m-l($space-base);
+        }
+    }
+}
+
+
+//----------------------------------
+// 2. Contextual styles
+//----------------------------------
+.badge-default {
+    background-color: lighten($black, 80%);
+    border-color: $grey;
+}
+
+.badge-primary {
+    background-color: $primary;
+    border-color: $primary;
+}
+
+.badge-success {
+    background-color: $success;
+    border-color: $success;
+}
+
+.badge-info {
+    background-color: $info;
+    border-color: $info;
+}
+
+.badge-warning {
+    background-color: $warning;
+    border-color: $warning;
+}
+
+.badge-danger {
+    background-color: $danger;
+    border-color: $danger;
+}
+
+
+//----------------------------------
+// 3. Flat badges
+//----------------------------------
+.badge-flat {
+    background-color: transparent;
+    border-width: 2px;
+    &[href] {
+        &:hover,
+        &:focus {
+            @include no-shadow();
+            background-color: transparent;
+        }
+    }
+}

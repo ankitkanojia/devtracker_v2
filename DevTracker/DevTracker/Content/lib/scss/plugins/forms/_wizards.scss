@@ -1,0 +1,39 @@
+//----------------------------------
+//   File          : scss/plugins/forms/_wizards.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+.form-wizard-title {
+	@include m-a(0,0,20,0);
+	@include p-b(20);
+	@include bb(1,solid,$body-bg);
+}
+.form-wizard-count {
+	@include size(38px);
+	@include m-r(10);
+	@include radius(50%);
+	@include b(2,solid,$theme-color);
+	@include fs(20px);
+	@include lh(34px);
+	float: left;
+	display: block;
+	color: $theme-color;
+	text-align: center;
+}
+.form-wizard-actions {
+	@include p-a(0,20,20,20);
+	text-align: right;
+	.btn + .btn {
+		@include m-l(10);
+	}
+}
+.ui-formwizard{
+	.step {
+		@include p(20);
+	}
+	.form-group:last-child{
+		@include m-b(20);
+	}
+}

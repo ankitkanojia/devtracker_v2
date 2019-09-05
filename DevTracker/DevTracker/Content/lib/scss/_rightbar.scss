@@ -1,0 +1,659 @@
+//----------------------------------
+//   File          : scss/_rightbar.scss
+//   Type          : Main SCSS file
+//   Version       : 1.1.0
+//   Last Updated  : June 24, 2017
+//   Description   : CSS stylesheet for righ sidebar
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Main righbar
+// 2. Chat
+// 3. Notifications
+// 4. Activity
+// 5. Settings
+// 6. Responsive queries
+
+
+//----------------------------------
+// 1. Main righbar
+//----------------------------------
+.right_bar {
+    @include pos(fixed,0,-1px,null,null);
+    @include size(0,100%);
+    overflow: hidden;
+    z-index: 1;
+    @include bl(1,solid,$rightbar-border-color);
+    overflow-x: hidden;
+    @include transition(0.3s);
+    z-index: 9999;
+    @include shadow-out(rgba(0,0,0,0.1),30px,0px,0px,0px);
+    .sidebar_header{
+        background: $rightbar-header-bg;
+    }
+    .nav-tabs{
+        @include p-h(3);
+        border: none;
+        >li{
+            >a,
+            >a:hover,
+            >a:focus{
+                text-transform: uppercase;
+                @include typo($ff-semibold,10px,$rightbar-tabs-color,center);
+                @include p-a(17,4,18,4);
+                @include m-h(8);
+                @include radius(0);
+                border: none;
+                background: none;
+            }
+            &.active{
+                >a,
+                >a:hover,
+                >a:focus{
+                    color: $rightbar-active-tabs-color;
+                    background: none;
+                    border: none;
+                }
+            }
+            i{
+                @include fs(18px);
+            }
+            &.pull-right{
+                float: right !important;
+            }
+        }
+    }
+    .tab-content{
+        @include no-p();
+        border: none;
+        background-color: $rightbar-bg;
+        .subtitle{
+            @include p-a(12,10,10,10);
+            @include typo($ff-semibold,$font-sm,$rightbar-subtitle-text-color,left){
+                text-transform: uppercase;
+            }
+        }
+    }
+
+
+    //----------------------------------
+    // 2. Chat
+    //----------------------------------
+    .friends_search {
+        @include h(50px);
+        @include bb(1,solid,$chat-searchbar-bottom-border-color);
+        background: $chat-searchbar-bg;
+        .form-control-feedback {
+            top: 7px;
+            left: -3px;
+            i{
+                left: 5px;
+                color: $chat-searchbar-text-color;
+            }
+        }
+        #searchfield {
+            @include placeholder($chat-searchbar-text-color);
+            @include w(220px);
+            @include m-a(13,0,0,40);
+            @include no-p();
+            @include fs(14px);
+            background: $chat-searchbar-bg;
+            border: none;
+            color: $chat-searchbar-text-color;
+            &:focus {
+                outline: 0;
+            }
+        }
+    }
+    .friend {
+        @include h(64px);
+        @include bb(1,solid,$chat-friendlist-bottom-border-color);
+        background: $chat-friendlist-bg;
+    	position: relative;
+    	&:hover {
+    		background: $chat-friendlist-hover-color;
+    		cursor: pointer;
+    	}
+    	img {
+            @include w(40px);
+            @include radius(50%);
+            @include m-a(11,12,12,20);
+    		float: left;
+    	}
+    	.detail {
+            @include w(auto);
+            @include p-a(9,0,0,0);
+    		float: left;
+    		span {
+                @include ff($ff-semibold);
+                @include fs($font-base);
+    			color: $chat-friendlist-text-color;
+                display: block;
+    		}
+            cite{
+                @include ff($ff-regular);
+                @include fs($font-sm);
+                color: $chat-friendlist-text-color;
+                i{
+                    @include fs($font-lg);
+                    @include m-r(3);
+                }
+            }
+    	}
+    	.status {
+            @include pos(absolute,13px,null,null,13px);
+            @include size(15px);
+            @include b(2,solid,$chat-friendlist-bg);
+    		background: $success;
+            @include radius(50%);
+    		&.away {
+    			background: c300(palette($warning));
+    		}
+    		&.inactive {
+    			background: $grey;
+    		}
+            &.busy {
+    			background: $danger;
+    		}
+    	}
+        .time{
+            @include pos(absolute,11px,15px,null,null);
+            @include fs($font-xs);
+            color: $chat-friendlist-time-color;
+        }
+        .badge{
+            @include pos(absolute,32px,15px,null,null);
+            @include p-h(6);
+        }
+    }
+    #conversation{
+        @include pos(fixed,58px,null,null,null);
+        @include w(260px);
+        display: none;
+        background: $conversation-bg;
+        .conversation-header{
+            @include h(60px);
+            background: $chat-conversation-header-bg;
+            @include bb(1,solid,$chat-conversation-header-bottom-border-color);
+            color: $chat-conversation-header-text-clor;
+            #back{
+                @include h(60px);
+                @include p-vh(23,6);
+                @include m-l(4);
+                float: left;
+                cursor: pointer;
+            }
+            img{
+                @include size(38px);
+                @include radius(50%);
+                @include m-vh(10,8);
+                float: left;
+            }
+            .friend-details{
+                @include h(60px);
+                @include p-vh(10,5);
+                float: left;
+                span{
+                    @include fs($font-base);
+                    @include ff($ff-semibold);
+                    @include m-b(2);
+                }
+                cite{
+                    @include ff($ff-regular);
+                    @include fs($font-xs);
+                    display: block;
+                }
+            }
+            .actions{
+                @include m-r(10);
+                float: right;
+                >div{
+                    @include h(60px);
+                    @include p-vh(20,5);
+                    cursor: pointer;
+                    float: left;
+                }
+            }
+        }
+        .chat-wrapper {
+            @include p(10);
+        	&:before {
+        		content: " ";
+        		display: block;
+        	}
+        	.chat-image {
+                @include radius(50%);
+        		float: left;
+                @include size(32px);
+        	}
+        	.chat-message {
+                @include w(100%);
+                @include m-b(10);
+        		display: table;
+        		overflow: hidden;
+        		&:before {
+        			content: " ";
+        			display: block;
+        		}
+        		&:last-of-type {
+                    @include m-b(0);
+        		}
+        		.chat-message-wrapper {
+                    @include w-max(70%);
+                    @include m-vh(0,15);
+        			display: table;
+        			position: relative;
+        			&:before {
+                        @include size(0);
+                        @include b(6,solid,transparent);
+                        @include pos(absolute,7px,null,null,null);
+                        @include m-l(8);
+        				content: " ";
+        				display: block;
+        				z-index: 2;
+        			}
+        			p {
+                        @include no-m();
+                        @include p-vh(6,10);
+                        @include fs(11.4px);
+                        @include lh(1.4);
+        				color: $conversation-text-color;
+        			}
+        		}
+        		&.chat-message-recipient {
+        			.chat-message-wrapper {
+        				float: left;
+        				&:before {
+        					left: -20px;
+        					border-right-color: $conversation-recipient-bg;
+        				}
+        			}
+        			.chat-message-content {
+        				float: left;
+        			}
+        			p {
+        				background-color: $conversation-recipient-bg;
+        			}
+        		}
+        		&.chat-message-sender {
+        			.chat-message-wrapper {
+        				float: right;
+        				&:before {
+        					right: -12px;
+        					border-left-color: $conversation-sender-bg;
+        				}
+        			}
+        			.chat-message-content {
+        				float: right;
+        			}
+        			p {
+        				background: $conversation-sender-bg;
+        			}
+        			img {
+        				float: right;
+        			}
+        		}
+        		.chat-message-content {
+                    @include radius($radius);
+        			display: table;
+        			overflow: hidden;
+        			&:before {
+        				content: " ";
+        				display: block;
+        			}
+        		}
+        		.chat-details {
+                    @include w(100%);
+                    @include fs(10px);
+        			clear: both;
+        			display: table;
+        			overflow: hidden;
+        			&:before {
+        				content: " ";
+        				display: block;
+        			}
+                    i{
+                        @include fs(13px);
+                        float: left;
+                        @include m-r(3);
+                        top:2px;
+                    }
+        			span {
+        				color: $conversation-time-color;
+        			}
+        		}
+        	}
+        }
+        .conversation-compose {
+            @include size(100%,54px);
+            @include p(10);
+        	display: flex;
+        	flex-direction: row;
+        	align-items: flex-end;
+        	overflow: hidden;
+        	z-index: 2;
+            .photo {
+                @include w(48px);
+            	flex: 0 0 auto;
+                @include radius-a(0,0,$radius,0);
+            	text-align: center;
+            	position: relative;
+            	&:after {
+                    @include size(0);
+                    @include pos(absolute,0,-10px,null,null);
+            		border-width: 0 0 10px 10px;
+            		border-color: transparent transparent transparent darken($conversation-bg,6%);
+            		border-style: solid;
+            		content: "";
+            	}
+            	i {
+                    @include pos(relative,50%,null,null,50%);
+            		display: block;
+            		color: $conversation-recipient-bg;
+                    @include fs(18px);
+                    @include animation(transform,translate(-50%, -50%));
+            	}
+            }
+        	div {
+                @include h(100%);
+        		background: darken($conversation-bg,6%);
+        	}
+        	input {
+                @include h(100%);
+        		background: darken($conversation-bg,6%);
+                color: $conversation-recipient-bg;
+        	}
+        	.input-msg {
+                @include no-m();
+                @include p(10);
+                @include radius-a($radius,0,0,$radius);
+                @include w-min(50px);
+        		border: 0;
+        		flex: 1 1 auto;
+                @include fs(13px);
+        		outline: none;
+        	}
+        	.send {
+                @include no-p();
+                @include m-l(12);
+                @include m-r(2);
+        		background: transparent;
+        		border: 0;
+        		cursor: pointer;
+        		flex: 0 0 auto;
+        		position: relative;
+        		outline: none;
+        		.circle {
+                    @include size(36px);
+                    @include radius(50%);
+        			background: $conversation-send-circle-bg;
+                    @include radius(50%);
+        			color: $conversation-send-circle-icon-color;
+        			position: relative;
+        			display: flex;
+        			align-items: center;
+        			justify-content: center;
+        			i {
+                        @include m-a(2,0,0,-3);
+                        @include fs(18px);
+        			}
+        		}
+        	}
+        }
+    }
+
+
+    //----------------------------------
+    // 3. Notifications
+    //----------------------------------
+    .notifications {
+    	.media-thumb {
+            @include size(40px);
+            @include radius(50%);
+    		float: left;
+    		img {
+                @include size(40px);
+                @include p(2);
+                @include radius(50%);
+    		}
+            i{
+                @include w(18px);
+                @include fs(18px);
+                @include p(12);
+            }
+    	}
+    	.media-title {
+            @include w(100%);
+            @include p-l(10);
+            @include fs(11px);
+    		display: table-cell;
+    		vertical-align: middle;
+            color: $notification-text-color;
+            >div{
+                @include fs(11px);
+                @include ff($ff-semibold);
+                color: $notification-name-color;
+            }
+    	}
+    	.media-time {
+            @include fs(10px);
+    		display: block;
+    		color: $notification-time-color;
+    	}
+    	.media-container > ul {
+            @include p-b(10px);
+            @include bb(3,solid,$rightbar-border-color);
+            @include no-s();
+    		> li {
+                @include p-vh(10,12);
+                @include bb(1,solid,$notification-border-bottom-color);
+    			display: table;
+    			list-style: none;
+    			&.new {
+    				background: $notification-new-bg;
+    			}
+                &:hover {
+                    background: $notification-hover-bg;
+                    text-decoration: none;
+                }
+    		}
+    	}
+    }
+
+
+    //----------------------------------
+    // 4. Activity
+    //----------------------------------
+    .activity-feed {
+        @include no-p();
+        @include m-a(20,16,0,30);
+    	list-style-type: none;
+    	.feed-item {
+            @include h-min(60px);
+            @include p-b(10);
+            @include p-l(30);
+            @include bl(1,solid,$activities-border-color);
+    		position: relative;
+    		&:last-child {
+    			border-color: transparent;
+    		}
+            &:after {
+                @include size(32px);
+                @include pos(absolute,0,null,null,-16px);
+                @include typo($font-icon,14px,$white,center);
+                @include radius(50%);
+        		content: attr(data-content);
+        		display: flex;
+        		justify-content: center;
+        		align-items: center;
+        		text-rendering: auto;
+        		background-color: $activities-default-icon-color;
+        	}
+    		section {
+                @include p-vh(5,10);
+                @include radius($radius);
+    			background-color: $activities-bubble-header-color;
+                &:hover {
+                    @include animation(transition, all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1));
+    			}
+    			label {
+                    @include m-b(0);
+    				display: block;
+    				cursor: pointer;
+                    color: $activities-bubble-header-text-color;
+                    cite{
+                        @include ff($ff-regular);
+                        @include fs($font-xs);
+                        display: block;
+                        color: $activities-time-color;
+                    }
+                    span{
+                        @include fs($font-sm);
+                    }
+    			}
+    		}
+    	}
+        input[type="checkbox"] {
+        	display: none;
+        	&:checked {
+        		~ label:after {
+                    @include animation(transform, rotate(45deg));
+        			color: $warning;
+        		}
+        		~ .content {
+                    @include h-max(300px);
+                    @include m-a(5,-10,-5,-10);
+                    @include p(12);
+                    @include fs($font-sm);
+                    @include radius-a(0,0,$radius,$radius);
+                    background: $activities-bubble-color;
+                    color: $activities-bubble-text-color;
+                    @include animation(transition, max-height 0.25s ease-in);
+        		}
+        	}
+        }
+        a{
+            color: $activities-bubble-text-color;
+            text-decoration: underline;
+            &:hover,
+            &:focus{
+                color: $activities-bubble-text-color;
+            }
+        }
+        .content {
+            @include h-max(0);
+        	overflow: hidden;
+        }
+        [data-color=success]:after {background-color: $success !important;}
+        [data-color=info]:after {background-color: $info !important;}
+        [data-color=warning]:after {background-color: $warning !important;}
+        [data-color=danger]:after {background-color: $danger !important;}
+    }
+
+
+    //----------------------------------
+    // 5. Settings
+    //----------------------------------
+    .settings{
+        label{
+            color: $settings-text-color;
+        }
+        section{
+            @include bb(1,solid,darken($rightbar-bg,2%));
+            @include m-a(0,10,10,10);
+            @include p-a(0,5,10,5);
+            .checkbox{
+                @include m(0);
+            }
+        }
+    }
+}
+
+
+//----------------------------------
+// 6. Responsive queries
+//----------------------------------
+@include media(tablet,max) {
+    .right_bar{
+        right:-1px;
+        .nav-tabs{
+            @include no-s();
+            border: none;
+            >li{
+                >a,
+                >a:hover,
+                >a:focus{
+                    @include fs(11px);
+                    @include m-h(6);
+                }
+                &.pull-right{
+                    float: right !important;
+                }
+            }
+        }
+        #conversation{
+            @include w(100%);
+        }
+    }
+}
+
+@include media(phone-xlg, max) {
+    .right_bar {
+        right:0px;
+        border-left: none;
+        .nav-tabs{
+            >li{
+                >a,
+                >a:hover,
+                >a:focus{
+                    @include fs(18px);
+                    @include m-h(10);
+                }
+            }
+        }
+    }
+}
+
+@include media(phone-lg, max) {
+    .right_bar {
+        .nav-tabs{
+            >li{
+                >a,
+                >a:hover,
+                >a:focus{
+                    @include fs(16px);
+                }
+            }
+        }
+    }
+}
+
+@include media(phone, max) {
+    .right_bar {
+        .nav-tabs{
+            >li{
+                >a,
+                >a:hover,
+                >a:focus{
+                    @include fs(14px);
+                }
+            }
+        }
+    }
+}
+
+@include media(phone, max) {
+    .right_bar {
+        .nav-tabs{
+            >li{
+                >a,
+                >a:hover,
+                >a:focus{
+                    @include fs(12px);
+                }
+            }
+        }
+    }
+}

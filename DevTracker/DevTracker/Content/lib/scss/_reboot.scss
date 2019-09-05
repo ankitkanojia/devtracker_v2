@@ -1,0 +1,39 @@
+//----------------------------------
+//   File          : scss/_reebot.scss
+//   Type          : CSS reset styles
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//----------------------------------
+
+html, body {
+    @include h(95%);
+}
+
+body{
+    @extend %typo;
+    @include pos(relative);
+	background:$body-bg;
+}
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus,
+.close:focus,
+.close:hover,
+.dropdown-menu>li>a,
+.form-control:focus,
+.nav>li>a:focus,
+a,
+a:focus,
+button,
+input,
+input[type=radio]:focus,
+input[type=checkbox]:focus,
+input[type=file]:focus,
+textarea,
+.select2-selection:focus{
+    outline:0
+}

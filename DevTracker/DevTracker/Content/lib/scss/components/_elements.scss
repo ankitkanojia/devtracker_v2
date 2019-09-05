@@ -1,0 +1,195 @@
+//----------------------------------
+//   File          : scss/components/_elements.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Css definition for elements in panel header or footer
+//----------------------------------
+
+.elements-toggle {
+	@include pos(absolute,50%,20px,null,null);
+	@include m-t(-8);
+	cursor: pointer;
+	display: block;
+	line-height: 1;
+	color: $panel-title-text-color;
+	&:hover,
+	&:focus {
+		color: $panel-title-text-color;
+	}
+	> i {
+		top: 0;
+	}
+}
+.elements {
+	@include pos(absolute,65%,null,null,null);
+	@include m-t(-18);
+    color:$panel-title-text-color;
+	background-color: inherit;
+	right: #{$panel-title-padding-horizontal}px;
+	i {
+		top: -2px;
+	}
+	.form-group {
+		@include m-b(0);
+		input {
+			@include m-t(-8);
+		}
+	}
+	.btn {
+		@include m-t(-4);
+	}
+	.btn-labeled {
+		@include p-a(5,8,6,42);
+		b {
+			@include p-vh(6,10);
+		}
+	}
+	.pager {
+		@include no-m();
+	}
+	.btn-float {
+		&.btn-link {
+			@include p-v(0);
+		}
+		.bubble {
+			top: -10px;
+		}
+	}
+}
+
+.panel-heading{
+	.elements{
+		.form-group{
+			label{
+				color:inherit;
+			}
+		}
+	}
+}
+
+.panel-footer{
+	.elements{
+		.pagination{
+			@include no-m();
+		}
+	}
+}
+@include media(tablet-lg,max) {
+	.elements {
+		display: none;
+		text-align: center;
+		.dropdown-menu {
+			@include m-t(0);
+			@include radius-a(0,0,$radius,$radius);
+			left: -1px;
+			right: -1px;
+		}
+		&.visible {
+			@include h(auto);
+			@include m-t(0);
+			@include b(1,solid,$panel-border-color);
+			border-top: none;
+			@include p(15);
+			display: block;
+			top: 100%;
+			left: -1px;
+			right: -1px;
+			z-index: 2;
+		}
+	}
+	.panel-footer {
+		.elements-toggle {
+			@include m-t(0);
+			@include p-v(10);
+			position: static;
+			display: block;
+			text-align: right;
+		}
+		> .elements > .pull-right {
+			float: none!important;
+		}
+	}
+	.panel[class*=bg-] .elements.visible {
+		border-width: 1px 0;
+		border-color: white(0.5);
+		left: 0;
+		right: 0;
+		background-color: inherit;
+	}
+	.panel-heading[class*=bg-] .elements.visible {
+		border-width: 1px 0;
+		border-color: white(0.5);
+		left: 0;
+		right: 0;
+		background-color: inherit;
+	}
+	.header .elements.visible {
+		border-width: 1px 0;
+		left: 0;
+		right: 0;
+		z-index: 999;
+	}
+	.panel-body > {
+		.elements-toggle {
+			@include m-t(0);
+			top: 20px;
+		}
+		.elements.visible {
+			top: 56px;
+			background-color: $white;
+		}
+	}
+}
+
+@include media(tablet,min){
+	.elements-toggle {
+		display: none;
+	}
+	.panel-heading{
+		.elements{
+			.icons-list{
+				@include m-t(4);
+			}
+		}
+	}
+	.elements {
+		right: #{$panel-title-padding-horizontal}px;
+		.btn-float {
+			@include m-t(-6);
+			&.has-text {
+				@include m-t(-18);
+			}
+			&.btn-link {
+				@include m-t(-4);
+			}
+		}
+	}
+	.btn-link {
+		&:hover {
+			color: inherit;
+		}
+		&:focus {
+			color: inherit;
+		}
+	}
+	.header .elements.collapse {
+		display: block;
+		visibility: visible;
+	}
+	.panel-footer > .elements {
+		@include m-t(0);
+		position: static;
+	}
+	.panel-footer-bordered .elements {
+		@include m-l(-20);
+	}
+}
+.panel-body > .elements {
+	@include m-t(14);
+	top: 0;
+	z-index: 10;
+}
+.header .elements .icons-list > li + li {
+	@include m-l(10);
+}

@@ -1,0 +1,30 @@
+//----------------------------------
+//   File          : scss/mixins/_icons.scss
+//   Type          : SCSS mixin
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+// ---------------------------------
+
+@mixin icon($position: before, $icon: false, $styles: true) {
+    @if $position == both {
+        $position: 'before, &:after';
+    }
+    &:#{$position} {
+        @if $icon {
+            content: "#{map-get($icons, $icon)}";
+        }
+        @if $styles {
+            speak: none;
+            font-family: $font-icon;
+            font-size: $icon-base;
+            font-style: normal;
+            font-weight: normal;
+            color:inherit;
+            display: inline-block;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-smoothing: antialiased;
+        }
+        @content;
+    }
+}

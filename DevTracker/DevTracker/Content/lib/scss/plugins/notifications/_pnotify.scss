@@ -1,0 +1,327 @@
+//----------------------------------
+//   File          : scss/plugins/notifications/_pnotify.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+.ui-pnotify {
+    @include pos(absolute,20px,20px,null,null);
+	height: auto;
+	z-index: 2;
+    @include radius($radius);
+	&.stack-bottom-left {
+		left: 20px;
+		right: auto;
+		bottom: 20px;
+		top: auto;
+	}
+	&.stack-top-left {
+		left: 20px;
+		right: auto;
+	}
+	&.stack-bottom-right {
+		bottom: 20px;
+		top: auto;
+	}
+	&.stack-modal {
+		left: 50%;
+		right: auto;
+		margin-left: -150px;
+	}
+	&.stack-custom-right {
+		top: auto;
+		left: auto;
+		bottom: 200px;
+		right: 200px;
+	}
+	&.stack-custom-left {
+		top: 200px;
+		left: 200px;
+		right: auto;
+		bottom: auto;
+	}
+	&.stack-custom-top {
+		right: 0;
+		left: 0;
+		top: 0;
+	}
+	&.stack-custom-bottom {
+		right: 0;
+		left: 0;
+		bottom: 0;
+		top: auto;
+	}
+	&.ui-pnotify-in {
+		display: block!important;
+	}
+	&.ui-pnotify-move {
+        @include animation(transition,'left .5s ease,top .5s ease,right .5s ease,bottom .5s ease');
+	}
+	&.ui-pnotify-fade-slow {
+        @include animation(transition,'opacity linear .6s');
+		opacity: 0;
+		filter: alpha(opacity=0);
+		&.ui-pnotify.ui-pnotify-move {
+            @include animation(transition,'opacity .6s linear,left .5s ease,top .5s ease,right .5s ease,bottom .5s ease');
+		}
+	}
+	&.ui-pnotify-fade-normal {
+        @include animation(transition,'opacity linear .4s');
+		opacity: 0;
+		filter: alpha(opacity=0);
+		&.ui-pnotify.ui-pnotify-move {
+            @include animation(transition,'opacity .4s linear,left .5s ease,top .5s ease,right .5s ease,bottom .5s ease');
+		}
+	}
+	&.ui-pnotify-fade-fast {
+        @include animation(transition,'opacity linear .2s');
+		opacity: 0;
+		filter: alpha(opacity=0);
+		&.ui-pnotify.ui-pnotify-move {
+            @include animation(transition,'opacity .2s linear,left .5s ease,top .5s ease,right .5s ease,bottom .5s ease');
+		}
+	}
+	&.ui-pnotify-fade-in {
+		opacity: 1;
+		filter: alpha(opacity=100);
+	}
+	&.alert-styled-left {
+		.brighttheme {
+			border-left-width: 44px;
+		}
+		&:after {
+			left: 0;
+		}
+	}
+	&.alert-styled-right {
+		.brighttheme {
+			border-right-width: 44px;
+		}
+		&:after {
+			right: 0;
+		}
+	}
+	&.alert-rounded > .ui-pnotify-container {
+        @include radius(100px);
+	}
+}
+.ui-pnotify[class*=bg-] {
+	> {
+		.ui-pnotify-container {
+			background-color: inherit;
+			border-color: transparent;
+			color: $white;
+		}
+		.brighttheme {
+			background-color: inherit;
+			border-color: inherit;
+			color: inherit;
+		}
+	}
+	.brighttheme .ui-pnotify-action-bar {
+		input::-moz-placeholder,
+        textarea::-moz-placeholder {
+			color: $white;
+			opacity: 1;
+		}
+		input::-webkit-input-placeholder,
+        textarea::-webkit-input-placeholder {
+			color: $white;
+		}
+		input:-ms-input-placeholder,
+        textarea:-ms-input-placeholder {
+			color: $white;
+		}
+	}
+}
+.ui-pnotify-container {
+    @include p-vh(12,18);
+    @include h(100%);
+    @include pos(relative,null,null,null,0);
+    @include no-m();
+    @include radius($radius);
+	&:after {
+		content: " ";
+		visibility: hidden;
+		display: block;
+		height: 0;
+		clear: both;
+	}
+	&.ui-pnotify-sharp {
+        @include radius(0);
+	}
+}
+.ui-pnotify-title {
+    @include m-t(0);
+    @include m-b(7);
+    @include fs(15px);
+	display: block;
+}
+.ui-pnotify-text {
+	display: block;
+}
+.ui-pnotify-icon {
+	display: block;
+	float: left;
+	line-height: 1;
+	> [class^=icon-] {
+        @include m-t(4);
+        @include m-r(8);
+	}
+}
+.ui-pnotify-closer,
+.ui-pnotify-sticker {
+    float: right;
+    @include m-l(8);
+    @include m-t(4);
+	line-height: 1;
+	outline: 0;
+}
+.ui-pnotify-modal-overlay {
+	background-color: black(0.5);
+    @include pos(absolute,0,null,null,0);
+    @include size(100%);
+	z-index: 1;
+}
+.brighttheme-notice {
+	background-color: lighten($theme-color,50%);
+	border-color: lighten($theme-color,40%);
+}
+.brighttheme-info {
+	background-color: c100(palette($info));
+	border-color: c200(palette($info));
+}
+.brighttheme-success {
+    background-color: c100(palette($success));
+	border-color: c200(palette($success));
+}
+.brighttheme-error {
+    background-color: c100(palette($danger));
+	border-color: c200(palette($danger));
+}
+.brighttheme-warning {
+    background-color: c100(palette($warning));
+	border-color: c200(palette($warning));
+}
+.brighttheme-icon-closer,
+.brighttheme-icon-sticker {
+    @include size(10px);
+    position: relative;
+	display: inline-block;
+	outline: 0;
+    @include icon(after,close){
+        @include fs(10px);
+        display: block;
+    }
+}
+.brighttheme-icon-sticker {
+    @include icon(after,unselected){
+        @include fs(10px);
+        display: block;
+    }
+	&.brighttheme-icon-stuck{
+        @include icon(after,selected);
+    }
+}
+.ui-pnotify[class*=alert-styled-] {
+    @include no-p();
+	border-width: 0;
+}
+.ui-pnotify-history-container {
+    @include pos(absolute,0,20px,null,null);
+    @include w(70px);
+    @include no-p();
+	border-top: none;
+	z-index: 10000;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+	&.ui-pnotify-history-fixed {
+		position: fixed;
+	}
+	.ui-pnotify-history-header {
+        @include p(2);
+		text-align: center;
+	}
+	button {
+        @include w(100%);
+		cursor: pointer;
+		display: block;
+	}
+	.ui-pnotify-history-pulldown {
+		display: block;
+		margin: 0 auto;
+	}
+}
+@include media(phablet,max) {
+	.ui-pnotify-mobile-able {
+		&.ui-pnotify {
+            @include pos(fixed,0,0,null,0);
+			width: auto!important;
+			font-smoothing: antialiased;
+			.ui-pnotify-shadow {
+				border-bottom-width: 5px;
+				box-shadow: none;
+			}
+			&.stack-bottom-left {
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: auto;
+				.ui-pnotify-shadow {
+					border-top-width: 5px;
+					border-bottom-width: 1px;
+				}
+			}
+			&.stack-top-left {
+				left: 0;
+				right: 0;
+			}
+			&.stack-bottom-right {
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: auto;
+				.ui-pnotify-shadow {
+					border-top-width: 5px;
+					border-bottom-width: 1px;
+				}
+			}
+			&.ui-pnotify-nonblock-fade {
+				opacity: .2;
+				filter: alpha(opacity=20);
+			}
+			&.ui-pnotify-nonblock-hide {
+				display: none!important;
+			}
+		}
+		.ui-pnotify-container {
+            @include radius(0);
+		}
+	}
+}
+body > {
+	.ui-pnotify {
+		position: fixed;
+		z-index: 100040;
+	}
+	.ui-pnotify-modal-overlay {
+		position: fixed;
+		z-index: 100039;
+	}
+}
+.ui-pnotify[class*=alpha-] > .ui-pnotify-container,
+.ui-pnotify[class*=text-] > .ui-pnotify-container {
+    background-color: inherit;
+	border-color: inherit;
+	color: inherit;
+}
+.brighttheme .ui-pnotify-action-bar {
+    @include p-t(15);
+	input,
+    textarea {
+        @include w(100%);
+        display: block;
+    	margin-bottom: 10px!important;
+	}
+}

@@ -1,0 +1,552 @@
+//----------------------------------
+//   File          : scss/components/_dropdown.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Bootstrap Dropdown Override
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Caret
+// 2. Dropdown menu
+// 3. Disabled state
+// 4. Solid colors
+// 5. Sizing options
+// 6. Dropdown submenu
+// 7. Dropdown header
+// 8. Dropup
+// 9. Checkboxes and radios
+// 10. Switchery toggles
+
+
+//----------------------------------
+// 1. Caret
+//----------------------------------
+.caret {
+    @include m-t(-10);
+    @include nob();
+    @include size(10px);
+    @include icon(after, arrow-down){
+        position: relative;
+        top:-5px;
+    }
+}
+
+
+//----------------------------------
+// 2. Dropdown menu
+//----------------------------------
+.open > .btn-default.dropdown-toggle {
+	&:hover,
+    &:focus,
+    &.focus{
+		color: $text-color;
+        background-color: c50(palette($grey));
+        border-color: lighten($black, 80%);
+	}
+}
+
+.dropdown-menu {
+    @include w($dropdown-menu-width);
+    @include p-vh($space-base, 0);
+    @include radius();
+    @include b($dropdown-menu-border-thickness,solid,$dropdown-menu-border-color);
+    background: $dropdown-menu-bg;
+    color: $dropdown-menu-link-color;
+    @if($dropdown-menu-shadow == 'true'){
+        @include shadow-out();
+    }
+    @else{
+        @include no-shadow();
+    }
+
+    .divider {
+        @include m-vh($space-base, 0);
+        background-color: darken($dropdown-menu-bg,10%);
+    }
+
+    > li {
+        @include m-b(1);
+        position: relative;
+
+        &:last-child {
+            @include m-b(0);
+        }
+    }
+
+    > li > a {
+        @include typo($ff-regular, $font-base, $dropdown-menu-link-color, left);
+        @include p-vh($space-base,$space-base*3);
+        outline: 0;
+
+        > i,
+        > img {
+            @include m-r(6);
+
+            &.pull-right {
+                @include m-a(3, 0, null, 10);
+            }
+        }
+
+        > img {
+            max-height: $icon-base;
+        }
+
+        > .label {
+            @include m-t(3);
+        }
+        > .badge {
+            @include m-t(1);
+        }
+        &:hover,
+        &:focus,
+        &.active{
+            background: $dropdown-menu-link-hover-bg;
+            color:$dropdown-menu-link-hover-text-color;
+        }
+    }
+    > .active{
+        > a{
+            color: $white;
+            background-color: $theme-color;
+        }
+    }
+}
+
+
+//----------------------------------
+// 3. Disabled state
+//----------------------------------
+.dropdown-menu > .disabled {
+    .badge,
+    .label,
+    img {
+        opacity: .8;
+        filter: alpha(opacity=80);
+    }
+}
+
+
+//----------------------------------
+// 4. Solid colors
+//----------------------------------
+.dropdown-menu[class*=bg-] {
+
+    > li {
+        > a,
+        > label {
+            color: $white;
+
+            &:hover,
+            &:focus {
+                background-color: black(0.1);
+            }
+
+            > .label,
+            > .badge {
+                color: $text-color;
+                background-color: $white;
+                border-color: $white;
+            }
+        }
+    }
+
+    > .active > a,
+    > .active > label {
+        &,
+        &:hover,
+        &:focus {
+            background-color: black(0.2);
+        }
+    }
+
+    > .disabled > a,
+    > .disabled > label {
+        &,
+        &:hover,
+        &:focus {
+            background-color: transparent;
+            color: white(0.6);
+        }
+    }
+
+    > .dropdown-header {
+        color: white(0.6);
+
+        &.highlight {
+            background-color: black(0.1);
+        }
+    }
+
+    .divider {
+        background-color: black(0.3);
+    }
+}
+
+
+//----------------------------------
+// 5. Sizing options
+//----------------------------------
+.dropdown-menu-xlg {
+    > li > a {
+        @include p-vh($space-xlg,$space-xlg*3);
+        font-size: $font-xlg;
+    }
+    i {
+		font-size: $icon-xlg;
+	}
+}
+
+.dropdown-menu-lg {
+    > li > a {
+        @include p-vh($space-lg,$space-lg*3);
+        font-size: $font-lg;
+    }
+    i {
+		font-size: $icon-lg;
+	}
+}
+
+.dropdown-menu-sm {
+    > li > a {
+        @include p-vh($space-sm,$space-sm*3);
+        font-size: $font-sm;
+    }
+    i {
+		font-size: $icon-sm;
+	}
+}
+
+.dropdown-menu-xs {
+    > li > a {
+        @include p-a($space-xs,$space-xs *5,0,$space-xs *5);
+        font-size: $font-xs;
+    }
+    i {
+		font-size: $icon-xs;
+	}
+}
+
+
+//----------------------------------
+// 6. Dropdown submenu
+//----------------------------------
+.dropdown-menu {
+
+    > .dropdown-submenu {
+
+        > a {
+            @include p-r(5);
+            position: relative;
+
+            @include icon(after, arrow-right){
+                @include pos(absolute, 50%, 10px, null, null);
+                @include m-t(-15);
+                opacity:0.8;
+            }
+
+            &:hover,
+            &:focus,
+            &.active{
+                background: $dropdown-menu-link-hover-bg;
+                color:$dropdown-menu-link-hover-text-color;
+            }
+        }
+
+        &:hover,
+        &:focus {
+            > a {
+                background: $dropdown-menu-link-hover-bg;
+
+                &:after {
+                    opacity:1;
+                }
+            }
+        }
+
+        &.active > a {
+            background-color: $theme-color;
+            color: $white;
+        }
+
+        &:hover > .dropdown-menu {
+            display: block;
+        }
+
+        &.disabled {
+            > .dropdown-menu {
+                display: none;
+            }
+
+            > a {
+                background-color: transparent;
+            }
+        }
+
+        > .dropdown-menu {
+            @include m-t(2);
+            top: 0;
+            left: 100%;
+
+            .dropup &,
+            .navbar-fixed-bottom .dropdown & {
+                top: auto;
+                bottom: 0;
+                @include m-a(0, null, -6, null);
+            }
+        }
+
+        &.dropdown-submenu-left > .dropdown-menu {
+            left: auto;
+            right: 100%;
+        }
+
+        .dropup{
+            > .dropdown-menu {
+                @include m-a(0, null, -6, null);
+                top: auto;
+                bottom: 0;
+            }
+        }
+
+        @include media(phone-xlg, max){
+            position: static;
+
+            > a{
+                @include icon(after, arrow-down);
+            }
+
+            &,
+            &.dropdown-submenu-left {
+                .dropdown-menu {
+                    @include pos(relative, null, 0, null, 0);
+                    @include no-m();
+                    @include no-shadow();
+                    @include w-min(100%);
+                    float: none;
+                    border-width: 0;
+                    border-color: black(0.1);
+
+                    > li {
+                        > a {
+                            @include p-l(30);
+                        }
+
+                        > ul > li {
+                            > a {
+                                @include p-l(45);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &[class*=bg-] > .dropdown-submenu {
+        &:hover > a,
+        &:focus > a {
+            background-color: black(0.1);
+        }
+
+        &.disabled {
+            &:hover > a,
+            &:focus > a {
+                background-color: transparent;
+            }
+        }
+    }
+}
+
+
+//----------------------------------
+// 7. Dropdown header
+//----------------------------------
+.dropdown-header {
+    @include p-vh(6,12);
+    @include typo($ff-semibold, $font-sm, $dropdown-menu-header-color, left){
+        text-transform: uppercase;
+    }
+
+    &:first-child {
+        @include m-t(0);
+    }
+
+    &.highlight {
+        @include m-t(0);
+        background-color:$dropdown-menu-header-highlight-bg;
+		color:$dropdown-menu-header-highlight-color;
+
+        li + &,
+        & + li {
+            @include m-t(6);
+        }
+
+        &:first-child {
+            @include m-t(0);
+        }
+    }
+
+    > i {
+        @include m-r(10);
+        float: left;
+        top: 1px;
+
+        &.pull-right {
+            @include m-a(3, 0, null, 10);
+            top: -1px;
+        }
+    }
+}
+
+
+//----------------------------------
+// 8. Dropup
+//----------------------------------
+.dropup,
+.navbar-fixed-bottom .dropdown {
+    .caret {
+        border: 0;
+        @include icon(after, arrow-up);
+    }
+}
+
+
+//----------------------------------
+// 9. Checkboxes and radios
+//----------------------------------
+.dropdown-menu {
+
+    > li > label {
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            color: $text-color;
+            background-color: $white;
+        }
+    }
+
+    > .active > label {
+        &,
+        &:hover,
+        &:focus {
+            color: $text-color;
+            background-color: $white;
+            outline: 0;
+        }
+    }
+}
+
+.dropdown-menu > .disabled {
+    > label {
+        &,
+        &:hover,
+        &:focus {
+            background-color: transparent;
+            color: lighten($black, 80%);
+        }
+    }
+}
+
+.dropdown-menu {
+    > li {
+
+        > label {
+            @include p-a(8, 15, 8, 42);
+            display: block;
+            cursor: pointer;
+
+            .checker,
+            .choice,
+            > input[type=checkbox],
+            > input[type=radio] {
+                @include m-t(1);
+                left: 15px;
+                top: auto;
+            }
+        }
+
+        &.checkbox,
+        &.radio {
+            @include m-t(0);
+        }
+
+        &.checkbox-right > label {
+            @include p-a(null, 42, null, 15);
+
+            .checker,
+            > input[type=checkbox] {
+                left: auto;
+                right: 15px;
+            }
+        }
+
+        &.radio-right > label {
+            @include p-a(null, 42, null, 15);
+
+            .choice,
+            > input[type=radio] {
+                left: auto;
+                right: 15px;
+            }
+        }
+    }
+}
+
+
+//----------------------------------
+// 10. Switchery toggles
+//----------------------------------
+.dropdown-menu {
+    > .checkbox-switchery {
+
+        > label > .switchery {
+            left: 15px;
+        }
+
+        &.checkbox-right[class*=switchery-] {
+            > label {
+                @include p-l(15);
+                padding-left: 15px;
+
+                > .switchery {
+                    left: auto;
+					right: 15px;
+                }
+            }
+        }
+
+        &.switchery-sm {
+            @include m-b(0);
+
+            > label {
+                @include p-l(68);
+            }
+        }
+
+        &.switchery-xs {
+            @include m-b(0);
+
+            > label {
+                @include p-l(60);
+            }
+        }
+
+        &.checkbox-right {
+
+            &.switchery-sm {
+                > label {
+                    @include p-r(68);
+                }
+            }
+
+            &.switchery-xs {
+                > label {
+                    @include p-r(60);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,46 @@
+//----------------------------------
+//   File          : scss/pages/_launching.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+.launching-text{
+    @include fs(40px);
+    @include ff($ff-light);
+    @include ls(-2px);
+}
+
+.timer {
+    @include m-a(0,0,30,0);
+	.days-wrapper,
+    .hours-wrapper,
+    .minutes-wrapper,
+    .seconds-wrapper {
+        @include w(100px);
+        @include m-vh(0,10);
+        @include fs(18px);
+        display: inline-block;
+	}
+	.days,
+    .hours,
+    .minutes,
+    .seconds {
+        @include fs(50px);
+        @include lh(60px);
+	}
+}
+
+@media(max-width: 767px) {
+	.timer {
+		.days-wrapper,
+        .hours-wrapper,
+        .minutes-wrapper,
+        .seconds-wrapper {
+            @include w(145px);
+		}
+		.slash {
+			display: none;
+		}
+	}
+}

@@ -1,0 +1,93 @@
+//----------------------------------
+//   File          : scss/plugins/forms/_typehead.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+.twitter-typeahead {
+	@include w(100%);
+}
+
+.typeahead,
+.tt-query,
+.tt-hint {
+	outline: 0;
+}
+
+// Input field hint
+.tt-hint {
+	color: $placeholder-text-color;
+}
+
+
+// Menu
+// ------------------------------
+
+// Dropdown menu
+.tt-dropdown-menu {
+	@include w(100%);
+	@include h-max(150px);
+	@include m-t(1);
+	@include p-vh($space-base,0);
+	background-color: $dropdown-menu-bg;
+	@include radius($radius);
+	@include b($dropdown-menu-border-thickness,solid,$dropdown-menu-border-color);
+	@if($dropdown-menu-shadow == 'true'){
+        @include shadow-out();
+    }
+    @else{
+        @include no-shadow();
+    }
+	overflow-y: auto;
+
+	.typeahead-scrollable & {
+		@include h-max(150px);
+	}
+
+	// RTL
+	.typeahead-rtl & {
+		text-align: right;
+	}
+}
+
+// Menu item
+.tt-suggestion {
+	@include p-vh(6,12);
+	cursor: pointer;
+
+	// Hover state bg color
+	&.tt-cursor {
+		background-color: $dropdown-menu-link-hover-bg;
+		color:$dropdown-menu-link-hover-text-color;
+	}
+	&:focus,
+	&:hover{
+		color:$dropdown-menu-link-hover-text-color;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	// Double side padding in groups
+	.tt-dataset-group & {
+		@include p-v($space-base *2);
+	}
+}
+
+// Heading
+.tt-heading {
+	@include p-vh(6,12);
+	@include m-v(2);
+    @include typo($ff-semibold, $font-sm, $dropdown-menu-header-color, left){
+        text-transform: uppercase;
+    }
+	display: block;
+}
+
+// Add padding for empty message
+.typeahead-template .empty-message {
+	@include p-vh(6,12);
+	text-align: center;
+}

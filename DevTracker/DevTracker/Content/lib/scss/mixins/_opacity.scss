@@ -1,0 +1,38 @@
+//----------------------------------
+//   File          : scss/mixins/_opacity.scss
+//   Type          : SCSS mixin
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+// ---------------------------------
+
+// ---------------------------------
+// Table of contents
+// ---------------------------------
+// 1. Black
+// 2. White
+// 3. Color defined
+
+
+// ---------------------------------
+// 1. Black
+// ---------------------------------
+@function black($opacity){
+    @return rgba(0,0,0,$opacity);
+}
+
+
+// ---------------------------------
+// 2. White
+// ---------------------------------
+@function white($opacity){
+    @return rgba(255,255,255,$opacity);
+}
+
+
+// ---------------------------------
+// 3. Color defined
+// ---------------------------------
+@mixin color-alpha($color, $opacity: 0.3) {
+    color: $color; // Fallback
+    color: rgba($color, $opacity);
+}

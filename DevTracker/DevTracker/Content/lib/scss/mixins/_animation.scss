@@ -1,0 +1,96 @@
+//----------------------------------
+//   File          : scss/mixins/_animation.scss
+//   Type          : SCSS mixin
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+// ---------------------------------
+
+// ---------------------------------
+// Table of contents
+// ---------------------------------
+// 1. Animation
+// 2. Transform
+// 3. Translate
+// 4. Translate3D
+// 5. Animate
+// 6. Transition
+// 7. Keyframes
+
+
+// ---------------------------------
+// 1. Animation
+// ---------------------------------
+@mixin animation($attribute: transition, $str: all 300ms linear) {
+    -webkit-#{$attribute}: #{$str};
+    -moz-#{$attribute}: #{$str};
+    #{$attribute}: #{$str};
+}
+
+
+// ---------------------------------
+// 2. Transform
+// ---------------------------------
+@mixin transform($scale: 1, $origin: right top){
+    transform: scale($scale);
+    -webkit-transform: scale($scale);
+    -moz-transform: scale($scale);
+    transform-origin: $origin;
+    -webkit-transform-origin: $origin;
+    -moz-transform-origin: $origin;
+}
+
+
+// ---------------------------------
+// 3. Translate
+// ---------------------------------
+@mixin translate($attribute: transform, $left: 0, $right: 0){
+    -webkit-#{$attribute}: translate($left, $right);
+    -moz-#{$attribute}: translate($left, $right);
+    #{$attribute}: translate($left, $right);
+}
+
+
+// ---------------------------------
+// 4. Translate3D
+// ---------------------------------
+@mixin translate3d($attribute: transform, $x: 0, $y: 0, $z: 0){
+    -webkit-#{$attribute}: translate3d($x, $y, $z);
+    -moz-#{$attribute}: translate3d($x, $y, $z);
+    #{$attribute}: translate3d($x, $y, $z);
+}
+
+
+// ---------------------------------
+// 5. Animate
+// ---------------------------------
+@mixin animate($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    animation: #{$str};
+}
+
+
+// ---------------------------------
+// 6. Transition
+// ---------------------------------
+@mixin transition($transition) {
+    -moz-transition: $transition;
+    -webkit-transition: $transition;
+    transition: $transition;
+}
+
+
+// ---------------------------------
+// 7. Keyframes
+// ---------------------------------
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	}
+}

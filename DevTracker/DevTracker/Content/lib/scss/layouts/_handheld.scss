@@ -1,0 +1,42 @@
+//----------------------------------
+//   File          : scss/layouts/_handheld.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.1.0
+//   Last Updated  : June 25, 2017
+//   Description   : Main CSS definition for menu in handheld devices
+//----------------------------------
+
+@include media(tablet-xlg, max) {
+    body {
+        .main-container {
+            @include h-min(100%);
+            @include pos(relative, null, null);
+            @include m-l(0);
+            @include animation(transition, all 350ms cubic-bezier(0.19, 1, 0.22, 1));
+        }
+        &.left-aside-toggle {
+            .menu {
+                @include animation(transition, all 350ms cubic-bezier(0.19, 1, 0.22, 1));
+                @include translate3d(transform, 0, 0, 0);
+            }
+            .main-container {
+                @include m-l(0);
+                @include animation(transition, all 350ms cubic-bezier(0.19, 1, 0.22, 1));
+            }
+        }
+        .menu {
+            @include size(250px, 100%);
+            @include pos(fixed, 0, null, null, null);
+            @include br(1, solid, $menu-border-color);
+            background-color:$menu-bg-color;
+            color: $grey;
+            z-index:9999;
+
+            @include profile();
+            @include accordion();
+            @include animation(transition, all 350ms cubic-bezier(0.19, 1, 0.22, 1));
+            @include translate3d(transform, -250px, 0, 0);
+            @include shadow-out(rgba(0,0,0,0.1),30px,0px,0px,0px);
+        }
+    }
+}

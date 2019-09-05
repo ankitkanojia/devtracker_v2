@@ -1,0 +1,186 @@
+//----------------------------------
+//   File          : scss/plugins/jcrop/_jcrop.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+.jcrop-holder {
+	direction: ltr;
+	text-align: left;
+	img {
+		max-width: none;
+	}
+	#preview-pane {
+        @include pos(absolute,40px,-365px,null,null);
+        @include p(5);
+        @include b(1,solid,lighten($black, 80%));
+        @include radius($radius);
+		display: block;
+		z-index: 9;
+	}
+}
+.jcrop-vline {
+    @include h(100%);
+    background: $white url(../../Jcrop.gif);
+	font-size: 0;
+	position: absolute;
+	width: 1px !important;
+	&.right {
+		right: 0;
+	}
+}
+.jcrop-hline {
+    @include w(100%);
+    background: $white url(../../Jcrop.gif);
+	font-size: 0;
+	position: absolute;
+	height: 1px !important;
+	&.bottom {
+		bottom: 0;
+	}
+}
+.jcrop-tracker {
+    @include size(100%);
+}
+.jcrop-handle {
+	background-color: lighten($black, 5%)0;
+    @include b(1,solid,lighten($black, 80%));
+    @include size(7px);
+    @include fs(1px);
+	&.ord-n {
+        @include m-l(-4);
+        @include m-t(-4);
+		left: 50%;
+		top: 0;
+	}
+	&.ord-s {
+		bottom: 0;
+		left: 50%;
+        @include m-b(-4);
+        @include m-l(-4);
+	}
+	&.ord-e {
+        @include m-r(-4);
+        @include m-t(-4);
+		right: 0;
+		top: 50%;
+	}
+	&.ord-w {
+        @include m-l(-4);
+        @include m-t(-4);
+		left: 0;
+		top: 50%;
+	}
+	&.ord-nw {
+		left: 0;
+		top: 0;
+        @include m-l(-4);
+        @include m-t(-4);
+	}
+	&.ord-ne {
+        @include m-r(-4);
+        @include m-t(-4);
+		right: 0;
+		top: 0;
+	}
+	&.ord-se {
+		bottom: 0;
+		right: 0;
+        @include m-r(-4);
+        @include m-b(-4);
+	}
+	&.ord-sw {
+		bottom: 0;
+		left: 0;
+        @include m-b(-4);
+        @include m-l(-4);
+	}
+}
+.jcrop-dragbar {
+	&.ord-n {
+        @include size(100%,7px);
+        @include m-t(-4);
+	}
+	&.ord-s {
+        @include size(100%,7px);
+		bottom: 0;
+        @include m-b(-4);
+	}
+	&.ord-e {
+        @include size(7px,100%);
+        @include m-r(-4);
+		right: 0;
+	}
+	&.ord-w {
+        @include size(7px,100%);
+        @include m-l(-4);
+	}
+}
+.jcrop-light {
+	.jcrop-vline,
+    .jcrop-hline {
+        background: $white;
+    	filter: alpha(opacity=70) !important;
+    	opacity: .70!important;
+	}
+	.jcrop-handle {
+		background-color: $black;
+		border-color: $white;
+        @include radius($radius);
+	}
+}
+.jcrop-dark {
+	.jcrop-vline,
+    .jcrop-hline {
+        background: $black;
+    	filter: alpha(opacity=70) !important;
+    	opacity: 0.7 !important;
+	}
+	.jcrop-handle {
+		background-color: $white;
+		border-color: $black;@include radius($radius);
+	}
+}
+.solid-line {
+	.jcrop-vline,
+    .jcrop-hline {
+		background: $white;
+	}
+}
+#bgo_buttons {
+    @include m-t(10);
+    @include m-b(10);
+	legend {
+        @include fs(14px);
+        @include p-b(0);
+        @include m-b(10);
+    	text-transform: none;
+    	border-bottom: none;
+	}
+}
+.optdual {
+	position: relative;
+	.offset {
+		position: absolute;
+		left: 18em;
+	}
+}
+img.jcrop-preview {
+	max-width: none;
+}
+#preview-pane .preview-container {
+    @include size(250px,170px);
+	overflow: hidden;
+}
+#anim_buttons legend,
+#bgc_buttons legend {
+    @include fs(14px);
+    @include p-b(0);
+    @include m-b(10);
+	text-transform: none;
+	border-bottom: none;
+}
+.optlist label {
+	display: block;
+}

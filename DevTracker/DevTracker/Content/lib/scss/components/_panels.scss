@@ -1,0 +1,526 @@
+//----------------------------------
+//   File          : scss/components/_panels.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Bootstrap Panels Override
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Panels
+// 2. Solid color panels
+// 3. Custom border colors
+// 4. Panel contents
+// 5. Panel heading
+// 6. Control buttons
+// 7. Panel footer
+// 8. Collapsable panels (aka, accordion)
+// 9. Contextual variation overrides
+
+
+//----------------------------------
+// 1. Panels
+//----------------------------------
+.panel {
+	@include m-b(20);
+    @include radius($radius);
+    @include b($panel-border-thickness,solid,$panel-border-color);
+	color: $text-color;
+	background: $panel-bg;
+	@if($panel-shadow == 'true'){
+		@include shadow-out();
+	}
+	@else{
+		@include no-shadow();
+	}
+}
+
+
+//----------------------------------
+// 2. Solid color panels
+//----------------------------------
+.panel[class*=bg-] {
+
+    > .panel-heading {
+		@include p-b(0);
+    }
+
+    &.panel-flat > .panel-heading {
+        border-bottom-color: transparent;
+		@include p-v(8);
+    }
+	&.panel-white > .panel-heading {
+        @include p-v(8);
+    }
+
+    > .panel-body {
+        background-color: inherit;
+		color:$white;
+		p{
+			color:$white;
+		}
+    }
+
+    .panel-title,
+	.elements {
+        color: $white;
+		>a{
+			color: $white !important;
+		}
+    }
+
+    .table {
+        thead,
+        tbody {
+            td,
+            th {
+                border-color: color-alpha($white, 10%);
+            }
+        }
+    }
+
+    .text-muted,
+    .help-block,
+    .help-inline {
+        color: color-alpha($white, 80%);
+    }
+}
+
+
+//----------------------------------
+// 3. Custom border colors
+//----------------------------------
+.panel[class*=border-top-] {
+    @include radius-a(0,0);
+}
+.panel[class*=border-bottom-] {
+    @include radius-a(null, null, 0, 0);
+}
+.panel[class*=border-left-] {
+    @include radius-a(0, null, null, 0);
+}
+.panel[class*=border-right-] {
+    @include radius-a(null, 0, 0, null);
+}
+
+
+//----------------------------------
+// 4. Panel contents
+//----------------------------------
+.panel-body {
+	@include p-vh($panel-body-padding-vertical,$panel-body-padding-horizontal);
+    position: relative;
+	color:$panel-body-text-color;
+	@include radius-a(0,0,$radius,$radius);
+	p{
+		@include m-a(0,0,10,0);
+		color:$panel-body-text-color;
+	}
+	p:last-child{
+		@include m-b(0);
+	}
+    .panel-flat > .panel-heading + & {
+		@include p-t(0);
+    }
+	.panel-white > .panel-heading + & {
+		@include p-t(0);
+    }
+}
+
+
+//----------------------------------
+// 5. Panel heading
+//----------------------------------
+.panel-heading {
+	@include p-vh($panel-title-padding-vertical,$panel-title-padding-horizontal);
+	@include radius-a($radius,$radius,0,0);
+    position: relative;
+
+	small{
+		@include fs($panel-title-text-size - 4);
+		color: lighten($panel-title-text-color,10%);
+	}
+
+    .panel-bordered {
+		@include no-m();
+    }
+
+    .panel-flat {
+		@include p-vh($panel-title-padding-vertical,$panel-title-padding-horizontal);
+        background-color: $panel-bg;
+    }
+
+    .panel-flat[class*=bg-] {
+        background-color: inherit;
+    }
+
+    &[class*=bg-],
+    .panel-primary,
+    .panel-danger,
+    .panel-success,
+    .panel-warning,
+    .panel-info {
+		@include m-a(-1,-1,0,-1);
+		@include radius-a($radius,0,0,0);
+
+		.panel-title{
+			color:$white;
+			a{
+				color:$white;
+			}
+		}
+    }
+
+    .panel-white {
+		@include p-vh($panel-title-padding-vertical,$panel-title-padding-horizontal);
+        background-color: $white;
+        border-bottom-color:transparent;
+    }
+	i{
+		top:-2px;
+	}
+}
+
+.panel-title {
+    position: relative;
+	@include typo($panel-title-font-family,$panel-title-text-size,$panel-title-text-color,$panel-title-text-align);
+
+    a {
+		@include fs($panel-title-text-size);
+        display: block;
+
+		&:hover,
+		&:focus,
+		&.active{
+			color:inherit;
+		}
+    }
+
+    img {
+		@include h-max(20px);
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    > small:not(.display-block),
+    > .small:not(.display-block) {
+		@include m-l(5);
+    }
+
+    h1,
+    .h1 {
+        font-size: $h1;
+    }
+    h2,
+    .h2 {
+        font-size: $h2;
+    }
+    h3,
+    .h3 {
+        font-size: $h3;
+    }
+    h4,
+    .h4 {
+        font-size: $h4;
+    }
+    h5,
+    .h5 {
+        font-size: $h5;
+    }
+    h6,
+    .h6 {
+        font-size: $h6;
+    }
+
+	.label{
+		top:-3px;
+	}
+}
+
+
+//----------------------------------
+// 6. Control buttons
+//----------------------------------
+.icons-list {
+    a[data-action] {
+		@include animation(transition,all ease-in-out 0.2s);
+        vertical-align: middle;
+		@include icon(after);
+    }
+	a[data-action="collapse"]{
+		@include icon(after, collapse);
+	}
+	a[data-action="reload"]{
+		@include icon(after, reload);
+	}
+	a[data-action="close"]{
+		@include icon(after, close);
+	}
+	a[data-action="move"]{
+		@include icon(after, move);
+	}
+	a[data-action="modal"]{
+        @include icon(after, modal);
+	}
+	a[data-toggle="dropdown"]{
+        @include icon(after, dropdown);
+	}
+}
+
+
+//----------------------------------
+// 7. Panel footer
+//----------------------------------
+.panel-footer {
+	@include p-vh($panel-footer-padding-vertical,$panel-footer-padding-horizontal);
+	background: $panel-footer-bg;
+	color: $panel-footer-text-color;
+    position: relative;
+
+	.elements{
+		color: $panel-footer-text-color;
+	}
+
+    &:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+
+    > ul {
+		@include no-s();
+		@include m-l($space-base);
+        font-size: 0;
+        list-style: none;
+        float: left;
+
+        &:first-child {
+			@include m-l(0);
+        }
+
+        > li {
+            display: inline-block;
+			@include p-vh($space-base,null);
+            & + li {
+                @include m-l($space-base);
+            }
+            > a {
+                color:$text-color;
+            }
+            .dropdown-menu {
+				@include m-vh(0,null);
+            }
+        }
+    }
+
+    @include media(phablet, max) {
+        text-align: center;
+        ul,
+        .pull-right {
+			@include m-l(0);
+            float: none!important;
+        }
+        > ul > li,
+        .dropdown,
+        .dropup,
+        .btn-group {
+            position: static;
+        }
+        .dropdown-menu {
+            left: 0;
+            right: 0;
+        }
+    }
+}
+
+.panel-footer-transparent {
+    background-color: transparent;
+    border-top: 0;
+
+    > ul > li {
+		@include p-vh(0,null);
+		@include m-b($space-base);
+    }
+}
+
+
+//----------------------------------
+// 8. Collapsable panels (aka, accordion)
+//----------------------------------
+.panel-group{
+	.panel {
+		@include radius();
+		.panel-heading{
+			@include radius-a();
+		}
+	}
+}
+
+.panel-group-control {
+    .panel-title > a {
+		@include p-l(20);
+        display: inline-block;
+		@include icon(before,group-collapse){
+            @include pos(absolute,-1px,null,null,-5px);
+        }
+
+        &.collapsed{
+			@include icon(before,group-expand);
+        }
+    }
+
+    &.panel-group-control-right {
+        .panel-title > a {
+			@include p-a(null,null,0,0);
+
+            &:before {
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+}
+
+
+//----------------------------------
+// 9. Contextual variation overrides
+//----------------------------------
+.panel-transparent {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+.panel-flat {
+	.panel-heading {
+		@include p-v(8);
+	}
+}
+
+.panel-default {
+    border-color: $panel-border-color;
+	.panel-heading{
+		background: $header-bg;
+		border-color: darken($panel-bg,5%);
+	}
+	.panel-title,
+	.elements {
+		color:$panel-title-text-color;
+		>a,>ul,>ol,>p{
+			color:$panel-title-text-color;
+		}
+	}
+    &.panel-border {
+        border-color: darken($header-bg,10%);
+    }
+	.panel-footer{
+		.elements{
+			color:$panel-footer-text-color;
+			>a{
+				color:$panel-footer-text-color;
+			}
+		}
+	}
+}
+
+// Primary
+.panel-primary {
+    border-color: $panel-border-color;
+	.panel-title,
+	.elements {
+		color:$white;
+		a,ul,ol,p{
+			color:$white;
+		}
+	}
+    &.panel-border {
+        border-color: $primary;
+    }
+}
+
+// Success
+.panel-success {
+    border-color: $panel-border-color;
+	.panel-title,
+	.elements {
+		color:$white;
+		a,ul,ol,p{
+			color:$white;
+		}
+	}
+    &.panel-border {
+        border-color: $success;
+    }
+}
+
+// Info
+.panel-info {
+    border-color: $panel-border-color;
+	.panel-title,
+	.elements {
+		color:$white;
+		a,ul,ol,p{
+			color:$white;
+		}
+	}
+    &.panel-border {
+        border-color: $info;
+    }
+}
+
+// Warning
+.panel-warning {
+    border-color: $panel-border-color;
+	.panel-title,
+	.elements {
+		color:$white;
+		a,ul,ol,p{
+			color:$white;
+		}
+	}
+    &.panel-border {
+        border-color: $warning;
+    }
+}
+
+// Danger
+.panel-danger {
+    border-color: $panel-border-color;
+	.panel-title,
+	.elements {
+		color:$white;
+		a,ul,ol,p{
+			color:$white;
+		}
+	}
+    &.panel-border {
+        border-color: $danger;
+    }
+}
+
+.panel-white{
+	border-color: $white;
+	.panel-heading{
+		@include p-v(8);
+		background: $white;
+		color:lighten($black, 5%);
+		.panel-title,
+		.elements {
+			color:lighten($black, 5%);
+			a,ul,ol,p{
+				color:lighten($black, 5%);
+			}
+		}
+	}
+	.panel-body{
+		background: $white;
+		color:lighten($black, 5%);
+		p{
+			color:lighten($black, 5%);
+		}
+	}
+}

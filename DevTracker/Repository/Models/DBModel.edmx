@@ -1,0 +1,2270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityId" />
+          </Key>
+          <Property Name="ActivityId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TaskMasterId" Type="bigint" />
+          <Property Name="ProjectId" Type="bigint" />
+          <Property Name="IsOnDashboard" Type="bit" Nullable="false" />
+          <Property Name="UserMasterId" Type="bigint" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="ChatMaster">
+          <Key>
+            <PropertyRef Name="ChatMasterId" />
+          </Key>
+          <Property Name="ChatMasterId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserMasterId" Type="bigint" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProjectId" Type="bigint" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="CommentMaster">
+          <Key>
+            <PropertyRef Name="CommentMasterId" />
+          </Key>
+          <Property Name="CommentMasterId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserMasterId" Type="bigint" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TaskMasterId" Type="bigint" Nullable="false" />
+          <Property Name="ProjectId" Type="bigint" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="DependantTask">
+          <Key>
+            <PropertyRef Name="DependantTaskId" />
+          </Key>
+          <Property Name="DependantTaskId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskMasterId" Type="bigint" Nullable="false" />
+          <Property Name="OnDependTaskMasterId" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="EmailTemplete">
+          <Key>
+            <PropertyRef Name="EmailTempleteId" />
+          </Key>
+          <Property Name="EmailTempleteId" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="HashTag" Type="nvarchar(max)" />
+          <Property Name="FromEmail" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="BccEmail" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Links">
+          <Key>
+            <PropertyRef Name="LinkId" />
+          </Key>
+          <Property Name="LinkId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleId" Type="bigint" Nullable="false" />
+          <Property Name="LinkName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Controller" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ViewIndex" Type="int" />
+          <Property Name="IsDefault" Type="bit" Nullable="false" />
+          <Property Name="IsSingle" Type="bit" Nullable="false" />
+          <Property Name="CreatedById" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" />
+          <Property Name="IsVisible" Type="bit" />
+        </EntityType>
+        <EntityType Name="Modules">
+          <Key>
+            <PropertyRef Name="ModuleId" />
+          </Key>
+          <Property Name="ModuleId" Type="bigint" Nullable="false" />
+          <Property Name="ModuleName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CssClass" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ViewIndex" Type="int" />
+          <Property Name="CreatedById" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" />
+        </EntityType>
+        <EntityType Name="PriorityMaster">
+          <Key>
+            <PropertyRef Name="PriorityMasterId" />
+          </Key>
+          <Property Name="PriorityMasterId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ColorCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagLine" Type="nvarchar" MaxLength="500" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ClientName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Budget" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="BasicDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ConfidentialDescription" Type="nvarchar(max)" />
+          <Property Name="EstimateHours" Type="int" />
+          <Property Name="TeamMemberCount" Type="int" />
+          <Property Name="ActualTeamMemberCount" Type="int" />
+          <Property Name="ProjectStatusMasterId" Type="bigint" />
+          <Property Name="LiveURL" Type="nvarchar" MaxLength="500" />
+          <Property Name="StagingURL" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ProjectAssigny">
+          <Key>
+            <PropertyRef Name="ProjectAssignyId" />
+          </Key>
+          <Property Name="ProjectAssignyId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="bigint" Nullable="false" />
+          <Property Name="AssignyId" Type="bigint" Nullable="false" />
+          <Property Name="WhoAssign" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ProjectAttachment">
+          <Key>
+            <PropertyRef Name="ProjectAttachmentId" />
+          </Key>
+          <Property Name="ProjectAttachmentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="bigint" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FileSize" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ProjectCategory">
+          <Key>
+            <PropertyRef Name="ProjectCategoryId" />
+          </Key>
+          <Property Name="ProjectCategoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ProjectId" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ProjectStatusMaster">
+          <Key>
+            <PropertyRef Name="ProjectStatusMasterId" />
+          </Key>
+          <Property Name="ProjectStatusMasterId" Type="bigint" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ColorCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleMaster">
+          <Key>
+            <PropertyRef Name="RoleMasterId" />
+          </Key>
+          <Property Name="RoleMasterId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskAttachment">
+          <Key>
+            <PropertyRef Name="TaskAttachmentId" />
+          </Key>
+          <Property Name="TaskAttachmentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskMasterId" Type="bigint" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FileSize" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="TaskCategory">
+          <Key>
+            <PropertyRef Name="TaskCategoryId" />
+          </Key>
+          <Property Name="TaskCategoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ProjectId" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="TaskMaster">
+          <Key>
+            <PropertyRef Name="TaskMasterId" />
+          </Key>
+          <Property Name="TaskMasterId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TaskCategoryId" Type="bigint" Nullable="false" />
+          <Property Name="ProjectId" Type="bigint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="TaskTypeMasterId" Type="bigint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AssignyId" Type="bigint" Nullable="false" />
+          <Property Name="ReporterId" Type="bigint" Nullable="false" />
+          <Property Name="PriorityMasterId" Type="bigint" Nullable="false" />
+          <Property Name="TaskStatusMasterId" Type="bigint" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="EstimateTimeHours" Type="int" />
+          <Property Name="ActualTimeHours" Type="int" />
+          <Property Name="CompletionPercentage" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="TaskStatusMaster">
+          <Key>
+            <PropertyRef Name="TaskStatusMasterId" />
+          </Key>
+          <Property Name="TaskStatusMasterId" Type="bigint" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ColorCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskTypeMaster">
+          <Key>
+            <PropertyRef Name="TaskTypeMasterId" />
+          </Key>
+          <Property Name="TaskTypeMasterId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TimeTracker">
+          <Key>
+            <PropertyRef Name="TimeTrackerId" />
+          </Key>
+          <Property Name="TimeTrackerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserMasterId" Type="bigint" Nullable="false" />
+          <Property Name="TaskMasterId" Type="bigint" Nullable="false" />
+          <Property Name="ProjectId" Type="bigint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Hours" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserMasterId" />
+          </Key>
+          <Property Name="UserMasterId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Hash" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Salt" Type="varbinary" MaxLength="512" Nullable="false" />
+          <Property Name="RoleMasterId" Type="bigint" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="10" />
+          <Property Name="Profile" Type="nvarchar" MaxLength="255" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="255" />
+          <Property Name="SkypeId" Type="nvarchar" MaxLength="255" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="BioStatus" Type="nvarchar" MaxLength="500" />
+          <Property Name="GoogleId" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsTermAccept" Type="bit" Nullable="false" />
+          <Property Name="IsEmailVerified" Type="bit" Nullable="false" />
+          <Property Name="Tokens" Type="nvarchar" MaxLength="500" />
+          <Property Name="TokensGenerated" Type="datetime" />
+          <Property Name="FacebookLink" Type="nvarchar" MaxLength="500" />
+          <Property Name="TwitterLink" Type="nvarchar" MaxLength="500" />
+          <Property Name="LinkedInLink" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="UserRights">
+          <Key>
+            <PropertyRef Name="UserRightId" />
+          </Key>
+          <Property Name="UserRightId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleMasterId" Type="bigint" Nullable="false" />
+          <Property Name="LinkId" Type="bigint" Nullable="false" />
+          <Property Name="IsAccess" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateInt" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Activity_UserMaster">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="UserMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_UserMaster">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="ProjectCategory" Type="Self.ProjectCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="ProjectCategory">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatMaster_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ChatMaster" Type="Self.ChatMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="ChatMaster">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatMaster_UserMaster">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="ChatMaster" Type="Self.ChatMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="ChatMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentMaster_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="CommentMaster" Type="Self.CommentMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="CommentMaster">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentMaster_TaskMaster">
+          <End Role="TaskMaster" Type="Self.TaskMaster" Multiplicity="1" />
+          <End Role="CommentMaster" Type="Self.CommentMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskMaster">
+              <PropertyRef Name="TaskMasterId" />
+            </Principal>
+            <Dependent Role="CommentMaster">
+              <PropertyRef Name="TaskMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentMaster_UserMaster">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="CommentMaster" Type="Self.CommentMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="CommentMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DependantTask_TaskMaster">
+          <End Role="TaskMaster" Type="Self.TaskMaster" Multiplicity="1" />
+          <End Role="DependantTask" Type="Self.DependantTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskMaster">
+              <PropertyRef Name="TaskMasterId" />
+            </Principal>
+            <Dependent Role="DependantTask">
+              <PropertyRef Name="TaskMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DependantTask_TaskMaster1">
+          <End Role="TaskMaster" Type="Self.TaskMaster" Multiplicity="1" />
+          <End Role="DependantTask" Type="Self.DependantTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskMaster">
+              <PropertyRef Name="TaskMasterId" />
+            </Principal>
+            <Dependent Role="DependantTask">
+              <PropertyRef Name="OnDependTaskMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DependantTask_UserMaster">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="DependantTask" Type="Self.DependantTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="DependantTask">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Links_Modules">
+          <End Role="Modules" Type="Self.Modules" Multiplicity="1" />
+          <End Role="Links" Type="Self.Links" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="ModuleId" />
+            </Principal>
+            <Dependent Role="Links">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ProjectStatusMaster">
+          <End Role="ProjectStatusMaster" Type="Self.ProjectStatusMaster" Multiplicity="0..1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectStatusMaster">
+              <PropertyRef Name="ProjectStatusMasterId" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ProjectStatusMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_UserMaster">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectAssigny_Assigny">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="ProjectAssigny" Type="Self.ProjectAssigny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="ProjectAssigny">
+              <PropertyRef Name="AssignyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectAssigny_Created">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="ProjectAssigny" Type="Self.ProjectAssigny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="ProjectAssigny">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectAssigny_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectAssigny" Type="Self.ProjectAssigny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="ProjectAssigny">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectAssigny_WhoAssign">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="ProjectAssigny" Type="Self.ProjectAssigny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="ProjectAssigny">
+              <PropertyRef Name="WhoAssign" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectAttachment_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectAttachment" Type="Self.ProjectAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="ProjectAttachment">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectAttachment_UserMaster">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="ProjectAttachment" Type="Self.ProjectAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="ProjectAttachment">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskAttachment_TaskMaster">
+          <End Role="TaskMaster" Type="Self.TaskMaster" Multiplicity="1" />
+          <End Role="TaskAttachment" Type="Self.TaskAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskMaster">
+              <PropertyRef Name="TaskMasterId" />
+            </Principal>
+            <Dependent Role="TaskAttachment">
+              <PropertyRef Name="TaskMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskAttachment_UserMaster">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="TaskAttachment" Type="Self.TaskAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="TaskAttachment">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskCategory_UserMaster">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="TaskCategory" Type="Self.TaskCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="TaskCategory">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskMaster_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="TaskMaster" Type="Self.TaskMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="TaskMaster">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskMaster_TaskCategory">
+          <End Role="TaskCategory" Type="Self.TaskCategory" Multiplicity="1" />
+          <End Role="TaskMaster" Type="Self.TaskMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskCategory">
+              <PropertyRef Name="TaskCategoryId" />
+            </Principal>
+            <Dependent Role="TaskMaster">
+              <PropertyRef Name="TaskCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskMaster_TaskStatusMaster">
+          <End Role="TaskStatusMaster" Type="Self.TaskStatusMaster" Multiplicity="1" />
+          <End Role="TaskMaster" Type="Self.TaskMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskStatusMaster">
+              <PropertyRef Name="TaskStatusMasterId" />
+            </Principal>
+            <Dependent Role="TaskMaster">
+              <PropertyRef Name="TaskStatusMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskMaster_UserMaster">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="TaskMaster" Type="Self.TaskMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="TaskMaster">
+              <PropertyRef Name="AssignyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskMaster_UserMaster1">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="TaskMaster" Type="Self.TaskMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="TaskMaster">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeTracker_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="TimeTracker" Type="Self.TimeTracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="TimeTracker">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeTracker_TaskMaster">
+          <End Role="TaskMaster" Type="Self.TaskMaster" Multiplicity="1" />
+          <End Role="TimeTracker" Type="Self.TimeTracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskMaster">
+              <PropertyRef Name="TaskMasterId" />
+            </Principal>
+            <Dependent Role="TimeTracker">
+              <PropertyRef Name="TaskMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeTracker_UserMaster">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="TimeTracker" Type="Self.TimeTracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="TimeTracker">
+              <PropertyRef Name="UserMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMaster_RoleMaster">
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="RoleMasterId" />
+            </Principal>
+            <Dependent Role="UserMaster">
+              <PropertyRef Name="RoleMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRights_RoleMaster">
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
+          <End Role="UserRights" Type="Self.UserRights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="RoleMasterId" />
+            </Principal>
+            <Dependent Role="UserRights">
+              <PropertyRef Name="RoleMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelsStoreContainer">
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChatMaster" EntityType="Self.ChatMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentMaster" EntityType="Self.CommentMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DependantTask" EntityType="Self.DependantTask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailTemplete" EntityType="Self.EmailTemplete" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Links" EntityType="Self.Links" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriorityMaster" EntityType="Self.PriorityMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectAssigny" EntityType="Self.ProjectAssigny" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectAttachment" EntityType="Self.ProjectAttachment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectCategory" EntityType="Self.ProjectCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectStatusMaster" EntityType="Self.ProjectStatusMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleMaster" EntityType="Self.RoleMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskAttachment" EntityType="Self.TaskAttachment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskCategory" EntityType="Self.TaskCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskMaster" EntityType="Self.TaskMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskStatusMaster" EntityType="Self.TaskStatusMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskTypeMaster" EntityType="Self.TaskTypeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeTracker" EntityType="Self.TimeTracker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRights" EntityType="Self.UserRights" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Activity_UserMaster" Association="Self.FK_Activity_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_UserMaster" Association="Self.FK_Category_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="ProjectCategory" EntitySet="ProjectCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatMaster_Project" Association="Self.FK_ChatMaster_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ChatMaster" EntitySet="ChatMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatMaster_UserMaster" Association="Self.FK_ChatMaster_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="ChatMaster" EntitySet="ChatMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentMaster_Project" Association="Self.FK_CommentMaster_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="CommentMaster" EntitySet="CommentMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentMaster_TaskMaster" Association="Self.FK_CommentMaster_TaskMaster">
+            <End Role="TaskMaster" EntitySet="TaskMaster" />
+            <End Role="CommentMaster" EntitySet="CommentMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentMaster_UserMaster" Association="Self.FK_CommentMaster_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="CommentMaster" EntitySet="CommentMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DependantTask_TaskMaster" Association="Self.FK_DependantTask_TaskMaster">
+            <End Role="TaskMaster" EntitySet="TaskMaster" />
+            <End Role="DependantTask" EntitySet="DependantTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DependantTask_TaskMaster1" Association="Self.FK_DependantTask_TaskMaster1">
+            <End Role="TaskMaster" EntitySet="TaskMaster" />
+            <End Role="DependantTask" EntitySet="DependantTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DependantTask_UserMaster" Association="Self.FK_DependantTask_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="DependantTask" EntitySet="DependantTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Links_Modules" Association="Self.FK_Links_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="Links" EntitySet="Links" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ProjectStatusMaster" Association="Self.FK_Project_ProjectStatusMaster">
+            <End Role="ProjectStatusMaster" EntitySet="ProjectStatusMaster" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_UserMaster" Association="Self.FK_Project_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectAssigny_Assigny" Association="Self.FK_ProjectAssigny_Assigny">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="ProjectAssigny" EntitySet="ProjectAssigny" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectAssigny_Created" Association="Self.FK_ProjectAssigny_Created">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="ProjectAssigny" EntitySet="ProjectAssigny" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectAssigny_Project" Association="Self.FK_ProjectAssigny_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectAssigny" EntitySet="ProjectAssigny" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectAssigny_WhoAssign" Association="Self.FK_ProjectAssigny_WhoAssign">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="ProjectAssigny" EntitySet="ProjectAssigny" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectAttachment_Project" Association="Self.FK_ProjectAttachment_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectAttachment" EntitySet="ProjectAttachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectAttachment_UserMaster" Association="Self.FK_ProjectAttachment_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="ProjectAttachment" EntitySet="ProjectAttachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskAttachment_TaskMaster" Association="Self.FK_TaskAttachment_TaskMaster">
+            <End Role="TaskMaster" EntitySet="TaskMaster" />
+            <End Role="TaskAttachment" EntitySet="TaskAttachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskAttachment_UserMaster" Association="Self.FK_TaskAttachment_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="TaskAttachment" EntitySet="TaskAttachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskCategory_UserMaster" Association="Self.FK_TaskCategory_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="TaskCategory" EntitySet="TaskCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskMaster_Project" Association="Self.FK_TaskMaster_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="TaskMaster" EntitySet="TaskMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskMaster_TaskCategory" Association="Self.FK_TaskMaster_TaskCategory">
+            <End Role="TaskCategory" EntitySet="TaskCategory" />
+            <End Role="TaskMaster" EntitySet="TaskMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskMaster_TaskStatusMaster" Association="Self.FK_TaskMaster_TaskStatusMaster">
+            <End Role="TaskStatusMaster" EntitySet="TaskStatusMaster" />
+            <End Role="TaskMaster" EntitySet="TaskMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskMaster_UserMaster" Association="Self.FK_TaskMaster_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="TaskMaster" EntitySet="TaskMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskMaster_UserMaster1" Association="Self.FK_TaskMaster_UserMaster1">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="TaskMaster" EntitySet="TaskMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeTracker_Project" Association="Self.FK_TimeTracker_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="TimeTracker" EntitySet="TimeTracker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeTracker_TaskMaster" Association="Self.FK_TimeTracker_TaskMaster">
+            <End Role="TaskMaster" EntitySet="TaskMaster" />
+            <End Role="TimeTracker" EntitySet="TimeTracker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeTracker_UserMaster" Association="Self.FK_TimeTracker_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="TimeTracker" EntitySet="TimeTracker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMaster_RoleMaster" Association="Self.FK_UserMaster_RoleMaster">
+            <End Role="RoleMaster" EntitySet="RoleMaster" />
+            <End Role="UserMaster" EntitySet="UserMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRights_RoleMaster" Association="Self.FK_UserRights_RoleMaster">
+            <End Role="RoleMaster" EntitySet="RoleMaster" />
+            <End Role="UserRights" EntitySet="UserRights" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activities" EntityType="Models.Activity" />
+          <EntitySet Name="ChatMasters" EntityType="Models.ChatMaster" />
+          <EntitySet Name="CommentMasters" EntityType="Models.CommentMaster" />
+          <EntitySet Name="DependantTasks" EntityType="Models.DependantTask" />
+          <EntitySet Name="EmailTempletes" EntityType="Models.EmailTemplete" />
+          <EntitySet Name="Links" EntityType="Models.Link" />
+          <EntitySet Name="Modules" EntityType="Models.Module" />
+          <EntitySet Name="PriorityMasters" EntityType="Models.PriorityMaster" />
+          <EntitySet Name="Projects" EntityType="Models.Project" />
+          <EntitySet Name="ProjectAssignies" EntityType="Models.ProjectAssigny" />
+          <EntitySet Name="ProjectAttachments" EntityType="Models.ProjectAttachment" />
+          <EntitySet Name="ProjectCategories" EntityType="Models.ProjectCategory" />
+          <EntitySet Name="ProjectStatusMasters" EntityType="Models.ProjectStatusMaster" />
+          <EntitySet Name="RoleMasters" EntityType="Models.RoleMaster" />
+          <EntitySet Name="TaskAttachments" EntityType="Models.TaskAttachment" />
+          <EntitySet Name="TaskCategories" EntityType="Models.TaskCategory" />
+          <EntitySet Name="TaskMasters" EntityType="Models.TaskMaster" />
+          <EntitySet Name="TaskStatusMasters" EntityType="Models.TaskStatusMaster" />
+          <EntitySet Name="TaskTypeMasters" EntityType="Models.TaskTypeMaster" />
+          <EntitySet Name="TimeTrackers" EntityType="Models.TimeTracker" />
+          <EntitySet Name="UserMasters" EntityType="Models.UserMaster" />
+          <EntitySet Name="UserRights" EntityType="Models.UserRight" />
+          <AssociationSet Name="FK_Activity_UserMaster" Association="Models.FK_Activity_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatMaster_Project" Association="Models.FK_ChatMaster_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ChatMaster" EntitySet="ChatMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatMaster_UserMaster" Association="Models.FK_ChatMaster_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="ChatMaster" EntitySet="ChatMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentMaster_Project" Association="Models.FK_CommentMaster_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="CommentMaster" EntitySet="CommentMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentMaster_TaskMaster" Association="Models.FK_CommentMaster_TaskMaster">
+            <End Role="TaskMaster" EntitySet="TaskMasters" />
+            <End Role="CommentMaster" EntitySet="CommentMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentMaster_UserMaster" Association="Models.FK_CommentMaster_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="CommentMaster" EntitySet="CommentMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DependantTask_TaskMaster" Association="Models.FK_DependantTask_TaskMaster">
+            <End Role="TaskMaster" EntitySet="TaskMasters" />
+            <End Role="DependantTask" EntitySet="DependantTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DependantTask_TaskMaster1" Association="Models.FK_DependantTask_TaskMaster1">
+            <End Role="TaskMaster" EntitySet="TaskMasters" />
+            <End Role="DependantTask" EntitySet="DependantTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DependantTask_UserMaster" Association="Models.FK_DependantTask_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="DependantTask" EntitySet="DependantTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Links_Modules" Association="Models.FK_Links_Modules">
+            <End Role="Module" EntitySet="Modules" />
+            <End Role="Link" EntitySet="Links" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ProjectStatusMaster" Association="Models.FK_Project_ProjectStatusMaster">
+            <End Role="ProjectStatusMaster" EntitySet="ProjectStatusMasters" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_UserMaster" Association="Models.FK_Project_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectAssigny_Project" Association="Models.FK_ProjectAssigny_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectAssigny" EntitySet="ProjectAssignies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectAttachment_Project" Association="Models.FK_ProjectAttachment_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectAttachment" EntitySet="ProjectAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskMaster_Project" Association="Models.FK_TaskMaster_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="TaskMaster" EntitySet="TaskMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeTracker_Project" Association="Models.FK_TimeTracker_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="TimeTracker" EntitySet="TimeTrackers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectAssigny_Assigny" Association="Models.FK_ProjectAssigny_Assigny">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="ProjectAssigny" EntitySet="ProjectAssignies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectAssigny_Created" Association="Models.FK_ProjectAssigny_Created">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="ProjectAssigny" EntitySet="ProjectAssignies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectAssigny_WhoAssign" Association="Models.FK_ProjectAssigny_WhoAssign">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="ProjectAssigny" EntitySet="ProjectAssignies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectAttachment_UserMaster" Association="Models.FK_ProjectAttachment_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="ProjectAttachment" EntitySet="ProjectAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_UserMaster" Association="Models.FK_Category_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="ProjectCategory" EntitySet="ProjectCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMaster_RoleMaster" Association="Models.FK_UserMaster_RoleMaster">
+            <End Role="RoleMaster" EntitySet="RoleMasters" />
+            <End Role="UserMaster" EntitySet="UserMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRights_RoleMaster" Association="Models.FK_UserRights_RoleMaster">
+            <End Role="RoleMaster" EntitySet="RoleMasters" />
+            <End Role="UserRight" EntitySet="UserRights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskAttachment_TaskMaster" Association="Models.FK_TaskAttachment_TaskMaster">
+            <End Role="TaskMaster" EntitySet="TaskMasters" />
+            <End Role="TaskAttachment" EntitySet="TaskAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskAttachment_UserMaster" Association="Models.FK_TaskAttachment_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="TaskAttachment" EntitySet="TaskAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskCategory_UserMaster" Association="Models.FK_TaskCategory_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="TaskCategory" EntitySet="TaskCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskMaster_TaskCategory" Association="Models.FK_TaskMaster_TaskCategory">
+            <End Role="TaskCategory" EntitySet="TaskCategories" />
+            <End Role="TaskMaster" EntitySet="TaskMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskMaster_TaskStatusMaster" Association="Models.FK_TaskMaster_TaskStatusMaster">
+            <End Role="TaskStatusMaster" EntitySet="TaskStatusMasters" />
+            <End Role="TaskMaster" EntitySet="TaskMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskMaster_UserMaster" Association="Models.FK_TaskMaster_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="TaskMaster" EntitySet="TaskMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskMaster_UserMaster1" Association="Models.FK_TaskMaster_UserMaster1">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="TaskMaster" EntitySet="TaskMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeTracker_TaskMaster" Association="Models.FK_TimeTracker_TaskMaster">
+            <End Role="TaskMaster" EntitySet="TaskMasters" />
+            <End Role="TimeTracker" EntitySet="TimeTrackers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeTracker_UserMaster" Association="Models.FK_TimeTracker_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="TimeTracker" EntitySet="TimeTrackers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityId" />
+          </Key>
+          <Property Name="ActivityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TaskMasterId" Type="Int64" />
+          <Property Name="ProjectId" Type="Int64" />
+          <Property Name="IsOnDashboard" Type="Boolean" Nullable="false" />
+          <Property Name="UserMasterId" Type="Int64" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="UserMaster" Relationship="Models.FK_Activity_UserMaster" FromRole="Activity" ToRole="UserMaster" />
+        </EntityType>
+        <EntityType Name="ChatMaster">
+          <Key>
+            <PropertyRef Name="ChatMasterId" />
+          </Key>
+          <Property Name="ChatMasterId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserMasterId" Type="Int64" Nullable="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectId" Type="Int64" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Project" Relationship="Models.FK_ChatMaster_Project" FromRole="ChatMaster" ToRole="Project" />
+          <NavigationProperty Name="UserMaster" Relationship="Models.FK_ChatMaster_UserMaster" FromRole="ChatMaster" ToRole="UserMaster" />
+        </EntityType>
+        <EntityType Name="CommentMaster">
+          <Key>
+            <PropertyRef Name="CommentMasterId" />
+          </Key>
+          <Property Name="CommentMasterId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserMasterId" Type="Int64" Nullable="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TaskMasterId" Type="Int64" Nullable="false" />
+          <Property Name="ProjectId" Type="Int64" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Project" Relationship="Models.FK_CommentMaster_Project" FromRole="CommentMaster" ToRole="Project" />
+          <NavigationProperty Name="TaskMaster" Relationship="Models.FK_CommentMaster_TaskMaster" FromRole="CommentMaster" ToRole="TaskMaster" />
+          <NavigationProperty Name="UserMaster" Relationship="Models.FK_CommentMaster_UserMaster" FromRole="CommentMaster" ToRole="UserMaster" />
+        </EntityType>
+        <EntityType Name="DependantTask">
+          <Key>
+            <PropertyRef Name="DependantTaskId" />
+          </Key>
+          <Property Name="DependantTaskId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskMasterId" Type="Int64" Nullable="false" />
+          <Property Name="OnDependTaskMasterId" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="TaskMaster" Relationship="Models.FK_DependantTask_TaskMaster" FromRole="DependantTask" ToRole="TaskMaster" />
+          <NavigationProperty Name="TaskMaster1" Relationship="Models.FK_DependantTask_TaskMaster1" FromRole="DependantTask" ToRole="TaskMaster" />
+          <NavigationProperty Name="UserMaster" Relationship="Models.FK_DependantTask_UserMaster" FromRole="DependantTask" ToRole="UserMaster" />
+        </EntityType>
+        <EntityType Name="EmailTemplete">
+          <Key>
+            <PropertyRef Name="EmailTempleteId" />
+          </Key>
+          <Property Name="EmailTempleteId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HashTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FromEmail" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BccEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Link">
+          <Key>
+            <PropertyRef Name="LinkId" />
+          </Key>
+          <Property Name="LinkId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleId" Type="Int64" Nullable="false" />
+          <Property Name="LinkName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Controller" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Action" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ViewIndex" Type="Int32" />
+          <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+          <Property Name="IsSingle" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedById" Type="Int64" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" />
+          <Property Name="IsVisible" Type="Boolean" />
+          <NavigationProperty Name="Module" Relationship="Models.FK_Links_Modules" FromRole="Link" ToRole="Module" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="ModuleId" />
+          </Key>
+          <Property Name="ModuleId" Type="Int64" Nullable="false" />
+          <Property Name="ModuleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CssClass" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ViewIndex" Type="Int32" />
+          <Property Name="CreatedById" Type="Int64" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" />
+          <NavigationProperty Name="Links" Relationship="Models.FK_Links_Modules" FromRole="Module" ToRole="Link" />
+        </EntityType>
+        <EntityType Name="PriorityMaster">
+          <Key>
+            <PropertyRef Name="PriorityMasterId" />
+          </Key>
+          <Property Name="PriorityMasterId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ColorCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagLine" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ClientName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Budget" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="BasicDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConfidentialDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EstimateHours" Type="Int32" />
+          <Property Name="TeamMemberCount" Type="Int32" />
+          <Property Name="ActualTeamMemberCount" Type="Int32" />
+          <Property Name="ProjectStatusMasterId" Type="Int64" />
+          <Property Name="LiveURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="StagingURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="ChatMasters" Relationship="Models.FK_ChatMaster_Project" FromRole="Project" ToRole="ChatMaster" />
+          <NavigationProperty Name="CommentMasters" Relationship="Models.FK_CommentMaster_Project" FromRole="Project" ToRole="CommentMaster" />
+          <NavigationProperty Name="ProjectStatusMaster" Relationship="Models.FK_Project_ProjectStatusMaster" FromRole="Project" ToRole="ProjectStatusMaster" />
+          <NavigationProperty Name="UserMaster" Relationship="Models.FK_Project_UserMaster" FromRole="Project" ToRole="UserMaster" />
+          <NavigationProperty Name="ProjectAssignies" Relationship="Models.FK_ProjectAssigny_Project" FromRole="Project" ToRole="ProjectAssigny" />
+          <NavigationProperty Name="ProjectAttachments" Relationship="Models.FK_ProjectAttachment_Project" FromRole="Project" ToRole="ProjectAttachment" />
+          <NavigationProperty Name="TaskMasters" Relationship="Models.FK_TaskMaster_Project" FromRole="Project" ToRole="TaskMaster" />
+          <NavigationProperty Name="TimeTrackers" Relationship="Models.FK_TimeTracker_Project" FromRole="Project" ToRole="TimeTracker" />
+        </EntityType>
+        <EntityType Name="ProjectAssigny">
+          <Key>
+            <PropertyRef Name="ProjectAssignyId" />
+          </Key>
+          <Property Name="ProjectAssignyId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int64" Nullable="false" />
+          <Property Name="AssignyId" Type="Int64" Nullable="false" />
+          <Property Name="WhoAssign" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="Project" Relationship="Models.FK_ProjectAssigny_Project" FromRole="ProjectAssigny" ToRole="Project" />
+          <NavigationProperty Name="UserMaster" Relationship="Models.FK_ProjectAssigny_Assigny" FromRole="ProjectAssigny" ToRole="UserMaster" />
+          <NavigationProperty Name="UserMaster1" Relationship="Models.FK_ProjectAssigny_Created" FromRole="ProjectAssigny" ToRole="UserMaster" />
+          <NavigationProperty Name="UserMaster2" Relationship="Models.FK_ProjectAssigny_WhoAssign" FromRole="ProjectAssigny" ToRole="UserMaster" />
+        </EntityType>
+        <EntityType Name="ProjectAttachment">
+          <Key>
+            <PropertyRef Name="ProjectAttachmentId" />
+          </Key>
+          <Property Name="ProjectAttachmentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int64" Nullable="false" />
+          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileSize" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="Project" Relationship="Models.FK_ProjectAttachment_Project" FromRole="ProjectAttachment" ToRole="Project" />
+          <NavigationProperty Name="UserMaster" Relationship="Models.FK_ProjectAttachment_UserMaster" FromRole="ProjectAttachment" ToRole="UserMaster" />
+        </EntityType>
+        <EntityType Name="ProjectCategory">
+          <Key>
+            <PropertyRef Name="ProjectCategoryId" />
+          </Key>
+          <Property Name="ProjectCategoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectId" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="UserMaster" Relationship="Models.FK_Category_UserMaster" FromRole="ProjectCategory" ToRole="UserMaster" />
+        </EntityType>
+        <EntityType Name="ProjectStatusMaster">
+          <Key>
+            <PropertyRef Name="ProjectStatusMasterId" />
+          </Key>
+          <Property Name="ProjectStatusMasterId" Type="Int64" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ColorCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Projects" Relationship="Models.FK_Project_ProjectStatusMaster" FromRole="ProjectStatusMaster" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="RoleMaster">
+          <Key>
+            <PropertyRef Name="RoleMasterId" />
+          </Key>
+          <Property Name="RoleMasterId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserMasters" Relationship="Models.FK_UserMaster_RoleMaster" FromRole="RoleMaster" ToRole="UserMaster" />
+          <NavigationProperty Name="UserRights" Relationship="Models.FK_UserRights_RoleMaster" FromRole="RoleMaster" ToRole="UserRight" />
+        </EntityType>
+        <EntityType Name="TaskAttachment">
+          <Key>
+            <PropertyRef Name="TaskAttachmentId" />
+          </Key>
+          <Property Name="TaskAttachmentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskMasterId" Type="Int64" Nullable="false" />
+          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileSize" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="TaskMaster" Relationship="Models.FK_TaskAttachment_TaskMaster" FromRole="TaskAttachment" ToRole="TaskMaster" />
+          <NavigationProperty Name="UserMaster" Relationship="Models.FK_TaskAttachment_UserMaster" FromRole="TaskAttachment" ToRole="UserMaster" />
+        </EntityType>
+        <EntityType Name="TaskCategory">
+          <Key>
+            <PropertyRef Name="TaskCategoryId" />
+          </Key>
+          <Property Name="TaskCategoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectId" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="UserMaster" Relationship="Models.FK_TaskCategory_UserMaster" FromRole="TaskCategory" ToRole="UserMaster" />
+          <NavigationProperty Name="TaskMasters" Relationship="Models.FK_TaskMaster_TaskCategory" FromRole="TaskCategory" ToRole="TaskMaster" />
+        </EntityType>
+        <EntityType Name="TaskMaster">
+          <Key>
+            <PropertyRef Name="TaskMasterId" />
+          </Key>
+          <Property Name="TaskMasterId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TaskCategoryId" Type="Int64" Nullable="false" />
+          <Property Name="ProjectId" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TaskTypeMasterId" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AssignyId" Type="Int64" Nullable="false" />
+          <Property Name="ReporterId" Type="Int64" Nullable="false" />
+          <Property Name="PriorityMasterId" Type="Int64" Nullable="false" />
+          <Property Name="TaskStatusMasterId" Type="Int64" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="EstimateTimeHours" Type="Int32" />
+          <Property Name="ActualTimeHours" Type="Int32" />
+          <Property Name="CompletionPercentage" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="CommentMasters" Relationship="Models.FK_CommentMaster_TaskMaster" FromRole="TaskMaster" ToRole="CommentMaster" />
+          <NavigationProperty Name="DependantTasks" Relationship="Models.FK_DependantTask_TaskMaster" FromRole="TaskMaster" ToRole="DependantTask" />
+          <NavigationProperty Name="DependantTasks1" Relationship="Models.FK_DependantTask_TaskMaster1" FromRole="TaskMaster" ToRole="DependantTask" />
+          <NavigationProperty Name="Project" Relationship="Models.FK_TaskMaster_Project" FromRole="TaskMaster" ToRole="Project" />
+          <NavigationProperty Name="TaskAttachments" Relationship="Models.FK_TaskAttachment_TaskMaster" FromRole="TaskMaster" ToRole="TaskAttachment" />
+          <NavigationProperty Name="TaskCategory" Relationship="Models.FK_TaskMaster_TaskCategory" FromRole="TaskMaster" ToRole="TaskCategory" />
+          <NavigationProperty Name="TaskStatusMaster" Relationship="Models.FK_TaskMaster_TaskStatusMaster" FromRole="TaskMaster" ToRole="TaskStatusMaster" />
+          <NavigationProperty Name="UserMaster" Relationship="Models.FK_TaskMaster_UserMaster" FromRole="TaskMaster" ToRole="UserMaster" />
+          <NavigationProperty Name="UserMaster1" Relationship="Models.FK_TaskMaster_UserMaster1" FromRole="TaskMaster" ToRole="UserMaster" />
+          <NavigationProperty Name="TimeTrackers" Relationship="Models.FK_TimeTracker_TaskMaster" FromRole="TaskMaster" ToRole="TimeTracker" />
+        </EntityType>
+        <EntityType Name="TaskStatusMaster">
+          <Key>
+            <PropertyRef Name="TaskStatusMasterId" />
+          </Key>
+          <Property Name="TaskStatusMasterId" Type="Int64" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ColorCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TaskMasters" Relationship="Models.FK_TaskMaster_TaskStatusMaster" FromRole="TaskStatusMaster" ToRole="TaskMaster" />
+        </EntityType>
+        <EntityType Name="TaskTypeMaster">
+          <Key>
+            <PropertyRef Name="TaskTypeMasterId" />
+          </Key>
+          <Property Name="TaskTypeMasterId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TimeTracker">
+          <Key>
+            <PropertyRef Name="TimeTrackerId" />
+          </Key>
+          <Property Name="TimeTrackerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserMasterId" Type="Int64" Nullable="false" />
+          <Property Name="TaskMasterId" Type="Int64" Nullable="false" />
+          <Property Name="ProjectId" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Hours" Type="Decimal" Nullable="false" Precision="6" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="Project" Relationship="Models.FK_TimeTracker_Project" FromRole="TimeTracker" ToRole="Project" />
+          <NavigationProperty Name="TaskMaster" Relationship="Models.FK_TimeTracker_TaskMaster" FromRole="TimeTracker" ToRole="TaskMaster" />
+          <NavigationProperty Name="UserMaster" Relationship="Models.FK_TimeTracker_UserMaster" FromRole="TimeTracker" ToRole="UserMaster" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserMasterId" />
+          </Key>
+          <Property Name="UserMasterId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hash" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salt" Type="Binary" Nullable="false" MaxLength="512" FixedLength="false" />
+          <Property Name="RoleMasterId" Type="Int64" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Profile" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SkypeId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="BioStatus" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="GoogleId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsTermAccept" Type="Boolean" Nullable="false" />
+          <Property Name="IsEmailVerified" Type="Boolean" Nullable="false" />
+          <Property Name="Tokens" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TokensGenerated" Type="DateTime" Precision="3" />
+          <Property Name="FacebookLink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TwitterLink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LinkedInLink" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="Activities" Relationship="Models.FK_Activity_UserMaster" FromRole="UserMaster" ToRole="Activity" />
+          <NavigationProperty Name="ChatMasters" Relationship="Models.FK_ChatMaster_UserMaster" FromRole="UserMaster" ToRole="ChatMaster" />
+          <NavigationProperty Name="CommentMasters" Relationship="Models.FK_CommentMaster_UserMaster" FromRole="UserMaster" ToRole="CommentMaster" />
+          <NavigationProperty Name="DependantTasks" Relationship="Models.FK_DependantTask_UserMaster" FromRole="UserMaster" ToRole="DependantTask" />
+          <NavigationProperty Name="Projects" Relationship="Models.FK_Project_UserMaster" FromRole="UserMaster" ToRole="Project" />
+          <NavigationProperty Name="ProjectAssignies" Relationship="Models.FK_ProjectAssigny_Assigny" FromRole="UserMaster" ToRole="ProjectAssigny" />
+          <NavigationProperty Name="ProjectAssignies1" Relationship="Models.FK_ProjectAssigny_Created" FromRole="UserMaster" ToRole="ProjectAssigny" />
+          <NavigationProperty Name="ProjectAssignies2" Relationship="Models.FK_ProjectAssigny_WhoAssign" FromRole="UserMaster" ToRole="ProjectAssigny" />
+          <NavigationProperty Name="ProjectAttachments" Relationship="Models.FK_ProjectAttachment_UserMaster" FromRole="UserMaster" ToRole="ProjectAttachment" />
+          <NavigationProperty Name="ProjectCategories" Relationship="Models.FK_Category_UserMaster" FromRole="UserMaster" ToRole="ProjectCategory" />
+          <NavigationProperty Name="RoleMaster" Relationship="Models.FK_UserMaster_RoleMaster" FromRole="UserMaster" ToRole="RoleMaster" />
+          <NavigationProperty Name="TaskAttachments" Relationship="Models.FK_TaskAttachment_UserMaster" FromRole="UserMaster" ToRole="TaskAttachment" />
+          <NavigationProperty Name="TaskCategories" Relationship="Models.FK_TaskCategory_UserMaster" FromRole="UserMaster" ToRole="TaskCategory" />
+          <NavigationProperty Name="TaskMasters" Relationship="Models.FK_TaskMaster_UserMaster" FromRole="UserMaster" ToRole="TaskMaster" />
+          <NavigationProperty Name="TaskMasters1" Relationship="Models.FK_TaskMaster_UserMaster1" FromRole="UserMaster" ToRole="TaskMaster" />
+          <NavigationProperty Name="TimeTrackers" Relationship="Models.FK_TimeTracker_UserMaster" FromRole="UserMaster" ToRole="TimeTracker" />
+        </EntityType>
+        <EntityType Name="UserRight">
+          <Key>
+            <PropertyRef Name="UserRightId" />
+          </Key>
+          <Property Name="UserRightId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleMasterId" Type="Int64" Nullable="false" />
+          <Property Name="LinkId" Type="Int64" Nullable="false" />
+          <Property Name="IsAccess" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateInt" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="RoleMaster" Relationship="Models.FK_UserRights_RoleMaster" FromRole="UserRight" ToRole="RoleMaster" />
+        </EntityType>
+        <Association Name="FK_Activity_UserMaster">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="UserMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatMaster_Project">
+          <End Type="Models.Project" Role="Project" Multiplicity="1" />
+          <End Type="Models.ChatMaster" Role="ChatMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="ChatMaster">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatMaster_UserMaster">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.ChatMaster" Role="ChatMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="ChatMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentMaster_Project">
+          <End Type="Models.Project" Role="Project" Multiplicity="1" />
+          <End Type="Models.CommentMaster" Role="CommentMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="CommentMaster">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentMaster_TaskMaster">
+          <End Type="Models.TaskMaster" Role="TaskMaster" Multiplicity="1" />
+          <End Type="Models.CommentMaster" Role="CommentMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskMaster">
+              <PropertyRef Name="TaskMasterId" />
+            </Principal>
+            <Dependent Role="CommentMaster">
+              <PropertyRef Name="TaskMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentMaster_UserMaster">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.CommentMaster" Role="CommentMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="CommentMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DependantTask_TaskMaster">
+          <End Type="Models.TaskMaster" Role="TaskMaster" Multiplicity="1" />
+          <End Type="Models.DependantTask" Role="DependantTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskMaster">
+              <PropertyRef Name="TaskMasterId" />
+            </Principal>
+            <Dependent Role="DependantTask">
+              <PropertyRef Name="TaskMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DependantTask_TaskMaster1">
+          <End Type="Models.TaskMaster" Role="TaskMaster" Multiplicity="1" />
+          <End Type="Models.DependantTask" Role="DependantTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskMaster">
+              <PropertyRef Name="TaskMasterId" />
+            </Principal>
+            <Dependent Role="DependantTask">
+              <PropertyRef Name="OnDependTaskMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DependantTask_UserMaster">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.DependantTask" Role="DependantTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="DependantTask">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Links_Modules">
+          <End Type="Models.Module" Role="Module" Multiplicity="1" />
+          <End Type="Models.Link" Role="Link" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ModuleId" />
+            </Principal>
+            <Dependent Role="Link">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ProjectStatusMaster">
+          <End Type="Models.ProjectStatusMaster" Role="ProjectStatusMaster" Multiplicity="0..1" />
+          <End Type="Models.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectStatusMaster">
+              <PropertyRef Name="ProjectStatusMasterId" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ProjectStatusMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_UserMaster">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectAssigny_Project">
+          <End Type="Models.Project" Role="Project" Multiplicity="1" />
+          <End Type="Models.ProjectAssigny" Role="ProjectAssigny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="ProjectAssigny">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectAttachment_Project">
+          <End Type="Models.Project" Role="Project" Multiplicity="1" />
+          <End Type="Models.ProjectAttachment" Role="ProjectAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="ProjectAttachment">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskMaster_Project">
+          <End Type="Models.Project" Role="Project" Multiplicity="1" />
+          <End Type="Models.TaskMaster" Role="TaskMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="TaskMaster">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeTracker_Project">
+          <End Type="Models.Project" Role="Project" Multiplicity="1" />
+          <End Type="Models.TimeTracker" Role="TimeTracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="TimeTracker">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectAssigny_Assigny">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.ProjectAssigny" Role="ProjectAssigny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="ProjectAssigny">
+              <PropertyRef Name="AssignyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectAssigny_Created">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.ProjectAssigny" Role="ProjectAssigny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="ProjectAssigny">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectAssigny_WhoAssign">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.ProjectAssigny" Role="ProjectAssigny" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="ProjectAssigny">
+              <PropertyRef Name="WhoAssign" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectAttachment_UserMaster">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.ProjectAttachment" Role="ProjectAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="ProjectAttachment">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Category_UserMaster">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.ProjectCategory" Role="ProjectCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="ProjectCategory">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMaster_RoleMaster">
+          <End Type="Models.RoleMaster" Role="RoleMaster" Multiplicity="1" />
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="RoleMasterId" />
+            </Principal>
+            <Dependent Role="UserMaster">
+              <PropertyRef Name="RoleMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRights_RoleMaster">
+          <End Type="Models.RoleMaster" Role="RoleMaster" Multiplicity="1" />
+          <End Type="Models.UserRight" Role="UserRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="RoleMasterId" />
+            </Principal>
+            <Dependent Role="UserRight">
+              <PropertyRef Name="RoleMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskAttachment_TaskMaster">
+          <End Type="Models.TaskMaster" Role="TaskMaster" Multiplicity="1" />
+          <End Type="Models.TaskAttachment" Role="TaskAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskMaster">
+              <PropertyRef Name="TaskMasterId" />
+            </Principal>
+            <Dependent Role="TaskAttachment">
+              <PropertyRef Name="TaskMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskAttachment_UserMaster">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.TaskAttachment" Role="TaskAttachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="TaskAttachment">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskCategory_UserMaster">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.TaskCategory" Role="TaskCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="TaskCategory">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskMaster_TaskCategory">
+          <End Type="Models.TaskCategory" Role="TaskCategory" Multiplicity="1" />
+          <End Type="Models.TaskMaster" Role="TaskMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskCategory">
+              <PropertyRef Name="TaskCategoryId" />
+            </Principal>
+            <Dependent Role="TaskMaster">
+              <PropertyRef Name="TaskCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskMaster_TaskStatusMaster">
+          <End Type="Models.TaskStatusMaster" Role="TaskStatusMaster" Multiplicity="1" />
+          <End Type="Models.TaskMaster" Role="TaskMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskStatusMaster">
+              <PropertyRef Name="TaskStatusMasterId" />
+            </Principal>
+            <Dependent Role="TaskMaster">
+              <PropertyRef Name="TaskStatusMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskMaster_UserMaster">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.TaskMaster" Role="TaskMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="TaskMaster">
+              <PropertyRef Name="AssignyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskMaster_UserMaster1">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.TaskMaster" Role="TaskMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="TaskMaster">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeTracker_TaskMaster">
+          <End Type="Models.TaskMaster" Role="TaskMaster" Multiplicity="1" />
+          <End Type="Models.TimeTracker" Role="TimeTracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskMaster">
+              <PropertyRef Name="TaskMasterId" />
+            </Principal>
+            <Dependent Role="TimeTracker">
+              <PropertyRef Name="TaskMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeTracker_UserMaster">
+          <End Type="Models.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="Models.TimeTracker" Role="TimeTracker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserMasterId" />
+            </Principal>
+            <Dependent Role="TimeTracker">
+              <PropertyRef Name="UserMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="Activities">
+            <EntityTypeMapping TypeName="Models.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="UserMasterId" ColumnName="UserMasterId" />
+                <ScalarProperty Name="IsOnDashboard" ColumnName="IsOnDashboard" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="TaskMasterId" ColumnName="TaskMasterId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChatMasters">
+            <EntityTypeMapping TypeName="Models.ChatMaster">
+              <MappingFragment StoreEntitySet="ChatMaster">
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="UserMasterId" ColumnName="UserMasterId" />
+                <ScalarProperty Name="ChatMasterId" ColumnName="ChatMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentMasters">
+            <EntityTypeMapping TypeName="Models.CommentMaster">
+              <MappingFragment StoreEntitySet="CommentMaster">
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="TaskMasterId" ColumnName="TaskMasterId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="UserMasterId" ColumnName="UserMasterId" />
+                <ScalarProperty Name="CommentMasterId" ColumnName="CommentMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DependantTasks">
+            <EntityTypeMapping TypeName="Models.DependantTask">
+              <MappingFragment StoreEntitySet="DependantTask">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDateInt" ColumnName="UpdatedDateInt" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="OnDependTaskMasterId" ColumnName="OnDependTaskMasterId" />
+                <ScalarProperty Name="TaskMasterId" ColumnName="TaskMasterId" />
+                <ScalarProperty Name="DependantTaskId" ColumnName="DependantTaskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailTempletes">
+            <EntityTypeMapping TypeName="Models.EmailTemplete">
+              <MappingFragment StoreEntitySet="EmailTemplete">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDateInt" ColumnName="UpdatedDateInt" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="BccEmail" ColumnName="BccEmail" />
+                <ScalarProperty Name="FromEmail" ColumnName="FromEmail" />
+                <ScalarProperty Name="HashTag" ColumnName="HashTag" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmailTempleteId" ColumnName="EmailTempleteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Links">
+            <EntityTypeMapping TypeName="Models.Link">
+              <MappingFragment StoreEntitySet="Links">
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="IsSingle" ColumnName="IsSingle" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="ViewIndex" ColumnName="ViewIndex" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="LinkName" ColumnName="LinkName" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="LinkId" ColumnName="LinkId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="Models.Module">
+              <MappingFragment StoreEntitySet="Modules">
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="ViewIndex" ColumnName="ViewIndex" />
+                <ScalarProperty Name="CssClass" ColumnName="CssClass" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriorityMasters">
+            <EntityTypeMapping TypeName="Models.PriorityMaster">
+              <MappingFragment StoreEntitySet="PriorityMaster">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PriorityMasterId" ColumnName="PriorityMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="Models.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDateInt" ColumnName="UpdatedDateInt" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="StagingURL" ColumnName="StagingURL" />
+                <ScalarProperty Name="LiveURL" ColumnName="LiveURL" />
+                <ScalarProperty Name="ProjectStatusMasterId" ColumnName="ProjectStatusMasterId" />
+                <ScalarProperty Name="ActualTeamMemberCount" ColumnName="ActualTeamMemberCount" />
+                <ScalarProperty Name="TeamMemberCount" ColumnName="TeamMemberCount" />
+                <ScalarProperty Name="EstimateHours" ColumnName="EstimateHours" />
+                <ScalarProperty Name="ConfidentialDescription" ColumnName="ConfidentialDescription" />
+                <ScalarProperty Name="BasicDescription" ColumnName="BasicDescription" />
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TagLine" ColumnName="TagLine" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectAssignies">
+            <EntityTypeMapping TypeName="Models.ProjectAssigny">
+              <MappingFragment StoreEntitySet="ProjectAssigny">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDateInt" ColumnName="UpdatedDateInt" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="WhoAssign" ColumnName="WhoAssign" />
+                <ScalarProperty Name="AssignyId" ColumnName="AssignyId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectAssignyId" ColumnName="ProjectAssignyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectAttachments">
+            <EntityTypeMapping TypeName="Models.ProjectAttachment">
+              <MappingFragment StoreEntitySet="ProjectAttachment">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDateInt" ColumnName="UpdatedDateInt" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectAttachmentId" ColumnName="ProjectAttachmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectCategories">
+            <EntityTypeMapping TypeName="Models.ProjectCategory">
+              <MappingFragment StoreEntitySet="ProjectCategory">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDateInt" ColumnName="UpdatedDateInt" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProjectCategoryId" ColumnName="ProjectCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectStatusMasters">
+            <EntityTypeMapping TypeName="Models.ProjectStatusMaster">
+              <MappingFragment StoreEntitySet="ProjectStatusMaster">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ProjectStatusMasterId" ColumnName="ProjectStatusMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleMasters">
+            <EntityTypeMapping TypeName="Models.RoleMaster">
+              <MappingFragment StoreEntitySet="RoleMaster">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleMasterId" ColumnName="RoleMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskAttachments">
+            <EntityTypeMapping TypeName="Models.TaskAttachment">
+              <MappingFragment StoreEntitySet="TaskAttachment">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDateInt" ColumnName="UpdatedDateInt" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="TaskMasterId" ColumnName="TaskMasterId" />
+                <ScalarProperty Name="TaskAttachmentId" ColumnName="TaskAttachmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskCategories">
+            <EntityTypeMapping TypeName="Models.TaskCategory">
+              <MappingFragment StoreEntitySet="TaskCategory">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDateInt" ColumnName="UpdatedDateInt" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TaskCategoryId" ColumnName="TaskCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskMasters">
+            <EntityTypeMapping TypeName="Models.TaskMaster">
+              <MappingFragment StoreEntitySet="TaskMaster">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDateInt" ColumnName="UpdatedDateInt" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CompletionPercentage" ColumnName="CompletionPercentage" />
+                <ScalarProperty Name="ActualTimeHours" ColumnName="ActualTimeHours" />
+                <ScalarProperty Name="EstimateTimeHours" ColumnName="EstimateTimeHours" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="TaskStatusMasterId" ColumnName="TaskStatusMasterId" />
+                <ScalarProperty Name="PriorityMasterId" ColumnName="PriorityMasterId" />
+                <ScalarProperty Name="ReporterId" ColumnName="ReporterId" />
+                <ScalarProperty Name="AssignyId" ColumnName="AssignyId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TaskTypeMasterId" ColumnName="TaskTypeMasterId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="TaskCategoryId" ColumnName="TaskCategoryId" />
+                <ScalarProperty Name="TaskCode" ColumnName="TaskCode" />
+                <ScalarProperty Name="TaskMasterId" ColumnName="TaskMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskStatusMasters">
+            <EntityTypeMapping TypeName="Models.TaskStatusMaster">
+              <MappingFragment StoreEntitySet="TaskStatusMaster">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TaskStatusMasterId" ColumnName="TaskStatusMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskTypeMasters">
+            <EntityTypeMapping TypeName="Models.TaskTypeMaster">
+              <MappingFragment StoreEntitySet="TaskTypeMaster">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="TaskTypeMasterId" ColumnName="TaskTypeMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeTrackers">
+            <EntityTypeMapping TypeName="Models.TimeTracker">
+              <MappingFragment StoreEntitySet="TimeTracker">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDateInt" ColumnName="UpdatedDateInt" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Hours" ColumnName="Hours" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="TaskMasterId" ColumnName="TaskMasterId" />
+                <ScalarProperty Name="UserMasterId" ColumnName="UserMasterId" />
+                <ScalarProperty Name="TimeTrackerId" ColumnName="TimeTrackerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="Models.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDateInt" ColumnName="UpdatedDateInt" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LinkedInLink" ColumnName="LinkedInLink" />
+                <ScalarProperty Name="TwitterLink" ColumnName="TwitterLink" />
+                <ScalarProperty Name="FacebookLink" ColumnName="FacebookLink" />
+                <ScalarProperty Name="TokensGenerated" ColumnName="TokensGenerated" />
+                <ScalarProperty Name="Tokens" ColumnName="Tokens" />
+                <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
+                <ScalarProperty Name="IsTermAccept" ColumnName="IsTermAccept" />
+                <ScalarProperty Name="GoogleId" ColumnName="GoogleId" />
+                <ScalarProperty Name="BioStatus" ColumnName="BioStatus" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="SkypeId" ColumnName="SkypeId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Profile" ColumnName="Profile" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="RoleMasterId" ColumnName="RoleMasterId" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="Hash" ColumnName="Hash" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserMasterId" ColumnName="UserMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRights">
+            <EntityTypeMapping TypeName="Models.UserRight">
+              <MappingFragment StoreEntitySet="UserRights">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateInt" ColumnName="CreatedDateInt" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsAccess" ColumnName="IsAccess" />
+                <ScalarProperty Name="LinkId" ColumnName="LinkId" />
+                <ScalarProperty Name="RoleMasterId" ColumnName="RoleMasterId" />
+                <ScalarProperty Name="UserRightId" ColumnName="UserRightId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

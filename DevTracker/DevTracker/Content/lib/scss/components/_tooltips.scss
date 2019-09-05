@@ -1,0 +1,27 @@
+//----------------------------------
+//   File          : scss/components/_tooltips.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Bootstrap Tooltips Override
+//----------------------------------
+.tooltip {
+	@include typo($ff-regular,$font-sm,$white,center);
+
+    [class*=bg-] {
+		@include radius();
+        > .tooltip-inner {
+			@include space();
+			background-color: inherit;
+        }
+    }
+
+    &.top [class*=bg-] .tooltip-arrow { border-top-color: inherit; }
+    &.right [class*=bg-] .tooltip-arrow { border-right-color: inherit; }
+    &.bottom [class*=bg-] .tooltip-arrow { border-bottom-color: inherit; }
+    &.left [class*=bg-] .tooltip-arrow { border-left-color: inherit; }
+}
+
+.tooltip-inner {
+    @include space();
+}

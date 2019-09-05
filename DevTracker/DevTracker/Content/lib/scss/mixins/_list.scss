@@ -1,0 +1,27 @@
+//----------------------------------
+//   File          : scss/mixins/_list.scss
+//   Type          : SCSS mixin
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+// ---------------------------------
+
+%list{
+    display: inline-block;
+    float: left;
+}
+
+@mixin inline-list {
+    list-style:none;
+    padding:0;
+    margin:0;
+    overflow:hidden;
+    @extend %clearfix;
+    > li{
+        display:inline-block;
+        float:left;
+        &:last-child{
+            margin-right:0px;
+        }
+    }
+    @content;
+}

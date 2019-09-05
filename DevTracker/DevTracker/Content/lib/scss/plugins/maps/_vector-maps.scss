@@ -1,0 +1,54 @@
+//----------------------------------
+//   File          : scss/plugins/maps/_vector-maps.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+.map-container {
+    @include h(500px);
+}
+.vector-map-container {
+    @include h(500px);
+
+    .chart {
+        @include w(100%);
+    	position: relative;
+    }
+    .chart-container {
+        @include w(100%);
+    	position: relative;
+    }
+    .bullet-title,
+    .c3-text,
+    .c3-tooltip th {
+        @include ff($ff-semibold);
+    }
+}
+
+.jvectormap-label {
+    @include p-vh(6,12);
+    @include radius($radius);
+	position: absolute;
+	display: none;
+	background-color: $theme-color;
+	color: $white;
+}
+.jvectormap-zoomin,
+.jvectormap-zoomout {
+    @include pos(absolute,10px,null,null,10px);
+    @include radius($radius);
+    @include p(8);
+    @include typo($ff-bold,18px,$white,center){
+        @include lh(12px);
+    }
+	cursor: pointer;
+	background-color: $theme-color;
+	text-align: center;
+	&:hover {
+		background-color: lighten($theme-color,10%);
+	}
+}
+.jvectormap-zoomout {
+    @include pos(absolute,40px,null,null,10px);
+}

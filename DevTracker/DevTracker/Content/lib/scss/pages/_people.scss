@@ -1,0 +1,25 @@
+//----------------------------------
+//   File          : scss/pages/_people.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+@include media(phablet,max){
+    #contacts{
+        tbody{
+            tr{
+                td{
+                    @include p-r(0);
+                }
+                td:last-child{
+                    @include p-r(16);
+                }
+                td:nth-child(3),
+                td:nth-child(4){
+                    display: none;
+                }
+            }
+        }
+    }
+}

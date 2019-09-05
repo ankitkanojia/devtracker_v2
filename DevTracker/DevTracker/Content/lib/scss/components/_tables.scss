@@ -1,0 +1,567 @@
+//----------------------------------
+//   File          : scss/components/_tables.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Bootstrap Tables Override
+//----------------------------------
+
+//----------------------------------
+// Table of contents
+//----------------------------------
+// 1. Tables
+// 2. Table borders
+// 3. Table sizing
+// 4. Bordered table
+// 5. Striped table
+// 6. Hover table
+// 7. Table backgrounds
+
+
+//----------------------------------
+// 1. Tables
+//----------------------------------
+.panel>.panel-body+.table,
+.panel>.panel-body+.table-responsive,
+.panel>.table+.panel-body,
+.panel>.table-responsive+.panel-body{
+	@include bt(2,solid,$table-header-footer-border);
+}
+
+th {
+	@include ff($ff-semibold);
+}
+
+.table {
+	@include m-b(0);
+
+    > thead,
+    > tbody,
+    > tfoot {
+        > tr {
+            > th,
+            > td {
+				background: $table-header-footer-bg;
+                vertical-align: middle;
+				@include bt(1,solid,$table-header-footer-border);
+				color: $table-header-footer-text-color;
+            }
+			&.success{
+				>th,>td{
+					background: c100(palette($success));
+					color: set-color(c100(palette($success)));
+				}
+			}
+			&.danger{
+				>th,>td{
+					background: c100(palette($danger));
+					color: set-color(c100(palette($danger)));
+				}
+			}
+			&.warning{
+				>th,>td{
+					background: c100(palette($warning));
+					color: set-color(c100(palette($warning)));
+				}
+			}
+			&.info{
+				>th,>td{
+					background: c100(palette($info));
+					color: set-color(c100(palette($info)));
+				}
+			}
+			h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6{
+				small{
+					@include m-t(5);
+				}
+			}
+        }
+		> tr[class*=bg-] {
+            > th,
+            > td {
+				background: inherit;
+            }
+		}
+    }
+
+	> tbody {
+        > tr {
+            > th,
+            > td {
+				color: $table-data-text-color;
+				background: $table-row-bg;
+				@include bt(1,solid,$table-row-border);
+            }
+		}
+		> tr[class*=bg-] {
+            > th,
+            > td {
+				background: inherit;
+            }
+		}
+	}
+
+    .panel[class*=bg-] &,
+    &[class*=bg-] {
+        > thead,
+        > tbody,
+        > tfoot {
+            > tr {
+                > th,
+                > td {
+					color:$white;
+                    border-color: white(0.2);
+                }
+            }
+        }
+    }
+    tr {
+        &[class*=bg-] {
+            > td{
+				color:$white;
+                border-color:$table-row-border;
+			}
+            > th {
+				color:$white;
+                border-color:$table-header-footer-border;
+            }
+        }
+
+        > td[class*=bg-],
+        > th[class*=bg-] {
+			color:$white;
+            border-color: $white;
+        }
+    }
+
+    > thead {
+        > tr[class*=border-bottom-] {
+            > th,
+            > td {
+                border-bottom-color: inherit;
+            }
+        }
+    }
+
+    > tbody,
+    > tfoot {
+        > tr[class*=border-top-] {
+            > th,
+            > td {
+                border-top-color: inherit;
+            }
+        }
+    }
+
+    > thead > tr > th {
+		@include bb(1,solid,$table-header-footer-border);
+    }
+    > tfoot > tr > th {
+		@include bt(1,solid,$table-header-footer-border);
+    }
+}
+
+.table:not(.table-bordered):not(.table-framed) {
+    .table-responsive + .table-responsive > &,
+    & + & {
+		@include bt(1,solid,$table-header-footer-border);
+    }
+}
+
+.panel-body {
+    + .table,
+    + .table-responsive > .table {
+        > tbody:first-child > tr:first-child {
+            > td,
+            > th {
+                border-top: 0;
+            }
+        }
+    }
+}
+
+.modal-body {
+    + .table-responsive > .table,
+    + .table {
+		@include bb(1,solid,$table-header-footer-border);
+    }
+
+    + .table-responsive {
+        border: 0;
+    }
+}
+
+.panel[class*=bg-] {
+    > .panel-body {
+        + .table,
+        + .table-responsive {
+            border-color: $white;
+        }
+    }
+}
+
+
+//----------------------------------
+// 2. Table borders
+//----------------------------------
+
+.table {
+    > thead > tr {
+        &.border-solid {
+            > th,
+            > td {
+                border-bottom-width: 2px;
+            }
+        }
+    }
+    > tbody > tr,
+    > tfoot > tr {
+        &.border-solid {
+            > td,
+            > th {
+                border-top-width: 2px;
+            }
+        }
+    }
+}
+
+.table-bordered {
+    > thead > tr {
+        &.border-solid:first-child {
+            > th,
+            > td {
+                border-bottom-width: 2px;
+            }
+        }
+    }
+	> thead > tr,
+	> tfoot > tr {
+		>th,
+		>td{
+			@include b(1,solid,$table-header-footer-border);
+		}
+	}
+	> tbody > tr {
+		>th,
+		>td{
+			@include b(1,solid,$table-row-border);
+		}
+	}
+}
+
+// Double border
+.table {
+    > thead > tr {
+        &.border-double {
+            > th,
+            > td {
+                border-bottom-width: 3px;
+                border-bottom-style: double;
+            }
+        }
+    }
+
+    > tbody > tr,
+    > tfoot > tr {
+        &.border-double {
+            > td,
+            > th {
+                border-top-width: 3px;
+                border-top-style: double;
+            }
+        }
+    }
+}
+
+.table-bordered {
+    > thead > tr.border-double:first-child {
+        > th,
+        > td {
+            border-bottom-width: 3px;
+            border-bottom-style: double;
+        }
+    }
+}
+
+// Dashed border
+.table {
+    > tbody > tr {
+        &.border-dashed {
+            > td,
+            > th {
+                border-top-style: dashed;
+            }
+        }
+    }
+}
+
+// Framed table
+.table-framed {
+    &,
+    .panel > &,
+    .panel > .table-responsive > & {
+        @include b(1,solid,$table-header-footer-border);
+    }
+}
+
+// Borderless table
+.table-borderless {
+    > tbody {
+        > tr {
+            > td,
+            > th {
+                border: 0;
+            }
+        }
+    }
+}
+
+// Columned table
+.table-columned {
+    > tbody {
+        > tr {
+            > td,
+            > th {
+                border: 0;
+				@include bl(1,solid,$table-row-border);
+
+                &:first-child {
+                    border-left: 0;
+                }
+            }
+        }
+    }
+
+    > thead,
+    > tfoot {
+        > tr {
+            > th,
+            > td {
+				@include bl(1,solid,$table-header-footer-border);
+
+                &:first-child {
+                    border-left: 0;
+                }
+            }
+        }
+    }
+}
+
+
+//----------------------------------
+// 3. Table sizing
+//----------------------------------
+.table {
+    > thead,
+    > tbody,
+    > tfoot {
+        > tr {
+            > th,
+            > td {
+                @include p-vh($space-base *2, $space-base *4);
+				@include typo(inherit,$font-base,$table-data-text-color,inherit);
+				ul.icons-list{
+					li.dropdown{
+						a.dropdown-toggle{
+							&:after{
+								position: relative;
+								top:2px;
+							}
+						}
+					}
+					i{
+						top:-2px;
+					}
+				}
+            }
+        }
+    }
+	> thead,
+    > tfoot {
+		> tr {
+            > th,
+            > td {
+				@include typo($ff-semibold,$font-base,$table-header-footer-text-color,inherit);
+			}
+		}
+	}
+}
+
+// XLarge
+.table-xlg {
+    > thead,
+    > tbody,
+    > tfoot {
+        > tr {
+            > th,
+            > td {
+				@include p-vh($space-xlg *2, $space-xlg *4);
+				@include typo(inherit,$font-lg,$table-data-text-color,inherit);
+            }
+        }
+    }
+	> thead,
+    > tfoot {
+		> tr {
+            > th,
+            > td {
+				@include typo($ff-semibold,$font-base,$table-header-footer-text-color,inherit);
+			}
+		}
+	}
+}
+
+// Large
+.table-lg {
+    > thead,
+    > tbody,
+    > tfoot {
+        > tr {
+            > th,
+            > td {
+				@include p-vh($space-lg *2, $space-lg *4);
+				@include typo(inherit,$font-base,$table-data-text-color,inherit);
+            }
+        }
+    }
+	> thead,
+    > tfoot {
+		> tr {
+            > th,
+            > td {
+				@include typo($ff-semibold,$font-base,$table-header-footer-text-color,inherit);
+			}
+		}
+	}
+}
+
+// Small
+.table-sm {
+    > thead,
+    > tbody,
+    > tfoot {
+        > tr {
+            > th,
+            > td {
+                @include p-vh($space-sm *2, $space-sm *4);
+				@include typo(inherit,$font-sm,$table-data-text-color,inherit);
+            }
+        }
+    }
+	> thead,
+    > tfoot {
+		> tr {
+            > th,
+            > td {
+				@include typo($ff-semibold,$font-base,$table-header-footer-text-color,inherit);
+			}
+		}
+	}
+}
+
+
+//----------------------------------
+// 4. Bordered table
+//----------------------------------
+.table-bordered {
+    tr:first-child {
+        > td,
+        > th {
+            @include bt(1,solid,$table-header-footer-border);
+        }
+    }
+
+    // Inside colored table elements
+    tr[class*=bg-] > th,
+    tr[class*=bg-] > td,
+    tr > th[class*=bg-],
+    tr > td[class*=bg-] {
+        border-color: $white;
+    }
+}
+
+
+//----------------------------------
+// 5. Striped table
+//----------------------------------
+.table-striped {
+	>tbody>tr:nth-of-type(odd){
+		>td{
+			background-color: $table-row-striped-bg;
+		}
+	}
+    .panel[class*=bg-] & > tbody > tr:nth-child(odd),
+	&[class*=bg-] > tbody > tr:nth-child(odd) {
+        background-color: black(0.05);
+    }
+}
+
+
+//----------------------------------
+// 6. Hover table
+//----------------------------------
+.table-hover {
+    > tbody > tr:hover {
+        > th,
+        > td {
+            background-color: $table-row-hover-bg;
+        }
+    }
+
+    .panel[class*=bg-] & > tbody > tr:hover,
+    &[class*=bg-] > tbody > tr:hover {
+        background-color: black(0.1);
+    }
+}
+.table[class*=bg-]{
+	&.table-hover{
+		> tbody > tr:hover {
+			> th,
+			> td {
+				background-color: black(0.05);
+				color:$white;
+			}
+		}
+	}
+}
+
+
+//----------------------------------
+// 7. Table backgrounds
+//----------------------------------
+.panel[class*=bg-] .panel-body > .table,
+.panel[class*=bg-] .panel-body > .table-responsive > .table,
+.table[class*=bg-] {
+    .active > th,
+    .active > td,
+    th.active,
+    td.active {
+        background-color: black(0.15);
+    }
+}
+
+.table[class*=bg-] {
+	>thead,
+	>tbody,
+	>tfoot{
+		>tr{
+			>th,
+			>td{
+				background: inherit;
+			}
+		}
+	}
+}
+
+
+.footable-row-detail-cell{
+	.footable-row-detail-inner{
+		.footable-row-detail-name{
+			display: inline-block;
+		}
+		.footable-row-detail-value{
+			display: inline-block;
+			float: right;
+		}
+	}
+}

@@ -1,0 +1,72 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="theme-color" content="#1C2B36" />
+    <title>DevTracker</title>
+
+    <!-- Favicon -->
+    <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png" sizes="144x144">
+    <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png" sizes="114x114">
+    <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png" sizes="72x72">
+    <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png">
+    <link href="~/Content/img/favicon.ico" rel="icon" type="image/png">
+    <link href="~/Content/img/favicon.ico" rel="shortcut icon">
+    <!-- /Favicon -->
+    <!-- Global stylesheets -->
+    <link type="text/css" rel="stylesheet" href="~/Content/lib/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="~/Content/lib/css/animate.min.css">
+    <link type="text/css" rel="stylesheet" href="~/Content/lib/css/main.css">
+    <!-- /Global stylesheets -->
+</head>
+
+<body>
+
+    <!-- Error wrapper -->
+    <div class="error-container text-center">
+        <img src="~/Content/img/error/maintenance.png" class="error_img" alt="" />
+        <h1 class="text-light m-b-20">Page under maintenance.</h1>
+
+        <div class="row-fluid">
+            <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
+                <form action="#" class="main-search">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn bg-slate btn-icon"><i class="icon-search4"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-20">
+                        <div class="col-sm-12">
+                            <a href="@Url.Action("Index", "Dashboard")" clas class="btn btn-danger btn-labeled btn-block">
+                                <b>
+                                    <i class="icon-lock"></i>
+                                </b> Go to dashboard
+                            </a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="pull-left">
+                © @DateTime.Now.Year DevTracker&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;  Developed By <a href="http://riowebs.com" target="_blank">Riowebs PVT LTD</a>.
+            </div>
+            <div class="pull-right">
+                <div class="label label-info">Developer Mode</div>
+            </div>
+        </div>
+    </div>
+    <!-- /error wrapper -->
+
+</body>
+</html>

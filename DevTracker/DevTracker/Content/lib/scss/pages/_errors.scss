@@ -1,0 +1,58 @@
+//----------------------------------
+//   File          : scss/pages/_errors.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+.error-container{
+    @include size(100%,110.9%);
+    display: table;
+    position: absolute;
+    background-color: $error-bg-color;
+    background-image: url(#{$error-bg-image});
+    background: linear-gradient(rgba($error-bg-tint-color, $error-bg-tint-opacity), rgba($error-bg-tint-color, $error-bg-tint-opacity)), url(#{$error-bg-image});
+    background-repeat: no-repeat;
+    background-position: #{$error-bg-position};
+    background-size: #{$error-bg-size};
+	color: $error-text-color;
+
+	h1,h2,h3,h4,h5,h6{
+		color: $error-heading-color;
+	}
+
+	p,span{
+		color: $error-text-color;
+	}
+
+	.error_img {
+		@include m-t(60);
+		@include m-b(20);
+		@include w(40%);
+	}
+
+	@include media(desktop-lg,min) {
+		.error_img {
+			@include w(25%);
+			@include m-t(100);
+			@include m-b(50);
+		}
+	}
+
+	.footer{
+		@include w(100%);
+		@include p(20);
+		@include pos(absolute,null,null,0,null);
+		@include fs($font-sm);
+		color: $authentication-footer-text-color;
+		a{
+			color: $authentication-footer-link-color;
+			@include bb(1,dotted,$authentication-footer-link-color);
+		}
+
+		@include media(phablet,max){
+			@include fs($font-xs);
+		}
+	}
+
+}

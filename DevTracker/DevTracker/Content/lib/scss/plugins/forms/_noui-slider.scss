@@ -1,0 +1,374 @@
+//----------------------------------
+//   File          : scss/plugins/forms/_noui-slider.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+@if($element-style == 'rounded'){
+	$radius: $radius;
+}
+@else if($element-style == 'flat'){
+	$radius: 0;
+}
+@else if($element-style == 'default'){
+	$radius: 100px;
+}
+
+.noUi-target {
+	@include m-b(10);
+	touch-action: none;
+	user-select: none;
+	box-sizing: border-box;
+	position: relative;
+	@include radius($radius);
+	@include b(1,solid,$element-border-color);
+	* {
+		touch-action: none;
+		user-select: none;
+		box-sizing: border-box;
+	}
+}
+.noUi-base {
+	@include size(100%);
+	position: relative;
+	z-index: 1;
+	@include animation(transform, translate3d(0,0,0));
+}
+.noUi-origin {
+	@include pos(absolute,0,0,0,0);
+	@include radius($radius);
+}
+.noUi-handle {
+	@include b(1,solid,$element-handle-color);
+	@include radius($radius);
+	position: relative;
+	z-index: 1;
+	background: $element-handle-color;
+	cursor: default;
+	@include animation(transform, translate3d(0,0,0));
+	&:before,
+	&:after {
+		@include size(1px,10px);
+		@include pos(absolute,4px,null,null,7px);
+		content: "";
+		display: block;
+		background: $white;
+	}
+	&:after {
+		left: 10px;
+	}
+	&:hover {
+		&:after {
+			opacity: .9;
+			filter: alpha(opacity=90);
+		}
+		.noUi-tooltip {
+			display: block;
+		}
+	}
+	&:active:after {
+		opacity: .9;
+		filter: alpha(opacity=90);
+	}
+	&:focus:after {
+		opacity: .9;
+		filter: alpha(opacity=90);
+	}
+}
+.noUi-horizontal {
+	@include h(10px);
+	.noUi-handle {
+		@include size(20px);
+		left: -14px;
+		top: -6px;
+	}
+	&.noUi-extended {
+		@include p-vh(0,15);
+		.noUi-origin {
+			right: -15px;
+		}
+	}
+	&.has-pips {
+		@include m-b(35);
+	}
+}
+.noUi-vertical {
+	@include size(10px,150px);
+	display: inline-block;
+	.noUi-handle {
+		@include size(20px);
+		top: -9px;
+		left: -6px;
+		&:before,
+		&:after {
+			@include size(10px,1px);
+			left: 4px;
+			top: 7px;
+		}
+		&:after {
+			top: 11px;
+		}
+	}
+	.noUi-draggable {
+		cursor: n-resize;
+	}
+	&.noUi-extended {
+		@include p-vh(15,0);
+		.noUi-origin {
+			bottom: -15px;
+		}
+	}
+	&.has-pips {
+		@include m-r(35);
+	}
+	.noUi-dragable {
+		cursor: n-resize;
+	}
+	+ .noUi-vertical {
+		@include m-l(20);
+	}
+}
+.noUi-background {
+	background: $element-inactive-color;
+	box-shadow: 2px 2px 0 0 darken($element-inactive-color,5%) inset;
+	-moz-box-shadow: 2px 2px 0 0 darken($element-inactive-color,5%) inset;
+	-webkit-box-shadow: 2px 2px 0 0 darken($element-inactive-color,5%) inset;
+}
+.noUi-connect {
+	background: $element-active-color;
+	@include animation(transition, background 450ms);
+}
+.noUi-draggable {
+	cursor: w-resize;
+}
+[disabled] {
+	&.noUi-connect,
+	.noUi-connect {
+		background: $element-active-color;
+	}
+	&.noUi-origin,
+	.noUi-handle {
+		cursor: not-allowed;
+	}
+	.noUI-background {
+		opacity: .75;
+		filter: alpha(opacity=75);
+	}
+}
+.irs {
+	display: block;
+}
+.noUi-dragable {
+	cursor: w-resize;
+}
+.noUi-marker {
+	position: absolute;
+	background-color: $text-color;
+}
+.noUi-pips {
+	position: absolute;
+	color: $text-color;
+}
+.noUi-tooltip {
+	@include w(60px);
+	@include pos(absolute,-43px,null,null,50%);
+	@include radius($radius);
+	@include p-vh(4,8);
+	@include m-l(-27);
+	@include fs($font-sm);
+	display: none;
+	background: $theme-color;
+	color: $white;
+	text-align: center;
+	&:after {
+		@include size(0);
+		@include m-l(-5);
+		content: '';
+		@include b(5,solid,transparent);
+		border-top-color: $theme-color;
+		position: absolute;
+		bottom: -10px;
+		left: 50%;
+	}
+}
+.noUi-value {
+	@include w(40px);
+	position: absolute;
+	text-align: center;
+	@include fs($font-sm);
+}
+.noui-slider-primary {
+	.noUi-connect,
+	&.noUi-connect {
+		background-color: $primary;
+	}
+}
+.noui-slider-danger {
+	.noUi-connect,
+	&.noUi-connect {
+		background-color: $danger;
+	}
+}
+.noui-slider-success {
+	.noUi-connect,
+	&.noUi-connect {
+		background-color: $success;
+	}
+}
+.noui-slider-warning {
+	.noUi-connect,
+	&.noUi-connect {
+		background-color: $warning;
+	}
+}
+.noui-slider-info {
+	.noUi-connect,
+	&.noUi-connect {
+		background-color: $info;
+	}
+}
+.noUi-value-sub {
+	@include m-t(10);
+	@include fs($font-xs);
+	color:$text-muted;
+}
+.noUi-pips-horizontal {
+	@include size(100%,35px);
+	@include p-t(10);
+	top: 100%;
+	left: 0;
+}
+.noUi-value-horizontal {
+	@include m-l(-20);
+	@include p-t(15);
+	&.noUi-value-sub {
+		@include p-t(5);
+	}
+}
+.noUi-marker-horizontal {
+	&.noUi-marker {
+		@include size(1px,3px);
+	}
+	&.noUi-marker-sub {
+		@include h(6px);
+	}
+	&.noUi-marker-large {
+		@include h(10px);
+	}
+}
+.noUi-pips-vertical {
+	@include p-l(10);
+	@include h(100%);
+	top: 0;
+	left: 100%;
+}
+.noUi-value-vertical {
+	@include w(15px);
+	@include m-l(15);
+	@include m-t(-10);
+}
+.noUi-marker-vertical {
+	&.noUi-marker {
+		@include size(3px,1px);
+	}
+	&.noUi-marker-sub {
+		@include w(6px);
+	}
+	&.noUi-marker-large {
+		@include w(10px);
+	}
+}
+.noui-slider-lg {
+	.noUi-handle {
+		@include size(24px);
+		top: -7px;
+		&:after,
+		&:before {
+			@include size(1px,13px);
+			@include m-t(1);
+			@include m-l(3);
+		}
+		&:before {
+			@include m-l(2);
+		}
+	}
+	&.noUi-horizontal {
+		@include h(12px);
+		.noUi-handle {
+			left: -17px;
+		}
+	}
+	&.noUi-vertical {
+		@include w(20px);
+		.noUi-handle {
+			top: -12px;
+			left: -8px;
+		}
+	}
+}
+.noui-slider-sm {
+	.noUi-handle {
+		@include size(16px);
+		top: -5px;
+		&:after,
+		&:before {
+			@include size(1px,8px);
+			@include m-t(-1);
+			@include m-l(-2);
+		}
+	}
+	&.noUi-horizontal {
+		@include h(8px);
+		.noUi-handle {
+			left: -12px;
+		}
+	}
+	&.noUi-vertical {
+		@include h(8px);
+		.noUi-handle {
+			top: -12px;
+			left: -8px;
+		}
+	}
+}
+.noui-slider-xs {
+	.noUi-handle {
+		@include size(12px);
+		top: -4px;
+		&:after {
+			content: none;
+		}
+		&:before {
+			@include size(4px);
+			@include m-t(-1);
+			@include m-l(-4);
+		}
+	}
+	&.noUi-horizontal {
+		@include h(5px);
+		.noUi-handle {
+			top: -5px;
+			left: -8px;
+		}
+	}
+	&.noUi-vertical {
+		@include h(5px);
+		.noUi-handle {
+			top: -6px;
+			left: -4px;
+		}
+	}
+}
+.noUi-stacking .noUi-handle {
+	z-index: 10;
+}
+.noUi-state-tap .noUi-origin {
+	@include animation(transition, 'left 0.3s,top 0.3s');
+}
+.noUi-state-drag * {
+	cursor: inherit !important;
+}
+.irs-slider:after {
+	content: '';
+}

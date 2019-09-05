@@ -1,0 +1,162 @@
+//----------------------------------
+//   File          : scss/layouts/_dropdown_label.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Main CSS definition for dropdown labeled menu
+//----------------------------------
+
+@mixin dropdown_label{
+    @include media(tablet-xlg, min) {
+        .main-nav{
+            .navbar-left{
+                @include w(auto);
+            }
+        }
+        .main-container {
+            @include h-min(100%);
+        }
+        .menu{
+            position: fixed;
+            z-index: 99;
+        }
+        .dd {
+            @include p-a($menu-padding-top,$menu-padding-right,$menu-padding-bottom,$menu-padding-left);
+            @include w(100%);
+            background: $menu-bg-color ;
+
+            .nav {
+            	&:after,
+                &:before {
+                    display: table;
+                	content: " ";
+                	clear: both;
+            	}
+            	> li {
+            		a {
+                        @include fs(13px);
+                        @include p-a(15,25,7,25);
+            			color:$menu-link-color;
+            			display: block;
+            		}
+            		ul li a {
+                        @include p-vh(7,12);
+            			font-size: $font-base;
+            		}
+                    &.active > a{
+                        @include radius-a($radius,$radius,0,0);
+                        background:$link-hover-active-bg;
+                        color:$link-hover-active-color;
+                        i,
+                        &:after {
+                            color:$link-hover-active-color;
+                        }
+                    }
+
+            	}
+            }
+
+            .navigation .nav {
+                @include no-m();
+            	zoom: 1;
+            	display: block;
+            	float: left;
+            	list-style: none;
+            	li {
+            		float: left;
+            		position: relative;
+            		a {
+            			text-decoration: none;
+            			i {
+                            @include m-r(5);
+            			}
+            		}
+            		.sub-menu {
+                        @include animation(transform,translateY(-30px));
+                        @include animation(transition,'all 0.2s ease-in-out 0s, visibility 0s linear 0.2s, z-index 0s linear 0.01s');
+                        @include pos(absolute,10,null,null,null);
+                        @include w(180px);
+                        @include radius($radius);
+                        @include m-a(68,0,0,0);
+                        @include p-vh(5,0);
+            			background-color:$submenu-bg-color;
+            			visibility: hidden;
+                        opacity: 0;
+            			z-index: -1;
+
+            			li {
+            				float: none;
+            				display: block;
+            				min-width: 100%;
+                            a{
+                                color:$submenu-links-color;
+                                i{
+                                    color:$submenu-links-color;
+                                }
+                                &.active{
+                                    background:$submenu-links-active-bg;
+                                    color:$submenu-links-active-color;
+                                    i{
+                                        color:$submenu-links-active-color;
+                                    }
+                                }
+                            }
+            			}
+            			.menuparent > .sub-menu {
+                            @include m-a(0,0,0,180);
+            				&.menu-right {
+                                @include m-a(0,0,0,-180);
+            				}
+            			}
+                        .menuparent{
+                            &.active > a{
+                                background:$submenu-links-active-bg;
+                                color:$submenu-links-active-color;
+                                i,
+                                &:after {
+                                    color:$submenu-links-active-color;
+                                }
+                            }
+                        }
+            		}
+            		&:hover > ul {
+                        @include animation(transform,translateY(0%));
+                        @include animation(transition-delay,'0s, 0s, 0.2s');
+                    	visibility:visible;
+                    	top: 0;
+                    	opacity: 1;
+                        z-index: 98;
+            		}
+            		ul li a:hover {
+                        @include animation(transition,'background-color 0.2s ease-in,padding-left 0.2s ease-in');
+                        @include p-l(20);
+                        background:$submenu-links-active-bg;
+                        color:$submenu-links-active-color;
+                        i,
+                        &:after {
+                            color:$submenu-links-active-color;
+                        }
+            		}
+            	}
+                > li > a > i{
+                    font-size: 20px;
+                    display: block;
+                    @include m-a(0,0,3,0);
+                    top:0;
+                }
+            	> li:hover > a {
+                    @include animation(transition,'background-color 0.2s ease-in, border-top 0.2s ease-in');
+            		background-color: $link-hover-active-bg;
+            		color: $link-hover-active-color;
+            	}
+            }
+
+            .menuparent ul .menuparent > a {
+            	@include icon(after, arrow-right){
+                    color:$submenu-links-color;
+                    @include pos(absolute,4px,10px,null,null);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,318 @@
+﻿@using DevTracker.WebHelpers
+@model ProjectsVm
+
+@{
+    ViewBag.Title = "Create Project";
+}
+
+<!--Page Header-->
+<div class="header">
+    <div class="header-content">
+        <div class="page-title">
+            <i class="icon-briefcase position-left"></i>Create Project
+        </div>
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Dashboard")"></a></li>
+            <li><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+            <li class="active">Create Project</li>
+        </ul>
+    </div>
+</div>
+<!--/Page Header-->
+<!-- /Page header -->
+@using (Html.BeginForm("Create", "Projects", FormMethod.Post, new { @class = "form-horizontal", @id = "frmProjects", @enctype = "multipart/form-data" }))
+{
+
+    <div class="container-fluid page-content">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="panel panel-flat">
+                    <div class="panel panel-flat border-left-lg border-left-info">
+                        <div class="panel-heading">
+                            <h5 class="panel-title"><span class="text-semibold">Basic</span> information</h5>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Project Name : <span class="text-warning">*</span></label>
+                                    <div class="">
+                                        @Html.TextBoxFor(s => s.Name, new { @class = "form-control", @placeholder = "Dev Tracker" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Tag Line : <span class="text-warning">*</span></label>
+                                    <div class="">
+                                        @Html.TextBoxFor(s => s.TagLine, new { @class = "form-control", @placeholder = "A project management system" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Client Name : <span class="text-warning">*</span></label>
+                                    <div class="">
+                                        @Html.TextBoxFor(s => s.ClientName, new { @class = "form-control", @placeholder = "Joe Smith" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">URL : </label>
+                                    <div class="">
+                                        @Html.TextBoxFor(s => s.LiveURL, new { @class = "form-control", @placeholder = "http://projectname.com" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="panel panel-flat">
+                        <div class="panel panel-flat border-left-lg border-left-info">
+                            <div class="panel-heading">
+                                <h5 class="panel-title"><span class="text-semibold">Assigny</span> and timing</h5>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Select Assigny : <span class="text-warning">*</span></label>
+                                        @Html.DropDownListFor(s => s.AssignyList, SelectListFunction.GetAssignyList(), new { @multiple = "multiple", @data_placeholder = "Select a assigny...", @class = "select" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Estimate hours : </label>
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(s => s.EstimateHours, new { @class = "form-control", @placeholder = "200" })
+                                            <span class="input-group-addon">Hours</span>
+                                        </div>
+                                        <label class="text-danger"> &nbsp; If hourly base project*</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Project start-date : <span class="text-warning">*</span></label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon bg-primary"><i class="icon-calendar"></i></span>
+                                            @Html.TextBoxFor(s => s.StartDateString, new { @class = "form-control datepicker-here", data_language = "en", @placeholder = "dd/mm/yyyy" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Completion Goal Date : </label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon bg-primary"><i class="icon-calendar"></i></span>
+                                            @Html.TextBoxFor(s => s.EndDateString, new { @class = "form-control datepicker-here", data_language = "en", @placeholder = "dd/mm/yyyy" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Estimate budget : <span class="text-warning">*</span></label>
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(s => s.Budget, new { @class = "form-control", @placeholder = "80000.00" })
+                                            <span class="input-group-addon">INR</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Project Status : <span class="text-warning">*</span></label>
+                                        <div class="">
+                                            @Html.DropDownListFor(s => s.ProjectStatusMasterId, SelectListFunction.GetProjectStatus(Model.ProjectStatusMasterId), new { @class = "select" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="panel panel-flat">
+                        <div class="panel panel-flat border-left-lg border-left-info">
+                            <div class="panel-heading">
+                                <h5 class="panel-title"><span class="text-semibold">Project</span> description</h5>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Basic description : <span class="text-warning">*</span></label>
+                                        @Html.TextAreaFor(s => s.BasicDescription, new { @class = "basic-editor" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Confidential description : </label>
+                                        @Html.TextAreaFor(s => s.ConfidentialDescription, new { @class = "basic-editor" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">File attachment : </label>
+                                        @*<input id="AttachedFiles" name="AttachedFiles" class="file" type="file" multiple data-preview-file-type="any" data-upload-url="#">*@
+                                        <input id="AttachedFiles" name="AttachedFiles" type="file" multiple>
+                                        <small class="text-danger">You can upload multiple file upto 50 MB</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="row">
+                                <hr />
+                                <div class="col-md-12">
+
+                                    <button type="submit" class="btn btn-primary">Create a project</button>
+                                    <button type="button" class="btn btn-default">Cancel</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script src="~/Content/lib/js/pages/forms/form_select2.js"></script>
+    <script src="~/Content/lib/assets/editors/tinymce/tinymce.min.js"></script>
+    <script src="~/Content/lib/js/forms/datepicker.min.js"></script>
+    <script src="~/Content/lib/js/forms/datepicker.en.js"></script>
+    <script src="~/Content/lib/js/plugins/uploaders/bootstrap-uploader/bootstrap-uploader.js"></script>
+
+    <Script>
+        $(document).ready(function () {
+            //File uploader
+            $("#AttachedFiles").fileinput({
+                showUpload: false,
+                showCaption: false,
+                browseClass: "btn btn-primary",
+                fileType: "any",
+                previewFileIcon: "<i class='icon-crown'></i>"
+            });
+
+
+            tinymce.init({
+                selector: '.basic-editor',
+                height: 200,
+                menubar: false,
+                toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                content_css: [
+                    '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+                    '//www.tinymce.com/css/codepen.min.css'
+                ]
+            });
+
+            //Validation goes HERE
+            // Primary file input
+            $(".file-styled-primary").uniform({
+                wrapperClass: 'bg-primary',
+                fileButtonHtml: 'Browse'
+            });
+
+            //Form validation HERE
+            $("#frmProjects").validate({
+                rules: {
+                    Name: {
+                        required: true
+                    },
+                    TagLine: {
+                        required: true
+                    },
+                    ClientName: {
+                        required: true
+                    },
+                    AssignyList: {
+                        required: true
+                    },
+                    LiveURL: {
+                        url: true
+                    },
+                    Budget: {
+                        required: true
+                    },
+                    StartDateString: {
+                        required: true
+                    },
+                    EndDateString: {
+                        required: true
+                    },
+                    ProjectStatusMasterId: {
+                        required: true
+                    }
+                },
+                ignore: 'input[type=hidden], .select2-search__field',
+                errorClass: 'validation-error',
+               // successClass: 'validation-success',
+                highlight: function (element, errorClass) {
+                    $(element).removeClass(errorClass);
+                },
+                unhighlight: function (element, errorClass) {
+                    $(element).removeClass(errorClass);
+                },
+                errorPlacement: function (error, element) {
+                    if (element.parents('div').hasClass("checker") || element.parents('div').hasClass("choice") || element.parent().hasClass('bootstrap-switch-container')) {
+                        if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
+                            error.appendTo(element.parent().parent().parent().parent());
+                        } else {
+                            error.appendTo(element.parent().parent().parent().parent().parent());
+                        }
+                    } else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
+                        error.appendTo(element.parent());
+                    } else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline') || element.parents('div').hasClass('checkbox-single')) {
+                        error.appendTo(element.parent().parent());
+                    } else if (element.parents('div').hasClass('checkbox-group')) {
+                        error.appendTo(element.parent().parent().parent());
+                    } else if (element.parent().hasClass('uploader') || element.parents().hasClass('input-group')) {
+                        error.appendTo(element.parent().parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                validClass: "validation-success"
+                //success: function (label) {
+                //    label.addClass("validation-success").text("Done");
+                //}
+            });
+        });
+    </Script>
+
+
+}
+

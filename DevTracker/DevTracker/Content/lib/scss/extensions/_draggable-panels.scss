@@ -1,0 +1,67 @@
+//----------------------------------
+//   File          : scss/extensions/_draggable-panels.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : CSS definition for draggable panels
+//----------------------------------
+
+.ui-draggable-handle {
+	touch-action: none;
+}
+.ui-sortable-handle {
+	touch-action: none;
+}
+.sortable-placeholder {
+	position: relative;
+	&:before {
+        @include pos(absolute,0,null,null,0);
+        @include size(100%);
+        @include b(3,dashed,rgba($text-color,0.2));
+        background: darken($body-bg,3%);
+		content: '';
+		display: inline-block;
+	}
+	+ .panel {
+        @include m-t(20);
+	}
+}
+.panel-group {
+	> .sortable-placeholder:before {
+        @include radius($radius);
+	}
+	.panel + .sortable-placeholder {
+        @include m-v(5);
+	}
+	.sortable-placeholder + .panel {
+        @include m-t(5);
+	}
+}
+.table {
+	.ui-sortable-helper {
+        @include w(100%);
+		background-color: $white;
+		display: table;
+	}
+	.sortable-placeholder {
+        @include no-m();
+		&:before {
+			content: none;
+		}
+	}
+	&.ui-sortable {
+		position: relative;
+	}
+}
+.ui-resizable {
+	position: relative;
+}
+.ui-sortable .ui-state-disabled {
+	color: lighten($black, 80%);
+	cursor: not-allowed;
+	opacity: .75;
+	filter: alpha(opacity=75);
+}
+.panel + .sortable-placeholder {
+    @include m-b(20);
+}

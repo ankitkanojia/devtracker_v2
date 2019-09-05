@@ -1,0 +1,29 @@
+//----------------------------------
+//   File          : scss/_functions.scss
+//   Type          : SCSS Functions
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//----------------------------------
+
+// Sets alternate color for panels if the background color is white
+@if (
+        ($panel-bg == #FFF) or
+        ($panel-bg == #FFFFFF) or
+        ($panel-bg == '#FFFFFF') or
+        ($panel-bg == '#FFF') or
+        ($panel-bg == '') or
+        ($panel-bg == #fff) or
+        ($panel-bg == #ffffff) or
+        ($panel-bg == '#fff') or
+        ($panel-bg == '#ffffff')
+    ){
+    $alt-color: $white !global;
+}
+@else{
+    $alt-color: lighten($panel-bg,20%) !global;
+}
+
+// Trims value of any unit to just have the value not 'px' or 'em' or anything else
+@function trim($value) {
+	@return $value / ($value * 0 + 1);
+}

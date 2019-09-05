@@ -1,0 +1,156 @@
+//----------------------------------
+//   File          : scss/plugins/hovers/_venobox.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+.vbox-overlay {
+	@include pos(fixed,0,null,0,0);
+	@include size(100%, auto);
+	background: black(0.8);
+	z-index: 9999;
+	opacity: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	* {
+		box-sizing: border-box;
+		&:before {
+			box-sizing: border-box;
+		}
+		&:after {
+			box-sizing: border-box;
+		}
+	}
+}
+.figlio {
+	@include shadow-out();
+}
+.vbox-preloader {
+	@include pos(fixed,50%,null,50%,50%);
+	@include size(32px);
+	@include m-l(-16);
+	@include m-t(-16);
+	background-image: url("../../img/venobox/preload-circle.png");
+	text-indent: -100px;
+	overflow: hidden;
+	@include animation(animation, playload 1.4s steps(18) infinite);
+}
+@include keyframes(playload){
+	from {background-position: 0;}
+	to {background-position: -576px;}
+}
+.vbox-close {
+	@include size(46px,40px);
+	@include pos(fixed,5px,0,null,null);
+	@include p-a(10,20,10,0);
+	cursor: pointer;
+	display: block;
+	background: url("../../img/venobox/close.gif") no-repeat;
+	background-position: 10px center;
+	color: $white;
+	text-indent: -100px;
+	overflow: hidden;
+}
+.vbox-next {
+	@include pos(fixed,50%,0,null,null);
+	@include size(30px,170px);
+	@include m-t(-85);
+	box-sizing: content-box;
+	cursor: pointer;
+	color: $white;
+	text-indent: -100px;
+	border: solid transparent;
+	overflow: hidden;
+	border-width: 0 10px 0 30px;
+	background: url("../../img/venobox/next.gif") center center no-repeat;
+}
+.vbox-prev {
+	@include pos(fixed,50%,null,null,0);
+	@include size(30px,170px);
+	@include m-t(-85);
+	box-sizing: content-box;
+	cursor: pointer;
+	color: $white;
+	text-indent: -100px;
+	border: solid transparent;
+	overflow: hidden;
+	border-width: 0 30px 0 10px;
+	background: url("../../img/venobox/prev.gif") center center no-repeat;
+}
+.vbox-title {
+	@include pos(fixed,-1,null,null,0);
+	@include size(100%,48px);
+	@include p-vh(10,48);
+	@include typo($ff-regular,$font-lg,$white,center);
+	float: left;
+	overflow: hidden;
+	background: $theme-color;
+	display: none;
+}
+.vbox-num {
+	@include pos(fixed,-1,null,null,0);
+	@include h(40px);
+	@include typo($ff-regular,$font-base,$white,center);
+	cursor: pointer;
+	display: block;
+	overflow: hidden;
+	background: lighten($black, 10%);
+	display: none;
+}
+.vbox-inline {
+	@include size(420px,315px);
+	@include p(10);
+	@include m-vh(0,auto);
+	background: $white;
+	text-align: left;
+	overflow: auto;
+}
+.venoframe {
+	@include size(960px,720px);
+	border: none;
+}
+
+@include media(tablet-xlg,max){
+	.venoframe {
+		@include size(640px,480px);
+	}
+}
+
+@include media(tablet,max){
+	.venoframe {
+		@include size(420px);
+	}
+}
+
+@include media(phone-xlg,max){
+	.venoframe,
+	.vbox-inline {
+		@include w(100%);
+	}
+}
+
+.vbox-open {
+	overflow: hidden;
+}
+
+.vbox-container {
+	@include w(100%);
+	@include m-vh(0,auto);
+	@include p-vh(0,15px);
+	position: relative;
+	background: $black;
+	img {
+		@include w-max(100%);
+		height: auto;
+	}
+}
+
+.vbox-content {
+	@include w(100%);
+	@include p-vh(10,0);
+	text-align: center;
+	float: left;
+	position: relative;
+	overflow: hidden;
+}

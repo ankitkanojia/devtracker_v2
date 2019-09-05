@@ -1,0 +1,51 @@
+//----------------------------------
+//   File          : scss/mixins/_media.scss
+//   Type          : SCSS mixin
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+// ---------------------------------
+
+// ---------------------------------
+// Table of contents
+// ---------------------------------
+// 1. Breakpoints
+// 2. Media queries
+
+
+// ---------------------------------
+// 1. Breakpoints
+// ---------------------------------
+$breakpoints: (
+    "phone-sm":         320px,
+    "phone-md":         360px,
+    "phone":            375px,
+    "phone-lg":         412px,
+    "phone-xlg":        480px,
+    "phablet":          600px,
+    "tablet":           768px,
+    "tablet-lg":        800px,
+    "tablet-xlg":       1024px,
+    "desktop":          1248px,
+    "desktop-lg":       1440px,
+    "desktop-xlg":      1920px
+);
+
+
+// ---------------------------------
+// 2. Media queries
+// ---------------------------------
+@mixin media($width, $type: min, $device: screen) {
+    @if map_has_key($breakpoints, $width) {
+        $width: map_get($breakpoints, $width);
+        @if $type == max {
+            $width: $width - 1px;
+            @media only #{$device} and (max-width: $width) {@content;}
+        }
+        @else if $type == min {
+            @media only #{$device} and (min-width: $width) {@content;}
+        }
+        @else if $type == exact {
+            @media only #{$device} and (min-width: $width) and (max-width: $width) {@content;}
+        }
+    }
+}

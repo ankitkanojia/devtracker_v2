@@ -1,0 +1,261 @@
+//----------------------------------
+//   File          : scss/mixins/_spacing.scss
+//   Type          : SCSS mixin
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+// ---------------------------------
+
+// ---------------------------------
+// Table of contents
+// ---------------------------------
+// 1. Margins
+// 2. Paddings
+// 3. Spacings
+
+
+// ---------------------------------
+// 1. Margins
+// ---------------------------------
+
+// Dynamic margins
+@mixin margins($margin-base) {
+    @for $i from 0 to 51 {
+        .m-#{$i}   { margin: #{$i}px !important; }
+        .m-t-#{$i} { margin-top: #{$i}px !important; }
+        .m-b-#{$i} { margin-bottom: #{$i}px !important; }
+        .m-l-#{$i} { margin-left: #{$i}px !important; }
+        .m-r-#{$i} { margin-right: #{$i}px !important; }
+        .m-v-#{$i} { margin-top: #{$i}px !important; margin-bottom: #{$i}px !important; }
+        .m-h-#{$i} { margin-left: #{$i}px !important; margin-right: #{$i}px !important; }
+
+        %m-#{$i}   { margin: #{$i}px; }
+        %m-t-#{$i} { margin-top: #{$i}px; }
+        %m-b-#{$i} { margin-bottom: #{$i}px; }
+        %m-l-#{$i} { margin-left: #{$i}px; }
+        %m-r-#{$i} { margin-right: #{$i}px; }
+        %m-v-#{$i} { margin-top: #{$i}px; margin-bottom: #{$i}px; }
+        %m-h-#{$i} { margin-left: #{$i}px; margin-right: #{$i}px; }
+    }
+}
+@include margins($margin-base);
+
+// Margin
+@mixin m($spacing: $space-base){
+    margin: #{$spacing}px;
+}
+
+// Margin top
+@mixin m-t($spacing: $space-base){
+    margin-top: #{$spacing}px;
+}
+
+// Margin bottom
+@mixin m-b($spacing: $space-base){
+    margin-bottom: #{$spacing}px;
+}
+
+// Margin left
+@mixin m-l($spacing: $space-base){
+    margin-left: #{$spacing}px;
+}
+
+// Margin right
+@mixin m-r($spacing: $space-base){
+    margin-right: #{$spacing}px;
+}
+
+// ExtraLarge margin
+@mixin m-xlg($spacing: $space-xlg) {
+    margin: #{$spacing}px;
+}
+
+// Large margin
+@mixin m-lg($spacing: $space-lg) {
+   margin: #{$spacing}px;
+}
+
+// Small margin
+@mixin m-sm($spacing: $space-sm) {
+   margin: #{$spacing}px;
+}
+
+// ExtraSmall margin
+@mixin m-xs($spacing: $space-xs) {
+   margin: #{$spacing}px;
+}
+
+// Margin vertical
+@mixin m-v($v: $space-base) {
+   margin-top:#{$v}px;
+   margin-bottom:#{$v}px;
+}
+
+// Margin Horizontal
+@mixin m-h($h: $space-base) {
+   margin-left:#{$h}px;
+   margin-right:#{$h}px;
+}
+
+// Margin both vertical and horizontal
+@mixin m-vh($v: $space-base, $h: $space-base) {
+   margin:#{$v}px #{$h}px;
+}
+
+// Seperate margins
+@mixin m-a($t, $r, $b, $l) {
+    margin-top: #{$t}px;
+    margin-right: #{$r}px;
+    margin-bottom: #{$b}px;
+    margin-left: #{$l}px;
+}
+
+// No margin
+@mixin no-m() {
+   margin: 0;
+}
+
+
+// ---------------------------------
+// 2. Paddings
+// ---------------------------------
+
+// Dynamic padding
+@mixin paddings( $padding-base ) {
+    @for $i from 0 to 51 {
+        .p-#{$i}   { padding: #{$i}px !important; }
+        .p-b-#{$i} { padding-bottom: #{$i}px !important; }
+        .p-t-#{$i} { padding-top: #{$i}px !important; }
+        .p-l-#{$i} { padding-left: #{$i}px !important; }
+        .p-r-#{$i} { padding-right: #{$i}px !important; }
+        .p-v-#{$i} { padding-top: #{$i}px !important; padding-bottom: #{$i}px !important; }
+        .p-h-#{$i} { padding-left: #{$i}px !important; padding-right: #{$i}px !important; }
+
+        %p-#{$i}   { padding: #{$i}px; }
+        %p-t-#{$i} { padding-top: #{$i}px; }
+        %p-b-#{$i} { padding-bottom: #{$i}px; }
+        %p-l-#{$i} { padding-left: #{$i}px; }
+        %p-r-#{$i} { padding-right: #{$i}px; }
+        %p-v-#{$i} { padding-top: #{$i}px; padding-bottom: #{$i}px; }
+        %p-h-#{$i} { padding-left: #{$i}px; padding-right: #{$i}px; }
+    }
+}
+@include paddings($padding-base);
+
+// Padding
+@mixin p($spacing: $space-base){
+    padding: #{$spacing}px;
+}
+
+// Padding top
+@mixin p-t($spacing: $space-base){
+    padding-top: #{$spacing}px;
+}
+
+// Padding bottom
+@mixin p-b($spacing: $space-base){
+    padding-bottom: #{$spacing}px;
+}
+
+// Padding left
+@mixin p-l($spacing: $space-base){
+    padding-left: #{$spacing}px;
+}
+
+// Padding right
+@mixin p-r($spacing: $space-base){
+    padding-right: #{$spacing}px;
+}
+
+// ExtraLarge padding
+@mixin p-xlg($spacing: $space-xlg) {
+   padding: #{$spacing}px;
+}
+
+// Large padding
+@mixin p-lg($spacing: $space-lg) {
+   padding: #{$spacing}px;
+}
+
+// Small padding
+@mixin p-sm($spacing: $space-sm) {
+   padding: #{$spacing}px;
+}
+
+// ExtraSmall padding
+@mixin p-xs($spacing: $space-xs) {
+   padding: #{$spacing}px;
+}
+
+// Padding vertical
+@mixin p-v($v: $space-base) {
+   padding-top:#{$v}px;
+   padding-bottom:#{$v}px;
+}
+
+// Padding horizontal
+@mixin p-h($h: $space-base) {
+   padding-left:#{$h}px;
+   padding-right:#{$h}px;
+}
+
+// Padding both vertical and horizontal
+@mixin p-vh($v: $space-base, $h: $space-base) {
+   padding:#{$v}px #{$h}px;
+}
+
+// Seperate paddings
+@mixin p-a($t, $r, $b, $l) {
+    padding-top: #{$t}px;
+    padding-right: #{$r}px;
+    padding-bottom: #{$b}px;
+    padding-left: #{$l}px;
+}
+
+// No padding
+@mixin no-p() {
+   padding: 0;
+}
+
+
+// ---------------------------------
+// 3. Spacings
+// ---------------------------------
+@mixin space($v:$space-base,$h:$space-base *3){
+    padding-top: #{$v}px;
+    padding-right: #{$h}px;
+    padding-bottom: #{$v}px;
+    padding-left: #{$h}px;
+}
+
+@mixin space-xlg($v:$space-xlg,$h:$space-xlg *3){
+    padding-top: #{$v}px;
+    padding-right: #{$h}px;
+    padding-bottom: #{$v}px;
+    padding-left: #{$h}px;
+}
+
+@mixin space-lg($v:$space-lg,$h:$space-lg *3){
+    padding-top: #{$v}px;
+    padding-right: #{$h}px;
+    padding-bottom: #{$v}px;
+    padding-left: #{$h}px;
+}
+
+@mixin space-sm($v:$space-sm,$h:$space-sm *3){
+    padding-top: #{$v}px;
+    padding-right: #{$h}px;
+    padding-bottom: #{$v}px;
+    padding-left: #{$h}px;
+}
+
+@mixin space-xs($v:$space-xs,$h:$space-xs *3){
+    padding-top: #{$v}px;
+    padding-right: #{$h}px;
+    padding-bottom: #{$v}px;
+    padding-left: #{$h}px;
+}
+
+@mixin no-s() {
+   padding: 0;
+   margin: 0;
+}

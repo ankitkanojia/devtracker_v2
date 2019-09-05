@@ -1,0 +1,26 @@
+//----------------------------------
+//   File          : scss/components/_carousel.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Bootstrap Carousel Override
+//----------------------------------
+
+.carousel-control{
+	@include fs(40px);
+	padding-top: 17.5%;
+	.sr-only{
+		display: none;
+	}
+}
+.carousel-caption {
+	@include p-b(60);
+    left: 0;
+    right: 0;
+    bottom: 0;
+	background: black(0.5);
+	p{
+		color: $white !important;
+		text-shadow: none;
+	}
+}

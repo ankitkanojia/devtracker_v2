@@ -1,0 +1,91 @@
+//----------------------------------
+//   File          : scss/snippets/_loaders.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+$loader-color                   :$theme-color !global;
+$loader-size                    :56px !global;
+$loader-height                  :20px !global;
+$loader-border-size             :8px !global;
+$loader-gap                     :12px !global;
+$loader-animation-duration      :1s !global;
+
+
+@mixin loader_rotate {
+  @include keyframes(loader_rotate) {
+    0% {@include animation(transform, rotate(0));}
+    100% {@include animation(transform, rotate(360deg));}
+  }
+}
+
+@mixin loader_scale {
+  @include keyframes(loader_scale) {
+    0% {@include animation(transform, scale(0));opacity: 0;}
+    50% {opacity: 1;}
+    100% {@include animation(transform, scale(1));opacity: 0;}
+  }
+}
+
+@import
+'loaders/loader01',
+'loaders/loader02',
+'loaders/loader03',
+'loaders/loader04',
+'loaders/loader05',
+'loaders/loader06',
+'loaders/loader07',
+'loaders/loader08',
+'loaders/loader09',
+'loaders/loader10',
+'loaders/loader11',
+'loaders/loader12';
+
+.loader01 {
+  @include loader01($align: middle);
+}
+
+.loader02 {
+  @include loader02($align: middle);
+}
+
+.loader03 {
+  @include loader03($align: middle);
+}
+
+.loader04 {
+  @include loader04($size: 56px, $border-size: 2px, $align: middle);
+}
+
+.loader05 {
+  @include loader05($border-size: 4px, $align: middle);
+}
+
+.loader06 {
+  @include loader06($size: 56px, $border-size: 4px, $align: middle);
+}
+
+.loader07 {
+  @include loader07($size: 16px, $align: middle);
+}
+
+.loader08 {
+  @include loader08($size: 20px, $gap: 6px, $align: middle);
+}
+
+.loader09 {
+  @include loader09($size: 10px, $height: 48px, $gap: 8px, $duration: 1s, $align: middle);
+}
+
+.loader10 {
+  @include loader10($size: 28px, $gap: 12px, $duration: 0.9s, $align: middle);
+}
+
+.loader11 {
+  @include loader11($size: 20px, $gap: 10px, $duration: 0.8s, $align: middle);
+}
+
+.loader12 {
+  @include loader12($size: 20px, $gap: 30px, $duration: 1s, $align: middle);
+}

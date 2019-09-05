@@ -1,0 +1,343 @@
+//----------------------------------
+//   File          : scss/plugins/uploaders/_file-uploader.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+.file-loading {
+    @include size(25px);
+	top: 0;
+	right: 0;
+	font-size: 999px;
+	text-align: right;
+	color: $white;
+	background: transparent url(../../img/loading.gif) top left no-repeat;
+	border: none;
+}
+.file-object {
+    @include m-a(0,0,-5,0);
+    @include no-p();
+}
+.btn-file {
+	position: relative;
+	overflow: hidden;
+	input[type=file] {
+        @include pos(absolute,0,0,null,null);
+        @include w-min(100%);
+        @include h-min(100%);
+		text-align: right;
+		opacity: 0;
+		background: none repeat scroll 0 0 transparent;
+		cursor: inherit;
+		display: block;
+	}
+	::-ms-browse {
+        @include size(100%);
+	}
+}
+.file-caption-name {
+    @include h(20px);
+	display: inline-block;
+	overflow: hidden;
+	word-break: break-all;
+}
+.file-zoom-dialog {
+	text-align: left;
+	.file-preview-text {
+		font-size: 1.2em;
+	}
+	.file-other-icon {
+		font-size: 8em;
+		font-size: 55vmin;
+	}
+	.modal-body {
+		position: relative !important;
+	}
+	.btn-navigate {
+        @include no-s();
+		position: absolute;
+		background: transparent;
+		text-decoration: none;
+		outline: none;
+		top: 40%;
+		font-size: 48px;
+		&:not([disabled]) {
+			&:hover,
+            &:focus {
+                outline: none;
+            	box-shadow: none;
+            	opacity: 0.5;
+			}
+		}
+	}
+	.floating-buttons {
+        @include pos(absolute,5px,10px,null,null);
+	}
+	.btn-navigate[disabled] {
+		opacity: 0.3;
+	}
+	.btn-prev {
+		left: 1px;
+	}
+	.btn-next {
+		right: 1px;
+	}
+	.kv-zoom-actions .btn {
+        @include m-l(3);
+	}
+}
+.file-error-message {
+    @include m(5);
+    @include p(15);
+	color: $danger;
+	background-color: c200(palette($danger));
+    @include b(1,solid,$danger);
+    @include radius($radius);
+	pre {
+        @include m-vh(5,0);
+		text-align: left;
+	}
+	ul {
+        @include no-m();
+		text-align: left;
+	}
+}
+.file-caption-disabled {
+	background-color: lighten($black, 70%);
+	cursor: not-allowed;
+	opacity: 1;
+}
+.file-preview {
+    @include w(100%);
+    @include p(5);
+    @include m-b(5);
+    @include radius($radius);
+    @include b(1,solid,darken($panel-border-color,10%));
+	background: darken($panel-bg,3%);
+	.clickable {
+		cursor: pointer;
+	}
+}
+.file-preview-frame {
+    @include h(160px);
+    @include m(8);
+    @include p(6);
+	position: relative;
+	display: table;
+	@include b(1,solid,$panel-border-color);
+	background: $panel-bg;@include radius($radius);
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+	&.sortable-ghost {
+		background-color: lighten($black, 80%);
+	}
+	&:not(.file-preview-error) .file-footer-caption:hover {
+		color: $black;
+	}
+}
+.file-preview-image {
+	vertical-align: middle;
+}
+.file-preview-text {
+    @include p(8);
+	display: block;
+	color: $panel-body-text-color;
+	@include b(1,solid,$panel-border-color);
+	outline: none;
+	resize: none;
+}
+.file-preview-html {
+	@include b(1,solid,$panel-border-color);
+	@include p(8);
+	overflow: auto;
+}
+.file-preview-other {
+    @include p(10);
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	text-align: center;
+	vertical-align: middle;
+	&:hover {
+		opacity: 0.8;
+	}
+}
+.file-actions {
+    @include m-t(15);
+	text-align: left;
+}
+.file-other-error {
+	text-align: left;
+}
+.file-other-icon {
+	font-size: 4.8em;
+}
+.file-input-new {
+	.file-preview,
+    .close,
+    .glyphicon-file,
+    .fileinput-remove-button,
+    .fileinput-upload-button {
+		display: none;
+	}
+	.no-browse {
+		.input-group-btn {
+			display: none;
+		}
+		.form-control {
+			border-top-right-radius: $radius;
+			border-bottom-right-radius: $radius;
+		}
+	}
+}
+.file-input-ajax-new {
+	.fileinput-remove-button,
+    .fileinput-upload-button {
+		display: none;
+	}
+	.no-browse {
+		.input-group-btn {
+			display: none;
+		}
+		.form-control {
+			border-top-right-radius: $radius;
+			border-bottom-right-radius: $radius;
+		}
+	}
+}
+.file-caption-main {
+    @include w(100%);
+}
+.file-thumb-loading {
+	background: transparent url(../../img/loading.gif) no-repeat scroll center center content-box !important;
+}
+.file-footer-buttons {
+	float: right;
+}
+.file-upload-indicator {
+    @include w(60%);
+	display: inline;
+	cursor: default;
+	opacity: 0.8;
+	&:hover {
+		font-weight: bold;
+		opacity: 1;
+	}
+}
+.file-footer-caption {
+    @include w(160px);
+    @include p-t(4);
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: center;
+	font-size: 11px;
+	color: $panel-body-text-color;
+	margin: 5px auto;
+}
+.file-preview-error {
+	opacity: 0.65;
+	box-shadow: none;
+}
+.file-drop-zone {
+    @include h(100%);
+    @include m-a(12,15,12,12);
+    @include p(5);
+    @include radius($radius);
+	text-align: center;
+	vertical-align: middle;
+	&.clickable {
+		&:hover {
+            @include b(2,dashed,darken($panel-border-color,15%));
+		}
+		&:focus {
+            @include b(2,solid,darken($panel-border-color,5%));
+		}
+	}
+	.file-preview-thumbnails {
+		cursor: default;
+	}
+}
+.file-drop-zone-title {
+    @include p-vh(85,10);
+	color: darken($panel-bg,20%);
+    @include fs(32px);
+    @include ff($ff-light);
+	cursor: default;
+}
+.file-highlighted {
+	@include b(2,dashed,darken($panel-border-color,15%));
+	background-color: darken($panel-bg,4%);
+}
+.file-uploading {
+	background: url(../../img/loading-sm.gif) no-repeat center bottom 10px;
+	opacity: 0.65;
+}
+.file-thumb-progress {
+    @include h(10px);
+    @include pos(absolute,35px,0,null,0);
+	.progress,
+    .progress-bar {
+        @include h(10px);
+        @include fs(9px);
+        @include lh(10px);
+	}
+}
+.file-thumbnail-footer {
+	position: relative;
+}
+.file-zoom-fullscreen {
+	&.modal {
+        @include pos(fixed,0,0,0,0);
+	}
+	.modal-dialog {
+        @include size(100%);
+        @include no-s();
+		position: fixed;
+	}
+	.modal-content {
+        @include radius(0);
+		box-shadow: none;
+	}
+	.modal-body {
+		overflow-y: auto;
+	}
+}
+.floating-buttons {
+	z-index: 3000;
+	.btn {
+        @include m-l(3);
+		z-index: 3000;
+	}
+}
+.file-drag-handle {
+    @include m-r(2);
+	display: inline;
+	font-size: 16px;
+	cursor: move;
+	&:hover {
+		opacity: 0.7;
+	}
+}
+.file-zoom-content {
+    @include h(480px);
+	text-align: center;
+}
+.input-group-lg .file-caption-name {
+    @include h(25px);
+}
+.clickable .file-drop-zone-title {
+	cursor: pointer;
+}
+.file-preview-initial.sortable-chosen {
+	background-color: lighten($black, 90%);
+}
+.kv-zoom-body img {
+	width: auto !important;
+	height: 90% !important;
+}

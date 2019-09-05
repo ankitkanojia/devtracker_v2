@@ -1,0 +1,20 @@
+//----------------------------------
+//   File          : scss/components/_jumbo.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Bootstrap Jumbotron Override
+//----------------------------------
+.jumbo-header{
+    @include p(50);
+    .form-horizontal{
+        @include p-h(200);
+    }
+}
+@include media(tablet,max){
+	.jumbo-header{
+	    .form-horizontal{
+	        @include p-h(0);
+	    }
+	}
+}

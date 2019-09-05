@@ -1,0 +1,110 @@
+//----------------------------------
+//   File          : scss/layouts/_profile.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Main CSS definition material user profile block
+//----------------------------------
+
+@mixin profile(){
+    .user-profile-container {
+        background-color: $material-bg-color;
+        background-image: url(#{$material-bg-image});
+        background: linear-gradient(rgba($material-bg-tint-color, $material-bg-tint-opacity), rgba($material-bg-tint-color, $material-bg-tint-opacity)), url(#{$material-bg-image});
+        background-repeat: no-repeat;
+        background-position: #{$material-bg-position};
+        background-size: #{$material-bg-size};
+        @include h(120px);
+        .user-profile {
+            @include w();
+            display: table;
+            > div {
+                vertical-align: middle;
+            }
+            .admin-user-thumb {
+                @include size(42px);
+                @include p-a(15, 0, 15, 15);
+                img{
+                    @include size(42px);
+                    @include radius(100%);
+                }
+            }
+            .admin-user-info {
+                @include p-a(35, 5, 15, 15);
+                .dropdown {
+                    float: right;
+                    @include m-t(-40);
+                    @include m-r(0);
+                    button{
+                        color:$user-profile-container-text-color;
+                        &.active,
+                        &:hover,
+                        &:focus{
+                            color:$user-profile-container-text-color;
+                        }
+                    }
+                    .dropdown-menu{
+                        @include w(120px);
+                        @include radius($radius);
+                        @include p-vh(1, 0);
+                        background: $user-profile-dropdown-bg;
+                        @include b(1, solid, $user-profile-dropdown-border-color);
+                        @include pos(null, 90px, 10px, null, auto);
+                        visibility: hidden;
+                        opacity: 0;
+                        display: block;
+                        @if($user-profile-container-shadow == 'true'){
+                            @include shadow-out();
+                        }
+                        @else{
+                            @include no-shadow();
+                        }
+
+                        a{
+                            color:$user-profile-dropdown-link-color;
+                            @include p-vh(6, 12);
+                            &.active,
+                            &:hover,
+                            &:focus{
+                                color:$user-profile-dropdown-link-hover-color;
+                                background: $user-profile-dropdown-link-hover-bg;
+                            }
+                            i{
+                                @include m-r(8);
+                            }
+                        }
+                    }
+                }
+
+                .dropdown.open {
+                    .dropdown-menu {
+                        @include animation(transition,'opacity 0.3s ease-in, top 0.2s ease-in');
+                        visibility: visible;
+                        top: 40px;
+                        opacity: 1;
+                    }
+                }
+
+                ul {
+                    @include no-s();
+                    list-style: none;
+                    float: left;
+                    li {
+                        @include lh(18px);
+                        a {
+                            color: $user-profile-container-text-color;
+                            &:hover,
+                            &:focus{
+                                color: $user-profile-container-text-color;
+                            }
+                        }
+                        small{
+                            @include fs($font-sm);
+                            @include ff($ff-regular);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

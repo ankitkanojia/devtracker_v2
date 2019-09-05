@@ -1,0 +1,220 @@
+//----------------------------------
+//   File          : scss/plugins/forms/_tokenfield.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+//colors
+$color_gallery_approx: #eee;
+$color_mine_shaft_approx: #333;
+$color_cerulean_approx: #03a9f4;
+$color_red_orange_approx: #f44336;
+
+//fonts
+$font_0: icomoon;
+
+
+
+.tokenfield {
+	@include h(auto);
+	&.form-control {
+		@include h(auto);
+		@include p-a(0,0,2,0);
+	}
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+	.token {
+		@include m-a(2,0,0,2);
+		@include radius($radius);
+		cursor: default;
+		float: left;
+		position: relative;
+		@include radius($radius);
+		&:not([class*=bg-]) {
+			background-color: $tags-bg;
+			color: $tags-text-color;
+			&:focus,
+			&:hover {
+				background-color: darken($tags-bg,5%);
+				color: $tags-text-color;
+			}
+		}
+		&.invalid {
+			@include b(1,solid,transparent);
+			@include bb(1,dotted,$danger);
+			@include radius(0);
+			background-color: transparent;
+			&.active {
+				@include b(1,solid,lighten($black, 80%));
+				background-color: lighten($black, 80%);
+			}
+		}
+		.token-label {
+			@include p-a(5,24,5,8);
+			display: block;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		> .close {
+			@include pos(absolute,50%,7px,null,null);
+			@include m-t(-5);
+			@include fs(0);
+			@include lh(1);
+			cursor: pointer;
+			color: inherit;
+			@include icon(after,close){
+				@include fs(12px);
+			}
+		}
+	}
+	&.disabled {
+		cursor: not-allowed;
+		.token {
+			cursor: not-allowed;
+			opacity: .5;
+			filter: alpha(opacity=50);
+			.close {
+				cursor: not-allowed;
+				opacity: .5;
+				filter: alpha(opacity=50);
+			}
+			&:focus,
+			&:hover {
+				background-color: lighten($black, 80%);
+				color: lighten($black, 70%);
+			}
+		}
+		.token-input {
+			cursor: not-allowed;
+		}
+	}
+	.twitter-typeahead {
+		@include w(auto);
+	}
+	.token-input {
+		@include w-max(50%);
+		@include w-min(60px);
+		@include w(90px);
+		@include p-vh(5,11);
+		@include m-t(2);
+		@include m-l(2);
+		background: 0 0;
+		border: 0;
+		outline: 0;
+	}
+	&.input-lg {
+		@include h(40px);
+		.token-input {
+			@include fs($font-lg);
+			@include p-vh(7,12);
+		}
+		.token {
+			> {
+				.token-label {
+					@include fs($font-lg);
+					@include p-vh(7,12);
+					@include p-r(29);
+				}
+				.close {
+					right: 12px;
+				}
+			}
+			> span {
+				@include fs($font-lg);
+				@include p-vh(7,12);
+				@include p-r(29);
+			}
+		}
+		&.readonly .token > .token-label {
+			@include p-r(12);
+		}
+	}
+	&.input-sm {
+		@include h(32px);
+		.token {
+			@include fs($font-base);
+			> {
+				.token-label {
+					@include fs($font-base);
+					@include p-a(3,28,3,9);
+				}
+				.close {
+					right: 9px;
+				}
+			}
+			> span {
+				@include fs($font-base);
+				@include p-a(3,28,3,9);
+			}
+		}
+		.token-input {
+			@include p-vh(3,9);
+		}
+		&.readonly .token > .token-label {
+			@include p-r(9);
+		}
+	}
+	&.readonly .token {
+		.token-label {
+			@include p-r(12);
+		}
+		.close {
+			display: none;
+		}
+	}
+}
+.input-group-lg {
+	.token-input {
+		@include fs($font-lg);
+		@include p-vh(7,12);
+	}
+	.token {
+		> {
+			.token-label {
+				@include fs($font-lg);
+				@include p-vh(7,12);
+				@include p-r(30);
+			}
+			.close {
+				right: 12px;
+			}
+		}
+		> span {
+			@include fs($font-lg);
+			@include p-vh(7,12);
+			@include p-r(30);
+		}
+	}
+	&.readonly .token > .token-label {
+		@include p-r(12);
+	}
+}
+.input-group-sm {
+	.token-input {
+		@include fs($font-base);
+		@include p-vh(3,9);
+	}
+	.token {
+		> {
+			.token-label {
+				@include p-a(3,28,3,9);
+			}
+			.close {
+				right: 9px;
+			}
+		}
+		> span {
+			@include p-a(3,28,3,9);
+		}
+	}
+	.token-input {
+		@include p-vh(3,9);
+	}
+	&.readonly .token > .token-label {
+		@include p-r(9);
+	}
+}

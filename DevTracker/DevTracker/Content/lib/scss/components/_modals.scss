@@ -1,0 +1,116 @@
+//----------------------------------
+//   File          : scss/components/_modals.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//   Description   : Bootstrap Modals Override
+//----------------------------------
+.modal-backdrop.in{
+    opacity:$modal-backdrop-opacity;
+}
+
+.modal-content {
+    @include radius();
+    @if($modal-shadow == 'true'){
+        @include shadow-out();
+    }
+    @else{
+        @include no-shadow();
+    }
+    background:$modal-bg;
+    @include b($modal-border-thickness,solid,$modal-border-color);
+
+    &[class*=bg-] {
+        .modal-header,
+        .modal-title,
+        .modal-footer{
+            background: transparent !important;
+            color:$white !important;
+        }
+        .modal-body{
+            color:$white !important;
+            p{
+                color:$white !important;
+            }
+        }
+    }
+}
+
+.modal-header {
+    @include p-vh($modal-header-footer-padding-vertical,$modal-header-footer-padding-horizontal);
+    background: $modal-header-footer-bg-color;
+    @if($modal-header-footer-border == 'true'){
+        @include bb($modal-header-footer-border-thickness,solid,$modal-header-footer-border-color);
+    }
+    @if(($modal-header-footer-bg-color == $modal-bg) and ($modal-header-footer-border != 'true')){
+        @include p-b(0);
+    }
+    @include radius-a($radius,$radius,0,0);
+    position: relative;
+
+    &[class*=bg-] {
+        @include m-a(-1,-1,0,-1);
+        padding-bottom:#{$modal-header-footer-padding-vertical}px !important;
+        @include radius-a($radius,$radius,0,0);
+        .modal-title{
+            color:$white;
+        }
+        .close {
+            @include m-t(-(($font-base * 1.5) / 2));
+        }
+    }
+
+    .modal-title{
+        @include typo($modal-title-font,$modal-title-font-size,$modal-title-text-color,left){
+            text-transform: uppercase;
+        }
+    }
+}
+
+.modal-header {
+    .modal-content[class*=bg-] & .close,
+    &[class*=bg-] .close {
+        color: rgba($white,1);
+    }
+    .close {
+        @include pos(absolute,35%,#{$modal-header-footer-padding-horizontal}px,null,null);
+        @include m-t(0);
+    }
+}
+
+.modal-body {
+    @include p-vh($modal-body-padding-vertical,$modal-body-padding-horizontal);
+    .close {
+        margin-top: 0!important;
+    }
+}
+
+.modal-footer {
+    @include p-vh($modal-header-footer-padding-vertical,$modal-header-footer-padding-horizontal);
+    background: $modal-header-footer-bg-color;
+    @if($modal-header-footer-border == 'true'){
+        @include bt($modal-header-footer-border-thickness,solid,$modal-header-footer-border-color);
+    }
+    @if(($modal-header-footer-bg-color == $modal-bg) and ($modal-header-footer-border != 'true')){
+        @include p-t(0);
+    }
+    @include radius-a(0,0,$radius,$radius);
+
+    &.text-center {
+        text-align: center;
+    }
+    &.text-left {
+        text-align: left;
+    }
+}
+
+@include media(phablet,min) {
+    .modal-xs {
+        @include w(300px);
+    }
+    .modal-full {
+        @include w(90%);
+        margin-left:5%;
+        margin-right:5%;
+    }
+}

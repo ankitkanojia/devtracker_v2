@@ -1,0 +1,522 @@
+//----------------------------------
+//   File          : scss/snippets/_fab-buttons.scss
+//   Type          : CSS stylesheet
+//   Version       : 1.0.0
+//   Last Updated  : December 30, 2016
+//----------------------------------
+
+.material-button-anim {
+    @include w-max(320px);
+    @include p-a(127,15,27,15);
+	position: relative;
+	text-align: center;
+	margin: 0 auto 20px;
+}
+.material-button {
+    @include size(70px);
+	position: relative;
+	top: 0;
+	z-index: 1;
+    @include fs(20px);
+	color: $white;
+	background: $info;
+	border: none;
+	border-radius: 50%;
+	box-shadow: 0 3px 6px rgba(0,0,0,.275);
+    -moz-box-shadow: 0 3px 6px rgba(0,0,0,.275);
+    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.275);
+	outline: none;
+}
+.material-button-toggle {
+    @include size(90px);
+	z-index: 3;
+	margin: 0 auto;
+	span {
+        @include fs(32px);
+        @include animation(transform, none);
+        @include animation(transition,transform .175s cubic-bazier(.175,.67,.83,.67));
+	}
+	&.open {
+        @include animation(transform,scale(1.3,1.3));
+        @include animation(animation, toggleBtnAnim .175s);
+		span {
+            @include animation(transform,rotate(45deg));
+            @include animation(transition,transform .175s cubic-bazier(.175,.67,.83,.67));
+		}
+	}
+}
+
+#options {
+    @include h(70px);
+}
+.option {
+	position: relative;
+	.option1 {
+		filter: blur(5px);
+        @include animation(transition, all .175s);
+        @include animation(transform, translate3d(90px,90px,0) scale(.8,.8));
+	}
+	.option2 {
+		filter: blur(5px);
+        @include animation(transition, all .175s);
+        @include animation(transform,translate3d(0,90px,0) scale(.8,.8));
+	}
+	.option3 {
+		filter: blur(5px);
+        @include animation(transition, all .175s);
+        @include animation(transform,translate3d(-90px,90px,0) scale(.8,.8));
+	}
+	&.scale-on {
+		.option1,
+        .option2,
+        .option3 {
+            filter: blur(0);
+            @include animation(transform, none);
+            @include animation(transition, all .175s);
+		}
+		.option2 {
+            @include animation(transform,translateY(-28px) translateZ(0));
+            @include animation(transition, all .175s);
+		}
+	}
+}
+
+@include media(phone-xlg,max) {
+	.option1,
+    .option2 {
+		left: 0px;
+	}
+	.option3 {
+		top: 0px;
+		left: 0px;
+	}
+}
+@include media(phone-md,max) {
+	.option1,
+    .option2 {
+		left: -36px;
+	}
+	.option3 {
+		top: -70px;
+		left: 90px;
+	}
+}
+@include keyframes(toggleBtnAnim){
+	0% {@include animation(transform,scale(1,1));}
+	25% {@include animation(transform,scale(1.4,1.4));}
+	75% {@include animation(transform,scale(1.2,1.2));}
+	100% {@include animation(transform,scale(1.3,1.3));}
+}
+.fab-menu-btn {
+	border-width: 0;
+	z-index: 1001;
+	box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+	&.btn-float {
+        @include p(24);
+		> i {
+            @include pos(absolute,50%,null,null,50%);
+            @include m-t(-11);
+            @include m-l(-12);
+            @include fs(22px);
+		}
+	}
+	&:focus {
+		box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+        -moz-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+        -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+	}
+	&:hover {
+		box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+        -moz-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+        -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+	}
+}
+.fab-menu-inner {
+    @include no-s();
+	list-style: none;
+	> li {
+        @include pos(absolute,2px,0,null,0);
+        @include p-t(20);
+        @include m-t(-20);
+		display: block;
+		text-align: center;
+		.btn {
+			border-width: 0;
+		}
+		.btn-float {
+            @include size(44px);
+            @include no-p();
+			box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+            -moz-box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+            -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+			&:focus {
+				box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+                -moz-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+                -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+			}
+			&:hover {
+				box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+                -moz-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+                -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+			}
+			> i {
+                @include m(14);
+                @include fs(16px);
+				color: $text-color;
+			}
+			&.btn-flat > i {
+                @include m(12);
+			}
+		}
+		.badge,
+        .label {
+            @include pos(absolute,16px,-4px,null,null);
+		}
+		.status-mark {
+            @include pos(absolute,22px,2px,null,null);
+		}
+	}
+	.dropdown-menu {
+        @include m-t(0);
+        @include m-r(10);
+		top: 19px;
+		left: auto;
+		right: 100%;
+	}
+	.dropdown-menu-right {
+        @include m-l(10);
+        @include m-r(0);
+		right: auto;
+		left: 100%;
+	}
+	div[data-fab-label] {
+		&:after {
+            @include pos(absolute,50%,60px,null,null);
+            @include m-t(0);
+            @include p-a(1,8,1,8);
+            @include radius($radius);
+			content: attr(data-fab-label);
+            @include fs(11px);
+			color: $white;
+			background-color: $theme-color;
+			visibility: hidden;
+			box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+            -moz-box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+            -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+			opacity: 0;
+			filter: alpha(opacity=0);
+            @include animation(transition,all ease-in-out .3s);
+		}
+		&.fab-label-visible:after {
+			visibility: visible;
+			opacity: 1;
+			filter: alpha(opacity=100);
+		}
+		&.fab-label-right:after {
+			right: auto;
+			left: 66px;
+		}
+		&.fab-label-light:after {
+			background-color: $white;
+			color: $text-color;
+		}
+	}
+}
+.fab-icon-close {
+	opacity: 0;
+	filter: alpha(opacity=0);
+    @include animation(transform,rotate(360deg));
+    @include animation(transition, all ease-in-out .3s);
+}
+.fab-menu[data-fab-state=open] {
+	.fab-icon-open {
+		opacity: 0;
+		filter: alpha(opacity=0);
+        @include animation(transform,rotate(0));
+	}
+	.fab-menu-btn {
+		box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+        -moz-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+        -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+	}
+	.fab-icon-close {
+        @include animation(transform, rotate(0));
+		opacity: 1;
+		filter: alpha(opacity=100);
+	}
+	.fab-menu-inner {
+		> li,
+        div[data-fab-label]:hover:after {
+			visibility: visible;
+			opacity: 1;
+			filter: alpha(opacity=100);
+		}
+	}
+}
+.fab-menu[data-fab-toggle=hover] {
+	&:hover {
+		.fab-icon-open {
+			opacity: 0;
+			filter: alpha(opacity=0);
+            @include animation(transform, rotate(0));
+		}
+		.fab-menu-btn {
+			box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+            -moz-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+            -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);
+		}
+		.fab-icon-close {
+            @include animation(transform, rotate(0));
+			opacity: 1;
+			filter: alpha(opacity=100);
+		}
+		.fab-menu-inner > li {
+			visibility: visible;
+			opacity: 1;
+			filter: alpha(opacity=100);
+		}
+	}
+	.fab-menu-inner div[data-fab-label]:hover:after {
+		visibility: visible;
+		opacity: 1;
+		filter: alpha(opacity=100);
+	}
+}
+.ui-helper-zfix {
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.fab-menu {
+    @include no-s();
+	list-style: none;
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
+	z-index: 999;
+	.fab-menu-inner > li {
+		visibility: hidden;
+		opacity: 0;
+		filter: alpha(opacity=0);
+        @include animation(transition, all ease-in-out .3s);
+		&:nth-child(1) {
+            @include animation(transition-delay, 50ms);
+		}
+		&:nth-child(2) {
+            @include animation(transition-delay, .1s);
+		}
+		&:nth-child(3) {
+            @include animation(transition-delay, .15s);
+		}
+		&:nth-child(4) {
+            @include animation(transition-delay, .2s);
+		}
+		&:nth-child(5) {
+            @include animation(transition-delay, .25s);
+		}
+	}
+}
+.ui-helper-reset {
+    @include no-s();
+	list-style: none;
+}
+.fab-menu-absolute {
+	position: absolute;
+	&.affix {
+		position: fixed;
+	}
+}
+.fab-menu-fixed {
+	position: fixed;
+	z-index: 1000;
+}
+.fab-menu-top-left {
+    @include m-t(-24);
+	left: 20px;
+	top: 20px;
+	&.affix {
+        @include m-t(0);
+		top: 20px;
+	}
+	.fab-menu-inner div[data-fab-label]:after {
+		right: auto;
+		left: 66px;
+	}
+}
+.fab-menu-top-right {
+    @include m-t(-24);
+	right: 20px;
+	top: 20px;
+	&.affix {
+        @include m-t(0);
+		top: 20px;
+	}
+}
+
+.navbar-affixed-top,
+.navbar-top {
+	.fab-menu-top-left.affix,
+    .fab-menu-top-right.affix {
+		top: 66px;
+	}
+}
+
+.navbar-affixed-top-lg,
+.navbar-top-lg {
+	.fab-menu-top-left.affix,
+    .fab-menu-top-right.affix {
+		top: 70px;
+	}
+}
+
+.navbar-affixed-top-sm,
+.navbar-top-sm {
+	.fab-menu-top-left.affix,
+    .fab-menu-top-right.affix {
+		top: 64px;
+	}
+}
+
+.navbar-affixed-top-xs,
+.navbar-top-xs {
+	.fab-menu-top-left.affix,
+    .fab-menu-top-right.affix {
+		top: 62px;
+	}
+}
+
+.fab-menu-bottom-left {
+	bottom: 20px;
+    @include animation(transition,bottom ease-in-out .15s);
+	left: 20px;
+	bottom: 20px;
+	&.reached-bottom {
+		bottom: 80px;
+	}
+	.fab-menu-inner {
+		> li {
+            @include p-t(0);
+            @include m-t(0);
+            @include p-b(20);
+            @include m-b(-20);
+			.badge,
+            .label {
+				top: -4px;
+			}
+			.status-mark {
+				top: 2px;
+			}
+		}
+		div[data-fab-label]:after {
+            @include m-t(-20);
+			right: auto;
+			left: 66px;
+		}
+	}
+}
+.fab-menu-bottom-right {
+	bottom: 20px;
+    @include animation(transition,bottom ease-in-out .15s);
+	right: 20px;
+	bottom: 20px;
+	&.reached-bottom {
+		bottom: 80px;
+	}
+	.fab-menu-inner {
+		> li {
+            @include p-t(0);
+            @include m-t(0);
+            @include p-b(20);
+            @include m-b(-20);
+			.badge,
+            .label {
+				top: -4px;
+			}
+			.status-mark {
+				top: 2px;
+			}
+		}
+		div[data-fab-label]:after {
+            @include m-t(-20);
+		}
+	}
+}
+.fab-icon-open {
+    @include animation(transform,rotate(360deg));
+    @include animation(transition, all ease-in-out .3s);
+}
+
+
+@media(min-width:769px) {
+	.ui-tabs .ui-tabs-nav li {
+		float: left;
+	}
+	.fab-menu-inner > li {
+		.badge,
+        .label,
+        .status-mark {
+			box-shadow: 0 0 0 2px lighten($black, 90%);
+            -moz-box-shadow: 0 0 0 2px lighten($black, 90%);
+            -webkit-box-shadow: 0 0 0 2px lighten($black, 90%);
+		}
+	}
+}
+
+.fab-menu-top-left[data-fab-state=open] .fab-menu-inner > li,
+.fab-menu-top-left[data-fab-toggle=hover]:hover .fab-menu-inner > li,
+.fab-menu-top-right[data-fab-state=open] .fab-menu-inner > li,
+.fab-menu-top-right[data-fab-toggle=hover]:hover .fab-menu-inner > li,
+.fab-menu-top[data-fab-state=open] .fab-menu-inner > li,
+.fab-menu-top[data-fab-toggle=hover]:hover .fab-menu-inner > li {
+	&:nth-child(1) {
+		top: 55px;
+        @include animation(transition-delay, 50ms);
+	}
+	&:nth-child(2) {
+		top: 105px;
+        @include animation(transition-delay, .1s);
+	}
+	&:nth-child(3) {
+		top: 155px;
+        @include animation(transition-delay, .15s);
+	}
+	&:nth-child(4) {
+		top: 205px;
+        @include animation(transition-delay, .2s);
+		transition-delay: .2s;
+	}
+	&:nth-child(5) {
+		top: 255px;
+        @include animation(transition-delay, .25s);
+	}
+}
+
+
+.fab-menu-bottom-left[data-fab-state=open] .fab-menu-inner > li,
+.fab-menu-bottom-left[data-fab-toggle=hover]:hover .fab-menu-inner > li,
+.fab-menu-bottom-right[data-fab-state=open] .fab-menu-inner > li,
+.fab-menu-bottom-right[data-fab-toggle=hover]:hover .fab-menu-inner > li,
+.fab-menu-bottom[data-fab-state=open] .fab-menu-inner > li,
+.fab-menu-bottom[data-fab-toggle=hover]:hover .fab-menu-inner > li {
+	&:nth-child(1) {
+		top: -55px;
+        @include animation(transition-delay, 50ms);
+	}
+	&:nth-child(2) {
+		top: -105px;
+        @include animation(transition-delay, .1s);
+	}
+	&:nth-child(3) {
+		top: -155px;
+        @include animation(transition-delay, .15s);
+	}
+	&:nth-child(4) {
+		top: -205px;
+        @include animation(transition-delay, .2s);
+	}
+	&:nth-child(5) {
+		top: -255px;
+        @include animation(transition-delay, .25s);
+	}
+}

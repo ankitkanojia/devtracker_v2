@@ -1,0 +1,17 @@
+//----------------------------------
+//   File          : scss/_layout.scss
+//   Type          : SCSS Imports
+//   Version       : 1.0.0
+//   Last Updated  : April 4, 2017
+//----------------------------------
+
+@mixin layout($menu-style: $menu-style){
+    @if $menu-style == 'material' {@include material();}
+    @else if $menu-style == 'dropdown' {@include dropdown();}
+    @else if $menu-style == 'dropdown_label' {@include dropdown_label();}
+    @else if $menu-style == 'megamenu' {@include megamenu();}
+    @else if $menu-style == 'iconic' {@include iconic();}
+    @else if $menu-style == 'sidebar' {@include sidebar();}
+    @else if $menu-style == '' {@include material();}
+}
+@include layout($menu-style);

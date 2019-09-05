@@ -1,0 +1,953 @@
+//----------------------------------
+//   File          : scss/widgets/_weather.scss
+//   Type          : Main SCSS file
+//   Version       : 1.1.0
+//   Last Updated  : June 24, 2016
+//   Description   : CSS stylesheet for weather widgets
+//----------------------------------
+
+.weather-widget-block {
+	@include radius($radius);
+	background: white(0.2);
+}
+.img-area {
+	@include radius-a($radius,$radius,0,0);
+	position: relative;
+	img {
+		@include w(100%);
+		@include radius-a($radius,$radius,0,0);
+		display: block;
+		z-index: 1;
+	}
+	.img-area-mask {
+		@include size(100%);
+		position: absolute;
+		background: $black;
+		@include radius-a($radius,$radius,0,0);
+		z-index: 2;
+		opacity: 0.5;
+		filter: alpha(opacity=50);
+	}
+	.img-area-front {
+		@include pos(absolute,0,null,null,0);
+		@include size(100%);
+		z-index: 3;
+	}
+}
+.climacon_cloudRainSun {
+	@include w(130px);
+	@include m(30);
+}
+.week-forecast {
+	@include no-s();
+	list-style: none;
+	overflow: hidden;
+	> li {
+		@include bt(3,solid,lighten($black, 80%));
+		@include h(150px);
+		float: left;
+		width: 14.2857%;
+		&:first-child {
+			border-bottom-left-radius: $radius;
+		}
+		&:last-child {
+			border-bottom-right-radius: $radius;
+			> .inner {
+				border-right: none;
+			}
+		}
+		&.sun {
+			border-color: c300(palette($danger));
+			background: black(0.3);
+		}
+		&.cloud {
+			border-color: c300(palette($theme-color));
+			background: black(0.2);
+			&.sun {
+				border-color: c300(palette($danger));
+				background: black(0.3);
+			}
+		}
+		&.rain {
+			border-color:  c300(palette($info));
+			background: black(0.3);
+			&.sun {
+				border-color: c300(palette($danger));
+				background: black(0.4);
+			}
+		}
+		> .inner {
+			@include size(100%);
+			@include p(20);
+			@include br(1,solid,black(0.1));
+			text-align: center;
+			.climacon {
+				@include size(50px);
+				@include m-b(5);
+				text-shadow: 0 3px 1px black(0.1);
+				font-size: 40px;
+				line-height: 50px;
+				text-align: center;
+				@include radius(50%);
+				background: black(0.1);
+
+				&.rain.sun {
+					@include p-t(2);
+					@include p-l(3);
+				}
+				&.cloud.sun {
+					@include p-t(4);
+					@include p-l(2);
+				}
+			}
+		}
+	}
+}
+
+.weather-bottom {
+	text-align: center;
+	margin-top: 2em;
+	ul {
+		@include m-l(-20);
+
+		li {
+			@include w(14.1%);
+			display: inline-block;
+			padding: 1em 0;
+			float: left;
+			&.bg {
+				background: black(0.2);
+			}
+		}
+	}
+	h4 {
+		@include fs($h4);
+		color: $white;
+	}
+	h5 {
+		@include fs($h5);
+		color: $white;
+	}
+	h6 {
+		@include fs($h6);
+		color: $white;
+	}
+}
+.weather-icon-sm {
+	@include size(30px);
+	background: $white;
+	display: inline-block;
+	@include radius(50%);
+}
+.weather-icon-lg {
+	@include pos(absolute,50%,null,null,50%);
+	@include m-t(-75);
+	@include m-l(-75);
+	@include size(150px);
+	background: $white;
+	display: block;
+	@include radius(50%);
+	display: inline-block;
+}
+.week-day {
+	@include m-t(0);
+	@include m-b(8);
+	@include fs($font-base);
+}
+.week-day-temperature {
+	@include m(0);
+	position: relative;
+
+	&:after {
+		@include size(5px);
+		content: '';
+		@include radius(50%);
+		@include b(1,solid,$white);
+		@include pos(absolute,4px,11px,null,null);
+	    display: block;
+	    opacity: 0.85;
+	    filter: alpha(opacity=85);
+	}
+	&:before {
+		@include pos(absolute,1px,null,null,8px);
+		content: ' +';
+		@include fs($font-lg);
+		opacity: 0.85;
+		filter: alpha(opacity=85);
+		line-height: 1.4;
+	}
+	&.minus:before {
+		content: '-';
+	}
+}
+.temperature {
+	@include h(100%);
+	@include m(0);
+	@include fs(100px);
+	@include lh(200px);
+	text-align: right;
+	position: relative;
+	@include ff($ff-light);
+
+	&:after {
+		@include pos(absolute,45px,-15px,null,null);
+		@include size(10px);
+		content: '';
+		@include radius(50%);
+		@include b(2,solid,$white);
+		line-height: 1;
+		opacity: 0.85;
+		filter: alpha(opacity=85);
+	}
+	&:before {
+		@include p-r(20);
+		@include pos(relative,-24px,null,null,20px);
+		content: ' +';
+		@include fs(60px);
+	}
+	&.minus:before {
+		content: '-';
+	}
+}
+.temperature-feels {
+	@include pos(absolute,null,12px,20px,null);
+	@include fs($font-xlg);
+	line-height: 1em;
+	color: white(0.85);
+}
+.weather-block-info {
+	@include pos(relative,50%,null,null,null);
+	@include no-s();
+	list-style: none;
+	overflow: hidden;
+	display: table;
+	margin: -100px auto 0 auto;
+	> li {
+		@include size(170px,200px);
+		@include m-vh(10,5);
+		float: left;
+		position: relative;
+	}
+}
+.weather-params {
+	@include pos(absolute,50%,null,null,0);
+	@include no-s();
+	opacity: 0.75;
+	filter: alpha(opacity=75);
+	list-style: none;
+	@include animation(transform,translate(0, -50%));
+	> li {
+		overflow: hidden;
+		.climacon {
+			@include size(37px);
+			@include m-r(10);
+			@include fs(50px);
+			@include lh(37px);
+			display: block;
+			float: left;
+			text-align: center;
+		}
+		span {
+			@include pos(relative,10px,null,null,null);
+		}
+	}
+}
+.location,
+.dayToday {
+	@include w(100%);
+	@include m(0);
+	@include pos(absolute,15px,null,null,0);
+	@include ff($ff-semibold);
+	@include fs(25px);
+	text-align: center;
+}
+.dayToday {
+	@include fs($font-lg);
+	top: 50px;
+	color: white(0.85);
+}
+.weather-desc {
+	@include w(100%);
+	@include pos(absolute,null,null,35px,null);
+	text-align: center;
+	> span {
+		@include p-vh(5,10);
+		display: inline-block;
+		background: black(0.3);
+		@include radius($radius);
+		@include fs($font-base);
+	}
+}
+.weather-grids {
+	@include w(33%);
+	float: left;
+	&.weather-mdl {
+		text-align: center;
+	}
+	&:nth-child(3) {
+		text-align: right;
+	}
+	h3 {
+		@include fs($h3);
+		color: $white;
+		&.day {
+			@include ff($ff-light);
+			@include fs(30px);
+			color: $white;
+			margin-top: 0.7em;
+		}
+	}
+	h2 {
+		@include fs(40px);
+		@include lh(46px);
+		color: $white;
+		@include ff($ff-light);
+	}
+	h4 {
+		@include fs(1em);
+		color: $white;
+	}
+}
+@media(max-width:640px) {
+	.weather-grids h2 {
+		@include fs(2.8em);
+	}
+	.cal1 .clndr {
+		.clndr-controls {
+			.month {
+				@include fs(1.2em);
+			}
+			.clndr-control-button {
+				@include m-t(0);
+			}
+		}
+		.clndr-table tr {
+			@include h(55px);
+		}
+	}
+}
+@media(max-width:480px) {
+	.weather-grids {
+		h3 {
+			@include fs(1.3em);
+		}
+		h2 {
+			@include fs(2.5em);
+		}
+		h4 {
+			@include fs(0.8em);
+		}
+	}
+	.weather-bottom {
+		h5 {
+			@include fs(1.1em);
+		}
+		h6 {
+			@include fs(0.9em);
+		}
+	}
+	.cal1 .clndr .clndr-controls {
+		@include w(91.5%);
+		.month {
+			@include w(34%);
+			@include fs(1em);
+		}
+	}
+}
+@media(max-width:414px) {
+	.weather-bottom {
+		margin-top: 1.5em;
+		h4 {
+			@include fs(0.9em);
+		}
+		canvas {
+			@include size(30px);
+		}
+	}
+	.agile {
+		padding: 1em 0;
+	}
+	canvas#clear-day {
+		@include size(60px);
+	}
+	.cal1 .clndr .clndr-controls {
+		@include w(89.5%);
+	}
+}
+@media(max-width:320px) {
+	.weather-grids {
+		h2 {
+			@include fs(2em);
+		}
+		h4 {
+			@include fs(0.7em);
+		}
+		h3 {
+			@include fs(1.1em);
+		}
+	}
+	.weather-bottom {
+		canvas {
+			@include size(20px);
+		}
+		h5 {
+			@include fs(0.9em);
+		}
+		h6 {
+			@include fs(0.8em);
+		}
+		ul li {
+			@include w(14.2%);
+			padding: 0.5em 0;
+		}
+	}
+	.digital {
+		@include fs(1.5em);
+	}
+	.w3l {
+		@include h-min(453px);
+	}
+	.date {
+		@include fs(1.7em);
+	}
+	canvas#clear-day {
+		@include size(55px);
+	}
+	.agileinfo li {
+		@include fs(0.9em);
+	}
+	.cal1 .clndr {
+		.clndr-controls {
+			@include w(93%);
+			padding: 0.8em .6em;
+			display: inline-block;
+			.clndr-control-button {
+				@include w(29%);
+				@include fs(0.9em);
+			}
+			.month {
+				@include w(41%);
+				@include fs(0.9em);
+			}
+		}
+		.clndr-table {
+			.header-days {
+				@include w(33px);
+				@include fs(0.9em);
+			}
+			tr {
+				@include h(37px);
+				.day .day-contents {
+					@include fs(0.75em);
+				}
+			}
+		}
+	}
+}
+.city {
+	@include w(60%);
+	float: left;
+	background: url(../../img/demo/city.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	@include h-min(403px);
+	position: relative;
+	.title {
+		@include p-a(20,20,0,0);
+		float: right;
+		h2 {
+			@include no-s();
+			color: $white;
+			@include fs(40px);
+			@include ff($ff-light);
+		}
+		h3 {
+			@include m-t(0);
+			@include fs($font-lg);
+			@include ff($ff-semibold);
+			color: lighten($black, 80%);
+			text-align: right;
+		}
+	}
+	.date-time {
+		@include pos(absolute,null,null,0,null);
+		@include w(100%);
+		color: $white;
+		@include p-a(0,20,20,20);
+	}
+	.dmy {
+		@include w(50%);
+		float: left;
+		text-align: left;
+		.date {
+			@include fs($font-xs);
+			@include ff($ff-regular);
+			color: white(0.6);
+		}
+	}
+	.currentTemperature {
+		@include w(50%);
+		float: right;
+		text-align: right;
+		p {
+			@include fs(80px);
+			@include ff($ff-light);
+			span {
+				@include fs(50px);
+			}
+		}
+	}
+}
+
+.forecast {
+	@include w(40%);
+	float: left;
+	background: a500(palette($theme-color));
+	.forecast-icon {
+		@include m-a(25,0,0,0);
+		img{
+			@include w(40%);
+		}
+	}
+	.today-weather {
+		h3 {
+			@include w(80%);
+			@include p-b(10);
+			@include fs(40px);
+			color: lighten($black, 80%);
+			margin: 0 auto 20px;
+			border-width: thin;
+			@include bb(1,solid,white(0.1));
+			@include ff($ff-light);
+		}
+		ul {
+			@include m-l(-30);
+			li {
+				@include p-l(10);
+				@include w(74%);
+				margin: 0 auto;
+				@include lh(34px);
+				border-width: thin;
+				@include bb(1,solid,white(0.1));
+				color: lighten($black, 80%);
+				text-align: left;
+				list-style: none;
+				span {
+					@include p-r(10);
+					float: right;
+				}
+				&:nth-child(5) {
+					border-bottom: none;
+				}
+			}
+		}
+	}
+}
+
+@media screen and(max-width: 2560px) {
+	.city{min-height:514px;}
+}
+@media screen and(max-width: 1920px) {
+	.city{min-height:454px;}
+}
+@media screen and(max-width: 1366px) {
+	.city{min-height:392px;}
+}
+@media screen and(max-width: 1280px) {
+	.city{min-height:420px;}
+	.forecast-icon {
+		img{
+			width: 50% !important;
+			@include m-b(2);
+		}
+	}
+}
+@media screen and(max-width: 1024px) {
+	.city{min-height:458px;}
+}
+@media screen and(max-width: 800px) {
+	.dmy {@include p-t(25);}
+	.currentTemperature p {@include fs(100px);}
+}
+@media screen and(max-width: 768px) {
+	.city{min-height:451px;}
+}
+@media screen and(max-width: 736px) {
+	.dmy {@include p-t(10);}
+	.currentTemperature p {
+		@include fs(80px);
+	}
+	div#txt {
+		@include fs(30px);
+	}
+	.forecast-icon img {
+		@include w(110px);
+	}
+}
+@media screen and(max-width: 640px) {
+	.dmy {
+		@include p-t(17);
+	}
+	div#txt {
+		@include fs(25px);
+	}
+	.currentTemperature p {
+		@include p-b(10);
+	}
+}
+@media screen and(max-width: 603px) {
+	.city {
+		@include w(100%);
+		min-height: 300px;
+	}
+	.currentTemperature {
+		text-align: right;
+		p {
+			@include fs(100px);
+		}
+	}
+	.dmy {
+		@include p-t(35);
+	}
+	.forecast-icon {
+		@include m-vh(10,0);
+	}
+	.forecast {
+		@include w(100%);
+		@include p-b(30);
+	}
+	.weather-block-blur,
+	.weather-block-front{
+		display: none;
+	}
+}
+@media screen and(max-width: 480px) {
+	.forecast-icon {
+		@include m-a(40,0,10,0);
+		img {
+			@include w(65px);
+		}
+	}
+	.city {
+		min-height: 450px;
+	}
+	.title {
+		h2 {
+			@include fs(25px);
+		}
+		h3 {
+			@include fs(14px);
+		}
+	}
+	.date-time {
+		@include no-p();
+		@include w(100%);
+	}
+	.dmy {
+		@include w(100%);
+		@include no-p();
+		@include m-b(35);
+		text-align: center;
+	}
+	.date {
+		@include fs(22px);
+	}
+	.currentTemperature {
+		@include w(100%);
+		text-align: center;
+		p {
+			@include p-b(15);
+			@include fs(60px);
+		}
+	}
+	.copyright {
+		@include p(20);
+	}
+	.today-weather h3,
+	div#txt {
+		@include fs(30px);
+	}
+}
+@media screen and(max-width: 375px) {
+	.city {
+		min-height: 315px;
+		.date-time{
+			@include p-b(0);
+		}
+		.currentTemperature {
+			@include m-b(0);
+			@include p-b(0);
+			@include m-t(30);
+			p{
+				span{
+					@include fs(20px);
+				}
+			}
+		}
+	}
+	.dmy {
+		@include m-b(0);
+	}
+	.date {
+		@include fs(18px);
+	}
+	.currentTemperature p {
+		@include p-b(15);
+	}
+}
+@media screen and(max-width: 360px) {
+}
+@media screen and(max-width: 320px) {
+	.city .currentTemperature p {
+		@include fs(46px);
+	}
+}
+
+.agileinfo {
+	@include p-a(10,15,18,15);
+	background: black(0.2);
+
+	li {
+		@include w(33.33%);
+		display: inline-block;
+		float: left;
+		@include fs(1em);
+		color: $white;
+	}
+}
+span {
+	&.tod {
+		@include size(10px);
+		@include m-r(5);
+		display: inline-block;
+		background: $white;
+	}
+	&.met {
+		@include size(12px);
+		@include m-r(5);
+		display: inline-block;
+		background: c900(palette($theme-color));
+	}
+	&.bus {
+		@include m-r(5);
+		@include w(12px);
+		display: inline-block;
+		background: c900(palette($danger));
+	}
+}
+
+.w3l {
+	background: url(../images/1.jpg) no-repeat 0 0;
+	background-size: cover;
+	min-height: 500px;
+	.dmy {
+		@include w(100%);
+		@include p-b(15);
+		text-align: center;
+		.date {
+			@include fs($font-xlg);
+			@include ff($ff-light);
+			color: $white;
+			@include lh(28px);
+		}
+	}
+	.date {
+		@include fs(2em);
+		color: $white;
+	}
+}
+.agile {
+	@include p-vh(20,0);
+}
+@media(max-width:375px) {
+	.banner-info {
+		margin: 0 0 1em 1.5em;
+	}
+}
+.left-align {
+	text-align: left;
+}
+.right-align {
+	text-align: right;
+}
+.cal1 {
+	max-width: 100%;
+	@include fs(1em);
+	.clndr {
+		.clndr-controls {
+			@include no-m();
+			@include p-vh(5,10);
+			@include w(100%);
+			display: inline-block;
+			position: relative;
+			background: black(0.6);
+			.month {
+				@include w(60%);
+				float: left;
+				text-align: center;
+				@include fs(18px);
+				color: $white;
+			}
+			.clndr-control-button {
+				@include w(20%);
+				float: left;
+				@include fs(20px);
+				color: $white;
+				text-align: left;
+				&.rightalign {
+					text-align: right;
+				}
+				.clndr-next-button {
+					cursor: pointer;
+					text-transform: uppercase;
+					@include animation(transition, .5s all);
+					&:hover {
+						color: lighten($black, 10%);
+					}
+					&.inactive {
+						opacity: 0.5;
+						&:hover {
+							background: none;
+							cursor: default;
+						}
+					}
+				}
+				.clndr-previous-button {
+					cursor: pointer;
+					text-transform: uppercase;
+					@include animation(transition, .5s all);
+					&:hover {
+						color: lighten($black, 80%);
+					}
+					&.inactive {
+						opacity: 0.5;
+						&:hover {
+							background: none;
+							cursor: default;
+						}
+					}
+				}
+			}
+		}
+		.clndr-table {
+			table-layout: fixed;
+			@include w(100.1%);
+			.header-days {
+				@include h(50px);
+				@include fs(1em);
+				background: black(0.6);
+				.header-day {
+					vertical-align: middle;
+					text-align: center;
+					color: $white;
+				}
+			}
+			tr {
+				@include h(46px);
+				td {
+					vertical-align: middle;
+				}
+				.day {
+					@include w(100%);
+					height: inherit;
+					&.today {
+						background: white(0.4);
+						color: $white;
+						@include radius($radius);
+						&.event {
+							background: $white;
+							color: $black;
+						}
+					}
+					&.my-today {
+						background: white(0.4);
+						color: $white;
+						@include radius($radius);
+						&.event {
+							background: $white;
+							color: $black;
+						}
+					}
+					&.event,
+					&.my-event {
+						color: $white;
+						@include ff($ff-semibold);
+					}
+					&.inactive,
+					&.my-inactive {
+						background: lighten($black, 80%);
+					}
+					.day-contents {
+						@include p(9);
+						box-sizing: border-box;
+						text-align: center;
+						@include fs($font-xlg);
+					}
+				}
+				.empty,
+				.adjacent-month,
+				.my-empty,
+				.my-adjacent-month {
+					@include w(100%);
+					height: inherit;
+					color: white(0.4) !important;
+				}
+			}
+		}
+	}
+}
+@media(max-width:800px) {
+	.cal1 .clndr .clndr-controls {
+		.month {
+			@include fs(1.2em);
+		}
+		.clndr-control-button {
+			@include fs(14px);
+		}
+	}
+}
+.weather-block > {
+	.weather-block-mask {
+		@include size(100%);
+		@include pos(absolute,0,null,null,0);
+		z-index: 5;
+		opacity: 0.3;
+		filter: alpha(opacity=30);
+		background: $black;
+	}
+	.weather-block-blur {
+		@include pos(absolute,0,null,null,0);
+		background-position: center center;
+		width: 50% !important;
+		height: 50% !important;
+		@include animation(transform-origin,12% 5%);
+		@include animation(transform,scale(2.5));
+		background-size: cover;
+		filter: blur(10px);
+		z-index: 0;
+		&:before {
+			content: '';
+			backface-visibility: hidden;
+		}
+	}
+	.weather-block-front {
+		position: relative;
+		z-index: 6;
+	}
+}
+figure.icons {
+	margin: 0.5em 0;
+}
+div#txt {
+	@include m-b(10);
+	@include fs(35px);
+	letter-spacing: 0;
+	@include ff($ff-light)
+}
+.clndr-next-button.inactive,
+.clndr-previous-button.inactive,
+.clndr-next-year-button.inactive,
+.clndr-previous-year-button.inactive {
+	opacity: 0.5;
+	cursor: default;
+}

@@ -1,0 +1,16 @@
+To show model error:
+<style>
+    .alert {
+        padding: 7px 20px;
+    }
+</style>
+
+<div class="alert alert-danger alert-styled-left alert-bordered m-5">
+        <span class="text-semibold">Oh snap!</span> C things up and
+</div>
+	
+	<system.webServer>
+   <staticContent>
+      <mimeMap fileExtension=".woff" mimeType="application/woff" />
+    </staticContent>    
+  </system.webServer>

@@ -1,0 +1,44 @@
+1. Login
+rioclinic.azurewebsites.net
+
+2. Forgot Password
+rioclinic.azurewebsites.net/Home/ForgotPassword
+
+3. Change Password
+rioclinic.azurewebsites.net/Home/ChangePassword
+
+4. Identification
+rioclinic.azurewebsites.net/Nursing/Identification
+
+5. Admin Dashoard
+rioclinic.azurewebsites.net/Admin/Dashboard
+
+6. User List
+rioclinic.azurewebsites.net/Nursing/UserList
+
+7. Add User
+rioclinic.azurewebsites.net/Nursing/AddUser
+
+8. Nursing Dashboard
+rioclinic.azurewebsites.net/Nursing/Dashboard
+
+9. Nursing & Admin Dashboard
+rioclinic.azurewebsites.net/Nursing/DashboardND
+
+10. Criteria
+rioclinic.azurewebsites.net/Nursing/Criteria
+
+11. Anamnesis
+rioclinic.azurewebsites.net/Nursing/Anamnesis
+
+12. PhysicalExam
+rioclinic.azurewebsites.net/Nursing/PhysicalExam
+
+13. PracticeEvaluationFoot
+rioclinic.azurewebsites.net/Nursing/PracticeEvaluationFoot
+
+14. Nutrition
+rioclinic.azurewebsites.net/Nursing/Nutrition
+
+15. PatientList
+rioclinic.azurewebsites.net/Nursing/PatientList
