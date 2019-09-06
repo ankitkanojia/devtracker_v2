@@ -68,7 +68,6 @@ namespace website.Controllers
                             _entities.Entry(project).State = EntityState.Modified;
                             await _entities.SaveChangesAsync();
 
-
                             //Delete Existing Assign and Add new Assign and Save Assign list HERE
                             if (data.AssignyList.Any())
                             {
