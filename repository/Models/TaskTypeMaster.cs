@@ -14,9 +14,18 @@ namespace repository.Models
     
     public partial class TaskTypeMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TaskTypeMaster()
+        {
+            this.TaskMasters = new HashSet<TaskMaster>();
+        }
+    
         public long TaskTypeMasterId { get; set; }
         public string Type { get; set; }
         public bool IsActive { get; set; }
         public bool IsDelete { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskMaster> TaskMasters { get; set; }
     }
 }

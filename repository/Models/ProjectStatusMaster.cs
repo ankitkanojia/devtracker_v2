@@ -14,10 +14,19 @@ namespace repository.Models
     
     public partial class ProjectStatusMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ProjectStatusMaster()
+        {
+            this.Projects = new HashSet<Project>();
+        }
+    
         public long ProjectStatusMasterId { get; set; }
         public string Status { get; set; }
         public string ColorCode { get; set; }
         public bool IsActive { get; set; }
         public bool IsDelete { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }

@@ -27,5 +27,7 @@ namespace repository.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public Nullable<int> UpdatedDateInt { get; set; }
         public string UpdatedBy { get; set; }
+    
+        public virtual TaskMaster TaskMaster { get; set; }
     }
 }

@@ -14,17 +14,26 @@ namespace repository.Models
     
     public partial class TaskMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TaskMaster()
+        {
+            this.CommentMasters = new HashSet<CommentMaster>();
+            this.DependantTasks = new HashSet<DependantTask>();
+            this.TaskAttachments = new HashSet<TaskAttachment>();
+            this.TimeTrackers = new HashSet<TimeTracker>();
+        }
+    
         public long TaskMasterId { get; set; }
-        public string TaskCode { get; set; }
         public long TaskCategoryId { get; set; }
         public long ProjectId { get; set; }
-        public string Title { get; set; }
-        public long TaskTypeMasterId { get; set; }
-        public string Description { get; set; }
-        public long AssignyId { get; set; }
-        public long ReporterId { get; set; }
-        public long PriorityMasterId { get; set; }
         public long TaskStatusMasterId { get; set; }
+        public long TaskTypeMasterId { get; set; }
+        public string AssignyId { get; set; }
+        public string ReporterId { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string TaskCode { get; set; }
+        public long PriorityMasterId { get; set; }
         public System.DateTime StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<int> EstimateTimeHours { get; set; }
@@ -38,5 +47,20 @@ namespace repository.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public Nullable<int> UpdatedDateInt { get; set; }
         public string UpdatedBy { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual AspNetUser AspNetUser1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentMaster> CommentMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DependantTask> DependantTasks { get; set; }
+        public virtual Project Project { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskAttachment> TaskAttachments { get; set; }
+        public virtual TaskCategory TaskCategory { get; set; }
+        public virtual TaskStatusMaster TaskStatusMaster { get; set; }
+        public virtual TaskTypeMaster TaskTypeMaster { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TimeTracker> TimeTrackers { get; set; }
     }
 }

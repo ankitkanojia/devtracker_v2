@@ -26,5 +26,8 @@ namespace repository.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public Nullable<int> UpdatedDateInt { get; set; }
         public string UpdatedBy { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

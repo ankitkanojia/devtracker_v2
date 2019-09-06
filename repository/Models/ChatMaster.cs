@@ -21,5 +21,8 @@ namespace repository.Models
         public bool IsDelete { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<int> CreatedDateInt { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

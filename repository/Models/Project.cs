@@ -14,6 +14,19 @@ namespace repository.Models
     
     public partial class Project
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Project()
+        {
+            this.ChatMasters = new HashSet<ChatMaster>();
+            this.CommentMasters = new HashSet<CommentMaster>();
+            this.ProjectAssignies = new HashSet<ProjectAssigny>();
+            this.ProjectAttachments = new HashSet<ProjectAttachment>();
+            this.ProjectCategories = new HashSet<ProjectCategory>();
+            this.TaskCategories = new HashSet<TaskCategory>();
+            this.TaskMasters = new HashSet<TaskMaster>();
+            this.TimeTrackers = new HashSet<TimeTracker>();
+        }
+    
         public long ProjectId { get; set; }
         public string TagLine { get; set; }
         public string Name { get; set; }
@@ -37,5 +50,23 @@ namespace repository.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public Nullable<int> UpdatedDateInt { get; set; }
         public string UpdatedBy { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChatMaster> ChatMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentMaster> CommentMasters { get; set; }
+        public virtual ProjectStatusMaster ProjectStatusMaster { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProjectAssigny> ProjectAssignies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProjectAttachment> ProjectAttachments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProjectCategory> ProjectCategories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskCategory> TaskCategories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskMaster> TaskMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TimeTracker> TimeTrackers { get; set; }
     }
 }

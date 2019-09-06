@@ -4,33 +4,56 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="943577a37e324f1ab9afbcd96d5af2b9" Name="Diagram1">
-        <EntityTypeShape EntityType="Models.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Models.Activity" Width="1.5" PointX="7.75" PointY="3.75" />
-        <EntityTypeShape EntityType="Models.AspNetRole" Width="1.5" PointX="0.75" PointY="3.625" />
-        <EntityTypeShape EntityType="Models.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="2.25" />
-        <EntityTypeShape EntityType="Models.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="4.875" />
-        <EntityTypeShape EntityType="Models.AspNetUser" Width="1.5" PointX="3" PointY="1.125" />
-        <EntityTypeShape EntityType="Models.ChatMaster" Width="1.5" PointX="5.75" PointY="7.75" />
-        <EntityTypeShape EntityType="Models.CommentMaster" Width="1.5" PointX="7.75" PointY="7.75" />
-        <EntityTypeShape EntityType="Models.DependantTask" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="Models.EmailTemplete" Width="1.5" PointX="2.75" PointY="8.75" />
-        <EntityTypeShape EntityType="Models.Link" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Models.Module" Width="1.5" PointX="9.75" PointY="5.75" />
-        <EntityTypeShape EntityType="Models.PriorityMaster" Width="1.5" PointX="9.75" PointY="9.75" />
-        <EntityTypeShape EntityType="Models.Project" Width="1.5" PointX="11.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Models.ProjectAssigny" Width="1.5" PointX="4.75" PointY="11.75" />
-        <EntityTypeShape EntityType="Models.ProjectAttachment" Width="1.5" PointX="6.75" PointY="11.75" />
-        <EntityTypeShape EntityType="Models.ProjectCategory" Width="1.5" PointX="11.75" PointY="7.75" />
-        <EntityTypeShape EntityType="Models.ProjectStatusMaster" Width="1.5" PointX="11.75" PointY="11.75" />
-        <EntityTypeShape EntityType="Models.TaskAttachment" Width="1.5" PointX="8.75" PointY="12.75" />
-        <EntityTypeShape EntityType="Models.TaskCategory" Width="1.5" PointX="13.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Models.TaskMaster" Width="1.5" PointX="0.75" PointY="13.75" />
-        <EntityTypeShape EntityType="Models.TaskStatusMaster" Width="1.5" PointX="13.75" PointY="4.75" />
-        <EntityTypeShape EntityType="Models.TaskTypeMaster" Width="1.5" PointX="13.75" PointY="7.75" />
-        <EntityTypeShape EntityType="Models.TimeTracker" Width="1.5" PointX="13.75" PointY="10.75" />
+      <Diagram DiagramId="943577a37e324f1ab9afbcd96d5af2b9" Name="Diagram1" ZoomLevel="89">
+        <EntityTypeShape EntityType="Models.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Models.Activity" Width="1.5" PointX="5.25" PointY="20.5" />
+        <EntityTypeShape EntityType="Models.AspNetRole" Width="1.5" PointX="0.75" PointY="18.625" />
+        <EntityTypeShape EntityType="Models.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="17.75" />
+        <EntityTypeShape EntityType="Models.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="15.25" />
+        <EntityTypeShape EntityType="Models.AspNetUser" Width="1.5" PointX="3" PointY="15.5" />
+        <EntityTypeShape EntityType="Models.ChatMaster" Width="1.5" PointX="8.25" PointY="18" />
+        <EntityTypeShape EntityType="Models.CommentMaster" Width="1.5" PointX="8.25" PointY="13.875" />
+        <EntityTypeShape EntityType="Models.DependantTask" Width="1.5" PointX="13.5" PointY="20.625" />
+        <EntityTypeShape EntityType="Models.EmailTemplete" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Models.Link" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Models.Module" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Models.PriorityMaster" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Models.Project" Width="1.5" PointX="6" PointY="6.875" />
+        <EntityTypeShape EntityType="Models.ProjectAssigny" Width="1.5" PointX="8.25" PointY="21.625" />
+        <EntityTypeShape EntityType="Models.ProjectAttachment" Width="1.5" PointX="8.25" PointY="5.625" />
+        <EntityTypeShape EntityType="Models.ProjectCategory" Width="1.5" PointX="8.25" PointY="1" />
+        <EntityTypeShape EntityType="Models.ProjectStatusMaster" Width="1.5" PointX="3.75" PointY="9.375" />
+        <EntityTypeShape EntityType="Models.TaskAttachment" Width="1.5" PointX="13.5" PointY="24.625" />
+        <EntityTypeShape EntityType="Models.TaskCategory" Width="1.5" PointX="9" PointY="29.5" />
+        <EntityTypeShape EntityType="Models.TaskMaster" Width="1.5" PointX="11.25" PointY="15.625" />
+        <EntityTypeShape EntityType="Models.TaskStatusMaster" Width="1.5" PointX="9" PointY="10.875" />
+        <EntityTypeShape EntityType="Models.TaskTypeMaster" Width="1.5" PointX="9" PointY="26.75" />
+        <EntityTypeShape EntityType="Models.TimeTracker" Width="1.5" PointX="13.5" PointY="15.25" />
+        <AssociationConnector Association="Models.FK_Activity_AspNetUsers" />
         <AssociationConnector Association="Models.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="Models.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Models.FK_ChatMaster_AspNetUsers" />
+        <AssociationConnector Association="Models.FK_CommentMaster_AspNetUsers" />
+        <AssociationConnector Association="Models.FK_ProjectAssigny_Assigny" />
+        <AssociationConnector Association="Models.FK_TaskMaster_AspNetUsersAssigny" />
+        <AssociationConnector Association="Models.FK_TaskMaster_AspNetUsersReporter" />
+        <AssociationConnector Association="Models.FK_TimeTracker_AspNetUsers" />
+        <AssociationConnector Association="Models.FK_ChatMaster_Project" />
+        <AssociationConnector Association="Models.FK_CommentMaster_Project" />
+        <AssociationConnector Association="Models.FK_CommentMaster_TaskMaster" />
+        <AssociationConnector Association="Models.FK_DependantTask_TaskMaster" />
+        <AssociationConnector Association="Models.FK_Project_ProjectStatusMaster" />
+        <AssociationConnector Association="Models.FK_ProjectAssigny_Project1" />
+        <AssociationConnector Association="Models.FK_ProjectAttachment_Project" />
+        <AssociationConnector Association="Models.FK_ProjectCategory_Project" />
+        <AssociationConnector Association="Models.FK_TaskCategory_Project" />
+        <AssociationConnector Association="Models.FK_TaskMaster_Project" />
+        <AssociationConnector Association="Models.FK_TimeTracker_Project" />
+        <AssociationConnector Association="Models.FK_TaskAttachment_TaskMaster" />
+        <AssociationConnector Association="Models.FK_TaskMaster_TaskCategory" />
+        <AssociationConnector Association="Models.FK_TaskMaster_TaskStatusMaster" />
+        <AssociationConnector Association="Models.FK_TaskMaster_TaskTypeMaster" />
+        <AssociationConnector Association="Models.FK_TimeTracker_TaskMaster" />
         <AssociationConnector Association="Models.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>

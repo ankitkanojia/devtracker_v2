@@ -14,6 +14,12 @@ namespace repository.Models
     
     public partial class TaskCategory
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TaskCategory()
+        {
+            this.TaskMasters = new HashSet<TaskMaster>();
+        }
+    
         public long TaskCategoryId { get; set; }
         public string Name { get; set; }
         public long ProjectId { get; set; }
@@ -25,5 +31,9 @@ namespace repository.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public Nullable<int> UpdatedDateInt { get; set; }
         public string UpdatedBy { get; set; }
+    
+        public virtual Project Project { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskMaster> TaskMasters { get; set; }
     }
 }
