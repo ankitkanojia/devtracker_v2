@@ -33,6 +33,20 @@ namespace website.Helpers
             return HttpContext.Current.User.Identity.GetUserId();
         }
 
+        public static string CurrentUserRole()
+        {
+            var x = UserManager.GetRoles(CurrentUser());
+
+            if (x != null)
+                return x.FirstOrDefault();
+            else
+                return string.Empty;
+        }
+        public static IList<string> CurrentUserRoles()
+        {
+            return UserManager.GetRoles(CurrentUser());
+        }
+
         //public static async Task<ResponseVm> UpdateUserProfile(AspNetUser data)
         //{
         //    var response = new ResponseVm();
@@ -88,7 +102,7 @@ namespace website.Helpers
                 using (var db = new DBEntities())
                 {
                     var user = new ApplicationUser
-                        {UserName = email, Email = email, FullName = fullname, IsActive = true};
+                    { UserName = email, Email = email, FullName = fullname, IsActive = true };
                     var result = await UserManager.CreateAsync(user, password);
 
                     if (result.Succeeded)
@@ -101,25 +115,25 @@ namespace website.Helpers
                             // Send an email for verification
                             await SendVerificationEmail(user.Id, roleName);
 
-                            response.Code = (int) EnumList.Response.Success;
+                            response.Code = (int)EnumList.Response.Success;
                             response.Message = "We`ve sent verification email in your inbox for email verification!";
                         }
                         else
                         {
-                            response.Code = (int) EnumList.Response.Error;
+                            response.Code = (int)EnumList.Response.Error;
                             response.Message = string.Join(",", resultRole.Errors);
                         }
                     }
                     else
                     {
-                        response.Code = (int) EnumList.Response.Error;
+                        response.Code = (int)EnumList.Response.Error;
                         response.Message = string.Join(",", result.Errors);
                     }
                 }
             }
             catch (Exception e)
             {
-                response.Code = (int) EnumList.Response.Exception;
+                response.Code = (int)EnumList.Response.Exception;
                 response.Message = e.Message;
             }
 
@@ -135,18 +149,18 @@ namespace website.Helpers
                 var result = await UserManager.ConfirmEmailAsync(userId, code);
                 if (result.Succeeded)
                 {
-                    response.Code = (int) EnumList.Response.Success;
+                    response.Code = (int)EnumList.Response.Success;
                     response.Message = "Your account successfully validated.";
                 }
                 else
                 {
-                    response.Code = (int) EnumList.Response.Error;
+                    response.Code = (int)EnumList.Response.Error;
                     response.Message = string.Join(",", result.Errors);
                 }
             }
             catch (Exception e)
             {
-                response.Code = (int) EnumList.Response.Exception;
+                response.Code = (int)EnumList.Response.Exception;
                 response.Message = e.Message;
             }
 
@@ -160,7 +174,7 @@ namespace website.Helpers
                 var controller = new UrlHelper(HttpContext.Current.Request.RequestContext);
 
                 var code = await UserManager.GenerateEmailConfirmationTokenAsync(userId);
-                var callbackUrl = controller.Action("ConfirmEmail", "Home", new {userId, code},
+                var callbackUrl = controller.Action("ConfirmEmail", "Home", new { userId, code },
                     HttpContext.Current.Request.Url.Scheme);
 
                 var replacement = new Dictionary<string, string>
@@ -170,7 +184,7 @@ namespace website.Helpers
                 };
 
                 var emailTemplete =
-                    await CommonFunctions.GetEmailTemplate((int) EnumList.EmailTemplate.VerificationEmail, true,
+                    await CommonFunctions.GetEmailTemplate((int)EnumList.EmailTemplate.VerificationEmail, true,
                         replacement);
 
                 if (emailTemplete != null)
@@ -193,7 +207,7 @@ namespace website.Helpers
 
                 if (user == null)
                 {
-                    response.Code = (int) EnumList.Response.Error;
+                    response.Code = (int)EnumList.Response.Error;
                     response.Message = "Invalid login attempt.";
                     return response;
                 }
@@ -201,7 +215,7 @@ namespace website.Helpers
                 //Add this to check if the email was confirmed.
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
                 {
-                    response.Code = (int) EnumList.Response.Error;
+                    response.Code = (int)EnumList.Response.Error;
                     response.Message = "You need to confirm your email.";
                     response.IsShowSendVerificationEmail = true;
                     response.UserId = user.Id;
@@ -210,7 +224,7 @@ namespace website.Helpers
 
                 if (await UserManager.IsLockedOutAsync(user.Id))
                 {
-                    response.Code = (int) EnumList.Response.Error;
+                    response.Code = (int)EnumList.Response.Error;
                     response.Message = "Lockout";
                     response.LockOutDateTime = user.LockoutEndDateUtc;
                     return response;
@@ -218,7 +232,7 @@ namespace website.Helpers
 
                 if (!user.IsActive)
                 {
-                    response.Code = (int) EnumList.Response.Error;
+                    response.Code = (int)EnumList.Response.Error;
                     response.Message = "Your account is deactivated.";
                     return response;
                 }
@@ -232,27 +246,27 @@ namespace website.Helpers
                         CookieHelper.Set(StaticValues.CookieFullName, user.FullName);
                         var userRole = await UserManager.GetRolesAsync(user.Id);
                         if (userRole.Any()) CookieHelper.Set(StaticValues.CookieRoleName, string.Join(",", userRole));
-                        response.Code = (int) EnumList.Response.Success;
+                        response.Code = (int)EnumList.Response.Success;
                         response.Message = "Welcome " + user.FullName + "!";
                         break;
                     case SignInStatus.LockedOut:
-                        response.Code = (int) EnumList.Response.Error;
+                        response.Code = (int)EnumList.Response.Error;
                         response.Message = "Lockout";
                         response.LockOutDateTime = user.LockoutEndDateUtc;
                         break;
                     case SignInStatus.Failure:
-                        response.Code = (int) EnumList.Response.Error;
+                        response.Code = (int)EnumList.Response.Error;
                         response.Message = "Invalid login attempt.";
                         break;
                     default:
-                        response.Code = (int) EnumList.Response.Error;
+                        response.Code = (int)EnumList.Response.Error;
                         response.Message = "Invalid login attempt.";
                         break;
                 }
             }
             catch (Exception e)
             {
-                response.Code = (int) EnumList.Response.Exception;
+                response.Code = (int)EnumList.Response.Exception;
                 response.Message = e.Message;
             }
 
@@ -268,7 +282,7 @@ namespace website.Helpers
                 var user = await UserManager.FindByNameAsync(email);
                 var controller = new UrlHelper(HttpContext.Current.Request.RequestContext);
                 var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = controller.Action("ResetPassword", "Home", new {userId = user.Id, code},
+                var callbackUrl = controller.Action("ResetPassword", "Home", new { userId = user.Id, code },
                     HttpContext.Current.Request.Url.Scheme);
 
                 var replacement = new Dictionary<string, string>
@@ -278,7 +292,7 @@ namespace website.Helpers
                 };
 
                 var emailTemplate =
-                    await CommonFunctions.GetEmailTemplate((int) EnumList.EmailTemplate.ResetPassword, true,
+                    await CommonFunctions.GetEmailTemplate((int)EnumList.EmailTemplate.ResetPassword, true,
                         replacement);
 
                 var emailService = new EmailService();
@@ -289,11 +303,11 @@ namespace website.Helpers
                     Subject = emailTemplate.Subject
                 });
 
-                response.Code = (int) EnumList.Response.Success;
+                response.Code = (int)EnumList.Response.Success;
             }
             catch (Exception e)
             {
-                response.Code = (int) EnumList.Response.Exception;
+                response.Code = (int)EnumList.Response.Exception;
                 response.Message = e.Message;
             }
 
@@ -313,7 +327,7 @@ namespace website.Helpers
                     var result = await UserManager.ResetPasswordAsync(user.Id, code, password);
 
                     if (result.Succeeded)
-                        response.Code = (int) EnumList.Response.Success;
+                        response.Code = (int)EnumList.Response.Success;
                     else
                         response.Message = string.Join(",", result.Errors);
                 }
@@ -324,11 +338,11 @@ namespace website.Helpers
                 }
 
 
-                response.Code = (int) EnumList.Response.Error;
+                response.Code = (int)EnumList.Response.Error;
             }
             catch (Exception e)
             {
-                response.Code = (int) EnumList.Response.Exception;
+                response.Code = (int)EnumList.Response.Exception;
                 response.Message = e.Message;
             }
 
