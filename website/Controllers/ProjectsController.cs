@@ -92,6 +92,7 @@ namespace website.Controllers
                                 _entities.ProjectAssignies.AddRange(projectAssigns);
                                 await _entities.SaveChangesAsync();
                             }
+                             
 
                             //Delete existing attachment and Save new attachment
                             if (data.AttachedFiles != null && data.AttachedFiles.Any())
