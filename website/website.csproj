@@ -157,6 +157,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -167,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\custom\notification.js" />
+    <Content Include="Content\custom\sidenavigation.js" />
     <Content Include="Content\img\assets\bubble-corner.png" />
     <Content Include="Content\img\assets\bubble-cornerR.png" />
     <Content Include="Content\img\assets\email_confirm.png" />
@@ -1468,6 +1470,9 @@
     <Content Include="Views\Home\ResetPassword.cshtml" />
     <Content Include="Views\Home\Lockout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Shared\_Rightbar.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Projects\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\repository\repository.csproj">

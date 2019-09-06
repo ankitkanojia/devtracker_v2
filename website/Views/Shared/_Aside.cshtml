@@ -1,1 +1,49 @@
 ﻿
+<aside class="menu">
+
+    <div class="left-aside-container">
+        <!-- User profile -->
+        <div class="user-profile">
+            <div class="user-profile-container">
+                <div class="user-profile clearfix">
+                    <div class="admin-user-thumb">
+                        <img src="~/Content/img/demo/img1.jpg" alt="admin" class="rounded-circle">
+                    </div>
+                    <div class="admin-user-info text-center">
+                        <ul>
+                            <li class="username">Jane Elliott</li>
+                            <li><a href="#" class="tooltip-bottom" data-tooltip="Notifications"><span class="bubble">2</span><i class="icon-bell2"></i></a></li>
+                            <li><a href="#" class="tooltip-bottom" data-tooltip="Logout"><i class="icon-exit3"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /User profile -->
+        <!-- Main menu -->
+        <div class="menu-container">
+            <ul class="sidebar-accordion">
+
+                <li class="@Html.IsSelected("Dashboard")">
+                    <a href="@Url.Action("Index", "Dashboard")">
+                        <i class="icon-display4"></i><span class="list-label"> Dashboard</span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="#" class="@Html.IsSelected("Projects")" ><i class="icon-cash3"></i> <span>Project(s)</span></a>
+                    <ul>
+                        <li><a href="@Url.Action("List", "Projects")">My Project</a></li>
+                        <li><a href="@Url.Action("Index", "Projects")">Create Project</a></li>
+                    </ul>
+                </li>
+
+
+            </ul>
+        </div>
+        <!-- /Main menu -->
+    </div>
+</aside>
+
+

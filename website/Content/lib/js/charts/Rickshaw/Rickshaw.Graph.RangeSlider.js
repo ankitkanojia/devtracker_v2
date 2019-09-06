@@ -1,153 +1,155 @@
-Rickshaw.namespace("Rickshaw.Graph.RangeSlider");
+Rickshaw.namespace('Rickshaw.Graph.RangeSlider');
 
 Rickshaw.Graph.RangeSlider = Rickshaw.Class.create({
-    initialize: function(args) {
 
-        var $ = jQuery;
-        var self = this;
-        var element = this.element = args.element;
-        var graphs = this.graphs = args.graphs;
-        if (!graphs) {
-            graphs = this.graph = args.graph;
-        }
-        if (graphs.constructor !== Array) {
-            graphs = [graphs];
-        }
-        this.graph = graphs[0];
+	initialize: function(args) {
 
-        this.slideCallbacks = [];
+		var $ = jQuery;
+		var self = this;
+		var element = this.element = args.element;
+		var graphs = this.graphs = args.graphs;
+		if (!graphs) {
+			graphs = this.graph = args.graph;
+		}
+		if (graphs.constructor !== Array) {
+			graphs = [graphs];
+		}
+		this.graph = graphs[0];
 
-        this.build();
+		this.slideCallbacks = [];
 
-        for (var i = 0; i < graphs.length; i++) {
-            graphs[i].onUpdate(function() {
-                self.update();
-            }.bind(self));
+		this.build();
 
-            graphs[i].onConfigure(function() {
-                $(element)[0].style.width = graphs[i].width + "px";
-            }.bind(self));
-        }
+		for (var i = 0; i < graphs.length; i++) {
+			graphs[i].onUpdate(function() {
+				self.update();
+			}.bind(self));
 
-    },
+			graphs[i].onConfigure(function() {
+				$(element)[0].style.width = graphs[i].width + 'px';
+			}.bind(self));
+		}
 
-    build: function() {
+	},
 
-        var domain;
-        var element = this.element;
-        var $ = jQuery;
-        var self = this;
-        var graphs = this.graphs || this.graph;
+	build: function() {
 
-        if (graphs.constructor !== Array) {
-            graphs = [graphs];
-        }
+		var domain;
+		var element = this.element;
+		var $ = jQuery;
+		var self = this;
+		var graphs = this.graphs || this.graph;
 
-        // base the slider's min/max on the first graph
-        this.graph = graphs[0];
-        domain = graphs[0].dataDomain();
+		if (graphs.constructor !== Array) {
+			graphs = [graphs];
+		}
 
-        $(function() {
-            $(element).slider({
-                range: true,
-                min: domain[0],
-                max: domain[1],
-                values: [
-                    domain[0],
-                    domain[1]
-                ],
-                start: function(event, ui) {
-                    self.slideStarted({ event: event, ui: ui });
-                },
-                stop: function(event, ui) {
-                    self.slideFinished({ event: event, ui: ui });
-                },
-                slide: function(event, ui) {
-                    if (!self.slideShouldUpdate(event, ui))
-                        return;
+		// base the slider's min/max on the first graph
+		this.graph = graphs[0];
+		domain = graphs[0].dataDomain();
 
-                    if (ui.values[1] <= ui.values[0]) return;
+		$(function() {
+			$(element).slider({
+				range: true,
+				min: domain[0],
+				max: domain[1],
+				values: [
+					domain[0],
+					domain[1]
+				],
+				start: function(event, ui) {
+					self.slideStarted({ event: event, ui: ui });
+				},
+				stop: function(event, ui) {
+					self.slideFinished({ event: event, ui: ui });
+				},
+				slide: function(event, ui) {
+					if (!self.slideShouldUpdate(event, ui))
+						return;
 
-                    for (var i = 0; i < graphs.length; i++) {
-                        self.processSlideChange({
-                            event: event,
-                            ui: ui,
-                            graph: graphs[i]
-                        });
-                    }
-                }
-            });
-        });
+					if (ui.values[1] <= ui.values[0]) return;
 
-        graphs[0].onConfigure(function() {
-            $(element)[0].style.width = graphs[0].width + "px";
-        }.bind(this));
+					for (var i = 0; i < graphs.length; i++) {
+						self.processSlideChange({
+							event: event,
+							ui: ui,
+							graph: graphs[i]
+						});
+					}
+				}
+			} );
+		} );
 
-    },
+		graphs[0].onConfigure(function() {
+			$(element)[0].style.width = graphs[0].width + 'px';
+		}.bind(this));
 
-    update: function() {
+	},
 
-        var element = this.element;
-        var graph = this.graph;
-        var $ = jQuery;
+	update: function() {
 
-        var values = $(element).slider("option", "values");
+		var element = this.element;
+		var graph = this.graph;
+		var $ = jQuery;
 
-        var domain = graph.dataDomain();
+		var values = $(element).slider('option', 'values');
 
-        $(element).slider("option", "min", domain[0]);
-        $(element).slider("option", "max", domain[1]);
+		var domain = graph.dataDomain();
 
-        if (graph.window.xMin == null) {
-            values[0] = domain[0];
-        }
-        if (graph.window.xMax == null) {
-            values[1] = domain[1];
-        }
+		$(element).slider('option', 'min', domain[0]);
+		$(element).slider('option', 'max', domain[1]);
 
-        $(element).slider("option", "values", values);
-    },
+		if (graph.window.xMin == null) {
+			values[0] = domain[0];
+		}
+		if (graph.window.xMax == null) {
+			values[1] = domain[1];
+		}
 
-    onSlide: function(callback) {
-        this.slideCallbacks.push(callback);
-    },
+		$(element).slider('option', 'values', values);
+	},
 
-    processSlideChange: function(args) {
-        var event = args.event;
-        var ui = args.ui;
-        var graph = args.graph;
+	onSlide: function(callback) {
+		this.slideCallbacks.push(callback);
+	},
 
-        graph.window.xMin = ui.values[0];
-        graph.window.xMax = ui.values[1];
-        graph.update();
+	processSlideChange: function(args) {
+		var event = args.event;
+		var ui = args.ui;
+		var graph = args.graph;
 
-        var domain = graph.dataDomain();
+		graph.window.xMin = ui.values[0];
+		graph.window.xMax = ui.values[1];
+		graph.update();
 
-        // if we're at an extreme, stick there
-        if (domain[0] == ui.values[0]) {
-            graph.window.xMin = undefined;
-        }
+		var domain = graph.dataDomain();
 
-        if (domain[1] == ui.values[1]) {
-            graph.window.xMax = undefined;
-        }
+		// if we're at an extreme, stick there
+		if (domain[0] == ui.values[0]) {
+			graph.window.xMin = undefined;
+		}
 
-        this.slideCallbacks.forEach(function(callback) {
-            callback(graph, graph.window.xMin, graph.window.xMax);
-        });
+		if (domain[1] == ui.values[1]) {
+			graph.window.xMax = undefined;
+		}
 
-    },
+		this.slideCallbacks.forEach(function(callback) {
+			callback(graph, graph.window.xMin, graph.window.xMax);
+		});
 
-    // allows the slide updates to bail out if sliding is not permitted
-    slideShouldUpdate: function() {
-        return true;
-    },
+	},
 
-    slideStarted: function() {
-        return;
-    },
+	// allows the slide updates to bail out if sliding is not permitted
+	slideShouldUpdate: function() {
+		return true;
+	},
 
-    slideFinished: function() {
-        return;
-    }
+	slideStarted: function() {
+		return;
+	},
+
+	slideFinished: function() {
+		return;
+	}
 });
+

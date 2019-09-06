@@ -1,165 +1,165 @@
-Rickshaw.namespace("Rickshaw.Series");
+Rickshaw.namespace('Rickshaw.Series');
 
-Rickshaw.Series = Rickshaw.Class.create(Array,
-    {
-        initialize: function(data, palette, options) {
+Rickshaw.Series = Rickshaw.Class.create( Array, {
 
-            options = options || {};
+	initialize: function (data, palette, options) {
 
-            this.palette = new Rickshaw.Color.Palette(palette);
+		options = options || {};
 
-            this.timeBase = typeof(options.timeBase) === "undefined"
-                ? Math.floor(new Date().getTime() / 1000)
-                : options.timeBase;
+		this.palette = new Rickshaw.Color.Palette(palette);
 
-            var timeInterval = typeof(options.timeInterval) == "undefined" ? 1000 : options.timeInterval;
+		this.timeBase = typeof(options.timeBase) === 'undefined' ? 
+			Math.floor(new Date().getTime() / 1000) : 
+			options.timeBase;
 
-            this.setTimeInterval(timeInterval);
+		var timeInterval = typeof(options.timeInterval) == 'undefined' ?
+			1000 :
+			options.timeInterval;
 
-            if (data && (typeof(data) == "object") && Array.isArray(data)) {
-                data.forEach(function(item) { this.addItem(item) }, this);
-            }
-        },
+		this.setTimeInterval(timeInterval);
 
-        addItem: function(item) {
+		if (data && (typeof(data) == "object") && Array.isArray(data)) {
+			data.forEach( function(item) { this.addItem(item) }, this );
+		}
+	},
 
-            if (typeof(item.name) === "undefined") {
-                throw("addItem() needs a name");
-            }
+	addItem: function(item) {
 
-            item.color = (item.color || this.palette.color(item.name));
-            item.data = (item.data || []);
+		if (typeof(item.name) === 'undefined') {
+			throw('addItem() needs a name');
+		}
 
-            // backfill, if necessary
-            if ((item.data.length === 0) && this.length && (this.getIndex() > 0)) {
-                this[0].data.forEach(function(plot) {
-                    item.data.push({ x: plot.x, y: 0 });
-                });
-            } else if (item.data.length === 0) {
-                item.data.push({ x: this.timeBase - (this.timeInterval || 0), y: 0 });
-            }
+		item.color = (item.color || this.palette.color(item.name));
+		item.data = (item.data || []);
 
-            this.push(item);
+		// backfill, if necessary
+		if ((item.data.length === 0) && this.length && (this.getIndex() > 0)) {
+			this[0].data.forEach( function(plot) {
+				item.data.push({ x: plot.x, y: 0 });
+			} );
+		} else if (item.data.length === 0) {
+			item.data.push({ x: this.timeBase - (this.timeInterval || 0), y: 0 });
+		} 
 
-            if (this.legend) {
-                this.legend.addLine(this.itemByName(item.name));
-            }
-        },
+		this.push(item);
 
-        addData: function(data, x) {
+		if (this.legend) {
+			this.legend.addLine(this.itemByName(item.name));
+		}
+	},
 
-            var index = this.getIndex();
+	addData: function(data, x) {
 
-            Rickshaw.keys(data).forEach(function(name) {
-                    if (! this.itemByName(name)) {
-                        this.addItem({ name: name });
-                    }
-                },
-                this);
+		var index = this.getIndex();
 
-            this.forEach(function(item) {
-                    item.data.push({
-                        x: x || (index * this.timeInterval || 1) + this.timeBase,
-                        y: (data[item.name] || 0)
-                    });
-                },
-                this);
-        },
+		Rickshaw.keys(data).forEach( function(name) {
+			if (! this.itemByName(name)) {
+				this.addItem({ name: name });
+			}
+		}, this );
 
-        getIndex: function() {
-            return (this[0] && this[0].data && this[0].data.length) ? this[0].data.length : 0;
-        },
+		this.forEach( function(item) {
+			item.data.push({ 
+				x: x || (index * this.timeInterval || 1) + this.timeBase, 
+				y: (data[item.name] || 0) 
+			});
+		}, this );
+	},
 
-        itemByName: function(name) {
+	getIndex: function () {
+		return (this[0] && this[0].data && this[0].data.length) ? this[0].data.length : 0;
+	},
 
-            for (var i = 0; i < this.length; i++) {
-                if (this[i].name == name)
-                    return this[i];
-            }
-        },
+	itemByName: function(name) {
 
-        setTimeInterval: function(iv) {
-            this.timeInterval = iv / 1000;
-        },
+		for (var i = 0; i < this.length; i++) {
+			if (this[i].name == name)
+				return this[i];
+		}
+	},
 
-        setTimeBase: function(t) {
-            this.timeBase = t;
-        },
+	setTimeInterval: function(iv) {
+		this.timeInterval = iv / 1000;
+	},
 
-        dump: function() {
+	setTimeBase: function (t) {
+		this.timeBase = t;
+	},
 
-            var data = {
-                timeBase: this.timeBase,
-                timeInterval: this.timeInterval,
-                items: []
-            };
+	dump: function() {
 
-            this.forEach(function(item) {
+		var data = {
+			timeBase: this.timeBase,
+			timeInterval: this.timeInterval,
+			items: []
+		};
 
-                var newItem = {
-                    color: item.color,
-                    name: item.name,
-                    data: []
-                };
+		this.forEach( function(item) {
 
-                item.data.forEach(function(plot) {
-                    newItem.data.push({ x: plot.x, y: plot.y });
-                });
+			var newItem = {
+				color: item.color,
+				name: item.name,
+				data: []
+			};
 
-                data.items.push(newItem);
-            });
+			item.data.forEach( function(plot) {
+				newItem.data.push({ x: plot.x, y: plot.y });
+			} );
 
-            return data;
-        },
+			data.items.push(newItem);
+		} );
 
-        load: function(data) {
+		return data;
+	},
 
-            if (data.timeInterval) {
-                this.timeInterval = data.timeInterval;
-            }
+	load: function(data) {
 
-            if (data.timeBase) {
-                this.timeBase = data.timeBase;
-            }
+		if (data.timeInterval) {
+			this.timeInterval = data.timeInterval;
+		}
 
-            if (data.items) {
-                data.items.forEach(function(item) {
-                        this.push(item);
-                        if (this.legend) {
-                            this.legend.addLine(this.itemByName(item.name));
-                        }
+		if (data.timeBase) {
+			this.timeBase = data.timeBase;
+		}
 
-                    },
-                    this);
-            }
-        }
-    });
+		if (data.items) {
+			data.items.forEach( function(item) {
+				this.push(item);
+				if (this.legend) {
+					this.legend.addLine(this.itemByName(item.name));
+				}
+
+			}, this );
+		}
+	}
+} );
 
 Rickshaw.Series.zeroFill = function(series) {
-    Rickshaw.Series.fill(series, 0);
+	Rickshaw.Series.fill(series, 0);
 };
 
 Rickshaw.Series.fill = function(series, fill) {
 
-    var x;
-    var i = 0;
+	var x;
+	var i = 0;
 
-    var data = series.map(function(s) { return s.data });
+	var data = series.map( function(s) { return s.data } );
 
-    while (i < Math.max.apply(null, data.map(function(d) { return d.length }))) {
+	while ( i < Math.max.apply(null, data.map( function(d) { return d.length } )) ) {
 
-        x = Math.min.apply(null,
-            data
-            .filter(function(d) { return d[i] })
-            .map(function(d) { return d[i].x })
-        );
+		x = Math.min.apply( null, 
+			data
+				.filter(function(d) { return d[i] })
+				.map(function(d) { return d[i].x })
+		);
 
-        data.forEach(function(d) {
-            if (!d[i] || d[i].x != x) {
-                d.splice(i, 0, { x: x, y: fill });
-            }
-        });
+		data.forEach( function(d) {
+			if (!d[i] || d[i].x != x) {
+				d.splice(i, 0, { x: x, y: fill });
+			}
+		} );
 
-        i++;
-    }
+		i++;
+	}
 };
+

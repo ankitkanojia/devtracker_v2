@@ -1,35 +1,36 @@
-/* jshint -W079 */
+/* jshint -W079 */ 
 
 var Rickshaw = {
-    namespace: function(namespace, obj) {
 
-        var parts = namespace.split(".");
+	namespace: function(namespace, obj) {
 
-        var parent = Rickshaw;
+		var parts = namespace.split('.');
 
-        for (var i = 1, length = parts.length; i < length; i++) {
-            var currentPart = parts[i];
-            parent[currentPart] = parent[currentPart] || {};
-            parent = parent[currentPart];
-        }
-        return parent;
-    },
+		var parent = Rickshaw;
 
-    keys: function(obj) {
-        var keys = [];
-        for (var key in obj) keys.push(key);
-        return keys;
-    },
+		for(var i = 1, length = parts.length; i < length; i++) {
+			var currentPart = parts[i];
+			parent[currentPart] = parent[currentPart] || {};
+			parent = parent[currentPart];
+		}
+		return parent;
+	},
 
-    extend: function(destination, source) {
+	keys: function(obj) {
+		var keys = [];
+		for (var key in obj) keys.push(key);
+		return keys;
+	},
 
-        for (var property in source) {
-            destination[property] = source[property];
-        }
-        return destination;
-    },
+	extend: function(destination, source) {
 
-    clone: function(obj) {
-        return JSON.parse(JSON.stringify(obj));
-    }
+		for (var property in source) {
+			destination[property] = source[property];
+		}
+		return destination;
+	},
+
+	clone: function(obj) {
+		return JSON.parse(JSON.stringify(obj));
+	}
 };

@@ -16,7 +16,7 @@
     <div class="form">
         <h1 class="text-light">User Login</h1>
 
-        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new {@class = "form-horizontal", id = "frmLogin"}))
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-horizontal", id = "frmLogin" }))
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(s => s.ReturnUrl)
@@ -27,19 +27,19 @@
                     <div class="input-group-addon">
                         <i class="icon-envelop"></i>
                     </div>
-                    @Html.TextBoxFor(s => s.Email, new {@class = "form-control", placeholder = "abc@xyz.com"})
+                    @Html.TextBoxFor(s => s.Email, new { @class = "form-control", placeholder = "abc@xyz.com" })
                 </div>
 
                 <div class="input-group m-b-10 p-t-20 p-b-10">
                     <div class="input-group-addon">
                         <i class="icon-key"></i>
                     </div>
-                    @Html.PasswordFor(s => s.Password, new {@class = "form-control", placeholder = "XXXXXX"})
+                    @Html.PasswordFor(s => s.Password, new { @class = "form-control", placeholder = "XXXXXX" })
                 </div>
 
                 <div class="form-check">
                     <label class="form-check-label">
-                        @Html.CheckBoxFor(s => s.IsRemember, new {@class = "styled"}) Remember me
+                        @Html.CheckBoxFor(s => s.IsRemember, new { @class = "styled" }) Remember me
                     </label>
                 </div>
 
@@ -51,7 +51,7 @@
     <!-- Registration form -->
     <div class="form">
         <h1 class="text-light">Create an account</h1>
-        @using (Html.BeginForm("Register", "Home", FormMethod.Post, new {id = "frmRegister", @class = "form-horizontal"}))
+        @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { id = "frmRegister", @class = "form-horizontal" }))
         {
             <div class="form-group">
 
@@ -59,33 +59,33 @@
                     <div class="input-group-addon">
                         <i class="icon-user"></i>
                     </div>
-                    @Html.TextBoxFor(s => s.FullName, new {@class = "form-control", placeholder = "Joe Smith"})
+                    @Html.TextBoxFor(s => s.FullName, new { @class = "form-control", placeholder = "Joe Smith" })
                 </div>
 
                 <div class="input-group m-b-10 p-t-20">
                     <div class="input-group-addon">
                         <i class="icon-envelop"></i>
                     </div>
-                    @Html.TextBoxFor(s => s.EmailRegister, new {@class = "form-control", placeholder = "abc@xyz.com"})
+                    @Html.TextBoxFor(s => s.EmailRegister, new { @class = "form-control", placeholder = "abc@xyz.com" })
                 </div>
 
                 <div class="input-group m-b-10 p-t-20 p-b-10">
                     <div class="input-group-addon">
                         <i class="icon-key"></i>
                     </div>
-                    @Html.PasswordFor(s => s.PasswordRegister, new {@class = "form-control", placeholder = "XXXXXX"})
+                    @Html.PasswordFor(s => s.PasswordRegister, new { @class = "form-control", placeholder = "XXXXXX" })
                 </div>
 
 
                 <div class="form-check">
                     <label class="form-check-label">
-                        @Html.CheckBoxFor(s => s.IsMailAccountDetails, new {@class = "styled"}) Mail me my account details
+                        @Html.CheckBoxFor(s => s.IsMailAccountDetails, new { @class = "styled" }) Mail me my account details
                     </label>
                 </div>
 
                 <div class="form-check">
                     <label class="form-check-label">
-                        @Html.CheckBoxFor(s => s.IsAcceptTnC, new {@class = "styled"}) Accept <a href="#">terms &amp; conditions</a>
+                        @Html.CheckBoxFor(s => s.IsAcceptTnC, new { @class = "styled" }) Accept <a href="#">terms &amp; conditions</a>
                     </label>
                 </div>
 
@@ -102,9 +102,11 @@
 
 @section Scripts{
 
+    <script src="~/Content/lib/js/pages/auth/authentication.js"></script>
+
     <script>
 
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             //Login Form validation HERE
             $("#frmLogin").validate({
@@ -129,14 +131,14 @@
                 ignore: 'input[type=hidden], .select2-search__field',
                 errorClass: 'validation-error',
                 successClass: 'validation-success',
-                highlight: function(element, errorClass) {
+                highlight: function (element, errorClass) {
                     $(element).removeClass(errorClass);
                 },
-                unhighlight: function(element, errorClass) {
+                unhighlight: function (element, errorClass) {
                     $(element).removeClass(errorClass);
                 },
 
-                errorPlacement: function(error, element) {
+                errorPlacement: function (error, element) {
 
                     if (element.parents('div').hasClass("checker") ||
                         element.parents('div').hasClass("choice") ||
@@ -203,14 +205,14 @@
                 ignore: 'input[type=hidden], .select2-search__field',
                 errorClass: 'validation-error',
                 successClass: 'validation-success',
-                highlight: function(element, errorClass) {
+                highlight: function (element, errorClass) {
                     $(element).removeClass(errorClass);
                 },
-                unhighlight: function(element, errorClass) {
+                unhighlight: function (element, errorClass) {
                     $(element).removeClass(errorClass);
                 },
 
-                errorPlacement: function(error, element) {
+                errorPlacement: function (error, element) {
 
                     if (element.parents('div').hasClass("checker") ||
                         element.parents('div').hasClass("choice") ||

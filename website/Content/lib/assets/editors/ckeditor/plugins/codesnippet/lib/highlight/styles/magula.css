@@ -8,15 +8,16 @@ Music: Aphex Twin / Xtal
 */
 
 .hljs {
-    background-color: #f4f4f4;
-    display: block;
-    padding: 0.5em;
+  display: block; padding: 0.5em;
+  background-color: #f4f4f4;
 }
 
 .hljs,
 .hljs-subst,
 .lisp .hljs-title,
-.clojure .hljs-built_in { color: black; }
+.clojure .hljs-built_in {
+  color: black;
+}
 
 .hljs-string,
 .hljs-title,
@@ -37,13 +38,17 @@ Music: Aphex Twin / Xtal
 .hljs-stream,
 .bash .hljs-variable,
 .apache .hljs-cbracket,
-.coffeescript .hljs-attribute { color: #050; }
+.coffeescript .hljs-attribute {
+  color: #050;
+}
 
 .hljs-comment,
 .hljs-annotation,
 .hljs-template_comment,
 .diff .hljs-header,
-.hljs-chunk { color: #777; }
+.hljs-chunk {
+  color: #777;
+}
 
 .hljs-number,
 .hljs-date,
@@ -52,7 +57,9 @@ Music: Aphex Twin / Xtal
 .smalltalk .hljs-symbol,
 .smalltalk .hljs-char,
 .hljs-change,
-.tex .hljs-special { color: #800; }
+.tex .hljs-special {
+  color: #800;
+}
 
 .hljs-label,
 .hljs-javadoc,
@@ -72,7 +79,9 @@ Music: Aphex Twin / Xtal
 .nginx .hljs-built_in,
 .tex .hljs-formula,
 .hljs-prompt,
-.clojure .hljs-attribute { color: #00e; }
+.clojure .hljs-attribute {
+  color: #00e;
+}
 
 .hljs-keyword,
 .hljs-id,
@@ -88,11 +97,13 @@ Music: Aphex Twin / Xtal
 .tex .hljs-command,
 .hljs-request,
 .hljs-status {
-    color: navy;
-    font-weight: bold;
+  font-weight: bold;
+  color: navy;
 }
 
-.nginx .hljs-built_in { font-weight: normal; }
+.nginx .hljs-built_in {
+  font-weight: normal;
+}
 
 .coffeescript .javascript,
 .javascript .xml,
@@ -100,11 +111,12 @@ Music: Aphex Twin / Xtal
 .xml .javascript,
 .xml .vbscript,
 .xml .css,
-.xml .hljs-cdata { opacity: 0.5; }
+.xml .hljs-cdata {
+  opacity: 0.5;
+}
 
 /* --- */
-
 .apache .hljs-tag {
-    color: blue;
-    font-weight: bold;
+  font-weight: bold;
+  color: blue;
 }

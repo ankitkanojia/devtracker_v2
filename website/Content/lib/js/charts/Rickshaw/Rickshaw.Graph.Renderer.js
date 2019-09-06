@@ -1,188 +1,182 @@
 Rickshaw.namespace("Rickshaw.Graph.Renderer");
 
-Rickshaw.Graph.Renderer = Rickshaw.Class.create({
-    initialize: function(args) {
-        this.graph = args.graph;
-        this.tension = args.tension || this.tension;
-        this.configure(args);
-    },
+Rickshaw.Graph.Renderer = Rickshaw.Class.create( {
 
-    seriesPathFactory: function() {
-        //implement in subclass
-    },
+	initialize: function(args) {
+		this.graph = args.graph;
+		this.tension = args.tension || this.tension;
+		this.configure(args);
+	},
 
-    seriesStrokeFactory: function() {
-        // implement in subclass
-    },
+	seriesPathFactory: function() {
+		//implement in subclass
+	},
 
-    defaults: function() {
-        return {
-            tension: 0.8,
-            strokeWidth: 2,
-            unstack: true,
-            padding: { top: 0.01, right: 0, bottom: 0.01, left: 0 },
-            stroke: false,
-            fill: false,
-            opacity: 1
-        };
-    },
+	seriesStrokeFactory: function() {
+		// implement in subclass
+	},
 
-    domain: function(data) {
-        // Requires that at least one series contains some data
-        var stackedData = data || this.graph.stackedData || this.graph.stackData();
+	defaults: function() {
+		return {
+			tension: 0.8,
+			strokeWidth: 2,
+			unstack: true,
+			padding: { top: 0.01, right: 0, bottom: 0.01, left: 0 },
+			stroke: false,
+			fill: false,
+			opacity: 1
+		};
+	},
 
-        // filter out any series that may be empty in the current x-domain
-        stackedData = stackedData.filter(function(a) { return a && a.length !== 0; });
+	domain: function(data) {
+		// Requires that at least one series contains some data
+		var stackedData = data || this.graph.stackedData || this.graph.stackData();
 
-        var xMin = +Infinity;
-        var xMax = -Infinity;
+		// filter out any series that may be empty in the current x-domain
+		stackedData = stackedData.filter(function (a) { return a && a.length !== 0; });
 
-        var yMin = +Infinity;
-        var yMax = -Infinity;
+		var xMin = +Infinity;
+		var xMax = -Infinity;
 
-        stackedData.forEach(function(series) {
+		var yMin = +Infinity;
+		var yMax = -Infinity;
 
-            series.forEach(function(d) {
+		stackedData.forEach( function(series) {
 
-                if (d.y == null) return;
+			series.forEach( function(d) {
 
-                var y = d.y + d.y0;
+				if (d.y == null) return;
 
-                if (y < yMin) yMin = y;
-                if (y > yMax) yMax = y;
-            });
+				var y = d.y + d.y0;
 
-            if (!series.length) return;
+				if (y < yMin) yMin = y;
+				if (y > yMax) yMax = y;
+			} );
 
-            if (series[0].x < xMin) xMin = series[0].x;
-            if (series[series.length - 1].x > xMax) xMax = series[series.length - 1].x;
-        });
+			if (!series.length) return;
 
-        xMin -= (xMax - xMin) * this.padding.left;
-        xMax += (xMax - xMin) * this.padding.right;
+			if (series[0].x < xMin) xMin = series[0].x;
+			if (series[series.length - 1].x > xMax) xMax = series[series.length - 1].x;
+		} );
 
-        yMin = this.graph.min === "auto" ? yMin : this.graph.min || 0;
-        yMax = this.graph.max === undefined ? yMax : this.graph.max;
+		xMin -= (xMax - xMin) * this.padding.left;
+		xMax += (xMax - xMin) * this.padding.right;
 
-        if (this.graph.min === "auto" || yMin < 0) {
-            yMin -= (yMax - yMin) * this.padding.bottom;
-        }
+		yMin = this.graph.min === 'auto' ? yMin : this.graph.min || 0;
+		yMax = this.graph.max === undefined ? yMax : this.graph.max;
 
-        if (this.graph.max === undefined) {
-            yMax += (yMax - yMin) * this.padding.top;
-        }
+		if (this.graph.min === 'auto' || yMin < 0) {
+			yMin -= (yMax - yMin) * this.padding.bottom;
+		}
 
-        return { x: [xMin, xMax], y: [yMin, yMax] };
-    },
+		if (this.graph.max === undefined) {
+			yMax += (yMax - yMin) * this.padding.top;
+		}
 
-    render: function(args) {
+		return { x: [xMin, xMax], y: [yMin, yMax] };
+	},
 
-        args = args || {};
+	render: function(args) {
 
-        var graph = this.graph;
-        var series = args.series || graph.series;
+		args = args || {};
 
-        var vis = args.vis || graph.vis;
-        vis.selectAll("*").remove();
+		var graph = this.graph;
+		var series = args.series || graph.series;
 
-        var data = series
-            .filter(function(s) { return !s.disabled })
-            .map(function(s) { return s.stack });
+		var vis = args.vis || graph.vis;
+		vis.selectAll('*').remove();
 
-        var pathNodes = vis.selectAll("path.path")
-            .data(data)
-            .enter().append("svg:path")
-            .classed("path", true)
-            .attr("d", this.seriesPathFactory());
+		var data = series
+			.filter(function(s) { return !s.disabled })
+			.map(function(s) { return s.stack });
 
-        if (this.stroke) {
-            var strokeNodes = vis.selectAll("path.stroke")
-                .data(data)
-                .enter().append("svg:path")
-                .classed("stroke", true)
-                .attr("d", this.seriesStrokeFactory());
-        }
+		var pathNodes = vis.selectAll("path.path")
+			.data(data)
+			.enter().append("svg:path")
+			.classed('path', true)
+			.attr("d", this.seriesPathFactory());
 
-        var i = 0;
-        series.forEach(function(series) {
-                if (series.disabled) return;
-                series.path = pathNodes[0][i];
-                if (this.stroke) series.stroke = strokeNodes[0][i];
-                this._styleSeries(series);
-                i++;
-            },
-            this);
+		if (this.stroke) {
+                        var strokeNodes = vis.selectAll('path.stroke')
+                                .data(data)
+                                .enter().append("svg:path")
+				.classed('stroke', true)
+				.attr("d", this.seriesStrokeFactory());
+		}
 
-    },
+		var i = 0;
+		series.forEach( function(series) {
+			if (series.disabled) return;
+			series.path = pathNodes[0][i];
+			if (this.stroke) series.stroke = strokeNodes[0][i];
+			this._styleSeries(series);
+			i++;
+		}, this );
 
-    _styleSeries: function(series) {
+	},
 
-        var fill = this.fill ? series.color : "none";
-        var stroke = this.stroke ? series.color : "none";
-        var strokeWidth = series.strokeWidth ? series.strokeWidth : this.strokeWidth;
-        var opacity = series.opacity ? series.opacity : this.opacity;
+	_styleSeries: function(series) {
 
-        series.path.setAttribute("fill", fill);
-        series.path.setAttribute("stroke", stroke);
-        series.path.setAttribute("stroke-width", strokeWidth);
-        series.path.setAttribute("opacity", opacity);
+		var fill = this.fill ? series.color : 'none';
+		var stroke = this.stroke ? series.color : 'none';
+		var strokeWidth = series.strokeWidth ? series.strokeWidth : this.strokeWidth;
+		var opacity = series.opacity ? series.opacity : this.opacity;
 
-        if (series.className) {
-            d3.select(series.path).classed(series.className, true);
-        }
-        if (series.className && this.stroke) {
-            d3.select(series.stroke).classed(series.className, true);
-        }
-    },
+		series.path.setAttribute('fill', fill);
+		series.path.setAttribute('stroke', stroke);
+		series.path.setAttribute('stroke-width', strokeWidth);
+		series.path.setAttribute('opacity', opacity);
 
-    configure: function(args) {
+		if (series.className) {
+			d3.select(series.path).classed(series.className, true);
+		}
+		if (series.className && this.stroke) {
+			d3.select(series.stroke).classed(series.className, true);
+		}
+	},
 
-        args = args || {};
+	configure: function(args) {
 
-        Rickshaw.keys(this.defaults()).forEach(function(key) {
+		args = args || {};
 
-                if (!args.hasOwnProperty(key)) {
-                    this[key] = this[key] || this.graph[key] || this.defaults()[key];
-                    return;
-                }
+		Rickshaw.keys(this.defaults()).forEach( function(key) {
 
-                if (typeof this.defaults()[key] == "object") {
+			if (!args.hasOwnProperty(key)) {
+				this[key] = this[key] || this.graph[key] || this.defaults()[key];
+				return;
+			}
 
-                    Rickshaw.keys(this.defaults()[key]).forEach(function(k) {
+			if (typeof this.defaults()[key] == 'object') {
 
-                            this[key][k] =
-                                args[key][k] !== undefined
-                                ? args[key][k]
-                                : this[key][k] !== undefined
-                                ? this[key][k]
-                                : this.defaults()[key][k];
-                        },
-                        this);
+				Rickshaw.keys(this.defaults()[key]).forEach( function(k) {
 
-                } else {
-                    this[key] =
-                        args[key] !== undefined
-                        ? args[key]
-                        : this[key] !== undefined
-                        ? this[key]
-                        : this.graph[key] !== undefined
-                        ? this.graph[key]
-                        : this.defaults()[key];
-                }
+					this[key][k] =
+						args[key][k] !== undefined ? args[key][k] :
+						this[key][k] !== undefined ? this[key][k] :
+						this.defaults()[key][k];
+				}, this );
 
-            },
-            this);
-    },
+			} else {
+				this[key] =
+					args[key] !== undefined ? args[key] :
+					this[key] !== undefined ? this[key] :
+					this.graph[key] !== undefined ? this.graph[key] :
+					this.defaults()[key];
+			}
 
-    setStrokeWidth: function(strokeWidth) {
-        if (strokeWidth !== undefined) {
-            this.strokeWidth = strokeWidth;
-        }
-    },
+		}, this );
+	},
 
-    setTension: function(tension) {
-        if (tension !== undefined) {
-            this.tension = tension;
-        }
-    }
-});
+	setStrokeWidth: function(strokeWidth) {
+		if (strokeWidth !== undefined) {
+			this.strokeWidth = strokeWidth;
+		}
+	},
+
+	setTension: function(tension) {
+		if (tension !== undefined) {
+			this.tension = tension;
+		}
+	}
+} );
+

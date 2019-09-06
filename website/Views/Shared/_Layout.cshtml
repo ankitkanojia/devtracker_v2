@@ -1,42 +1,132 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="theme-color" content="#1C2B36" />
+
+    <title>@ViewBag.Title</title>
+
+    <!-- Favicon -->
+    <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png" sizes="144x144">
+    <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png" sizes="114x114">
+    <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png" sizes="72x72">
+    <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png">
+    <link href="~/Content/img/favicon.ico" rel="icon" type="image/png">
+    <link href="~/Content/img/favicon.ico" rel="shortcut icon">
+
+    <!-- Global stylesheets -->
+    <link type="text/css" rel="stylesheet" href="~/Content/lib/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="~/Content/lib/css/animate.min.css">
+    <link type="text/css" rel="stylesheet" href="~/Content/lib/css/main.css">
+
+    <!-- Page css -->
+    @RenderSection("styles", false)
 </head>
-<body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink("Application name", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-            </ul>
+
+<body id="top">
+
+    <!-- Pre loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="loader"></div>
         </div>
     </div>
-</div>
-<div class="container body-content">
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
-</div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", false)
+    <div id="body-wrapper" class="body-container">
+
+        <!-- Header begins -->
+        @Html.Partial("_Header")
+
+        <!-- Sidebar -->
+        @Html.Partial("_Aside")
+
+        <section class="main-container">
+
+            <!-- Content -->
+            @RenderBody()
+
+            <!-- Footer -->
+            @Html.Partial("_Footer")
+
+        </section>
+
+        <!-- Scroll to Top -->
+        <a id="scrollTop" href="#top"><i class="icon-arrow-up12"></i></a>
+
+    </div>
+
+    <!-- Rightbar -->
+    @Html.Partial("_Rightbar")
+
+
+    <input type="hidden" id="errorMsg" value="@StaticValues.NotifyError" />
+    <input type="hidden" id="successMsg" value="@StaticValues.NotifySuccess" />
+    <input type="hidden" id="actionRequiredMsg" value="@StaticValues.NotifyActionRequiredMsg" />
+
+    @{
+        if (!string.IsNullOrWhiteSpace(StaticValues.NotifyError))
+        {
+            StaticValues.NotifyError = string.Empty;
+        }
+        if (!string.IsNullOrWhiteSpace(StaticValues.NotifySuccess))
+        {
+            StaticValues.NotifySuccess = string.Empty;
+        }
+        if (!string.IsNullOrWhiteSpace(StaticValues.NotifyActionRequiredMsg))
+        {
+            StaticValues.NotifyActionRequiredMsg = string.Empty;
+        }
+    }
+
+
+    <!-- Global scripts -->
+    <script src="~/Content/lib/js/core/jquery/jquery.js"></script>
+    <script src="~/Content/lib/js/core/jquery/jquery.ui.js"></script>
+    <script src="~/Content/lib/js/core/tether.min.js"></script>
+    <script src="~/Content/lib/js/core/bootstrap/bootstrap.js"></script>
+    <script src="~/Content/lib/js/core/bootstrap/jasny_bootstrap.min.js"></script>
+    <script src="~/Content/lib/js/core/navigation/nav.accordion.js"></script>
+    <script src="~/Content/lib/js/core/hammer/hammerjs.js"></script>
+    <script src="~/Content/lib/js/core/hammer/jquery.hammer.js"></script>
+    <script src="~/Content/lib/js/core/slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/Content/lib/js/extensions/smart-resize.js"></script>
+    <script src="~/Content/lib/js/extensions/blockui.min.js"></script>
+    <script src="~/Content/lib/js/forms/uniform.min.js"></script>
+    <script src="~/Content/lib/js/forms/switchery.js"></script>
+    <script src="~/Content/lib/js/forms/select2.min.js"></script>
+    <script src="~/Content/lib/js/plugins/ekko-lightbox.min.js"></script>  
+<script src="~/Content/lib/js/plugins/notifications/pnotify.min.js"></script>
+
+    <!-- Custom scripts -->
+    <script src="~/Content/custom/sidenavigation.js"></script>
+    <script src="~/Content/custom/notification.js"></script>
+
+    <!-- Core scripts -->
+    <script src="~/Content/lib/js/core/app/layouts.js"></script>
+    <script src="~/Content/lib/js/core/app/core.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            //To show error notification
+            if ($('#errorMsg').val() !== "") {
+                NotifyError($('#errorMsg').val());
+            }
+
+            //To show success notification
+            if ($('#successMsg').val() !== "") {
+                NotifySuccess($('#successMsg').val());
+            }
+
+            if ($('#actionRequiredMsg').val() !== "") {
+                NotifyActionRequired($('#actionRequiredMsg').val());
+            }
+        });
+    </script>
+
+    @RenderSection("scripts", false)
 </body>
+
 </html>

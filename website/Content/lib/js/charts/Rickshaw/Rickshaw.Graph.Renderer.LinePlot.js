@@ -1,87 +1,84 @@
-Rickshaw.namespace("Rickshaw.Graph.Renderer.LinePlot");
+Rickshaw.namespace('Rickshaw.Graph.Renderer.LinePlot');
 
-Rickshaw.Graph.Renderer.LinePlot = Rickshaw.Class.create(Rickshaw.Graph.Renderer,
-    {
-        name: "lineplot",
+Rickshaw.Graph.Renderer.LinePlot = Rickshaw.Class.create( Rickshaw.Graph.Renderer, {
 
-        defaults: function($super) {
+	name: 'lineplot',
 
-            return Rickshaw.extend($super(),
-                {
-                    unstack: true,
-                    fill: false,
-                    stroke: true,
-                    padding: { top: 0.01, right: 0.01, bottom: 0.01, left: 0.01 },
-                    dotSize: 3,
-                    strokeWidth: 2
-                });
-        },
+	defaults: function($super) {
 
-        seriesPathFactory: function() {
+		return Rickshaw.extend( $super(), {
+			unstack: true,
+			fill: false,
+			stroke: true,
+			padding:{ top: 0.01, right: 0.01, bottom: 0.01, left: 0.01 },
+			dotSize: 3,
+			strokeWidth: 2
+		} );
+	},
 
-            var graph = this.graph;
+	seriesPathFactory: function() {
 
-            var factory = d3.svg.line()
-                .x(function(d) { return graph.x(d.x) })
-                .y(function(d) { return graph.y(d.y) })
-                .interpolate(this.graph.interpolation).tension(this.tension);
+		var graph = this.graph;
 
-            factory.defined && factory.defined(function(d) { return d.y !== null });
-            return factory;
-        },
+		var factory = d3.svg.line()
+			.x( function(d) { return graph.x(d.x) } )
+			.y( function(d) { return graph.y(d.y) } )
+			.interpolate(this.graph.interpolation).tension(this.tension);
 
-        render: function(args) {
+		factory.defined && factory.defined( function(d) { return d.y !== null } );
+		return factory;
+	},
 
-            args = args || {};
+	render: function(args) {
 
-            var graph = this.graph;
+		args = args || {};
 
-            var series = args.series || graph.series;
-            var vis = args.vis || graph.vis;
+		var graph = this.graph;
 
-            var dotSize = this.dotSize;
+		var series = args.series || graph.series;
+		var vis = args.vis || graph.vis;
 
-            vis.selectAll("*").remove();
+		var dotSize = this.dotSize;
 
-            var data = series
-                .filter(function(s) { return !s.disabled })
-                .map(function(s) { return s.stack });
+		vis.selectAll('*').remove();
 
-            var nodes = vis.selectAll("path")
-                .data(data)
-                .enter().append("svg:path")
-                .attr("d", this.seriesPathFactory());
+		var data = series
+			.filter(function(s) { return !s.disabled })
+			.map(function(s) { return s.stack });
 
-            var i = 0;
-            series.forEach(function(series) {
-                    if (series.disabled) return;
-                    series.path = nodes[0][i++];
-                    this._styleSeries(series);
-                },
-                this);
+		var nodes = vis.selectAll("path")
+			.data(data)
+			.enter().append("svg:path")
+			.attr("d", this.seriesPathFactory());
 
-            series.forEach(function(series) {
+		var i = 0;
+		series.forEach(function(series) {
+			if (series.disabled) return;
+			series.path = nodes[0][i++];
+			this._styleSeries(series);
+		}, this);
 
-                    if (series.disabled) return;
+		series.forEach(function(series) {
 
-                    var nodes = vis.selectAll("x")
-                        .data(series.stack.filter(function(d) { return d.y !== null }))
-                        .enter().append("svg:circle")
-                        .attr("cx", function(d) { return graph.x(d.x) })
-                        .attr("cy", function(d) { return graph.y(d.y) })
-                        .attr("r", function(d) { return ("r" in d) ? d.r : dotSize });
+			if (series.disabled) return;
 
-                    Array.prototype.forEach.call(nodes[0],
-                        function(n) {
-                            if (!n) return;
-                            n.setAttribute("data-color", series.color);
-                            n.setAttribute("fill", "white");
-                            n.setAttribute("stroke", series.color);
-                            n.setAttribute("stroke-width", this.strokeWidth);
+			var nodes = vis.selectAll("x")
+				.data(series.stack.filter( function(d) { return d.y !== null } ))
+				.enter().append("svg:circle")
+				.attr("cx", function(d) { return graph.x(d.x) })
+				.attr("cy", function(d) { return graph.y(d.y) })
+				.attr("r", function(d) { return ("r" in d) ? d.r : dotSize});
 
-                        }.bind(this));
+			Array.prototype.forEach.call(nodes[0], function(n) {
+				if (!n) return;
+				n.setAttribute('data-color', series.color);
+				n.setAttribute('fill', 'white');
+				n.setAttribute('stroke', series.color);
+				n.setAttribute('stroke-width', this.strokeWidth);
 
-                },
-                this);
-        }
-    });
+			}.bind(this));
+
+		}, this);
+	}
+} );
+

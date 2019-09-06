@@ -1,102 +1,101 @@
-Rickshaw.namespace("Rickshaw.Graph.Renderer.Area");
+Rickshaw.namespace('Rickshaw.Graph.Renderer.Area');
 
-Rickshaw.Graph.Renderer.Area = Rickshaw.Class.create(Rickshaw.Graph.Renderer,
-    {
-        name: "area",
+Rickshaw.Graph.Renderer.Area = Rickshaw.Class.create( Rickshaw.Graph.Renderer, {
 
-        defaults: function($super) {
+	name: 'area',
 
-            return Rickshaw.extend($super(),
-                {
-                    unstack: false,
-                    fill: false,
-                    stroke: false
-                });
-        },
+	defaults: function($super) {
 
-        seriesPathFactory: function() {
+		return Rickshaw.extend( $super(), {
+			unstack: false,
+			fill: false,
+			stroke: false
+		} );
+	},
 
-            var graph = this.graph;
+	seriesPathFactory: function() {
 
-            var factory = d3.svg.area()
-                .x(function(d) { return graph.x(d.x) })
-                .y0(function(d) { return graph.y(d.y0) })
-                .y1(function(d) { return graph.y(d.y + d.y0) })
-                .interpolate(graph.interpolation).tension(this.tension);
+		var graph = this.graph;
 
-            factory.defined && factory.defined(function(d) { return d.y !== null });
-            return factory;
-        },
+		var factory = d3.svg.area()
+			.x( function(d) { return graph.x(d.x) } )
+			.y0( function(d) { return graph.y(d.y0) } )
+			.y1( function(d) { return graph.y(d.y + d.y0) } )
+			.interpolate(graph.interpolation).tension(this.tension);
 
-        seriesStrokeFactory: function() {
+		factory.defined && factory.defined( function(d) { return d.y !== null } );
+		return factory;
+	},
 
-            var graph = this.graph;
+	seriesStrokeFactory: function() {
 
-            var factory = d3.svg.line()
-                .x(function(d) { return graph.x(d.x) })
-                .y(function(d) { return graph.y(d.y + d.y0) })
-                .interpolate(graph.interpolation).tension(this.tension);
+		var graph = this.graph;
 
-            factory.defined && factory.defined(function(d) { return d.y !== null });
-            return factory;
-        },
+		var factory = d3.svg.line()
+			.x( function(d) { return graph.x(d.x) } )
+			.y( function(d) { return graph.y(d.y + d.y0) } )
+			.interpolate(graph.interpolation).tension(this.tension);
 
-        render: function(args) {
+		factory.defined && factory.defined( function(d) { return d.y !== null } );
+		return factory;
+	},
 
-            args = args || {};
+	render: function(args) {
 
-            var graph = this.graph;
-            var series = args.series || graph.series;
+		args = args || {};
 
-            var vis = args.vis || graph.vis;
-            vis.selectAll("*").remove();
+		var graph = this.graph;
+		var series = args.series || graph.series;
 
-            // insert or stacked areas so strokes lay on top of areas
-            var method = this.unstack ? "append" : "insert";
+		var vis = args.vis || graph.vis;
+		vis.selectAll('*').remove();
 
-            var data = series
-                .filter(function(s) { return !s.disabled })
-                .map(function(s) { return s.stack });
+		// insert or stacked areas so strokes lay on top of areas
+		var method = this.unstack ? 'append' : 'insert';
 
-            var nodes = vis.selectAll("path")
-                .data(data)
-                .enter()[method]("svg:g", "g");
+		var data = series
+			.filter(function(s) { return !s.disabled })
+			.map(function(s) { return s.stack });
 
-            nodes.append("svg:path")
-                .attr("d", this.seriesPathFactory())
-                .attr("class", "area");
+		var nodes = vis.selectAll("path")
+			.data(data)
+			.enter()[method]("svg:g", 'g');
 
-            if (this.stroke) {
-                nodes.append("svg:path")
-                    .attr("d", this.seriesStrokeFactory())
-                    .attr("class", "line");
-            }
+		nodes.append("svg:path")
+			.attr("d", this.seriesPathFactory())
+			.attr("class", 'area');
 
-            var i = 0;
-            series.forEach(function(series) {
-                    if (series.disabled) return;
-                    series.path = nodes[0][i++];
-                    this._styleSeries(series);
-                },
-                this);
-        },
+		if (this.stroke) {
+			nodes.append("svg:path")
+				.attr("d", this.seriesStrokeFactory())
+				.attr("class", 'line');
+		}
 
-        _styleSeries: function(series) {
+		var i = 0;
+		series.forEach( function(series) {
+			if (series.disabled) return;
+			series.path = nodes[0][i++];
+			this._styleSeries(series);
+		}, this );
+	},
 
-            if (!series.path) return;
+	_styleSeries: function(series) {
 
-            d3.select(series.path).select(".area")
-                .attr("fill", series.color);
+		if (!series.path) return;
 
-            if (this.stroke) {
-                d3.select(series.path).select(".line")
-                    .attr("fill", "none")
-                    .attr("stroke", series.stroke || d3.interpolateRgb(series.color, "black")(0.125))
-                    .attr("stroke-width", this.strokeWidth);
-            }
+		d3.select(series.path).select('.area')
+			.attr('fill', series.color);
 
-            if (series.className) {
-                series.path.setAttribute("class", series.className);
-            }
-        }
-    });
+		if (this.stroke) {
+			d3.select(series.path).select('.line')
+				.attr('fill', 'none')
+				.attr('stroke', series.stroke || d3.interpolateRgb(series.color, 'black')(0.125))
+				.attr('stroke-width', this.strokeWidth);
+		}
+
+		if (series.className) {
+			series.path.setAttribute('class', series.className);
+		}
+	}
+} );
+

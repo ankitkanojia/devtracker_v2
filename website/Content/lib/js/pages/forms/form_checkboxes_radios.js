@@ -8,36 +8,36 @@
 
 // Primary
 $(".control-primary").uniform({
-    radioClass: "choice",
-    wrapperClass: "border-primary text-primary"
+	radioClass: 'choice',
+	wrapperClass: 'border-primary text-primary'
 });
 
 // Danger
 $(".control-danger").uniform({
-    radioClass: "choice",
-    wrapperClass: "border-danger text-danger"
+	radioClass: 'choice',
+	wrapperClass: 'border-danger text-danger'
 });
 
 // Success
 $(".control-success").uniform({
-    radioClass: "choice",
-    wrapperClass: "border-success text-success"
+	radioClass: 'choice',
+	wrapperClass: 'border-success text-success'
 });
 
 // Warning
 $(".control-warning").uniform({
-    radioClass: "choice",
-    wrapperClass: "border-warning text-warning"
+	radioClass: 'choice',
+	wrapperClass: 'border-warning text-warning'
 });
 
 // Info
 $(".control-info").uniform({
-    radioClass: "choice",
-    wrapperClass: "border-info text-info"
+	radioClass: 'choice',
+	wrapperClass: 'border-info text-info'
 });
 
 // Custom color
 $(".control-custom").uniform({
-    radioClass: "choice",
-    wrapperClass: "border-indigo-200 text-indigo-200"
+	radioClass: 'choice',
+	wrapperClass: 'border-indigo-200 text-indigo-200'
 });

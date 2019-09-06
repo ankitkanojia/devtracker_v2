@@ -2,10 +2,8 @@
   Five-color theme from a single blue hue.
 */
 .hljs {
-    background: #EAEEF3;
-    color: #00193A;
-    display: block;
-    padding: 0.5em;
+  display: block; padding: 0.5em;
+  background: #EAEEF3; color: #00193A;
 }
 
 .hljs-keyword,
@@ -13,11 +11,15 @@
 .hljs-important,
 .hljs-request,
 .hljs-header,
-.hljs-javadoctag { font-weight: bold; }
+.hljs-javadoctag {
+  font-weight: bold;
+}
 
 .hljs-comment,
 .hljs-chunk,
-.hljs-template_comment { color: #738191; }
+.hljs-template_comment {
+  color: #738191;
+}
 
 .hljs-string,
 .hljs-title,
@@ -31,7 +33,9 @@
 .hljs-argument,
 .hljs-link_label,
 .hljs-blockquote,
-.hljs-header { color: #0048AB; }
+.hljs-header {
+  color: #0048AB;
+}
 
 .hljs-decorator,
 .hljs-prompt,
@@ -53,4 +57,6 @@
 .hljs-link_url,
 .hljs-bullet,
 .hljs-sqbracket,
-.hljs-phony { color: #4C81C9; }
+.hljs-phony {
+  color: #4C81C9;
+}

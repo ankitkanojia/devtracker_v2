@@ -1,10 +1,10 @@
-﻿@using repository.Helpers
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="theme-color" content="#1C2B36"/>
+    <meta name="theme-color" content="#1C2B36" />
+
     <title>@ViewBag.Title </title>
     <!-- Favicon -->
     <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png" sizes="144x144">
@@ -13,90 +13,84 @@
     <link href="~/Content/img/favicon.ico" rel="apple-touch-icon" type="image/png">
     <link href="~/Content/img/favicon.ico" rel="icon" type="image/png">
     <link href="~/Content/img/favicon.ico" rel="shortcut icon">
-    <!-- /Favicon -->
+
     <!-- Global stylesheets -->
     <link type="text/css" rel="stylesheet" href="~/Content/lib/css/bootstrap.css">
     <link type="text/css" rel="stylesheet" href="~/Content/lib/css/animate.min.css">
     <link type="text/css" rel="stylesheet" href="~/Content/lib/css/main.css">
-    <!-- /Global stylesheets -->
+
     @RenderSection("styles", false)
 </head>
 <body>
 
-<div class="auth-container">
-    <div class="center-block">
-        @RenderBody()
-        <div class="footer">
-            <div class="float-left">
-                © 2017 Bird&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Web app kit by <a href="http://followtechnique.com" target="_blank">FollowTechnique</a>.
-            </div>
-            <div class="float-right">
-                <div class="label label-info">Version: 2.0.0</div>
+    <div class="auth-container">
+        <div class="center-block">
+            @RenderBody()
+            <div class="footer">
+                <div class="float-left">
+                    © @DateTime.Now.Year DevTracker&nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;Developed by <a href="http://riowebs.com" target="_blank">Riowebs</a>.
+                </div>
+                <div class="float-right">
+                    <div class="label label-info">Version: 1.2.0</div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<input type="hidden" id="errorMsg" value="@StaticValues.NotifyError"/>
-<input type="hidden" id="successMsg" value="@StaticValues.NotifySuccess"/>
-<input type="hidden" id="actionRequiredMsg" value="@StaticValues.NotifyActionRequiredMsg"/>
+    <input type="hidden" id="errorMsg" value="@StaticValues.NotifyError" />
+    <input type="hidden" id="successMsg" value="@StaticValues.NotifySuccess" />
+    <input type="hidden" id="actionRequiredMsg" value="@StaticValues.NotifyActionRequiredMsg" />
 
-@{
-    if (!string.IsNullOrWhiteSpace(StaticValues.NotifyError))
-    {
-        StaticValues.NotifyError = string.Empty;
-    }
-    if (!string.IsNullOrWhiteSpace(StaticValues.NotifySuccess))
-    {
-        StaticValues.NotifySuccess = string.Empty;
-    }
-    if (!string.IsNullOrWhiteSpace(StaticValues.NotifyActionRequiredMsg))
-    {
-        StaticValues.NotifyActionRequiredMsg = string.Empty;
-    }
-}
-
-
-<!-- Global scripts -->
-<script src="~/Content/lib/js/core/jquery/jquery.js"></script>
-<script src="~/Content/lib/js/core/jquery/jquery.ui.js"></script>
-<script src="~/Content/lib/js/core/bootstrap/bootstrap.js"></script>
-<script src="~/Content/lib/js/core/hammer/hammerjs.js"></script>
-<script src="~/Content/lib/js/core/hammer/jquery.hammer.js"></script>
-<script src="~/Content/lib/js/core/slimscroll/jquery.slimscroll.js"></script>
-<script src="~/Content/lib/js/forms/uniform.min.js"></script>
-<script src="~/Content/lib/js/core/app/layouts.js"></script>
-<script src="~/Content/lib/js/core/app/core.js"></script>
-<script src="~/Content/lib/js/forms/jquery.validate.js"></script>
-<script src="~/Content/lib/js/plugins/notifications/pnotify.min.js"></script>
-<script src="~/Content/custom/notification.js"></script>
-<!-- /Global scripts -->
-<!-- Page scripts -->
-<script src="~/Content/lib/js/pages/auth/authentication.js"></script>
-<!-- /Page scripts -->
-
-
-<script>
-    $(document).ready(function() {
-
-        //To show error notification
-        if ($('#errorMsg').val() !== "") {
-            NotifyError($('#errorMsg').val());
+    @{
+        if (!string.IsNullOrWhiteSpace(StaticValues.NotifyError))
+        {
+            StaticValues.NotifyError = string.Empty;
         }
-
-        //To show success notification
-        if ($('#successMsg').val() !== "") {
-            NotifySuccess($('#successMsg').val());
+        if (!string.IsNullOrWhiteSpace(StaticValues.NotifySuccess))
+        {
+            StaticValues.NotifySuccess = string.Empty;
         }
-
-        if ($('#actionRequiredMsg').val() !== "") {
-            NotifyActionRequired($('#actionRequiredMsg').val());
+        if (!string.IsNullOrWhiteSpace(StaticValues.NotifyActionRequiredMsg))
+        {
+            StaticValues.NotifyActionRequiredMsg = string.Empty;
         }
+    }
 
 
-    });
-</script>
+    <!-- Global scripts -->
+    <script src="~/Content/lib/js/core/jquery/jquery.js"></script>
+    <script src="~/Content/lib/js/core/jquery/jquery.ui.js"></script>
+    <script src="~/Content/lib/js/core/bootstrap/bootstrap.js"></script>
+    <script src="~/Content/lib/js/core/hammer/hammerjs.js"></script>
+    <script src="~/Content/lib/js/core/hammer/jquery.hammer.js"></script>
+    <script src="~/Content/lib/js/core/slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/Content/lib/js/forms/uniform.min.js"></script>
+    <script src="~/Content/lib/js/core/app/layouts.js"></script>
+    <script src="~/Content/lib/js/core/app/core.js"></script>
+    <script src="~/Content/lib/js/forms/jquery.validate.js"></script>
+    <script src="~/Content/lib/js/plugins/notifications/pnotify.min.js"></script>
+    <script src="~/Content/custom/notification.js"></script>
 
-@RenderSection("scripts", false)
+
+    <script>
+        $(document).ready(function () {
+
+            //To show error notification
+            if ($('#errorMsg').val() !== "") {
+                NotifyError($('#errorMsg').val());
+            }
+
+            //To show success notification
+            if ($('#successMsg').val() !== "") {
+                NotifySuccess($('#successMsg').val());
+            }
+
+            if ($('#actionRequiredMsg').val() !== "") {
+                NotifyActionRequired($('#actionRequiredMsg').val());
+            }
+        });
+    </script>
+
+    @RenderSection("scripts", false)
 </body>
 </html>

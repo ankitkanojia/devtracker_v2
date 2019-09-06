@@ -4,6 +4,9 @@ namespace repository.Helpers
 {
     public static class StaticValues
     {
+        public static string RecoverPasswordLink { get; } = "http://bay81.azurewebsites.net/Home/ResetPassword/";
+        public static string ProfilePath { get; } = "/FileManagement/Profile/";
+        public static string ProjectAttachmentPath { get; } = "/FileManagement/ProjectAttachment/";
         public static string NotifyError { get; set; }
         public static string NotifySuccess { get; set; }
         public static string NotifyActionRequiredMsg { get; set; }

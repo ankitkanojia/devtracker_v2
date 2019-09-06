@@ -6,13 +6,12 @@
 //----------------------------------
 
 $(function() {
-    "use strict";
+	'use strict';
 
-    var editor = CKEDITOR.replace("editor-readonly",
-        {
-            height: "400px",
-        });
+    var editor = CKEDITOR.replace('editor-readonly', {
+        height: '400px',
+    });
 
-    var editor3 = CKEDITOR.inline("editor-inline");
+    var editor3 = CKEDITOR.inline('editor-inline');
 
 });
