@@ -198,6 +198,7 @@ namespace website.Controllers
 
         public async Task<ActionResult> List()
         {
+
             try
             {
                 using (_entities = new DBEntities())
@@ -214,9 +215,8 @@ namespace website.Controllers
                     }).ToListAsync();
 
                     if (_roleId != StaticValues.RoleOwner)
-                    {
                         projectsListVms = projectsListVms.Where(s => s.ProjectAssignyAssignies.Any(j => j.AssignyId == _userId)).ToList();
-                    }
+                     
 
                     var userMasters = await _entities.AspNetUsers.ToListAsync();
 
