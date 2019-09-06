@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h1 style="display:none">Empty Heading</h1>
+
+<!--Page Header-->
+<div class="header">
+    <div class="header-content">
+        <div class="page-title">
+            <i class="icon-briefcase position-left"></i>Create Project
+        </div>
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Dashboard")"></a></li>
+            <li><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+            <li class="active">Create Project</li>
+        </ul>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Index", "Projects", FormMethod.Post, new { @class = "form-horizontal", @id = "frmProjects", @enctype = "multipart/form-data" }))
+{
+    <div class="container-fluid page-content">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-inverse card-flat">
+                    <div class="card-block">
+                         
+                        
+                        
+                        
+                        
+                        
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section styles{
+
+}
+
+@section scripts{
+
+ 
+
+    <Script>
+        $(document).ready(function () {
+           
+        });
+    </Script>
+}

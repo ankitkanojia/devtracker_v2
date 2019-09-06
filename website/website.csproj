@@ -1473,6 +1473,7 @@
     <Content Include="Views\Shared\_Rightbar.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Projects\List.cshtml" />
+    <Content Include="Views\Home\TestPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\repository\repository.csproj">

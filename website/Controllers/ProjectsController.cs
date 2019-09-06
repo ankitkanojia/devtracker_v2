@@ -200,7 +200,7 @@ namespace website.Controllers
         {
             try
             {
-                using (_entities)
+                using (_entities = new DBEntities())
                 {
                     var projectsListVms = await _entities.Projects.Select(s => new ProjectsListVm
                     {
@@ -213,7 +213,7 @@ namespace website.Controllers
                         ProjectAssignyAssignies = s.ProjectAssignies
                     }).ToListAsync();
 
-                    if (_roleId != StaticValues.RoleOwnerId)
+                    if (_roleId != StaticValues.RoleOwner)
                     {
                         projectsListVms = projectsListVms.Where(s => s.ProjectAssignyAssignies.Any(j => j.AssignyId == _userId)).ToList();
                     }
