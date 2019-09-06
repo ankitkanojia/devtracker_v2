@@ -196,45 +196,41 @@ namespace website.Controllers
             }
         }
 
-        //public async Task<ActionResult> List()
-        //{
-        //    try
-        //    {
-        //        using (_entities)
-        //        {
-        //            var roleMasterId = Convert.ToInt64(CookieHelper.GetCookie(CookieName.RoleMasterId));
-        //            var userMasterId = Convert.ToInt64(CookieHelper.GetCookie(CookieName.UserMasterId));
+        public async Task<ActionResult> List()
+        {
+            try
+            {
+                using (_entities)
+                {
+                    var projectsListVms = await _entities.Projects.Select(s => new ProjectsListVm
+                    {
+                        ProjectId = s.ProjectId,
+                        Name = s.Name,
+                        EndDate = s.EndDate,
+                        StartDate = s.StartDate,
+                        ClientName = s.ClientName,
+                        ProjectStatusMasterId = s.ProjectStatusMasterId,
+                        ProjectAssignyAssignies = s.ProjectAssignies
+                    }).ToListAsync();
 
-        //            var projectsListVms = await _entities.Projects.Select(s => new ProjectsListVm
-        //            {
-        //                ProjectId = s.ProjectId,
-        //                Name = s.Name,
-        //                EndDate = s.EndDate,
-        //                StartDate = s.StartDate,
-        //                ClientName = s.ClientName,
-        //                ProjectStatusMasterId = s.ProjectStatusMasterId,
-        //                ProjectAssignyAssignies = s.ProjectAssignies
-        //            }).ToListAsync();
+                    if (_roleId != StaticValues.RoleOwnerId)
+                    {
+                        projectsListVms = projectsListVms.Where(s => s.ProjectAssignyAssignies.Any(j => j.AssignyId == _userId)).ToList();
+                    }
 
-        //            if (roleMasterId == (int)EnumList.Roles.Team_Leader || roleMasterId == (int)EnumList.Roles.Designer)
-        //            {
-        //                projectsListVms = projectsListVms.Where(s => s.ProjectAssignyAssignies.Any(j => j.AssignyId == userMasterId)).ToList();
-        //            }
+                    var userMasters = await _entities.AspNetUsers.ToListAsync();
 
+                    var tuple = new Tuple<List<ProjectsListVm>, List<AspNetUser>>(projectsListVms, userMasters);
 
-        //            var userMasters = await _entities.UserMasters.ToListAsync();
-
-        //            var tuple = new Tuple<List<ProjectsListVm>, List<UserMaster>>(projectsListVms, userMasters);
-
-        //            return View(tuple);
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-
-        //}
+                    return View(tuple);
+                }
+            }
+            catch (Exception e)
+            {
+                StaticValues.NotifyError = e.Message;
+                throw;
+            }
+        }
 
         //public async Task<ActionResult> Details(long id)
         //{
