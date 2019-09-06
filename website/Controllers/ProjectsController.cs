@@ -22,7 +22,6 @@ namespace website.Controllers
             try
             {
                 var model = new ProjectsVm();
-
                 return View(model);
             }
             catch (Exception e)
@@ -30,7 +29,6 @@ namespace website.Controllers
                 Console.WriteLine(e);
                 throw;
             }
-
         }
 
         [HttpPost]
@@ -118,7 +116,8 @@ namespace website.Controllers
                                                           FileSize = item.ContentLength / 1024
                                                       }).ToList();
 
-                                _entities.ProjectAttachments.AddRange(projectAttachments);
+                                if (projectAttachments.Any())
+                                    _entities.ProjectAttachments.AddRange(projectAttachments);
                             }
 
                             StaticValues.NotifySuccess = SuccessMessage.Updated;
@@ -177,8 +176,8 @@ namespace website.Controllers
                                                           FileName = Utilities.SaveFile(item, Server.MapPath("~" + StaticValues.ProjectAttachmentPath + project.ProjectId + "/"), Guid.NewGuid().ToString()),
                                                           FileSize = item.ContentLength / 1024
                                                       }).ToList();
-
-                            _entities.ProjectAttachments.AddRange(projectAttachments);
+                            if (projectAttachments.Any())
+                                _entities.ProjectAttachments.AddRange(projectAttachments);
                         }
 
                         await _entities.SaveChangesAsync();
